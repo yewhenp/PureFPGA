@@ -1,3 +1,3 @@
-#GPU for Z80 based on FPGA
+# GPU for Z80 based on FPGA
 
-##Product requirements
+## Product requirements

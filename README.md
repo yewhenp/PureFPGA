@@ -28,5 +28,5 @@ In this project is used DE10-nano Cyclone V FPGA.
 ### instruction execution cycle
 ...
 #### memory + ROM architecture
-![](./images/memory_instructions)
+![](./images/memory_instructions.png)
 

@@ -16,5 +16,17 @@ In this project is used DE10-nano Cyclone V FPGA.
 ## Details on realization
 ### memory
 - "memory remapping" - data distribution between cores
-   (number of core that will get i piece of data - i%{number of used cores}) + plus devide array into smaller with len = number of cores)
-- 
+   (number of core that will get i piece of data - i%{number of used cores})) This has to be implemented by us
+- There is MMU that helps for Z80 to write into memory with bigger then 16bit address space. This is imple,ented by other people.
+- Programmer has to make programs, keeping in the mind some restrictions. 
+    1) if you want to add two arrays, you have to devide you arrays into pieces of size of 64 numbers, and write one devided piece by one(e.g. first 64 numbers of first array - first 64 numbers of second array - second 64 bit of first array -...)
+    2) size of videoram is limited
+
+#### memory architecture:
+![](./images/memory.png)
+
+### instruction execution cycle
+...
+#### memory + ROM architecture
+![](./images/memory_instructions)
+

@@ -1,8 +1,8 @@
 # GPU for Z80 based on FPGA
 
 ## Idea of project
-Tha main purpose of this project is to create general purpose video card using FPGA techs. 
-This project is part of bigger project - computer based on Z80. 
+Tha main purpose of this project is to create general purpose video card using FPGA techs.
+This project is part of bigger project - computer based on Z80.
 In this project is used DE10-nano Cyclone V FPGA.
 
 ## Product requirements
@@ -18,15 +18,21 @@ In this project is used DE10-nano Cyclone V FPGA.
 - "memory remapping" - data distribution between cores
    (number of core that will get i piece of data - i%{number of used cores})) This has to be implemented by us
 - There is MMU that helps for Z80 to write into memory with bigger then 16bit address space. This is imple,ented by other people.
-- Programmer has to make programs, keeping in the mind some restrictions. 
-    1) if you want to add two arrays, you have to devide you arrays into pieces of size of 64 numbers, and write one devided piece by one(e.g. first 64 numbers of first array - first 64 numbers of second array - second 64 bit of first array -...)
-    2) size of videoram is limited
-
+- Video ran itself is also an output memory. 
+- when coding, programmer can choose, where he wants to save result. When coding assembler, programmer can specify arrays from what addresses to take arrays, and where to save but there are some restrictions: 
+    1) Arrays have to have the same size
+    2) result have to have the same size as arrays
+    3) arrays have to have first address = 0 mod 64 (numbers of cores)
+    4) first result's address has to be 0 mod 64
+- There is image buffer, where each core can write. There will be special chip that will trnasfer this data to the hdmi/vga
 #### memory architecture:
 ![](./images/memory.png)
 
 ### instruction execution cycle
-...
+- cores are stupid and have very simple set of instructions (ariphmetics (adding, multiplication), binary operators, memory operations)
+- There is ROM memory, where live shaders
+- Processors sends address of shader for working, to special controller, that will fetch instructions from ROM and send them to cores or will do some "personal" logic (cycle, if branches????) 
 #### memory + ROM architecture
 ![](./images/memory_instructions.png)
+
 

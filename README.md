@@ -12,27 +12,27 @@ In this project is used DE10-nano Cyclone V FPGA.
 - video output to VGA or\and hdmi
 - 64 16 bit simple cores
 - special simple assembler
+- instruction processor for loops and simple branches
 
 ## Details on realization
 ### memory
-- "memory remapping" - data distribution between cores
-   (number of core that will get i piece of data - i%{number of used cores})) This has to be implemented by us
-- There is MMU that helps for Z80 to write into memory with bigger then 16bit address space. This is imple,ented by other people.
-- Video ran itself is also an output memory. 
-- when coding, programmer can choose, where he wants to save result. When coding assembler, programmer can specify arrays from what addresses to take arrays, and where to save but there are some restrictions: 
+- "Memory remapping with modulus 64 (number of cores)" - data distribution between cores (Memory manager does distribution). But memory manager also mapps instruction processor IP and reg0-3
+- There is MMU that helps for Z80 to write into memory with bigger then 16bit address space. This is implemented by other people.
+- Video mem itself is also an output memory. - processor can read from video mem through memory manager
+- When coding, programmer is almost free at actions: programmer can specify arrays from what addresses to take arrays, and where to save but there are some restrictions:
     1) Arrays have to have the same size
-    2) result have to have the same size as arrays
-    3) arrays have to have first address = 0 mod 64 (numbers of cores)
-    4) first result's address has to be 0 mod 64
-- There is image buffer, where each core can write. There will be special chip that will trnasfer this data to the hdmi/vga
-#### memory architecture:
-![](./images/memory.png)
+    2) Input arrays and result array have to have first address = 0 mod 64 (numbers of cores)
+    3) When preparing data for videocard, coder has to realize that videocard works with 16-bit numbers, so programmer has to prepare 16-bit numbers (each into two RAM cells)
+- There are 2 video buffers, one is shown on screen, second is being written by cores
+  The videocard is working in the main memory, and while creating video frame all writing into main memory are made also on the selected buffer. Second buffer is procedded by vga controler. Then the switch is made and videocard writes in second buffer, but first is used for vga. So actually two buffers are divided betwen 64 cores, and actually there are 2 * 64 buffers. This 
 
 ### instruction execution cycle
-- cores are stupid and have very simple set of instructions (ariphmetics (adding, multiplication), binary operators, memory operations)
+- cores have smaller set of instructions (ariphmetics (adding, multiplication), binary operators, memory operations) - no branching (Thanks to SIMD)
 - There is ROM memory, where live shaders
-- Processors sends address of shader for working, to special controller, that will fetch instructions from ROM and send them to cores or will do some "personal" logic (cycle, if branches????) 
-#### memory + ROM architecture
-![](./images/memory_instructions.png)
+- There is special memory cell that is directly mapepd into IP of instruction processor. Also its registers (there are 4 of them) are mapped in VM. They can be used as arguments for shader.
+- Note, instruction processor only fetches instruction and sends them to cores. But there are special instructions for manipulating its registers - The main purpose is to implement cycles and if - branches, that include only values of registers (instruction processor doesn't have a memory)
+- When someone else is writing into IP (processor through VM) then videocard is going into execution state (special flag will be changed). After finishing function, videocard starts execution NULL, and at this moment, flag is changed) This flag will inform processor if videocard have finished its job.
+### Overall arch
+![](./images/Videocard.jpeg)
 
 

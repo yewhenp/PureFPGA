@@ -50,10 +50,12 @@ class Register:
         return self.__value
 
     def write(self, data):
-        self.__value = data & self.__capacity
+        self.__value = data % self.__capacity
+        return data > self.__capacity
 
     def inc(self):
         self.__value = (self.__value + 1) % self.__capacity
+        return self.__value == 0
 
     def get_capacity(self):
         return self.__capacity

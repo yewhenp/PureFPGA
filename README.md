@@ -25,15 +25,19 @@ In this project is used DE10-nano Cyclone V FPGA.
     2) Input arrays and result array have to have first address = 0 mod 64 (numbers of cores)
     3) When preparing data for videocard, coder has to realize that videocard works with 16-bit numbers, so programmer has to prepare 16-bit numbers (each into two RAM cells)
 - There are 2 video buffers, one is shown on screen, second is being written by cores
-  The videocard is working in the main memory, and while creating video frame all writing into main memory are made also on the selected buffer. Second buffer is procedded by vga controler. Then the switch is made and videocard writes in second buffer, but first is used for vga. So actually two buffers are divided betwen 64 cores, and actually there are 2 * 64 buffers. This 
+  The videocard is working in the main memory, and while creating video frame all writing into main memory are made also on the selected buffer. Second buffer is procedded by vga controler. Then the switch is made and videocard writes in second buffer, but first is used for VGA. So actually two buffers are divided betwen 64 cores, and actually there are 2 * 64 buffers.
 
 ### instruction execution cycle
-- cores have smaller set of instructions (ariphmetics (adding, multiplication), binary operators, memory operations) - no branching (Thanks to SIMD)
+- cores have smaller set of instructions (arithmetics (adding, multiplication), binary operations, memory operations) - no branching (thanks to SIMD)
 - There is ROM memory, where live shaders
 - There is special memory cell that is directly mapepd into IP of instruction processor. Also its registers (there are 4 of them) are mapped in VM. They can be used as arguments for shader.
 - Note, instruction processor only fetches instruction and sends them to cores. But there are special instructions for manipulating its registers - The main purpose is to implement cycles and if - branches, that include only values of registers (instruction processor doesn't have a memory)
-- When someone else is writing into IP (processor through VM) then videocard is going into execution state (special flag will be changed). After finishing function, videocard starts execution NULL, and at this moment, flag is changed) This flag will inform processor if videocard have finished its job.
+- When someone else is writing into IP (processor through VM) then videocard is going into execution state (special flag will be changed). After finishing function, videocard starts execution NOP, and at this moment, flag is changed) This flag will inform processor if videocard have finished its job.
 ### Overall arch
 ![](./images/Videocard.jpeg)
 
+### Buffers
+![](./images/BUFFERS.png)
 
+### Instruction execution
+![](./images/instructions.png)

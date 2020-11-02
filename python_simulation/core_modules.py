@@ -141,3 +141,10 @@ class MemoryManager:
         """
         core = address - (self.sm.core_num * (address // self.sm.core_num))
         return self.sm.get_core(core).read_data(address // self.sm.core_num)
+
+    def get_sm(self):
+        """
+        Returns SM
+        :return:
+        """
+        return self.sm

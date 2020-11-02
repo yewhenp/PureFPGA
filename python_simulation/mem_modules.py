@@ -38,3 +38,17 @@ class RAM(ROM):
 class Buffer(RAM):
     def __init__(self, size: int, data: list[int]):
         super().__init__(size, data)
+
+
+class Register:
+    def __init__(self):
+        self.__value = 0
+
+    def read(self):
+        return self.__value
+
+    def write(self, data):
+        self.__value = data
+
+    def inc(self):
+        self.__value += 1

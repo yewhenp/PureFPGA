@@ -41,18 +41,24 @@ class Buffer(RAM):
 
 
 class Register:
-    CAPACITY = 65535
-    def __init__(self):
-        self.__value = 0
+    def __init__(self, size=16, val=0):
+        self.__capacity = 2**size-1
+        self.__size = size
+        self.__value = val
 
     def read(self):
         return self.__value
 
     def write(self, data):
-        self.__value = data
+        self.__value = data & self.__capacity
 
     def inc(self):
-        if self.__value == self.CAPACITY:
-            self.__value = 1
-        else:
-            self.__value += 1
+        self.__value = (self.__value + 1) % self.__capacity
+
+class Register16(Register):
+    def __init__(self, val=0):
+        super().__init__(16, val)
+
+class Register1(Register):
+    def __init__(self, val=0):
+        super().__init__(1, val)

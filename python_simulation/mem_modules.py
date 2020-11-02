@@ -55,6 +55,9 @@ class Register:
     def inc(self):
         self.__value = (self.__value + 1) % self.__capacity
 
+    def get_capacity(self):
+        return self.__capacity
+
 class Register16(Register):
     def __init__(self, val=0):
         super().__init__(16, val)

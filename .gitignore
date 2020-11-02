@@ -1,2 +1,3 @@
 .idea
 python_simulation/venv
+python_simulation/__pycache__

@@ -41,6 +41,7 @@ class Buffer(RAM):
 
 
 class Register:
+    CAPACITY = 65535
     def __init__(self):
         self.__value = 0
 
@@ -51,4 +52,7 @@ class Register:
         self.__value = data
 
     def inc(self):
-        self.__value += 1
+        if self.__value == self.CAPACITY:
+            self.__value = 1
+        else:
+            self.__value += 1

@@ -9,11 +9,11 @@ class Core:
         self.registers = {"reg0": Register16(),
                           "reg1": Register16(),
                           "reg2": Register16(),
-                          "reg3": Register16(),
-                          "buffer_flag": Register1(),
-                          "mode_flag": Register1(),
-                          "carry_flag": Register1()
+                          "reg3": Register16()
                           }
+        self.flags ={"buffer_flag": Register1(),
+                     "mode_flag": Register1(),
+                     "carry_flag": Register1()}
 
     def write_data(self, address, data):
         """
@@ -41,11 +41,11 @@ class Core:
         :return:
         """
         if function == load_to_mem:
-            function(self._read_source(source_0), self._read_source(source_1), self._get_ram(), self._get_carry())
+            function(self._read_source(source_0), self._read_source(source_1), self._get_ram(), self._get_flags())
             if self._get_buffer_use():
-                function(self._read_source(source_0), self._read_source(source_1), self._get_buffer(), self._get_carry())
+                function(self._read_source(source_0), self._read_source(source_1), self._get_buffer(), self._get_flags())
         else:
-            function(self._read_source(source_0), self._read_source(source_1), self._get_carry())
+            function(self._read_source(source_0), self._read_source(source_1), self._get_flags())
 
     def _read_source(self, source):
         """
@@ -63,7 +63,7 @@ class Core:
         Returns buffer flag register
         :return:
         """
-        return self.registers["buffer_flag"]
+        return self.flags["buffer_flag"]
 
     def _get_buffer(self):
         """
@@ -77,7 +77,7 @@ class Core:
         Returns mode flag register
         :return:
         """
-        return self.registers["mode_flag"]
+        return self.flags["mode_flag"]
 
     def _get_buffer_use(self):
         """
@@ -98,7 +98,10 @@ class Core:
         Returns carry flag register
         :return:
         """
-        return self.registers["carry_flag"]
+        return self.flags["carry_flag"]
+
+    def _get_flags(self):
+        return self.flags
 
 
 class SM:

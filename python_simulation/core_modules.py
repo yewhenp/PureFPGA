@@ -1,11 +1,12 @@
-from ../Memory import RAM, Buffer
+from mem_modules import RAM, Buffer
 
 class Core:
-    def init(self):
-        self.ram = RAM()
+    def __init__(self):
+        self.ram = RAM(2**16)
         self.buffer_0 = Buffer()
         self.buffer_1 = Buffer()
-        self.registers = [0, 0, 0, 0]
+        self.registers = [Register(), Register(), Register(), Register()]
+        self.buffer_register = 0
 
     def write_data(self, address, data):
         self.ram.write(address, data)
@@ -13,27 +14,36 @@ class Core:
     def read_data(self, address):
         return self.ram.read(address)
 
-    def execute(self, function, source_0, source_1, destination):
-        if destination.type == "ram":
-            self.ram.write(destination, function(self.ram.read(source_0), self.ram.read(source_1)))
+    def execute(self, function, source_0, source_1):
+        function(source_0, source_1)
 
-    def _write_registet(self, number, data):
-        self.registers[number] = data
+    def _write_register(self, number, data):
+        self.registers[number].value = data
 
-    def _read_registers(self, number):
+    def _get_register(self, number):
         return self.registers[number]
 
+    # def _read_register(self, number):
+    #     return self.registers[number].value
+    #
     def _read_source(self, source):
-        if source["type"] == "ram":
-            return self.read_data(source["address"])
-        return self._read_registers(source["address"])
+        if "reg" in source:
+            return self._get_register(int(source[-1]))
+        return self.read_data(int(source))
+    #
+    # def _write_destination(self, destination, data):
+    #     if "reg" in destination:
+    #         return self._write_register(int(destination[-1]), data)
+    #     return self.write_data(int(destination), data)
 
-    def _write_destination(self, destination, data):
-        pass
+
+class Register:
+    def __init__(self):
+        self.value = 0
 
 
 class SM:
-    def init(self, core_num):
+    def __init__(self, core_num):
         self.core_num = core_num
         self.cores = []
         for _ in range(core_num):
@@ -41,5 +51,13 @@ class SM:
 
 
 class MemoryManager:
-    def init(self):
-        pass
+    def __init__(self):
+        self.sm = SM(64)
+
+    def write_data(self, address, data):
+        core = address - (self.sm.core_num * (address // self.sm.core_num))
+        self.sm.cores[core].write_data(address // self.sm.core_num, data)
+
+    def read_data(self, address):
+        core = address - (self.sm.core_num * (address // self.sm.core_num))
+        return self.sm.cores[core].read_data(address // self.sm.core_num)

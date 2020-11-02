@@ -36,7 +36,7 @@ class RAM(ROM):
 
 
 class Buffer(RAM):
-    def __init__(self, size: int, data: list[int]):
+    def __init__(self, size: int, data: list[int]=[]):
         super().__init__(size, data)
 
 

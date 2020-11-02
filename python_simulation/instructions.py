@@ -6,50 +6,34 @@ CARRY_FLAG = 0
 
 def add_reg(reg1, reg2, flag):
     val = reg1.read() + reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if  val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def sub_reg(reg1, reg2, flag):
     val = reg1.read() - reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def and_reg(reg1, reg2, flag):
     val = reg1.read() & reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def or_reg(reg1, reg2, flag):
     val = reg1.read() | reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def xor_reg(reg1, reg2, flag):
     val = reg1.read() ^ reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def rshift_reg(reg1, reg2, flag):
     val = reg1.read() >> reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def lshift_reg(reg1, reg2, flag):
     val = reg1.read() << reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def mul_reg(reg1, reg2, flag):
     val = reg1.read() * reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
     flag["carry_flag"].write(reg1.write(val))
 
 def mov_reg(reg1, reg2, flag):
@@ -73,10 +57,16 @@ def ch_buf(reg1, reg2, flag):
 #######################################################################
 
 def add_i(reg1, reg2, flag):
-    add_reg(reg1, reg2, flag)
+    val = reg1.read() + reg2.read()
+    flag["zero_flag"] = 1 if not val else 0
+    flag["neg_flag"] = 1 if val < 0 else 0
+    flag["carry_flag"].write(reg1.write(val))
 
 def sub_i(reg1, reg2, flag):
-    sub_reg(reg1, reg2, flag)
+    val = reg1.read() - reg2.read()
+    flag["zero_flag"] = 1 if not val else 0
+    flag["neg_flag"] = 1 if val < 0 else 0
+    flag["carry_flag"].write(reg1.write(val))
 
 def je(reg1, reg2, flag):
     """

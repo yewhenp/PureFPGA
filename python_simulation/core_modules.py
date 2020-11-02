@@ -54,7 +54,7 @@ class Core:
         :return:
         """
         try:
-            return self.registers.get(source)
+            return self.registers[source]
         except KeyError:
             return source
 

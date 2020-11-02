@@ -1,7 +1,7 @@
 class Memory:
     def __init__(self, size: int) -> None:
-        self.__size = size
-        self.__container = [0 for _ in range(size)]
+        self.size = size
+        self.container = [0 for _ in range(size)]
 
     def write(self, address, data):
         raise NotImplementedError
@@ -11,32 +11,32 @@ class Memory:
 
 
 class ROM(Memory):
-    def __init__(self, size: int, data: list[int]):
+    def __init__(self, size: int, data: list):
         super().__init__(size)
         for i in range(len(data)):
-            self.__container[i] = data[i]
+            self.container[i] = data[i]
 
     def read(self, address: int):
-        if self.__size < address:
+        if self.size < address:
             raise AttributeError
-        return self.__container[address]
+        return self.container[address]
 
     def write(self, address, data):
         return 0
 
 
 class RAM(ROM):
-    def __init__(self, size: int, data: list[int]=[]):
+    def __init__(self, size: int, data: list=[]):
         super().__init__(size, data)
 
     def write(self, address, data):
-        if self.__size < address:
+        if self.size < address:
             raise AttributeError
-        self.__container[address] = data
+        self.container[address] = data
 
 
 class Buffer(RAM):
-    def __init__(self, size: int, data: list[int]=[]):
+    def __init__(self, size: int, data: list=[]):
         super().__init__(size, data)
 
 

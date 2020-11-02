@@ -1,0 +1,8 @@
+mov_num_low reg1 120
+mov_num_high reg1 0
+mov_reg reg2 reg1
+mov_num_low reg1 10
+mov_num_high reg1 0
+add_reg reg2 reg1
+mov_num_i reg0 10
+ch_mod

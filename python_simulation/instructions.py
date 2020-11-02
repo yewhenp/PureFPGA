@@ -43,7 +43,7 @@ def mov_num_low(reg1, num, flag):
     reg1.write(int(num))
 
 def mov_num_high(reg1, num, flag):
-    reg1.write(int(num) << 8)
+    reg1.write((int(num) << 8) + reg1.read())
 
 def load_to_mem(reg1: Register, reg2: Register, memory: Memory, flag):
     memory.write(reg1.read(), reg2.read())

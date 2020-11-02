@@ -1,23 +1,26 @@
 from mem_modules import *
 from instructions import *
-from core_modules import Core
+from core_modules import SM
 
 
 NUMBER_OF_CORES = 64
 
 class InstructionProc:
-    instructions_2_args = {"add_reg": add_reg, "mov_reg": mov_reg}
-    instructions_0_args = {"nop": nop}
-    self_instructions = {}
+    instructions_2_args = {"add_reg": add_reg, "sub_reg": sub_reg, "and_reg": and_reg, "or_reg": or_reg,
+                           "xor_reg": xor_reg, "rshift_reg": rshift_reg, "lshift_reg": lshift_reg,
+                           "mul_reg": mul_reg, "mov_reg": mov_reg, "mov_num_low": mov_num_low,
+                           "mov_num_high": mov_num_high, "load_to_mem": load_to_mem}
+    instructions_0_args = {"nop": nop, "ch_mod": ch_mod, "ch_buf": ch_buf}
+    self_instructions = {"add_i": add_i, "sub_i": sub_i, "je": je, "mov_num_i": mov_num_i}
     regs = {"reg0": Register16(0), "reg1": Register16(0), "reg2": Register16(0), "reg3": Register16(0),
                   "ip": Register16(0)}
     flags = {"work_flag": Register1(0), "carry_flag": Register1(0), "neg_flag": Register1(0), "zero_flag": Register1(0)}
 
-    def __init__(self, program_file: str):
+    def __init__(self, program_file: str, sm: SM):
         self.ROM_SIZE = 65536
         program = self.__read_program_from_file(program_file)
         self.__ROM = ROM(self.ROM_SIZE, program)
-        self.__cores = [Core() for _ in range(NUMBER_OF_CORES)]
+        self.__cores = sm.cores
 
     def execute(self, instruction):
         if instruction[3] in self.self_instructions:

@@ -166,11 +166,11 @@ class MemoryManager:
                 self.instruction_processor.change_ip(data)
             elif address == 4194306:
                 self.instruction_processor.regs["reg0"].write(data)
-            elif address == 4194306:
+            elif address == 4194307:
                 self.instruction_processor.regs["reg1"].write(data)
-            elif address == 4194306:
+            elif address == 4194308:
                 self.instruction_processor.regs["reg2"].write(data)
-            elif address == 4194306:
+            elif address == 4194309:
                 self.instruction_processor.regs["reg3"].write(data)
             else:
                 raise IndexError("Memory out of range")

@@ -106,11 +106,11 @@ class InstructionProc:
 
     def regs_to_string(self):
         r = self.regs
-        return f"IP: {r['ip'].to_string()}, reg0: {r['reg0'].to_string()}, reg1: {r['reg1'].to_string()}, reg2: {r['reg2'].to_string()}, reg3: {r['reg3'].to_string()}"
+        return f"    IP: {r['ip'].to_string()}, reg0: {r['reg0'].to_string()}, reg1: {r['reg1'].to_string()}, reg2: {r['reg2'].to_string()}, reg3: {r['reg3'].to_string()}"
 
     def flags_to_string(self):
         f = self.flags
-        return f"work_flag: {f['work_flag'].to_string()}, carry_flag: {f['carry_flag'].to_string()}, zero_flag: {f['zero_flag'].to_string()}, neg_flag: {f['neg_flag'].to_string()}"
+        return f"    work_flag: {f['work_flag'].to_string()}, carry_flag: {f['carry_flag'].to_string()}, zero_flag: {f['zero_flag'].to_string()}, neg_flag: {f['neg_flag'].to_string()}"
 
     def ROM_to_string(self, size, mode=""):
         return self.__ROM.to_string(size, mode)

@@ -27,6 +27,16 @@ class VideoCard:
         for i in range(num):
             self.execute_next_instruction()
 
+    def parse_VM(self, file):
+        with open(file, "r") as mem_file:
+            for address, line in enumerate(mem_file):
+                line = line.strip()
+                try:
+                    num = int(line)
+                except ValueError:
+                    continue
+                self.CPU_write(address, num)
+
     def to_string(self):
         res = ""
         res += "Instruction Processor: \n"

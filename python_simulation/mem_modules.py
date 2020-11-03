@@ -51,7 +51,7 @@ class Buffer(RAM):
 
 class Register:
     def __init__(self, size=16, val=0):
-        self.__capacity = 2**size-1
+        self.__capacity = 2**size
         self.__size = size
         self.__value = val
 

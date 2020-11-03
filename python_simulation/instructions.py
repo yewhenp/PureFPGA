@@ -46,10 +46,10 @@ def mov_num_high(reg1, num, flag):
     reg1.write((int(num) << 8) + reg1.read())
 
 def load_to_mem(reg1: Register, reg2: Register, memory: Memory, flag):
-    memory.write(reg1.read(), reg2.read())
+    memory.write(address=reg2.read(), data=reg1.read())
 
 def load_from_mem(reg1: Register, reg2: Register, memory: Memory, flag):
-    reg1.write(memory.read(reg2.read()))
+    reg1.write(data=memory.read(address=reg2.read()))
 
 def ch_mod(reg1, reg2, flag):
     flag["mode_flag"].inc()

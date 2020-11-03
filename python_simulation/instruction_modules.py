@@ -10,7 +10,7 @@ class InstructionProc:
     instructions_2_args = {"add_reg": add_reg, "sub_reg": sub_reg, "and_reg": and_reg, "or_reg": or_reg,
                            "xor_reg": xor_reg, "rshift_reg": rshift_reg, "lshift_reg": lshift_reg,
                            "mul_reg": mul_reg, "mov_reg": mov_reg, "mov_num_low": mov_num_low,
-                           "mov_num_high": mov_num_high, "load_to_mem": load_to_mem}
+                           "mov_num_high": mov_num_high, "load_to_mem": load_to_mem, "load_from_mem": load_from_mem}
     instructions_0_args = {"nop": nop, "ch_mod": ch_mod, "ch_buf": ch_buf}
     self_instructions = {"add_i": add_i, "sub_i": sub_i, "je": je, "mov_num_i": mov_num_i}
 
@@ -38,6 +38,8 @@ class InstructionProc:
         :return: None
         """
         # execute instruction for instruction processor
+        if not instruction:
+            raise AttributeError("Empty instruction!")
         if instruction[3] in self.self_instructions:
             # if nop then videocard is not working, so set prop flag
             if instruction[3] == "nop":
@@ -64,7 +66,7 @@ class InstructionProc:
     def change_ip(self, address: int) -> None:
         """If IP is changed by CPU"""
         self.regs["ip"].write(address)
-        self.flags["work"].write(1)
+        self.flags["work_flag"].write(1)
 
     def read_program_from_file(self, program_file: str) -> list:
         """
@@ -75,6 +77,8 @@ class InstructionProc:
         res = []
         with open(program_file, "r") as prg:
             for idx, line in enumerate(prg):
+                if line.startswith("//") or line == "":
+                    continue
                 parsed = line.strip().split(" ")
                 # if there are more or less then 3 arguments in line
                 if len(parsed) != 3:

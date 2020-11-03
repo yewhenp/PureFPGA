@@ -7,13 +7,18 @@ class VideoCard:
         self.__sm = self.__memory_manager.get_sm()
         self.__inst_processor = self.__memory_manager.get_instruction_processor()
 
+    def get_inst_processor(self):
+        return self.__inst_processor
+
+    def get_memory_manager(self):
+        return self.__memory_manager
 
     def CPU_read(self, address):
-        if not self.__inst_processor.flags["work_flag"]:
+        if not self.__inst_processor.flags["work_flag"].read():
             return self.__memory_manager.read_data(address)
 
     def CPU_write(self, address, data):
-        if not self.__inst_processor.flags["work_flag"]:
+        if not self.__inst_processor.flags["work_flag"].read():
             self.__memory_manager.write_data(address, data)
 
     def call_shaders(self, arg0, arg1, arg2, arg3, ip):
@@ -22,6 +27,7 @@ class VideoCard:
     def execute_next_instruction(self):
         instruction = self.__inst_processor.fetch_instruction()
         self.__inst_processor.execute(instruction)
+        return instruction
 
     def execute_instructions(self, num):
         for i in range(num):

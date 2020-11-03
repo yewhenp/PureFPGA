@@ -1,8 +1,12 @@
-mov_num_low reg1 120
-mov_num_high reg1 0
-mov_reg reg2 reg1
-mov_num_low reg1 10
-mov_num_high reg1 0
-add_reg reg2 reg1
-mov_num_i reg0 10
-ch_mod
+// ram[2] = ram[1] + ram[3]
+// reg1 = ram[1]
+mov_num_low reg0 1
+load_from_mem reg1 reg0
+// reg2 = ram[3]
+mov_num_low reg0 3
+load_from_mem reg2 reg0
+// add reg1 and reg2
+add_reg reg1 reg2
+// save result to ram[2]
+mov_num_low reg0 2
+load_to_mem reg1 reg0

@@ -9,6 +9,15 @@ class Memory:
     def read(self, address):
         raise NotImplementedError
 
+    def to_string(self, size=0, mod=""):
+        if not size:
+            size = self.size
+        if mod == "hex":
+            return str(map(hex, self.container[:size]))
+        elif mod == "bin":
+            return str(map(bin,self.container[:size]))
+        return str(self.container[:size])
+
 
 class ROM(Memory):
     def __init__(self, size: int, data: list):
@@ -59,6 +68,13 @@ class Register:
 
     def get_capacity(self):
         return self.__capacity
+
+    def to_string(self, mod=""):
+        if mod == "hex":
+            return str(hex(self.__value))
+        elif mod == "bin":
+            return str(bin(self.__value))
+        return str(self.__value)
 
 class Register16(Register):
     def __init__(self, val=0):

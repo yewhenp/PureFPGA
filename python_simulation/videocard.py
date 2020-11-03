@@ -22,10 +22,12 @@ class VideoCard:
         pass
 
     def execute_next_instruction(self):
-        pass
+        instruction = self.__inst_processor.fetch_instruction()
+        self.__inst_processor.execute(instruction)
 
     def execute_instructions(self, num):
-        pass
+        for i in range(num):
+            self.execute_next_instruction()
 
     def toString(self):
         pass

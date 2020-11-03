@@ -5,7 +5,7 @@ from core_modules import SM
 
 class InstructionProc:
     # size of ROM: 2**16-1
-    ROM_SIZE = 65536
+    ROM_SIZE = 65535
     # those dictionaries are needed for instructions parsing - "instr": instr
     instructions_2_args = {"add_reg": add_reg, "sub_reg": sub_reg, "and_reg": and_reg, "or_reg": or_reg,
                            "xor_reg": xor_reg, "rshift_reg": rshift_reg, "lshift_reg": lshift_reg,
@@ -61,38 +61,45 @@ class InstructionProc:
         self.regs["ip"].inc()
         return instruction
 
-    def change_ip(self, address):
-        """If IP is changed """
+    def change_ip(self, address: int) -> None:
+        """If IP is changed by CPU"""
         self.regs["ip"].write(address)
         self.flags["work"].write(1)
 
-    def read_program_from_file(self, program_file: str):
+    def read_program_from_file(self, program_file: str) -> list:
+        """
+        Parses program from file and returns list of parsed instructions
+        :param program_file: string - path to file with program written on assembler
+        :return:
+        """
         res = []
         with open(program_file, "r") as prg:
             for idx, line in enumerate(prg):
                 parsed = line.strip().split(" ")
+                # if there are more or less then 3 arguments in line
                 if len(parsed) != 3:
+                    # name of instruction
                     typ = parsed[0].lower()
                     if len(parsed) == 1:
+                        # special if for each instruction without arguments
                         if typ == "ch_mod":
                             res.append([self.instructions_0_args[typ], "mode_flag", "mode_flag", parsed[0]])
                         elif typ == "ch_buf":
                             res.append([self.instructions_0_args[typ], "buffer_flag", "buffer_flag", parsed[0]])
+                        # else - this is nop
                         else:
                             res.append([self.instructions_0_args[typ], "", "", parsed[0]])
+                    # There are only 2 argument and 0 argument instructions, so raise error
                     else:
                         raise AssertionError(f"line: {idx+1}. Bad number of arguments!")
 
+                # special parse for instructions for cores
                 elif parsed[0] in self.instructions_2_args:
                     res.append([self.instructions_2_args[parsed[0].lower()], parsed[1], parsed[2], parsed[0]])
+                # instruction for instructio processor
                 elif parsed[0] in self.self_instructions:
                     res.append([self.self_instructions[parsed[0].lower()], parsed[1], parsed[2], parsed[0]])
                 else:
                     raise KeyError(f"line: {idx+1}. Unknown instruction {parsed[0]}")
 
         return res
-
-class Z80:
-    def __init__(self):
-        pass
-

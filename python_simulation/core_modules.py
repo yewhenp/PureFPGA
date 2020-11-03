@@ -110,13 +110,13 @@ class Core:
         """
         return self.flags
 
-    def to_string(self):
+    def to_string(self, mem_size):
         """
         Prints core RAM and Registers
         :return:
         """
         str_to_return = ""
-        str_to_return += f"\nRAM: {self.ram.to_string()}"
+        str_to_return += f"\nRAM: {self.ram.to_string(mem_size)}"
         str_to_return += "\nRegisters:"
         for reg in self.registers.keys():
             str_to_return += f"\n{reg}: {self.registers[reg].to_string()}"
@@ -141,7 +141,7 @@ class SM:
             raise IndexError("No core with that index")
         return self.cores[number]
 
-    def to_string(self, num_cores):
+    def to_string(self,mem_size, num_cores):
         """
         Prints core
         :return:
@@ -149,7 +149,7 @@ class SM:
         str_to_return = ""
         for i in range(num_cores):
             str_to_return += f"Core {i}: "
-            str_to_return += self.cores[i].to_string()
+            str_to_return += self.cores[i].to_string(mem_size)
         return str_to_return
 
 

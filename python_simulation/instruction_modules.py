@@ -1,6 +1,6 @@
 from mem_modules import *
 from instructions import *
-from core_modules import SM
+# from core_modules import SM
 
 
 class InstructionProc:
@@ -19,7 +19,7 @@ class InstructionProc:
                   "ip": Register16(0)}
     flags = {"work_flag": Register1(0), "carry_flag": Register1(0), "neg_flag": Register1(0), "zero_flag": Register1(0)}
 
-    def __init__(self, program_file: str, sm: SM) -> None:
+    def __init__(self, program_file: str, sm) -> None:
         # parse program from file
         program = self.read_program_from_file(program_file)
         # create ROM with given program
@@ -106,11 +106,11 @@ class InstructionProc:
 
     def regs_to_string(self):
         r = self.regs
-        return f"IP: {r['ip']}, reg0: {r['reg0']}', reg1: {r['reg1']}, reg2: {r['reg2']}, reg3: {r['reg3']}"
+        return f"IP: {r['ip'].to_string()}, reg0: {r['reg0'].to_string()}, reg1: {r['reg1'].to_string()}, reg2: {r['reg2'].to_string()}, reg3: {r['reg3'].to_string()}"
 
     def flags_to_string(self):
         f = self.flags
-        return f"work_flag: {f['work_flag']}, carry_flag: {f['carry_flag']}, zero_flag: {f['zero_flag']}, neg_flag: {f['neg_flag']}"
+        return f"work_flag: {f['work_flag'].to_string()}, carry_flag: {f['carry_flag'].to_string()}, zero_flag: {f['zero_flag'].to_string()}, neg_flag: {f['neg_flag'].to_string()}"
 
-    def ROM_to_string(self, size, mode):
+    def ROM_to_string(self, size, mode=""):
         return self.__ROM.to_string(size, mode)

@@ -1,13 +1,11 @@
 from core_modules import *
-from mem_modules import *
-from instruction_modules import *
 
 
 class VideoCard:
     def __init__(self, program_file, number_of_cores):
-        self.__memory_manager = MemoryManager(number_of_cores)
+        self.__memory_manager = MemoryManager(program_file, number_of_cores)
         self.__sm = self.__memory_manager.get_sm()
-        self.__inst_processor = InstructionProc(program_file, self.__sm)
+        self.__inst_processor = self.__memory_manager.get_instruction_processor()
 
 
     def CPU_read(self, address):
@@ -29,6 +27,16 @@ class VideoCard:
         for i in range(num):
             self.execute_next_instruction()
 
-    def toString(self):
-        pass
+    def to_string(self):
+        res = ""
+        res += "Instruction Processor: \n"
+        res += self.__inst_processor.regs_to_string()
+        res += '\n'
+        res += self.__inst_processor.flags_to_string()
+        res += '\n'
+        # res += self.__inst_processor.ROM_to_string(10)
+        # res += '\n'
+        res += self.__memory_manager.get_sm().to_string(10, 4)
+        return res
+
 

@@ -1,27 +1,10 @@
-from instruction_modules import *
-from core_modules import *
-from pprint import pprint
-
+from videocard import VideoCard
 
 if __name__ == '__main__':
-    mem_man = MemoryManager()
-    sm = mem_man.get_sm()
-    instr = InstructionProc("tmp_program", sm)
-    core = sm.get_core(0)
-    # pprint(instr.)
-
+    videocard = VideoCard("tmp_program", number_of_cores=4)
 
     for i in range(7):
-        instruction = instr.fetch_instruction()
-        instr.execute(instruction)
-
-        print(f"reg1 = {core.registers['reg1'].read()}  reg2 = {core.registers['reg2'].read()} ")
-
-
-
-
-
-
-    core = Core()
+        print(videocard.to_string())
+        videocard.execute_next_instruction()
 
 

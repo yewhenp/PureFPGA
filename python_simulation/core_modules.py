@@ -206,3 +206,14 @@ class MemoryManager:
         :return:
         """
         return self.instruction_processor
+
+    def scan(self, number_to_scan):
+        """
+        Returns virtual ram that CPU see
+        :param number_to_scan:
+        :return:
+        """
+        virtual_ram = RAM(number_to_scan * self.number_of_cores)
+        for i in range(number_to_scan * self.number_of_cores):
+            virtual_ram.write(i, self.read_data(i))
+        return virtual_ram

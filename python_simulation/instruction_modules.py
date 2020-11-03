@@ -103,3 +103,14 @@ class InstructionProc:
                     raise KeyError(f"line: {idx+1}. Unknown instruction {parsed[0]}")
 
         return res
+
+    def regs_to_string(self):
+        r = self.regs
+        return f"IP: {r['ip']}, reg0: {r['reg0']}', reg1: {r['reg1']}, reg2: {r['reg2']}, reg3: {r['reg3']}"
+
+    def flags_to_string(self):
+        f = self.flags
+        return f"work_flag: {f['work_flag']}, carry_flag: {f['carry_flag']}, zero_flag: {f['zero_flag']}, neg_flag: {f['neg_flag']}"
+
+    def ROM_to_string(self, size, mode):
+        return self.__ROM.to_string(size, mode)

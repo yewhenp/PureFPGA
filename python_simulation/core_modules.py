@@ -43,9 +43,9 @@ class Core:
         :param source_1:
         :return:
         """
-        if function == load_to_mem:
+        if function == load_to_mem or function == load_from_mem:
             function(self._read_source(source_0), self._read_source(source_1), self._get_ram(), self._get_flags())
-            if self._get_buffer_use():
+            if self._get_buffer_use() and not function == load_from_mem:
                 function(self._read_source(source_0), self._read_source(source_1), self._get_buffer(), self._get_flags())
         else:
             function(self._read_source(source_0), self._read_source(source_1), self._get_flags())
@@ -116,10 +116,11 @@ class Core:
         :return:
         """
         str_to_return = ""
-        str_to_return += f"\nRAM: {self.ram.to_string(mem_size)}"
-        str_to_return += "\nRegisters:"
+        str_to_return += f"\n\tRAM: {self.ram.to_string(mem_size)}"
+        str_to_return += "\n\t" + " ".join(list(map(lambda x: "{}: {}".format(x[0], x[1].to_string()), self.flags.items())))
+        str_to_return += "\n\tRegisters:"
         for reg in self.registers.keys():
-            str_to_return += f"\n{reg}: {self.registers[reg].to_string()}"
+            str_to_return += f" {reg}: {self.registers[reg].to_string()}"
         str_to_return += "\n"
         return str_to_return
 
@@ -146,10 +147,11 @@ class SM:
         Prints core
         :return:
         """
-        str_to_return = ""
+        str_to_return = "=" * (len(self.cores[0].to_string(mem_size)) // 3) + "\n"
         for i in range(num_cores):
             str_to_return += f"Core {i}: "
             str_to_return += self.cores[i].to_string(mem_size)
+        str_to_return += "=" * (len(self.cores[0].to_string(mem_size)) // 3) + "\n"
         return str_to_return
 
 

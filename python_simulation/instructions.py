@@ -48,6 +48,9 @@ def mov_num_high(reg1, num, flag):
 def load_to_mem(reg1: Register, reg2: Register, memory: Memory, flag):
     memory.write(reg1.read(), reg2.read())
 
+def load_from_mem(reg1: Register, reg2: Register, memory: Memory, flag):
+    reg1.write(memory.read(reg2.read()))
+
 def ch_mod(reg1, reg2, flag):
     flag["mode_flag"].inc()
 
@@ -80,6 +83,7 @@ def je(reg1, reg2, flag):
 
 def mov_num_i(reg1, num, flag):
     reg1.write(int(num))
+
 
 def nop(reg1, reg2, flag):
     pass

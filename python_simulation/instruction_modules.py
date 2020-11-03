@@ -3,45 +3,66 @@ from instructions import *
 from core_modules import SM
 
 
-NUMBER_OF_CORES = 64
-
 class InstructionProc:
+    # size of ROM: 2**16-1
+    ROM_SIZE = 65536
+    # those dictionaries are needed for instructions parsing - "instr": instr
     instructions_2_args = {"add_reg": add_reg, "sub_reg": sub_reg, "and_reg": and_reg, "or_reg": or_reg,
                            "xor_reg": xor_reg, "rshift_reg": rshift_reg, "lshift_reg": lshift_reg,
                            "mul_reg": mul_reg, "mov_reg": mov_reg, "mov_num_low": mov_num_low,
                            "mov_num_high": mov_num_high, "load_to_mem": load_to_mem}
     instructions_0_args = {"nop": nop, "ch_mod": ch_mod, "ch_buf": ch_buf}
     self_instructions = {"add_i": add_i, "sub_i": sub_i, "je": je, "mov_num_i": mov_num_i}
+
+    # those dictionaries represent instruction processor registers and flags
     regs = {"reg0": Register16(0), "reg1": Register16(0), "reg2": Register16(0), "reg3": Register16(0),
                   "ip": Register16(0)}
     flags = {"work_flag": Register1(0), "carry_flag": Register1(0), "neg_flag": Register1(0), "zero_flag": Register1(0)}
 
-    def __init__(self, program_file: str, sm: SM):
-        self.ROM_SIZE = 65536
+    def __init__(self, program_file: str, sm: SM) -> None:
+        # parse program from file
         program = self.read_program_from_file(program_file)
+        # create ROM with given program
         self.__ROM = ROM(self.ROM_SIZE, program)
+        # cores are taken from SM
         self.__cores = sm.cores
 
-    def execute(self, instruction):
+    def execute(self, instruction: list) -> None:
+        """
+        Executes given parsed instruction
+        :param instruction: format of instruction: [instruction, "arg1", "arg2", "instruction"]
+            if instruction is nop, then arg1=arg2=""
+            if instruction is ch_mod, then arg1=arg2="mode_flag"
+            if instruction is ch_buf, then arg1=arh2="buffer_flag"
+            else arg1="reg0-3", arg2="arg0-3/8-bit number"
+        :return: None
+        """
+        # execute instruction for instruction processor
         if instruction[3] in self.self_instructions:
+            # if nop then videocard is not working, so set prop flag
             if instruction[3] == "nop":
                 self.flags["work_flag"].write(0)
             else:
                 # if instruction is mov_num_i (instruction[2] is num)
                 if instruction[2] not in self.regs:
                     instruction[0](self.regs[instruction[1]], instruction[2], self.flags)
+                # else execute normally
                 else:
                     instruction[0](self.regs[instruction[1]], self.regs[instruction[2]], self.flags)
+        # if instruction for cores, execute on cores
         else:
             for core in self.__cores:
                 core.execute(instruction[0], instruction[1], instruction[2])
 
-    def fetch_instruction(self):
+
+    def fetch_instruction(self) -> list:
+        """fetches instruction from ROM, increases IP and returns instruction"""
         instruction = self.__ROM.read(self.regs["ip"].read())
         self.regs["ip"].inc()
         return instruction
 
     def change_ip(self, address):
+        """If IP is changed """
         self.regs["ip"].write(address)
         self.flags["work"].write(1)
 

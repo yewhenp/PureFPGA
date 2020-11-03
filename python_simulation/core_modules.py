@@ -123,8 +123,9 @@ class SM:
 
 
 class MemoryManager:
-    def __init__(self):
-        self.sm = SM(64)
+    def __init__(self, number_of_cores=64):
+        self.number_of_cores = number_of_cores
+        self.sm = SM(self.number_of_cores)
 
     def write_data(self, address, data):
         """

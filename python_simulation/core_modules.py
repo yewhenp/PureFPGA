@@ -1,5 +1,8 @@
+from pprint import pprint
+
 from mem_modules import RAM, Buffer, Register16, Register1
 from instructions import *
+from instruction_modules import InstructionProc
 
 
 class Core:
@@ -101,7 +104,21 @@ class Core:
         return self.flags["carry_flag"]
 
     def _get_flags(self):
+        """
+        Returns flag register
+        :return:
+        """
         return self.flags
+
+    def to_string(self):
+        """
+        Prints core RAM and Registers
+        :return:
+        """
+        pprint(f"RAM: {self.ram.to_string()}")
+        pprint("Registers:")
+        for reg in self.registers.keys():
+            pprint(f"{reg}: {self.registers[reg].to_string()}")
 
 
 class SM:
@@ -121,11 +138,21 @@ class SM:
             raise IndexError("No core with that index")
         return self.cores[number]
 
+    def to_string(self, num_cores):
+        """
+        Prints core
+        :return:
+        """
+        for i in range(num_cores):
+            print(f"Core {i}: ")
+            self.cores[i].to_string()
+
 
 class MemoryManager:
-    def __init__(self, number_of_cores=64):
+    def __init__(self, program_file, number_of_cores=64):
         self.number_of_cores = number_of_cores
         self.sm = SM(self.number_of_cores)
+        self.instruction_processor = InstructionProc(program_file, self.sm)
 
     def write_data(self, address, data):
         """
@@ -134,8 +161,23 @@ class MemoryManager:
         :param data:
         :return:
         """
-        core = address - (self.sm.core_num * (address // self.sm.core_num))
-        self.sm.get_core(core).write_data(address // self.sm.core_num, data)
+        if address > 4194304:
+            if address == 4194305:
+                self.instruction_processor.change_ip(data)
+            elif address == 4194306:
+                self.instruction_processor.regs["reg0"].write(data)
+            elif address == 4194306:
+                self.instruction_processor.regs["reg1"].write(data)
+            elif address == 4194306:
+                self.instruction_processor.regs["reg2"].write(data)
+            elif address == 4194306:
+                self.instruction_processor.regs["reg3"].write(data)
+            else:
+                raise IndexError("Memory out of range")
+
+        else:
+            core = address - (self.sm.core_num * (address // self.sm.core_num))
+            self.sm.get_core(core).write_data(address // self.sm.core_num, data)
 
     def read_data(self, address):
         """
@@ -152,3 +194,10 @@ class MemoryManager:
         :return:
         """
         return self.sm
+
+    def get_instruction_processor(self):
+        """
+        Returns Instruction Processors
+        :return:
+        """
+        return self.instruction_processor

@@ -115,10 +115,13 @@ class Core:
         Prints core RAM and Registers
         :return:
         """
-        pprint(f"RAM: {self.ram.to_string()}")
-        pprint("Registers:")
+        str_to_return = ""
+        str_to_return += f"\nRAM: {self.ram.to_string()}"
+        str_to_return += "\nRegisters:"
         for reg in self.registers.keys():
-            pprint(f"{reg}: {self.registers[reg].to_string()}")
+            str_to_return += f"\n{reg}: {self.registers[reg].to_string()}"
+        str_to_return += "\n"
+        return str_to_return
 
 
 class SM:
@@ -143,9 +146,11 @@ class SM:
         Prints core
         :return:
         """
+        str_to_return = ""
         for i in range(num_cores):
-            print(f"Core {i}: ")
-            self.cores[i].to_string()
+            str_to_return += f"Core {i}: "
+            str_to_return += self.cores[i].to_string()
+        return str_to_return
 
 
 class MemoryManager:

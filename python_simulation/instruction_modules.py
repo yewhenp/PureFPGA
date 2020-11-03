@@ -77,9 +77,10 @@ class InstructionProc:
         res = []
         with open(program_file, "r") as prg:
             for idx, line in enumerate(prg):
+                line = line.strip()
                 if line.startswith("//") or line == "":
                     continue
-                parsed = line.strip().split(" ")
+                parsed = line.split(" ")
                 # if there are more or less then 3 arguments in line
                 if len(parsed) != 3:
                     # name of instruction

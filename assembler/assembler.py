@@ -63,12 +63,9 @@ commands = {
             'deci': '1110'
         },
         'other': {
-            'load0i': '00000',
-            'load1i': '00001',
-            'store0i': '00010',
-            'store1i': '00011',
-            'mov0i': '00100',
-            'mov1i': '00101',
+            'loadi': '0000',
+            'storei': '0001',
+            'movi': '0010',
             'movh0i': '00110',
             'movh1i': '00111',
             'movh2i': '01000',
@@ -117,29 +114,38 @@ registers = {
 }
 
 
-def encode_command(command):
+def encode_command(command: str):
     result = ""
     command_list = command.split()
 
-    if command_list[0] in commands['cores']['alu'].keys():
+    if command_list[0][-2:-1] in suffixes:
+        command_clear = command_list[0][-2]
+        suffix = command_list[0][-2:-1]
+    else:
+        command_clear = command_list[0]
+        suffix = ""
+
+    if command_clear in commands['cores']['alu'].keys():
         result += "11"
-    elif command_list[0] in commands['cores']['other'].keys():
+    elif command_clear in commands['cores']['other'].keys():
         result += "10"
-    elif command_list[0] in commands['instruction processor']['alu'].keys():
+    elif command_clear in commands['instruction processor']['alu'].keys():
         result += "01"
-    elif command_list[0] in commands['instruction processor']['other'].keys():
+    elif command_clear in commands['instruction processor']['other'].keys():
         result += "00"
     else:
         raise KeyError("Unknown command")
 
     if result[1] == "1":
         if result[0] == "1":
-            result += commands['cores']['alu'][command_list[0]]
+            result += commands['cores']['alu'][command_clear]
         else:
-            result += commands['instruction processor']['alu'][command_list[0]]
+            result += commands['instruction processor']['alu'][command_clear]
 
-        #TODO: Implement suffixes
-        result += "0000"
+        if suffix == "":
+            result += "1010"
+        else:
+            result += suffixes[suffix]
 
         if result[0] == "1":
             result += registers['cores'][command_list[1]]
@@ -153,8 +159,32 @@ def encode_command(command):
 
     else:
         if result[0] == "1":
-            result += commands['cores']['other'][command_list[0]]
+            result += commands['cores']['other'][command_clear]
         else:
-            result += commands['instruction processor']['other'][command_list[0]]
+            result += commands['instruction processor']['other'][command_clear]
 
+        if command in ['load0i', 'load1i', 'store0i', 'store1i', 'mov0i', 'mov1i',
+                       'load0', 'load1', 'store0', 'store1', 'mov0', 'mov1']:
+            if suffix == "":
+                result += "1010"
+            else:
+                result += suffixes[suffix]
 
+            if result[0] == "1":
+                result += registers['cores'][command_list[1]]
+                result += registers['cores'][command_list[2]]
+                result += registers['cores'][command_list[3]]
+            else:
+                result += registers['instruction processor'][command_list[1]]
+                result += registers['instruction processor'][command_list[2]]
+        else:
+            if not (command_clear.startswith('j') or command_clear.startswith('ch')):
+                result += bin(int(command_list[1]))[2::]
+                result += "0"
+            elif command_clear.startswith('j'):
+                result += registers['cores'][command_list[1]]
+                result += "000000"
+            else:
+                result += "000000000"
+
+    return result

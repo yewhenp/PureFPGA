@@ -8,7 +8,7 @@ movl reg0 3
 load reg2 reg0
 
 // reg1+=reg2
-addc reg1 reg1 reg2
+addc reg1 reg2
 
 // save result to ram[2]
 movl reg0 2

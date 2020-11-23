@@ -21,6 +21,10 @@ class Assembler:
             dest_file.write(result)
 
     def preprocess_source(self, preprocessed_file: str, verbose: bool=False):
+        # clear old content
+        file = open(preprocessed_file, "w")
+        file.write("")
+        file.close()
         with open(preprocessed_file, "a") as prep_file:
             for line in open(self.source_name, "r"):
                 line = line.strip()
@@ -55,9 +59,11 @@ class Assembler:
                     line[0] = line[0][:-1] + line[1][-1] + line[0][-1]
                     line[1] = ""
 
+                # core_arith_operation regi regk = op regi regi regk
+                if line[0][:-2] in self.commands["core"]["alu"] and len(line) == 3:
+                    line.insert(1, line[1])
+
                 prep_file.write(" ".join(line) + "\n")
-
-
 
 
     def encode_command(self, parsed_command: str):
@@ -105,8 +111,8 @@ class Assembler:
 
             if command_clear in self.mem_suffix_commands:
                 result += self.suffixes[suffix][1:]                     # 3 bits - suffix (why 3 not 4 - read documentation)
-                result += self.registers["core"][command_list[1]]       # 3 bits - dest reg
-                result += self.registers["core"][command_list[2]]       # 3 bits - source reg
+                result += self.registers["core"][command_list[1]]       # 2 bits - dest reg
+                result += self.registers["core"][command_list[2]]       # 2 bits - source reg
                 result += "0"*2                                         # TODO: unused bits
             elif command_clear in self.mem_number_commands:
                 bin_num =  bin(int(command_list[-1]))[2:]

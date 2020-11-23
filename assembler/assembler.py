@@ -96,58 +96,6 @@ class Assembler:
             else:
                 result += "0" * 9  # unsued bits TODO:
 
-
-        # if result[1] == "1":
-        #     if result[0] == "1":
-        #         result += commands['cores']['alu'][command_clear]
-        #     else:
-        #         result += commands['instruction processor']['alu'][command_clear]
-        #
-        #     if suffix == "":
-        #         result += "1010"
-        #     else:
-        #         result += suffixes[suffix]
-        #
-        #     if result[0] == "1":
-        #         result += registers['cores'][command_list[1]]
-        #         result += registers['cores'][command_list[2]]
-        #         result += registers['cores'][command_list[3]]
-        #
-        #     else:
-        #         result += registers['instruction processor'][command_list[1]]
-        #         result += registers['instruction processor'][command_list[2]]
-        #
-        #
-        # else:
-        #     if result[0] == "1":
-        #         result += commands['cores']['other'][command_clear]
-        #     else:
-        #         result += commands['instruction processor']['other'][command_clear]
-        #
-        #     if parsed_command in ['load0i', 'load1i', 'store0i', 'store1i', 'mov0i', 'mov1i',
-        #                    'load0', 'load1', 'store0', 'store1', 'mov0', 'mov1']:
-        #         if suffix == "":
-        #             result += "1010"
-        #         else:
-        #             result += suffixes[suffix]
-        #
-        #         if result[0] == "1":
-        #             result += registers['cores'][command_list[1]]
-        #             result += registers['cores'][command_list[2]]
-        #             result += registers['cores'][command_list[3]]
-        #         else:
-        #             result += registers['instruction processor'][command_list[1]]
-        #             result += registers['instruction processor'][command_list[2]]
-        #     else:
-        #         if not (command_clear.startswith('j') or command_clear.startswith('ch')):
-        #             result += bin(int(command_list[1]))[2::]
-        #             result += "0"
-        #         elif command_clear.startswith('j'):
-        #             result += registers['cores'][command_list[1]]
-        #             result += "000000"
-        #         else:
-        #             result += "000000000"
-
         return result
 
     command_types = {

@@ -7,7 +7,7 @@ class Assembler:
         self.dest_name = dest_name
 
 
-    def assemble_preprocessed(self, processed_file: str, verbose=False):
+    def assemble_preprocessed(self, processed_file: str, verbose: bool=False):
         with open(self.dest_name, "w") as dest_file:
             result = ""
             line_n = 0
@@ -19,6 +19,45 @@ class Assembler:
                     print(f"Processed line #{line_n}: {encoded}")
                     line_n += 1
             dest_file.write(result)
+
+    def preprocess_source(self, preprocessed_file: str, verbose: bool=False):
+        with open(preprocessed_file, "a") as prep_file:
+            for line in open(self.source_name, "r"):
+                line = line.strip()
+                if line.startswith("//") or line == "":
+                    continue
+                line = line.lower()
+                line = line.split()
+
+                # mov - mov0-1 store - store0-1 load - load0-1 conversion
+                if line[0][:-2] in self.mem_suffix_commands_unprocessed: # there is a suffix
+                    if line[0][-2:] in self.suffixes_0:
+                        line[0] += "0"
+                    elif line[0][-2:] in self.suffixes:
+                        line[0] += "1"
+                    else:
+                        raise ValueError(f"Bad suffix: {line[-2:]}")
+                elif line[0] in self.mem_suffix_commands_unprocessed: # no suffix
+                    line[0] += "1"
+
+                # add 'al' if needed
+                if line[0] in self.commands["core"]["alu"] \
+                        or line[0] in self.commands["processor"]["alu"] \
+                        or line[0] in self.mem_suffix_commands:
+                    line[0] += "al"
+
+
+                # movl movh movf preprocessing
+                if line[0] in self.mem_core_number_commands_unprocessed:
+                    line[0] += line[1][-1]
+                    line[1] = ""
+                elif line[0] in self.mem_processor_number_commands_unprocessed:
+                    line[0] = line[0][:-1] + line[1][-1] + line[0][-1]
+                    line[1] = ""
+
+                prep_file.write(" ".join(line) + "\n")
+
+
 
 
     def encode_command(self, parsed_command: str):
@@ -38,9 +77,9 @@ class Assembler:
             command_type = "core_alu"
         elif command_clear in self.commands['core']['memory']:
             command_type = "core_memory"
-        elif command_clear in self.commands['instruction processor']['alu']:
+        elif command_clear in self.commands['processor']['alu']:
             command_type = "processor_alu"
-        elif command_clear in self.commands['instruction processor']['memory']:
+        elif command_clear in self.commands['processor']['memory']:
             command_type = "processor_memory"
         else:
             raise KeyError(f"Unknown command: {command_clear}")         # TODO: move this check to preprocessor
@@ -98,6 +137,9 @@ class Assembler:
 
         return result
 
+    ##################################################################
+    # DICTS AND LISTS FOR ASSEMBLING
+    ##################################################################
     command_types = {
         "core_alu": "11",
         "core_memory": "10",
@@ -147,7 +189,7 @@ class Assembler:
                 'chbuf': '10011'
             }
         },
-        'instruction processor': {
+        'processor': {
             'alu': {
                 'addi': '0000',
                 'addci':'0001',
@@ -166,12 +208,12 @@ class Assembler:
                 'deci': '1110'
             },
             'memory': {
-                'load0i' :'00000',
-                'store0i':'00001',
-                'mov0i' : '00010',
-                'load1i': '00011',
-                'store1i':'00100',
-                'mov1i' : '00101',
+                'loadi0' :'00000',  # TODO: rewrite preprocessor so that 'i' at the end is not a problem
+                'storei0':'00001',
+                'movi0' : '00010',
+                'loadi1': '00011',
+                'storei1':'00100',
+                'movi1' : '00101',
                 'movh0i': '00110',
                 'movh1i': '00111',
                 'movh2i': '01000',
@@ -240,25 +282,53 @@ class Assembler:
 
     mem_suffix_commands = [
         "mov0", "mov1", "load0", "load1", "store0", "store1",
-        "mov0i", "mov1i", "load0i", "load1i", "store0i", "store1i"
+        "movi0", "movi1", "loadi0", "loadi1", "storei0", "storei1"
     ]
     mem_number_commands = [
         'movh0', 'movh1', 'movh2', 'movh3',
         'movl0', 'movl1', 'movl2', 'movl3',
         'movf0', 'movf1', 'movf2', 'movf3',
-        'movh0i', 'movh1i', 'movh2i', 'movh3i',
-        'movl0i', 'movl1i', 'movl2i', 'movl3i',
-        'movf0i', 'movf1i', 'movf2i', 'movf3i'
+        'movh0i', 'movh1i', 'movh2i', 'movh3i', 'movh4i', 'movh5i',
+        'movl0i', 'movl1i', 'movl2i', 'movl3i','movl4i', 'movl5i',
+        'movf0i', 'movf1i', 'movf2i', 'movf3i''movf4i', 'movf4i',
                            ]
+
+    ##################################################################
+    # DICTS AND LISTS FOR PREPROCESSING
+    ##################################################################
+    mem_suffix_commands_unprocessed = [
+        "mov", "load", "store",
+        "movi", "loadi", "storei"
+    ]
+
+    mem_core_number_commands_unprocessed = [
+        'movh', 'movl', 'movf',
+    ]
+
+    mem_processor_number_commands_unprocessed = [
+        'movhi', 'movli', 'movfi',
+    ]
+
+    suffixes_0 = {
+        'eq','ne','gt','lt',
+        'ge','le','cs','cc'
+    }
+
+
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         source = sys.argv[1]
         dest = "a.out"
     elif len(sys.argv) == 4 and sys.argv[2] == "o":
-        source = sys.argv[1]
+        preprocessed = sys.argv[1]
         dest = sys.argv[3]
+        assembler = Assembler(source_name="", dest_name=dest)
+        assembler.assemble_preprocessed(preprocessed, True)
+    elif len(sys.argv) == 4 and sys.argv[2] == "p":
+        source = sys.argv[1]
+        preprocessed = sys.argv[3]
+        assembler = Assembler(source_name=source, dest_name="")
+        assembler.preprocess_source(preprocessed, False)
     else:
         raise AttributeError("Bad options!")
-    assembler = Assembler(source_name=source, dest_name=dest)
-    assembler.assemble_preprocessed(source, True)

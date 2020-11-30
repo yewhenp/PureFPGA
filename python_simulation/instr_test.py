@@ -1,4 +1,4 @@
-from videocard import VideoCard
+from python_simulation.videocard import VideoCard
 
 if __name__ == '__main__':
     videocard = VideoCard("tmp_program", number_of_cores=4)

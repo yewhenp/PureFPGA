@@ -1,4 +1,4 @@
-from core_modules import *
+from python_simulation.core_modules import *
 
 
 class VideoCard:

@@ -1,4 +1,4 @@
-from mem_modules import Memory, Register
+from python_simulation.mem_modules import Memory, Register
 
 
 CARRY_FLAG = 0

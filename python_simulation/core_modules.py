@@ -1,8 +1,6 @@
-from pprint import pprint
-
-from mem_modules import RAM, Buffer, Register16, Register1
-from instructions import *
-from instruction_modules import InstructionProc
+from python_simulation.mem_modules import RAM, Buffer, Register16, Register1
+from python_simulation.instructions import *
+from python_simulation.instruction_modules import InstructionProc
 
 
 class Core:

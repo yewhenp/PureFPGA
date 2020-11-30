@@ -1,5 +1,5 @@
-from mem_modules import *
-from instructions import *
+from python_simulation.mem_modules import *
+from python_simulation.instructions import *
 # from core_modules import SM
 
 

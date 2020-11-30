@@ -58,10 +58,12 @@ class Register:
     def read(self):
         return self.__value
 
+    # returns true if overflow occured else false
     def write(self, data):
         self.__value = data % self.__capacity
         return data > self.__capacity
 
+    # returns true if overflow occured else false
     def inc(self):
         self.__value = (self.__value + 1) % self.__capacity
         return self.__value == 0

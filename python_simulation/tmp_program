@@ -1,15 +1,15 @@
 // what is done in general ram[2] = ram[1] + ram[3]
 // reg1 = ram[1]
-mov_num_low reg0 1
-load_from_mem reg1 reg0
+movl_ reg0 1
+load_ reg1 reg0
 
 // reg2 = ram[3]
-mov_num_low reg0 3
-load_from_mem reg2 reg0
+movl_ reg0 3
+load_ reg2 reg0
 
 // add reg1 and reg2
-add_reg reg1 reg2
+add_ reg1 reg2
 
 // save result to ram[2]
-mov_num_low reg0 2
-load_to_mem reg1 reg0
+movl_ reg0 2
+store_ reg1 reg0

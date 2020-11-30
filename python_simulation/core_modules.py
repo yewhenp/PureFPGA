@@ -41,9 +41,9 @@ class Core:
         :param source_1:
         :return:
         """
-        if function == load_to_mem or function == load_from_mem:
+        if function == store_ or function == load_:
             function(self._read_source(source_0), self._read_source(source_1), self._get_ram(), self._get_flags())
-            if self._get_buffer_use() and not function == load_from_mem:
+            if self._get_buffer_use() and not function == load_:
                 function(self._read_source(source_0), self._read_source(source_1), self._get_buffer(), self._get_flags())
         else:
             function(self._read_source(source_0), self._read_source(source_1), self._get_flags())

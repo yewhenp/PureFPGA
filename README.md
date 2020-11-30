@@ -96,7 +96,7 @@ add r0, r0, r2 (cores)
 
 Лише для mov, load, store 4 біти на суфікси, для інших не алушних немає суфіксів
 
-5 bits (32): movl(0-6), movh(0-6), movf(0-6), mov0-1, load0-1, store0-1,  jmp jne jgt jge jlt jle
+5 bits (32): movl(0-6), movh(0-6), movf_(0-6), mov0-1, load0-1, store0-1,  je, jne jgt jge jlt jle
 (chmod, chbuf)
 
 “0-1” в кінці вказує перший біт кодування суфікса

@@ -1,183 +1,276 @@
-from python_simulation.mem_modules import Memory, Register
-
-
-CARRY_FLAG = 0
+from python_simulation.mem_modules import Memory, Register, Register16
 
 # ALU
-def add_(reg1, reg2, flag):
-    val = reg1.read() + reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
+SIZE = 16
+CARRY = 0
+SIGN = 1
+OVERFLOW = 2
+ZERO = 3
+CH_MODE = 4
+CH_BUFF = 5
 
-def addc_(reg1, reg2, flag):
+
+def set_bit(num, bit, pos):
+    return num ^ (-bit ^ num) & (1 << pos)
+
+
+def get_bit(num, pos):
+    return (num >> pos) & 1
+
+
+def set_flags(val, f):
+    carry = get_bit(val, SIZE)
+    sign = get_bit(val, SIZE - 1)
+    overflow = carry ^ sign
+    zero = val == 0
+    flag = f.read()
+    flag = set_bit(flag, carry, CARRY)
+    flag = set_bit(flag, sign, SIGN)
+    flag = set_bit(flag, overflow, OVERFLOW)
+    flag = set_bit(flag, zero, ZERO)
+    f.write(flag)
+
+
+def add_(r1, r2, dst, f):
+    val = r1.read() + r2.read()
+    set_flags(val, f)
+    dst.write(val)
+
+
+def addc_(r1, r2, dst, f):
+    val = r1.read() + r2.read() + get_bit(f.read(), CARRY)
+    set_flags(val, f)
+    dst.write(val)
+
+
+def sub_(r1, r2, dst, f):
+    val = r1.read() - r2.read()
+    set_flags(val, f)
+    dst.write(val)
+
+
+def subc_(r1, r2, dst, f):
+    val = r1.read() - r2.read() - get_bit(f.read(), CARRY)
+    set_flags(val, f)
+    dst.write(val)
+
+
+def mul_(r1, r2, dst, f):
+    val = r1.read() * r2.read()
+    set_flags(val, f)
+    dst.write(val)
+
+
+def mulc_(r1, r2, dst, f):
     pass
 
-def sub_(reg1, reg2, flag):
-    val = reg1.read() - reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
 
-def subc_(reg1, reg2, flag):
-    pass
+def and_(r1, r2, dst, f):
+    val = r1.read() & r2.read()
+    dst.write(val)
 
-def mul_(reg1, reg2, flag):
-    pass
 
-def mulc_(reg1, reg2, flag):
-    val = reg1.read() * reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
+def or_(r1, r2, dst, f):
+    val = r1.read() | r2.read()
+    dst.write(val)
 
-def and_(reg1, reg2, flag):
-    val = reg1.read() & reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
 
-def or_(reg1, reg2, flag):
-    val = reg1.read() | reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
+def xor_(r1, r2, dst, f):
+    val = r1.read() ^ r2.read()
+    dst.write(val)
 
-def xor_(reg1, reg2, flag):
-    val = reg1.read() ^ reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
 
-def not_(reg1, reg2, flag):
-    pass
+def not_(r1, r2, dst, f):
+    val = ~r1.read()
+    dst.write(val)
 
-def rsh_(reg1, reg2, flag):
-    val = reg1.read() >> reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
 
-def lsh_(reg1, reg2, flag):
-    val = reg1.read() << reg2.read()
-    flag["carry_flag"].write(reg1.write(val))
+def rsh_(r1, r2, dst, f):
+    val = r1.read() >> r2.read()
+    dst.write(val)
 
-def cmp(reg1, reg2, flag):
-    pass
 
-def inc_(reg1, reg2, flag):
-    pass
+def lsh_(r1, r2, dst, f):
+    val = r1.read() << r2.read()
+    dst.write(val)
 
-def dec_(reg1, reg2, flag):
-    pass
+
+def cmp(r1, r2, dst, f):
+    sub_(r1, r2, Register16(), f)
+
+
+def inc_(r1, r2, dst, f):
+    add_(r1, Register16(1), r1, f)
+
+
+def dec_(r1, r2, dst, f):
+    sub_(r1, Register16(1), r1, f)
 
 
 # MEMORY
 def movl_(reg1, num, flag):
     reg1.write(int(num))
 
+
 def movh_(reg1, num, flag):
     reg1.write((int(num) << 8) + reg1.read())
 
+
 def movf_(reg1, reg2, flag):
-    pass
+    mov_(reg1, flag, reg2)
+
 
 def mov_(reg1, reg2, flag):
     reg1.write(reg2.read())
 
+
 def store_(reg1: Register, reg2: Register, memory: Memory, flag):
     memory.write(address=reg2.read(), data=reg1.read())
+
 
 def load_(reg1: Register, reg2: Register, memory: Memory, flag):
     reg1.write(data=memory.read(address=reg2.read()))
 
-def ch_mod(reg1, reg2, flag):
-    flag["mode_flag"].inc_()
 
-def ch_buf(reg1, reg2, flag):
-    flag["buffer_flag"].inc_()
+def ch_mod(r1, r2, f):
+    f.write(f.read() ^ 1 << CH_MODE)
+
+
+def ch_buf(r1, r2, f):
+    f.write(f.read() ^ 1 << CH_BUFF)
+
 
 #######################################################################
 # Instruction processor
 ######################################################################
 # ALU
-def addi_(reg1, reg2, flag):
-    val = reg1.read() + reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
-    flag["carry_flag"].write(reg1.write(val))
+def addi_(r1, r2, dst, f):
+    add_(r1, r2, dst, f)
 
-def addci_(reg1, reg2, flag):
+
+def addci_(r1, r2, dst, f):
+    addc_(r1, r2, dst, f)
+
+
+def subi_(r1, r2, dst, f):
+    sub_(r1, r2, dst, f)
+
+
+def subci_(r1, r2, dst, f):
+    subc_(r1, r2, dst, f)
+
+
+def muli_(r1, r2, dst, f):
+    mul_(r1, r2, dst, f)
+
+
+def mulci_(r1, r2, dst, f):
     pass
 
-def subi_(reg1, reg2, flag):
-    val = reg1.read() - reg2.read()
-    flag["zero_flag"] = 1 if not val else 0
-    flag["neg_flag"] = 1 if val < 0 else 0
-    flag["carry_flag"].write(reg1.write(val))
 
-def subci_(reg1, reg2, flag):
-    pass
+def andi_(r1, r2, dst, f):
+    and_(r1, r2, dst, f)
 
-def muli_(reg1, reg2, flag):
-    pass
 
-def mulci_(reg1, reg2, flag):
-    pass
+def ori_(r1, r2, dst, f):
+    or_(r1, r2, dst, f)
 
-def andi_(reg1, reg2, flag):
-    pass
 
-def ori_(reg1, reg2, flag):
-    pass
+def xori_(r1, r2, dst, f):
+    xor_(r1, r2, dst, f)
 
-def xori_(reg1, reg2, flag):
-    pass
 
-def noti_(reg1, reg2, flag):
-    pass
+def noti_(r1, r2, dst, f):
+    not_(r1, r2, dst, f)
 
-def rshi_(reg1, reg2, flag):
-    pass
 
-def lshi_(reg1, reg2, flag):
-    pass
+def rshi_(r1, r2, dst, f):
+    rsh_(r1, r2, dst, f)
 
-def cmpi(reg1, reg2, flag):
-    pass
 
-def inci_(reg1, reg2, flag):
-    pass
+def lshi_(r1, r2, dst, f):
+    lsh_(r1, r2, dst, f)
 
-def deci_(reg1, reg2, flag):
-    pass
+
+def cmpi(r1, r2, dst, f):
+    cmp(r1, r2, dst, f)
+
+
+def inci_(r1, r2, dst, f):
+    inc_(r1, r2, dst, f)
+
+
+def deci_(r1, r2, dst, f):
+    dec_(r1, r2, dst, f)
+
 
 # MEMORY
 def movli_(reg1, num, flag):
-    reg1.write(int(num))
+    movl_(reg1, num, flag)
+
 
 def movhi_(reg1, num, flag):
-    reg1.write((int(num) << 8) + reg1.read())
+    movh_(reg1, num, flag)
+
 
 def movfi_(reg1, reg2, flag):
-    pass
+    movf_(reg1, reg2, flag)
+
 
 def movi_(reg1, reg2, flag):
-    reg1.write(reg2.read())
+    mov_(reg1, reg2, flag)
+
 
 def storei_(reg1: Register, reg2: Register, memory: Memory, flag):
-    memory.write(address=reg2.read(), data=reg1.read())
+    store_(reg1, reg2, memory, flag)
+
 
 def loadi_(reg1: Register, reg2: Register, memory: Memory, flag):
-    reg1.write(data=memory.read(address=reg2.read()))
+    load_(reg1, reg2, memory, flag)
+
 
 def je(reg1, reg2, flag):
     """
     :param reg1: instruction pointer
     :param reg2: new position of instruction pointer
-    :param flag: Zero Flag
+    :param flag: flags
     :return:
     """
-    if flag["zero_flag"]:
-        reg1.write(reg2.read())
+    if get_bit(flag.read, ZERO):
+        movi_(reg1, reg2, flag)
+
 
 def jne(reg1, reg2, flag):
-    pass
+    if not get_bit(flag.read, ZERO):
+        movi_(reg1, reg2, flag)
+
 
 def jgt(reg1, reg2, flag):
-    pass
+    if not get_bit(flag.read, SIGN) and (get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW)):
+        movi_(reg1, reg2, flag)
+
 
 def jge(reg1, reg2, flag):
-    pass
+    if get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW):
+        movi_(reg1, reg2, flag)
+
 
 def jlt(reg1, reg2, flag):
-    pass
+    if get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW):
+        movi_(reg1, reg2, flag)
+
 
 def jle(reg1, reg2, flag):
-    pass
+    if get_bit(flag.read, SIGN) or (get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW)):
+        movi_(reg1, reg2, flag)
+
+
+if __name__ == '__main__':
+    a = Register16(- 2 ** 15)
+    b = Register16(2 ** 15)
+    c = Register16()
+    f = Register16()
+    print(a.to_string("bin"), b.to_string("bin"))
+    sub_(a, b, c, f)
+    print(bin(c.read()))
+    print(bin(f.read()))

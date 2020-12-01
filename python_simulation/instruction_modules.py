@@ -11,8 +11,8 @@ class InstructionProc:
                            "xor_reg": xor_, "rshift_reg": rsh_, "lshift_reg": lsh_,
                            "mul_reg": mul_reg, "mov_reg": mov_, "mov_num_low": movl_,
                            "mov_num_high": movh_, "load_to_mem": store_, "load_from_mem": load_}
-    instructions_0_args = {"nop": nop, "ch_mod": ch_mod, "ch_buf": ch_buf}
-    self_instructions = {"add_i": addi_, "sub_i": subi_, "je": je, "mov_num_i": mov_num_i}
+    instructions_0_args = {"nop": nop, "ch_mod": chmod_, "ch_buf": chbuf_}
+    self_instructions = {"add_i": addi_, "sub_i": subi_, "je": je_, "mov_num_i": mov_num_i}
 
     # those dictionaries represent instruction processor registers and flags
     regs = {"reg0": Register16(0), "reg1": Register16(0), "reg2": Register16(0), "reg3": Register16(0),

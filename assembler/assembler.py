@@ -97,8 +97,11 @@ class Assembler:
             result += self.commands["core"]["alu"][command_clear]   # 4 bits - command
             result += self.suffixes[suffix]                         # 4 bits - suffix
             result += self.registers["core"][command_list[1]]       # 2 bits - dest reg
-            result += self.registers["core"][command_list[2]]       # 2 bits - first operand
-            result += self.registers["core"][command_list[3]]       # 2 bits - second operand
+            if result not in self.alu_one_dest_commands:
+                result += self.registers["core"][command_list[2]]       # 2 bits - first operand
+                result += self.registers["core"][command_list[3]]       # 2 bits - second operand
+            else:
+                result += "0"*4                                         # unused bits
 
         elif command_type == "processor_alu":
             result += self.commands["processor"]["alu"][command_clear]  # 4 bits
@@ -128,7 +131,7 @@ class Assembler:
             result += self.commands["processor"]["memory"][command_clear]  # 5 bits - command
 
             if command_clear in self.mem_suffix_commands:
-                result += self.suffixes[suffix][1:]  # 3 bits - suffix (why 3 not 4 - read documentation)
+                result += self.suffixes[suffix][1:]                     # 3 bits - suffix (why 3 not 4 - read documentation)
                 result += self.registers["processor"][command_list[1]]  # 3 bits - dest reg
                 result += self.registers["processor"][command_list[2]]  # 3 bits - source reg
             elif command_clear in self.mem_number_commands:
@@ -136,10 +139,10 @@ class Assembler:
                 if len(bin_num) > 8:
                     raise ValueError(f"Can't move number to register: {command_list[-1]}")
                 bin_num = "0" * (8 - len(bin_num)) + bin_num
-                result += bin_num  # 8 bit number
-                result += "0"  # unused bit TODO: do something with this
+                result += bin_num                                       # 8 bit number
+                result += "0"                                           # unused bit TODO: do something with this
             else:
-                result += "0" * 9  # unsued bits TODO:
+                result += "0" * 9                                       # unsued bits TODO:
 
         return result
 
@@ -286,6 +289,11 @@ class Assembler:
         }
     }
 
+    alu_one_dest_commands = [
+        "not", "inc", "dec", "cmp",
+        "noti", "inci", "deci", "cmpi"
+    ]
+
     mem_suffix_commands = [
         "mov0", "mov1", "load0", "load1", "store0", "store1",
         "movi0", "movi1", "loadi0", "loadi1", "storei0", "storei1"
@@ -293,11 +301,9 @@ class Assembler:
     mem_number_commands = [
         'movh0', 'movh1', 'movh2', 'movh3',
         'movl0', 'movl1', 'movl2', 'movl3',
-        'movf0', 'movf1', 'movf2', 'movf3',
         'movh0i', 'movh1i', 'movh2i', 'movh3i', 'movh4i', 'movh5i',
         'movl0i', 'movl1i', 'movl2i', 'movl3i','movl4i', 'movl5i',
-        'movf0i', 'movf1i', 'movf2i', 'movf3i''movf4i', 'movf4i',
-                           ]
+    ]
 
     ##################################################################
     # DICTS AND LISTS FOR PREPROCESSING

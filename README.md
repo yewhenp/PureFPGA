@@ -43,6 +43,10 @@ In this project is used DE10-nano Cyclone V FPGA.
 ![](./images/instructions.png)
 
 ### Кодування інструкцій TODO: перекласти і оформити по людськи
+
+Кодування регістра флажків
+[carry_flag, neg_flag, zero_flag, overflowe_flag, signed_flag]
+
 1	- тип інструкції (ядра / процесор)
 
 
@@ -60,7 +64,7 @@ In this project is used DE10-nano Cyclone V FPGA.
 
 1	- АЛУ: суфікс 0	/ НЕАЛУ: 4	/ mov0-1 load0-1 store0-1
 
-1	- АЛУ: суфікс 1	
+1	- АЛУ: суфікс 1		/ число для мувів
 
 1	- АЛУ: суфікс 2		/ число для мувів
 
@@ -77,7 +81,7 @@ In this project is used DE10-nano Cyclone V FPGA.
 
 1	- АЛУ: сорс дест 4(ядра) / число для мувів
 
-1	- АЛУ: сорс дест 5(ядра) / число для мувів
+1	- АЛУ: сорс дест 5(ядра) 
 
 в instruction processor 8 регістрів. (2 - ip and sp, 6 gp)
 
@@ -88,7 +92,7 @@ add r0, r2 (instruction processor)
 add r0, r0, r2 (cores)
 
 АЛУШНІ інструкції  
-4 біт (16) addi addic subi subic muli mulci  |   andi ori xori noti lshi rshi  |  cmpi inci deci 
+4 біт (16) addi addic subi subic muli mulci  |   andi ori xori noti lshi rshi  |  cmpi_ inci deci 
 
 ДЛЯ ВСІХ алушних 4 біти на суфікси
 
@@ -96,8 +100,8 @@ add r0, r0, r2 (cores)
 
 Лише для mov, load, store 4 біти на суфікси, для інших не алушних немає суфіксів
 
-5 bits (32): movl(0-6), movh(0-6), movf_(0-6), mov0-1, load0-1, store0-1,  je, jne jgt jge jlt jle
-(chmod, chbuf)
+5 bits (32): movl(0-6), movh(0-6), movf_(0-6), mov0-1, load0-1, store0-1,  je_, jne_ jgt_ jge_ jlt_ jle_
+(chmod_, chbuf_)
 
 “0-1” в кінці вказує перший біт кодування суфікса
 

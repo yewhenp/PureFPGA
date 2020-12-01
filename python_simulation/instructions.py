@@ -95,7 +95,7 @@ def lsh_(r1, r2, dst, f):
     dst.write(val)
 
 
-def cmp(r1, r2, dst, f):
+def cmp_(r1, r2, dst, f):
     sub_(r1, r2, Register16(), f)
 
 
@@ -132,11 +132,11 @@ def load_(reg1: Register, reg2: Register, memory: Memory, flag):
     reg1.write(data=memory.read(address=reg2.read()))
 
 
-def ch_mod(r1, r2, f):
+def chmod_(r1, r2, f):
     f.write(f.read() ^ 1 << CH_MODE)
 
 
-def ch_buf(r1, r2, f):
+def chbuf_(r1, r2, f):
     f.write(f.read() ^ 1 << CH_BUFF)
 
 
@@ -192,8 +192,8 @@ def lshi_(r1, r2, dst, f):
     lsh_(r1, r2, dst, f)
 
 
-def cmpi(r1, r2, dst, f):
-    cmp(r1, r2, dst, f)
+def cmpi_(r1, r2, dst, f):
+    cmp_(r1, r2, dst, f)
 
 
 def inci_(r1, r2, dst, f):
@@ -229,7 +229,7 @@ def loadi_(reg1: Register, reg2: Register, memory: Memory, flag):
     load_(reg1, reg2, memory, flag)
 
 
-def je(reg1, reg2, flag):
+def je_(reg1, reg2, flag):
     """
     :param reg1: instruction pointer
     :param reg2: new position of instruction pointer
@@ -240,27 +240,27 @@ def je(reg1, reg2, flag):
         movi_(reg1, reg2, flag)
 
 
-def jne(reg1, reg2, flag):
+def jne_(reg1, reg2, flag):
     if not get_bit(flag.read, ZERO):
         movi_(reg1, reg2, flag)
 
 
-def jgt(reg1, reg2, flag):
+def jgt_(reg1, reg2, flag):
     if not get_bit(flag.read, SIGN) and (get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW)):
         movi_(reg1, reg2, flag)
 
 
-def jge(reg1, reg2, flag):
+def jge_(reg1, reg2, flag):
     if get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW):
         movi_(reg1, reg2, flag)
 
 
-def jlt(reg1, reg2, flag):
+def jlt_(reg1, reg2, flag):
     if get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW):
         movi_(reg1, reg2, flag)
 
 
-def jle(reg1, reg2, flag):
+def jle_(reg1, reg2, flag):
     if get_bit(flag.read, SIGN) or (get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW)):
         movi_(reg1, reg2, flag)
 

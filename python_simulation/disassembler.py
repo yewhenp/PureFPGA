@@ -162,6 +162,8 @@ class Disassembler:
                 result["type"] = "jumps"
             result["recipient"] = "proc"
 
+        return result
+
     core_alu_inst = {
         '0000': add_,
         '0001': addc_,

@@ -61,7 +61,9 @@ class InstructionProc:
         # execute instruction for instruction processor
         if i["recipient"] == "proc":
             if self.suffixes_condition["suf"]:
-                if i["type"] == "proc_mem_number" or i["type"] == "proc_mem_flags" or i["func"] == movi_:
+                if i["type"] == "proc_alu":
+                    i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.regs[i["dest"]], self.regs["flags"])
+                elif i["type"] == "proc_mem_number" or i["type"] == "proc_mem_flags" or i["func"] == movi_:
                     i["func"](self.regs[i["dest"]], self.regs[i["op1"]],  self.regs["flags"])
                 elif i["type"] == "proc_mem_suffix":
                     i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.__RAM, self.regs["flags"])
@@ -69,7 +71,7 @@ class InstructionProc:
                     i["func"](self.regs["ip"], self.regs[i["dest"]], self.regs["flags"])
         else:
             for core in self.__cores:
-                core.execute(i["func"], i["dest"], i["op1"], i["op2"], i["suf"])
+                core.execute(i)
 
     def fetch_instruction(self) -> dict:
         """fetches instruction from ROM, increases IP and returns instruction"""
@@ -105,3 +107,6 @@ class InstructionProc:
 
     def ROM_to_string(self, size, mode=""):
         return self.__ROM.to_string(size, mode)
+
+    def RAM_to_string(self, size, mode=""):
+        return self.__RAM.to_string(size, mode)

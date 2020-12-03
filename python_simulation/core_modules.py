@@ -10,11 +10,12 @@ class Core:
         self.registers = {"reg0": Register16(),
                           "reg1": Register16(),
                           "reg2": Register16(),
-                          "reg3": Register16()
+                          "reg3": Register16(),
+                          "flags": Register16()
                           }
-        self.flags ={"buffer_flag": Register1(),
-                     "mode_flag": Register1(),
-                     "carry_flag": Register1()}
+        # self.flags ={"buffer_flag": Register1(),
+        #              "mode_flag": Register1(),
+        #              "carry_flag": Register1()}
 
     def write_data(self, address, data):
         """
@@ -33,20 +34,27 @@ class Core:
         """
         return self.ram.read(address)
 
-    def execute(self, function, source_0, source_1):
+    def execute(self, i):
         """
         Executes function
         :param function:
-        :param source_0:
-        :param source_1:
+        :param op1:
+        :param op2:
         :return:
         """
-        if function == store_ or function == load_:
-            function(self._read_source(source_0), self._read_source(source_1), self._get_ram(), self._get_flags())
-            if self._get_buffer_use() and not function == load_:
-                function(self._read_source(source_0), self._read_source(source_1), self._get_buffer(), self._get_flags())
-        else:
-            function(self._read_source(source_0), self._read_source(source_1), self._get_flags())
+        if self.suffixes_condition["suf"]:
+            if i["type"] == "core_alu":
+                i["func"](self.regs[i["op1"]], self.regs[i["op2"]], self.regs[i["dest"]], self.registers["flags"])
+            elif i["type"] == "core_mem_suffix":
+                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.ram, self.registers["flags"])
+            else:
+                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.registers["flags"])
+        # if function == store_ or function == load_:
+        #     function(self._read_source(op1), self._read_source(op2), self._get_ram(), self._get_flags())
+        #     if self._get_buffer_use() and not function == load_:
+        #         function(self._read_source(op1), self._read_source(op2), self._get_buffer(), self._get_flags())
+        # else:
+        #     function(self._read_source(op1), self._read_source(op2), self._get_flags())
 
     def _read_source(self, source):
         """

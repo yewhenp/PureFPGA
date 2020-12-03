@@ -78,7 +78,7 @@ class Disassembler:
     type: jumps
         func - je_/ jne_/ jgt_/ jge_/ jlt_/ jle_
         suf - None
-        dest - None
+        dest - register with address
         op1 - None
         op2 - None
         
@@ -153,10 +153,10 @@ class Disassembler:
                 result["op2"] = None
                 result["type"] = "proc_mem_number" if func in self.mem_number_commands \
                     else "proc_mem_flags"
-            # chmod or chbuf
+            # jumps
             else:
                 result["suf"] = None
-                result["dest"] = None
+                result["dest"] = self.proc_registers[instruction[10:13]] # register with address
                 result["op1"] = None
                 result["op2"] = None
                 result["type"] = "jumps"

@@ -141,6 +141,11 @@ class Assembler:
                 bin_num = "0" * (8 - len(bin_num)) + bin_num
                 result += bin_num                                       # 8 bit number
                 result += "0"                                           # unused bit TODO: do something with this
+            # flags
+            elif command_clear in self.mem_jump_commmands:
+                result += "0"*3
+                result += self.registers["instruction processor"][command_list[1]]
+                result += "0"*3
             else:
                 result += "0" * 9                                       # unsued bits TODO:
 
@@ -303,6 +308,10 @@ class Assembler:
         'movl0', 'movl1', 'movl2', 'movl3',
         'movh0i', 'movh1i', 'movh2i', 'movh3i', 'movh4i', 'movh5i',
         'movl0i', 'movl1i', 'movl2i', 'movl3i','movl4i', 'movl5i',
+    ]
+
+    mem_jump_commmands = [
+        'je', 'jne', 'jgt', 'jge', 'jlt', 'jle'
     ]
 
     ##################################################################

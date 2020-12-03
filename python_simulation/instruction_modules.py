@@ -15,6 +15,26 @@ class InstructionProc:
             "reg4": Register16(0), "reg5": Register16(0), "reg6": Register16(0), "reg7": Register16(0),
             "flags": Register16(0)}
 
+    suffixes_condition = {
+        "eq": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 1,
+        "ne": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 0,
+        "gt": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 0 and  get_bit(InstructionProc.regs["flags"], SIGN) ==  get_bit(InstructionProc.regs["flags"], OVERFLOW),
+        "lt": lambda: get_bit(InstructionProc.regs["flags"], SIGN) != get_bit(InstructionProc.regs["flags"], OVERFLOW),
+        "ge": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == get_bit(InstructionProc.regs["flags"], OVERFLOW),
+        "le": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 1 or  get_bit(InstructionProc.regs["flags"], SIGN) !=  get_bit(InstructionProc.regs["flags"], OVERFLOW),
+        "cs": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 1,
+        "cc": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 0,
+        "mi": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == 1,
+        "pl": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == 0,
+        "al": lambda: True,
+        "nv": lambda : False,
+        "vs": lambda: get_bit(InstructionProc.regs["flags"], OVERFLOW) == 1,
+        "vc": lambda: get_bit(InstructionProc.regs["flags"], OVERFLOW) == 0,
+        "hi": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 1 and get_bit(InstructionProc.regs["flags"], SIGN) == 0,
+        "ls": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 0 or get_bit(InstructionProc.regs["flags"], SIGN) == 0,
+        None: lambda: True
+    }
+
     def __init__(self, program_file: str, sm) -> None:
         # parse program from file
         program = self.load_program_from_file(program_file)
@@ -40,17 +60,13 @@ class InstructionProc:
         """
         # execute instruction for instruction processor
         if i["recipient"] == "proc":
-            if i["type"] == "proc_mem_number":
-                i["func"](self.regs[i["dest"]], self.regs[i["op1"]],  self.regs["flags"])
-            elif i["type"] == "proc_mem_flags" or i["func"] == movi_:
-                # additional suffix logic
-                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.regs["flags"])
-            elif i["type"] == "proc_mem_suffix":
-                # add suffix logic
-                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.__RAM, self.regs["flags"])
-            elif i["type"] == "jumps":
-                pass
-            i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.regs[i["dest"]], self.regs["flags"])
+            if self.suffixes_condition["suf"]:
+                if i["type"] == "proc_mem_number" or i["type"] == "proc_mem_flags" or i["func"] == movi_:
+                    i["func"](self.regs[i["dest"]], self.regs[i["op1"]],  self.regs["flags"])
+                elif i["type"] == "proc_mem_suffix":
+                    i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.__RAM, self.regs["flags"])
+                elif i["type"] == "jumps":
+                    i["func"](self.regs["ip"], self.regs[i["dest"]], self.regs["flags"])
         else:
             for core in self.__cores:
                 core.execute(i["func"], i["dest"], i["op1"], i["op2"], i["suf"])

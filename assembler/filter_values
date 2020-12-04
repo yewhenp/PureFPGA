@@ -1,0 +1,16 @@
+movl reg0 0
+
+movl reg3 4 # value to compare with compare
+movil reg0 10
+
+inc reg0     # Loop
+load reg1 reg0
+
+cmp reg1 reg3 # if reg1 < 4
+movllt reg1 0    # then reg1 = 0
+
+store reg1 reg0
+
+deci reg0
+movli reg3 3 # instruction number
+je reg3 # jump if reg0 == 0

@@ -1,0 +1,21 @@
+# generally we loop over 10 addresses in ram and double values there
+
+movl reg0 0
+movil reg0 10
+
+inc reg0     # Loop
+load reg1 reg0 
+
+
+mov reg2 reg1           
+add reg1 reg2 reg1
+
+store reg1 reg0
+
+deci reg0
+movli reg3 3 # instruction number
+je reg3 # jump if reg0 == 0
+
+
+
+

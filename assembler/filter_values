@@ -1,16 +1,18 @@
-movl reg0 0
+movl reg2 0      // register with 0
 
-movl reg3 4 # value to compare with compare
-movil reg0 10
+movl reg0 0      // current address
 
-inc reg0     # Loop
+movl reg3 4      // value to compare with compare
+movli reg0 10
+
+inc reg0         // Loop
 load reg1 reg0
 
-cmp reg1 reg3 # if reg1 < 4
-movllt reg1 0    # then reg1 = 0
+cmp reg1 reg3    // if reg1 < 4
+movlt reg1 reg2
 
 store reg1 reg0
 
 deci reg0
-movli reg3 3 # instruction number
-je reg3 # jump if reg0 == 0
+movli reg3 3 // instruction number
+je reg3 // jump if reg0 == 0

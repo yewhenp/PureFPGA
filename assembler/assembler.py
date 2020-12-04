@@ -1,4 +1,5 @@
 import sys
+import re
 
 
 class Assembler:
@@ -10,54 +11,50 @@ class Assembler:
     def assemble_preprocessed(self, processed_file: str, verbose: bool=False):
         with open(self.dest_name, "w") as dest_file:
             result = ""
-            line_n = 0
-            for line in open(processed_file, "r"):
+            for line_n, line in enumerate(open(processed_file, "r")):
                 line = line.strip()
                 encoded = self.encode_command(line)
                 result += encoded + "\n"
                 if verbose:
-                    print(f"Processed line #{line_n}: {encoded}")
-                    line_n += 1
+                    print(f"Processed line #{line_n}: {encoded}     ({line})")
             dest_file.write(result)
 
     def preprocess_source(self, preprocessed_file: str, verbose: bool=False):
-        # clear old content
-        file = open(preprocessed_file, "w")
-        file.write("")
-        file.close()
-        with open(preprocessed_file, "a") as prep_file:
+        with open(preprocessed_file, "w") as prep_file:
             for line in open(self.source_name, "r"):
+                line = re.sub("//(.)*", "", line)   # delete comments at the same line
                 line = line.strip()
+                # skip comments and empty lines
                 if line.startswith("//") or line == "":
                     continue
                 line = line.lower()
                 line = line.split()
 
                 # mov - mov0-1 store - store0-1 load - load0-1 conversion
-                if line[0][:-2] in self.mem_suffix_commands_unprocessed: # there is a suffix
+                if line[0][:-2] in self.mem_suffix_commands_unprocessed and line[0][-2:] in self.suffixes: # there is a suffix
                     if line[0][-2:] in self.suffixes_0:
-                        line[0] += "0"
+                        line[0] = line[0][0:-2] + "0" + line[0][-2:]
                     elif line[0][-2:] in self.suffixes:
-                        line[0] += "1"
+                        line[0] = line[0][0:-2] + "1" + line[0][-2:]
                     else:
-                        raise ValueError(f"Bad suffix: {line[-2:]}")
+                        raise ValueError(f"Bad suffix: {line[0][-2:]}")
                 elif line[0] in self.mem_suffix_commands_unprocessed: # no suffix
                     line[0] += "1"
 
                 # add 'al' if needed
-                if line[0] in self.commands["core"]["alu"] \
-                        or line[0] in self.commands["processor"]["alu"] \
-                        or line[0] in self.mem_suffix_commands:
+                if (line[0] in self.commands["core"]["alu"]
+                        or line[0] in self.commands["processor"]["alu"]
+                        or line[0] in self.mem_suffix_commands) and line[0][-2:] not in self.suffixes:
                     line[0] += "al"
 
 
                 # movl movh movf preprocessing
                 if line[0] in self.mem_core_number_commands_unprocessed:
                     line[0] += line[1][-1]
-                    line[1] = ""
+                    line.pop(1)
                 elif line[0] in self.mem_processor_number_commands_unprocessed:
                     line[0] = line[0][:-1] + line[1][-1] + line[0][-1]
-                    line[1] = ""
+                    line.pop(1)
 
                 # core_arith_operation regi regk = op regi regi regk
                 if line[0][:-2] in self.commands["core"]["alu"] and len(line) == 3:
@@ -97,7 +94,7 @@ class Assembler:
             result += self.commands["core"]["alu"][command_clear]   # 4 bits - command
             result += self.suffixes[suffix]                         # 4 bits - suffix
             result += self.registers["core"][command_list[1]]       # 2 bits - dest reg
-            if result not in self.alu_one_dest_commands:
+            if command_clear not in self.alu_one_dest_commands:       # if not inc/dec/cmp
                 result += self.registers["core"][command_list[2]]       # 2 bits - first operand
                 result += self.registers["core"][command_list[3]]       # 2 bits - second operand
             else:
@@ -107,7 +104,10 @@ class Assembler:
             result += self.commands["processor"]["alu"][command_clear]  # 4 bits
             result += self.suffixes[suffix]                             # 4 bits
             result += self.registers["processor"][command_list[1]]      # 3 bits - dest reg and first operand
-            result += self.registers["processor"][command_list[2]]      # 3 bits - second operand
+            if command_clear not in self.alu_one_dest_commands:         # if not inci/deci/cmpi
+                result += self.registers["processor"][command_list[2]]  # 3 bits - second operand
+            else:
+                result += "0"*3                                         # unused
 
         elif command_type == "core_memory":
             result += self.commands["core"]["memory"][command_clear]    # 5 bits - command
@@ -144,7 +144,7 @@ class Assembler:
             # flags
             elif command_clear in self.mem_jump_commmands:
                 result += "0"*3
-                result += self.registers["instruction processor"][command_list[1]]
+                result += self.registers["processor"][command_list[1]]
                 result += "0"*3
             else:
                 result += "0" * 9                                       # unsued bits TODO:
@@ -282,7 +282,7 @@ class Assembler:
             'reg2': '10',
             'reg3': '11'
         },
-        'instruction processor': {
+        'processor': {
             'reg0': '000',
             'reg1': '001',
             'reg2': '010',
@@ -341,7 +341,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         source = sys.argv[1]
         dest = "a.out"
-    elif len(sys.argv) == 4 and sys.argv[2] == "o":
+    elif len(sys.argv) == 4 and sys.argv[2] == "a":
         preprocessed = sys.argv[1]
         dest = sys.argv[3]
         assembler = Assembler(source_name="", dest_name=dest)

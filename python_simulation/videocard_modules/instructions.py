@@ -1,4 +1,4 @@
-from python_simulation.mem_modules import Memory, Register, Register16
+from python_simulation.videocard_modules.mem_modules import Memory, Register, Register16
 
 # ALU
 SIZE = 16
@@ -22,7 +22,7 @@ def set_flags(val, f):
     carry = get_bit(val, SIZE)
     sign = get_bit(val, SIZE - 1)
     overflow = carry ^ sign
-    zero = val == 0
+    zero = 1 if val == 0 else 0
     flag = f.read()
     flag = set_bit(flag, carry, CARRY)
     flag = set_bit(flag, sign, SIGN)
@@ -93,7 +93,6 @@ def rsh_(r1, r2, dst, f):
 def lsh_(r1, r2, dst, f):
     val = r1.read() << r2.read()
     dst.write(val)
-
 
 def cmp_(r1, r2, dst, f):
     sub_(r1, r2, Register16(), f)
@@ -236,32 +235,32 @@ def je_(reg1, reg2, flag):
     :param flag: flags
     :return:
     """
-    if get_bit(flag.read, ZERO):
+    if get_bit(flag.read(), ZERO):
         movi_(reg1, reg2, flag)
 
 
 def jne_(reg1, reg2, flag):
-    if not get_bit(flag.read, ZERO):
+    if not get_bit(flag.read(), ZERO):
         movi_(reg1, reg2, flag)
 
 
 def jgt_(reg1, reg2, flag):
-    if not get_bit(flag.read, SIGN) and (get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW)):
+    if not get_bit(flag.read(), SIGN) and (get_bit(flag.read(), SIGN) == get_bit(flag.read(), OVERFLOW)):
         movi_(reg1, reg2, flag)
 
 
 def jge_(reg1, reg2, flag):
-    if get_bit(flag.read, SIGN) == get_bit(flag.read, OVERFLOW):
+    if get_bit(flag.read(), SIGN) == get_bit(flag.read(), OVERFLOW):
         movi_(reg1, reg2, flag)
 
 
 def jlt_(reg1, reg2, flag):
-    if get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW):
+    if get_bit(flag.read(), SIGN) != get_bit(flag.read(), OVERFLOW):
         movi_(reg1, reg2, flag)
 
 
 def jle_(reg1, reg2, flag):
-    if get_bit(flag.read, SIGN) or (get_bit(flag.read, SIGN) != get_bit(flag.read, OVERFLOW)):
+    if get_bit(flag.read(), SIGN) or (get_bit(flag.read(), SIGN) != get_bit(flag.read(), OVERFLOW)):
         movi_(reg1, reg2, flag)
 
 

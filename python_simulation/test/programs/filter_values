@@ -3,7 +3,7 @@ movl reg2 0      // register with 0
 movl reg0 0      // current address
 
 movl reg3 4      // value to compare with compare
-movli reg0 10
+movli reg0 10    // counter
 
 inc reg0         // Loop
 load reg1 reg0
@@ -14,5 +14,5 @@ movlt reg1 reg2
 store reg1 reg0
 
 deci reg0
-movli reg3 3 // instruction number
-je reg3 // jump if reg0 == 0
+movli reg3 4 // instruction number
+jne reg3 // jump if reg0 != 0

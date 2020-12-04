@@ -1,6 +1,6 @@
-from python_simulation.mem_modules import *
-from python_simulation.instructions import *
-from python_simulation.disassembler import Disassembler
+from python_simulation.videocard_modules.mem_modules import *
+from python_simulation.videocard_modules.instructions import *
+from assembler.disassembler import Disassembler
 # from core_modules import SM
 
 
@@ -16,22 +16,22 @@ class InstructionProc:
             "flags": Register16(0)}
 
     suffixes_condition = {
-        "eq": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 1,
-        "ne": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 0,
-        "gt": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 0 and  get_bit(InstructionProc.regs["flags"], SIGN) ==  get_bit(InstructionProc.regs["flags"], OVERFLOW),
-        "lt": lambda: get_bit(InstructionProc.regs["flags"], SIGN) != get_bit(InstructionProc.regs["flags"], OVERFLOW),
-        "ge": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == get_bit(InstructionProc.regs["flags"], OVERFLOW),
-        "le": lambda: get_bit(InstructionProc.regs["flags"], ZERO) == 1 or  get_bit(InstructionProc.regs["flags"], SIGN) !=  get_bit(InstructionProc.regs["flags"], OVERFLOW),
-        "cs": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 1,
-        "cc": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 0,
-        "mi": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == 1,
-        "pl": lambda: get_bit(InstructionProc.regs["flags"], SIGN) == 0,
+        "eq": lambda: get_bit(InstructionProc.regs["flags"].read(), ZERO) == 1,
+        "ne": lambda: get_bit(InstructionProc.regs["flags"].read(), ZERO) == 0,
+        "gt": lambda: get_bit(InstructionProc.regs["flags"].read(), ZERO) == 0 and  get_bit(InstructionProc.regs["flags"].read(), SIGN) ==  get_bit(InstructionProc.regs["flags"].read(), OVERFLOW),
+        "lt": lambda: get_bit(InstructionProc.regs["flags"].read(), SIGN) != get_bit(InstructionProc.regs["flags"].read(), OVERFLOW),
+        "ge": lambda: get_bit(InstructionProc.regs["flags"].read(), SIGN) == get_bit(InstructionProc.regs["flags"].read(), OVERFLOW),
+        "le": lambda: get_bit(InstructionProc.regs["flags"].read(), ZERO) == 1 or  get_bit(InstructionProc.regs["flags"].read(), SIGN) !=  get_bit(InstructionProc.regs["flags"].read(), OVERFLOW),
+        "cs": lambda: get_bit(InstructionProc.regs["flags"].read(), CARRY) == 1,
+        "cc": lambda: get_bit(InstructionProc.regs["flags"].read(), CARRY) == 0,
+        "mi": lambda: get_bit(InstructionProc.regs["flags"].read(), SIGN) == 1,
+        "pl": lambda: get_bit(InstructionProc.regs["flags"].read(), SIGN) == 0,
         "al": lambda: True,
         "nv": lambda : False,
-        "vs": lambda: get_bit(InstructionProc.regs["flags"], OVERFLOW) == 1,
-        "vc": lambda: get_bit(InstructionProc.regs["flags"], OVERFLOW) == 0,
-        "hi": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 1 and get_bit(InstructionProc.regs["flags"], SIGN) == 0,
-        "ls": lambda: get_bit(InstructionProc.regs["flags"], CARRY) == 0 or get_bit(InstructionProc.regs["flags"], SIGN) == 0,
+        "vs": lambda: get_bit(InstructionProc.regs["flags"].read(), OVERFLOW) == 1,
+        "vc": lambda: get_bit(InstructionProc.regs["flags"].read(), OVERFLOW) == 0,
+        "hi": lambda: get_bit(InstructionProc.regs["flags"].read(), CARRY) == 1 and get_bit(InstructionProc.regs["flags"].read(), SIGN) == 0,
+        "ls": lambda: get_bit(InstructionProc.regs["flags"].read(), CARRY) == 0 or get_bit(InstructionProc.regs["flags"].read(), SIGN) == 0,
         None: lambda: True
     }
 
@@ -60,11 +60,14 @@ class InstructionProc:
         """
         # execute instruction for instruction processor
         if i["recipient"] == "proc":
-            if self.suffixes_condition["suf"]:
+            if self.suffixes_condition[i["suf"]]():
                 if i["type"] == "proc_alu":
+                    # TODO: cmpi_ fix
                     i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.regs[i["dest"]], self.regs["flags"])
-                elif i["type"] == "proc_mem_number" or i["type"] == "proc_mem_flags" or i["func"] == movi_:
+                elif i["type"] == "proc_mem_flags" or i["func"] == movi_:
                     i["func"](self.regs[i["dest"]], self.regs[i["op1"]],  self.regs["flags"])
+                elif i["type"] == "proc_mem_num":
+                    i["func"](self.regs[i["dest"]], i["op1"], self.regs["flags"])
                 elif i["type"] == "proc_mem_suffix":
                     i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.__RAM, self.regs["flags"])
                 elif i["type"] == "jumps":

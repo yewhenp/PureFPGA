@@ -1,4 +1,4 @@
-from python_simulation.instructions import *
+from python_simulation.videocard_modules.instructions import *
 
 class Disassembler:
     def __init__(self):
@@ -22,7 +22,7 @@ class Disassembler:
         func - any alu command.
         suf - suffixes for instruction  ex: 'gt'
         dest - destination register     [reg0-7]
-        op1 - first operand             [reg0-7]    Note: if this is not/inc/dec/cmp command then op1 has reg0
+        op1 - first operand             [reg0-7]    Note: if this is not/inc/dec command then op1 has reg0
         op2 - None
     
     
@@ -61,7 +61,7 @@ class Disassembler:
         op1 - second register that will have value to move if mov, or address for storing/loading
         op2 - None
     
-    type: proc_mem_number
+    type: proc_mem_num
         func - movli_/ movhi_
         suf - None
         dest - register that will hold number after execution
@@ -103,7 +103,7 @@ class Disassembler:
             result["dest"] = self.proc_registers[instruction[10:13]]        # 3 bits on destination register
             result["op1"] = self.proc_registers[instruction[13:16]]         # 3 bits on operand
             result["op2"] = None
-            result["recipient"] = "processor"
+            result["recipient"] = "proc"
             result["type"] = "proc_alu"
 
         # core memory
@@ -120,7 +120,7 @@ class Disassembler:
             elif func in self.mem_number_commands or func in self.mem_move_flags:
                 result["suf"] = None
                 result["dest"] = "reg" + func[-1]                           # 0 bits on dst register
-                result["op1"] = int(instruction[7:15]) if func in self.mem_number_commands \
+                result["op1"] = int(instruction[7:15], 2) if func in self.mem_number_commands \
                     else None # 8 bits on number
                 result["op2"] = None
                 result["type"] = "core_mem_num" if func in self.mem_number_commands \
@@ -137,7 +137,7 @@ class Disassembler:
         # processor mem
         elif instruction[0:2] == "00":
             result["func"] = self.proc_mem_inst[instruction[2:7]]       # 5 bits on mem instrcution type
-            func = self.core_mem_inst_string[instruction[2:7]]
+            func = self.proc_mem_inst_string[instruction[2:7]]
             if func in self.mem_suffix_commands:
                 result["suf"] = self.suffixes0[instruction[7:10]] if func[-1] == "0" \
                     else self.suffixes1[instruction[7:10]]              # 3 bits on suffix (why 3 read docum)
@@ -148,10 +148,10 @@ class Disassembler:
             elif func in self.mem_number_commands or func in self.mem_move_flags:
                 result["suf"] = None
                 result["dest"] = "reg" + func[-2:-1]                    # 0 bits on dst register
-                result["op1"] = int(instruction[7:15]) if func in self.mem_number_commands \
+                result["op1"] = int(instruction[7:15], 2) if func in self.mem_number_commands \
                     else None  # 8 bits on number
                 result["op2"] = None
-                result["type"] = "proc_mem_number" if func in self.mem_number_commands \
+                result["type"] = "proc_mem_num" if func in self.mem_number_commands \
                     else "proc_mem_flags"
             # jumps
             else:

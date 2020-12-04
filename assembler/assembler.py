@@ -68,7 +68,7 @@ class Assembler:
         command_list = parsed_command.split()
 
         # suffixes
-        if command_list[0][-2:] in self.suffixes:
+        if command_list[0][-2:] in self.suffixes and command_list[0] not in self.mem_jump_commmands:
             command_clear = command_list[0][:-2]
             suffix = command_list[0][-2:]
         else:
@@ -94,7 +94,7 @@ class Assembler:
             result += self.commands["core"]["alu"][command_clear]   # 4 bits - command
             result += self.suffixes[suffix]                         # 4 bits - suffix
             result += self.registers["core"][command_list[1]]       # 2 bits - dest reg
-            if command_clear not in self.alu_one_dest_commands:       # if not inc/dec/cmp
+            if command_clear not in self.alu_one_dest_commands:       # if not inc/dec/not
                 result += self.registers["core"][command_list[2]]       # 2 bits - first operand
                 result += self.registers["core"][command_list[3]]       # 2 bits - second operand
             else:
@@ -104,7 +104,7 @@ class Assembler:
             result += self.commands["processor"]["alu"][command_clear]  # 4 bits
             result += self.suffixes[suffix]                             # 4 bits
             result += self.registers["processor"][command_list[1]]      # 3 bits - dest reg and first operand
-            if command_clear not in self.alu_one_dest_commands:         # if not inci/deci/cmpi
+            if command_clear not in self.alu_one_dest_commands:         # if not inci/deci/noti
                 result += self.registers["processor"][command_list[2]]  # 3 bits - second operand
             else:
                 result += "0"*3                                         # unused
@@ -295,8 +295,8 @@ class Assembler:
     }
 
     alu_one_dest_commands = [
-        "not", "inc", "dec", "cmp",
-        "noti", "inci", "deci", "cmpi"
+        "not", "inc", "dec",
+        "noti", "inci", "deci"
     ]
 
     mem_suffix_commands = [

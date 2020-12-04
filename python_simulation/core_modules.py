@@ -13,9 +13,30 @@ class Core:
                           "reg3": Register16(),
                           "flags": Register16()
                           }
+        self.suffixes_condition = {
+            "eq": lambda: get_bit(self.registers["flags"], ZERO) == 1,
+            "ne": lambda: get_bit(self.registers["flags"], ZERO) == 0,
+            "gt": lambda: get_bit(self.registers["flags"], ZERO) == 0 and get_bit(self.registers["flags"], SIGN) == get_bit(self.registers["flags"], OVERFLOW),
+            "lt": lambda: get_bit(self.registers["flags"], SIGN) != get_bit(self.registers["flags"], OVERFLOW),
+            "ge": lambda: get_bit(self.registers["flags"], SIGN) == get_bit(self.registers["flags"], OVERFLOW),
+            "le": lambda: get_bit(self.registers["flags"], ZERO) == 1 or get_bit(self.registers["flags"], SIGN) != get_bit(self.registers["flags"], OVERFLOW),
+            "cs": lambda: get_bit(self.registers["flags"], CARRY) == 1,
+            "cc": lambda: get_bit(self.registers["flags"], CARRY) == 0,
+            "mi": lambda: get_bit(self.registers["flags"], SIGN) == 1,
+            "pl": lambda: get_bit(self.registers["flags"], SIGN) == 0,
+            "al": lambda: True,
+            "nv": lambda: False,
+            "vs": lambda: get_bit(self.registers["flags"], OVERFLOW) == 1,
+            "vc": lambda: get_bit(self.registers["flags"], OVERFLOW) == 0,
+            "hi": lambda: get_bit(self.registers["flags"], CARRY) == 1 and get_bit(self.registers["flags"], SIGN) == 0,
+            "ls": lambda: get_bit(self.registers["flags"], CARRY) == 0 or get_bit(self.registers["flags"], SIGN) == 0,
+            None: lambda: True
+        }
+
         # self.flags ={"buffer_flag": Register1(),
         #              "mode_flag": Register1(),
         #              "carry_flag": Register1()}
+
 
     def write_data(self, address, data):
         """
@@ -42,13 +63,13 @@ class Core:
         :param op2:
         :return:
         """
-        if self.suffixes_condition["suf"]:
+        if self.suffixes_condition[i["suf"]]:
             if i["type"] == "core_alu":
-                i["func"](self.regs[i["op1"]], self.regs[i["op2"]], self.regs[i["dest"]], self.registers["flags"])
+                i["func"](self.registers[i["op1"]], self.registers[i["op2"]], self.registers[i["dest"]], self.registers["flags"])
             elif i["type"] == "core_mem_suffix":
-                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.ram, self.registers["flags"])
+                i["func"](self.registers[i["dest"]], self.registers[i["op1"]], self.ram, self.registers["flags"])
             else:
-                i["func"](self.regs[i["dest"]], self.regs[i["op1"]], self.registers["flags"])
+                i["func"](self.registers[i["dest"]], self.registers[i["op1"]], self.registers["flags"])
         # if function == store_ or function == load_:
         #     function(self._read_source(op1), self._read_source(op2), self._get_ram(), self._get_flags())
         #     if self._get_buffer_use() and not function == load_:
@@ -56,65 +77,65 @@ class Core:
         # else:
         #     function(self._read_source(op1), self._read_source(op2), self._get_flags())
 
-    def _read_source(self, source):
-        """
-        Checks source and returns register or number
-        :param source:
-        :return:
-        """
-        try:
-            return self.registers[source]
-        except KeyError:
-            return source
-
-    def _get_buffer_register(self):
-        """
-        Returns buffer flag register
-        :return:
-        """
-        return self.flags["buffer_flag"]
-
-    def _get_buffer(self):
-        """
-        Returns current buffer
-        :return:
-        """
-        return self.buffers[self._get_buffer_register().read()]
-
-    def _get_buffer_use_register(self):
-        """
-        Returns mode flag register
-        :return:
-        """
-        return self.flags["mode_flag"]
-
-    def _get_buffer_use(self):
-        """
-        Returns mode flag register value
-        :return:
-        """
-        return self._get_buffer_use_register().read()
-
-    def _get_ram(self):
-        """
-        Returns ram
-        :return:
-        """
-        return self.ram
-
-    def _get_carry(self):
-        """
-        Returns carry flag register
-        :return:
-        """
-        return self.flags["carry_flag"]
-
-    def _get_flags(self):
-        """
-        Returns flag register
-        :return:
-        """
-        return self.flags
+    # def _read_source(self, source):
+    #     """
+    #     Checks source and returns register or number
+    #     :param source:
+    #     :return:
+    #     """
+    #     try:
+    #         return self.registers[source]
+    #     except KeyError:
+    #         return source
+    #
+    # def _get_buffer_register(self):
+    #     """
+    #     Returns buffer flag register
+    #     :return:
+    #     """
+    #     return self.flags["buffer_flag"]
+    #
+    # def _get_buffer(self):
+    #     """
+    #     Returns current buffer
+    #     :return:
+    #     """
+    #     return self.buffers[self._get_buffer_register().read()]
+    #
+    # def _get_buffer_use_register(self):
+    #     """
+    #     Returns mode flag register
+    #     :return:
+    #     """
+    #     return self.flags["mode_flag"]
+    #
+    # def _get_buffer_use(self):
+    #     """
+    #     Returns mode flag register value
+    #     :return:
+    #     """
+    #     return self._get_buffer_use_register().read()
+    #
+    # def _get_ram(self):
+    #     """
+    #     Returns ram
+    #     :return:
+    #     """
+    #     return self.ram
+    #
+    # def _get_carry(self):
+    #     """
+    #     Returns carry flag register
+    #     :return:
+    #     """
+    #     return self.flags["carry_flag"]
+    #
+    # def _get_flags(self):
+    #     """
+    #     Returns flag register
+    #     :return:
+    #     """
+    #     return self.flags
 
     def to_string(self, mem_size):
         """

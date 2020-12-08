@@ -92,7 +92,7 @@ add r0, r2 (instruction processor)
 add r0, r0, r2 (cores)
 
 АЛУШНІ інструкції  
-4 біт (16) addi addic subi subic muli mulci  |   andi ori xori noti lshi rshi  |  cmpi_ inci deci 
+4 біт (16) addi addci subi subci muli mulci  |   andi ori xori noti lshi rshi  |  cmpi inci deci 
 
 ДЛЯ ВСІХ алушних 4 біти на суфікси
 
@@ -100,8 +100,8 @@ add r0, r0, r2 (cores)
 
 Лише для mov, load, store 4 біти на суфікси, для інших не алушних немає суфіксів
 
-5 bits (32): movl(0-6), movh(0-6), movf_(0-6), mov0-1, load0-1, store0-1,  je_, jne_ jgt_ jge_ jlt_ jle_
-(chmod_, chbuf_)
+5 bits (32): movl(0-5), movh(0-5), movf(0-5), mov0-1, load0-1, store0-1,  je, jne jgt jge jlt jle
+(chmod, chbuf)
 
 “0-1” в кінці вказує перший біт кодування суфікса
 

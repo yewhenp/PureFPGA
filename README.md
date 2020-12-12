@@ -1,6 +1,7 @@
 # GPU for Z80 based on FPGA
-## Link to presentation
+## Link to first presentation
 [here](https://docs.google.com/presentation/d/e/2PACX-1vQRQlCamovF6Binl2SsoKEvrqsEsJz2ccPZm9A6kuHSVUr-em4yzhscMbtGglOLyyb3eJqYMeQPTMkx/pub?start=false&loop=false&delayms=3000)
+## link to second presentation [here](https://docs.google.com/presentation/d/e/2PACX-1vTUkK01aqt_vz5_lOJwjbPODXsyEMpyrtoSjEdmuw4ukz_GMbEvGKHjo9ceVAkxTsElBvFuRDRA0aLD/pub?start=false&loop=false&delayms=3000)
 ## Idea of project
 Tha main purpose of this project is to create general purpose video card using FPGA techs.
 This project is part of bigger project - computer based on Z80.

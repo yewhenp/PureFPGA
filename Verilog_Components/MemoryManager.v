@@ -1,10 +1,10 @@
 module memory_manager 
 #(parameter WIDTH=16,
-				ADDR_SPACE=22,
-				NUM_CORES=64,
-				NUM_REGS=8,
-  				REGS_CODIND=3,
-				CORE_CODIND=6)
+            ADDR_SPACE=22,
+            NUM_CORES=64,
+            NUM_REGS=8,
+            REGS_CODIND=3,
+            CORE_CODIND=6)
    (	
 	input [WIDTH - 1:0]data, 
 	input [ADDR_SPACE - 1:0]address,

@@ -15,19 +15,17 @@ module core
 	inout [DATA_WIDTH - 1:0]data, 
 	input [ADDRESS_WIDTH - 1:0]address,
 	input [INSTRUCTION_WIDTH - 1:0]instruction,
+	input [ADDRESS_WIDTH - 1:0]bufferAddress,
 	input wren,
 	input cpen,
 	input clk,
-	output busy
+	output busy,
+	output [DATA_WIDTH - 1:0]bufferData
 	);
-//  assign core_data = data;
-//  assign core_address = address;
-//  assign core_instruction = instruction;
-//  assign core_wren = wren;
-//  assign core_cpen = cpen;
-//  assign alu_selection = instruction[4:1];
   
   assign ALUNonALU = instruction[0];
+  assign data = (cpen) ? out_data: 16'bZ; 
+  assign in_data = data;
   
   wire [DATA_WIDTH - 1:0] aluOut;
   wire [NUM_FLAGS - 1: 0] flagsOut;
@@ -44,35 +42,76 @@ module core
   reg buffer = 0;
   reg bufferWrite = 0;
   
-  reg core_input_data;
-  wire core_output_data;
-  reg core_address;
+  wire bufferDataFirst;
+  wire bufferDataSecond;
+  
+  
+  reg [DATA_WIDTH - 1:0] core_input_data;
+  wire [DATA_WIDTH - 1:0] core_output_data;
+  reg [ADDRESS_WIDTH - 1:0] core_address;
   reg core_wren;
+  
+  //wire [15:0]core_address_buffer;
+  //assign core_address_buffer_wire= core_address;
+  assign core_address_buffer= core_address[12:0];
   
   assign movNumber = instruction[13:6];
   assign registerMovFirst = instruction[12:11];
   assign registerMovLast = instruction[14:13];
   
-
+  assign busy = suffixUse;
+  
+  assign bufferData = buffer? bufferDataFirst: bufferDataSecond;
+  wire [1:0]byteEnable;
+  assign byteEnable[0] = 1;
+  assign byteEnable[1] = 1;
 
   RAM raam(
   .address_a(address),
   .address_b(core_address),
-  .byteena_a(0),
-  .byteena_b(0),
+  .byteena_a(byteEnable),
+  .byteena_b(byteEnable),
   .clock(clk),
-  .data_a(data),
+  .data_a(in_data),
   .data_b(core_input_data),
   .wren_a(wren && cpen),
   .wren_b(core_wren),
-  .q_a(data),
+  .q_a(out_data),
   .q_b(core_output_data)
+);
+
+  Buffer buffer1(
+  .address_a(bufferAddress),
+  .address_b(core_address_buffer),
+  .byteena_a(byteEnable),
+  .byteena_b(byteEnable),
+  .clock(clk),
+  .data_a(core_output_data),
+  .data_b(),
+  .wren_a(0),
+  .wren_b(bufferWrite && (~buffer)),
+  .q_a(),
+  .q_b(bufferDataFirst)
+);
+
+  Buffer buff21(
+  .address_a(bufferAddress),
+  .address_b(core_address_buffer),
+  .byteena_a(byteEnable),
+  .byteena_b(byteEnable),
+  .clock(clk),
+  .data_a(core_output_data),
+  .data_b(),
+  .wren_a(0),
+  .wren_b(bufferWrite && buffer),
+  .q_a(),
+  .q_b(bufferDataSecond)
 );
   
   ALU allu(
   .A(aluA),
   .B(aluB),
-  .ALUSel(alu_selection),
+  .ALUSel(instruction[4:1]),
   .CarryIn(flags[0]),
   .clk(clk),
   .ALU_Out(aluOut),

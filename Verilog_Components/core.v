@@ -4,6 +4,7 @@
 module core 
 #(parameter DATA_WIDTH=16,
 				ADDRESS_WIDTH=16,
+				BUFFER_ADDRESS_WIDTH=13,
 				INSTRUCTION_WIDTH=15,
 				NUM_REGS=4,
 				NUM_FLAGS=4,
@@ -15,22 +16,20 @@ module core
 	inout [DATA_WIDTH - 1:0]data, 
 	input [ADDRESS_WIDTH - 1:0]address,
 	input [INSTRUCTION_WIDTH - 1:0]instruction,
-	input [ADDRESS_WIDTH - 1:0]bufferAddress,
+	input [BUFFER_ADDRESS_WIDTH - 1:0]bufferAddress,
 	input wren,
 	input cpen,
 	input clk,
-	output busy,
 	output [DATA_WIDTH - 1:0]bufferData
 	);
   
-  assign ALUNonALU = instruction[0];
+  wire [DATA_WIDTH - 1:0] out_data;
   assign data = (cpen) ? out_data: 16'bZ; 
-  assign in_data = data;
   
   wire [DATA_WIDTH - 1:0] aluOut;
   wire [NUM_FLAGS - 1: 0] flagsOut;
-  reg aluA;
-  reg aluB;
+  reg [DATA_WIDTH - 1:0] aluA;
+  reg [DATA_WIDTH - 1:0] aluB;
   reg suffixUse;
   
   reg [DATA_WIDTH - 1:0]reg0;
@@ -42,37 +41,24 @@ module core
   reg buffer = 0;
   reg bufferWrite = 0;
   
-  wire bufferDataFirst;
-  wire bufferDataSecond;
-  
+  wire [7:0] numberForMovs;
+  assign numberForMovs = instruction[13:6];
   
   reg [DATA_WIDTH - 1:0] core_input_data;
   wire [DATA_WIDTH - 1:0] core_output_data;
   reg [ADDRESS_WIDTH - 1:0] core_address;
   reg core_wren;
   
-  //wire [15:0]core_address_buffer;
-  //assign core_address_buffer_wire= core_address;
-  assign core_address_buffer= core_address[12:0];
-  
-  assign movNumber = instruction[13:6];
-  assign registerMovFirst = instruction[12:11];
-  assign registerMovLast = instruction[14:13];
-  
-  assign busy = suffixUse;
-  
-  assign bufferData = buffer? bufferDataFirst: bufferDataSecond;
-  wire [1:0]byteEnable;
-  assign byteEnable[0] = 1;
-  assign byteEnable[1] = 1;
+  wire [1:0] registerMovFirst;
+  wire [1:0] registerMovLast;
+  assign registerMovFirst = instruction[10:9];
+  assign registerMovLast = instruction[12:11];
 
   RAM raam(
   .address_a(address),
   .address_b(core_address),
-  .byteena_a(byteEnable),
-  .byteena_b(byteEnable),
   .clock(clk),
-  .data_a(in_data),
+  .data_a(data),
   .data_b(core_input_data),
   .wren_a(wren && cpen),
   .wren_b(core_wren),
@@ -81,34 +67,18 @@ module core
 );
 
   Buffer buffer1(
-  .address_a(bufferAddress),
-  .address_b(core_address_buffer),
-  .byteena_a(byteEnable),
-  .byteena_b(byteEnable),
+  .address_a({~buffer, bufferAddress}),
+  .address_b({buffer, core_address[12:0]}),
   .clock(clk),
-  .data_a(core_output_data),
-  .data_b(),
+  .data_a(0),
+  .data_b(core_output_data),
   .wren_a(0),
-  .wren_b(bufferWrite && (~buffer)),
+  .wren_b(bufferWrite),
   .q_a(),
-  .q_b(bufferDataFirst)
-);
-
-  Buffer buff21(
-  .address_a(bufferAddress),
-  .address_b(core_address_buffer),
-  .byteena_a(byteEnable),
-  .byteena_b(byteEnable),
-  .clock(clk),
-  .data_a(core_output_data),
-  .data_b(),
-  .wren_a(0),
-  .wren_b(bufferWrite && buffer),
-  .q_a(),
-  .q_b(bufferDataSecond)
+  .q_b(bufferData)
 );
   
-  ALU allu(
+  alu allu(
   .A(aluA),
   .B(aluB),
   .ALUSel(instruction[4:1]),
@@ -124,7 +94,6 @@ module core
   always @(posedge clk) begin
   
 		case (instruction[9:6])
-		
 			4'b0000: suffixUse = flags[ZERO] == 1;
 			4'b0001: suffixUse = flags[ZERO] == 0;
 			4'b0010: suffixUse = flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
@@ -142,11 +111,9 @@ module core
 			4'b1110: suffixUse = flags[CARRY] == 1 && flags[ZERO] == 0;
 			4'b1111: suffixUse = flags[CARRY] == 0 || flags[ZERO] == 0;
 			default: suffixUse = 0;
-	
 		endcase
   
-		if (ALUNonALU) begin
-		
+		if (instruction[0]) begin
 			case(instruction[10:9])
 				2'b00:
 					aluA = reg0;
@@ -191,7 +158,6 @@ module core
 				5'b00000: begin
 				if (suffixUse) begin
 					core_wren = 0;
-				
 					case (registerMovFirst)
 						2'b00:
 							reg0 = core_output_data;
@@ -415,14 +381,14 @@ module core
 						endcase
 					end
 				end
-				5'b00110: reg0[15:8] = movNumber;
-				5'b00111: reg1[15:8] = movNumber;
-				5'b01000: reg2[15:8] = movNumber;
-				5'b01001: reg3[15:8] = movNumber;
-				5'b01010: reg0[7:0] = movNumber;
-				5'b01011: reg1[7:0] = movNumber;
-				5'b01100: reg2[7:0] = movNumber;
-				5'b01101: reg3[7:0] = movNumber;
+				5'b00110: reg0[15:8] = numberForMovs;
+				5'b00111: reg1[15:8] = numberForMovs;
+				5'b01000: reg2[15:8] = numberForMovs;
+				5'b01001: reg3[15:8] = numberForMovs;
+				5'b01010: reg0[7:0] = numberForMovs;
+				5'b01011: reg1[7:0] = numberForMovs;
+				5'b01100: reg2[7:0] = numberForMovs;
+				5'b01101: reg3[7:0] = numberForMovs;
 				5'b01110: reg0 = flags;
 				5'b01111: reg1 = flags;
 				5'b10000: reg2 = flags;
@@ -432,8 +398,5 @@ module core
 				default: buffer = buffer;
 			endcase
 		end
-	
     end
-  	
-
 endmodule

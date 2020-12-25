@@ -3,7 +3,7 @@ module alu(
   input [3:0] ALUSel,		// ALU Selection
   input CarryIn,   			//Carry in
   input clk,
-  output [15:0] ALUOut, 	// ALU 16-bit Output
+  output [15:0] ALU_Out, 	// ALU 16-bit Output
   output CarryOut, 			// Carry Out Flag
   output SignOut, 			// Carry Out Flag
   output OverflowOut, 		// Carry Out Flag
@@ -12,7 +12,7 @@ module alu(
 	// result
 	reg [15:0] ALUOut;
 	wire [16:0] tmp;
-	// assign ALU_Out = ALU_Result; // ALU out
+	assign ALU_Out = ALUOut; // ALU out
 	assign tmp = {1'b0,A} + {1'b0,B};
 
 	// flags
@@ -50,9 +50,9 @@ module alu(
 		4'b1100: // Compare
 			ALUOut = A - B;
 		4'b1101: // Increment A
-			ALUOut = A + 1;
+			ALUOut = A + 1'b1;
 		4'b1110: // Decrement A
-			ALUOut = A - 1;
+			ALUOut = A - 1'b1;
 		default: ALUOut = A;
 	endcase
 

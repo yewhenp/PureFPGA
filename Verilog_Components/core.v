@@ -41,6 +41,10 @@ module core
   reg buffer = 0;
   reg bufferWrite = 0;
   
+  wire [DATA_WIDTH - 1:0] bufferDataFirst;
+  wire [DATA_WIDTH - 1:0] bufferDataSecond;
+  assign bufferData = buffer? bufferDataFirst: bufferDataSecond;
+  
   wire [7:0] numberForMovs;
   assign numberForMovs = instruction[13:6];
   
@@ -67,16 +71,29 @@ module core
 );
 
   Buffer buffer1(
-  .address_a({~buffer, bufferAddress}),
-  .address_b({buffer, core_address[12:0]}),
+  .address_a(bufferAddress),
+  .address_b(core_address[12:0]),
   .clock(clk),
-  .data_a(0),
+  .data_a(16'b0),
   .data_b(core_output_data),
-  .wren_a(0),
-  .wren_b(bufferWrite),
+  .wren_a(1'b0),
+  .wren_b(bufferWrite && buffer),
   .q_a(),
-  .q_b(bufferData)
+  .q_b(bufferDataFirst)
 );
+
+  Buffer buffer2(	
+  .address_a(bufferAddress),	
+  .address_b(core_address[12:0]),	
+  .clock(clk),	
+  .data_a(16'b0),	
+  .data_b(core_output_data),	
+  .wren_a(1'b0),	
+  .wren_b(bufferWrite && (~buffer)),	
+  .q_a(),
+  .q_b(bufferDataSecond)	
+);
+
   
   alu allu(
   .A(aluA),

@@ -313,6 +313,7 @@ class Disassembler:
     }
 
     suffixes = {
+        '0000': 'eq',
         '0001': 'ne',
         '0010': 'gt',
         '0011': 'lt',
@@ -331,6 +332,7 @@ class Disassembler:
     }
 
     suffixes0 = {
+        '000': 'eq',
         '001': 'ne',
         '010': 'gt',
         '011': 'lt',

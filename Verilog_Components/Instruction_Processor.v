@@ -160,6 +160,7 @@ module InstructionProcessor #(
                             endcase
                         end
                     end else begin
+                        // store
                         if (ROMData[5:2] == 4'b0001) begin
                             if (saveRes) begin
                                 wren <= 1;
@@ -176,6 +177,7 @@ module InstructionProcessor #(
                                     default: RAMData <= 0;
                                 endcase
                             end
+                        // move
                         end else begin
                             if (ROMData[5:2] == 4'b0010) begin
                                 if (saveRes) begin
@@ -191,9 +193,44 @@ module InstructionProcessor #(
                                         default:reg0 = reg0;
                                     endcase
                                 end
+                            end else begin
+                                saveRes <= 0;
+                                // movl moh movf, jumps
+                                case (ROMData[6:2])
+                                    00110: reg0[7:0]       = ROMData[14:7];
+                                    00111: reg1[7:0]       = ROMData[14:7];
+                                    01000: reg2[7:0]       = ROMData[14:7];
+                                    01001: reg3[7:0]       = ROMData[14:7];
+                                    01010: reg4[7:0]       = ROMData[14:7];
+                                    01011: reg5[7:0]       = ROMData[14:7];
+                                    01100: reg0[WIDTH-1:8] = ROMData[14:7];
+                                    01101: reg1[WIDTH-1:8] = ROMData[14:7];
+                                    01110: reg2[WIDTH-1:8] = ROMData[14:7];
+                                    01111: reg3[WIDTH-1:8] = ROMData[14:7];
+                                    10000: reg4[WIDTH-1:8] = ROMData[14:7];
+                                    10001: reg5[WIDTH-1:8] = ROMData[14:7];
+                                    10010: reg0 = flags;
+                                    10011: reg1 = flags;
+                                    10100: reg2 = flags;
+                                    10101: reg3 = flags;
+                                    10110: reg4 = flags;
+                                    10111: reg5 = flags;
+                                    11000: saveRes = flags[ZERO] == 1;
+                                    11001: saveRes = flags[ZERO] == 0;
+                                    11010: saveRes = flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]);
+                                    11011: saveRes = flags[OVERFLOW] == flags[SIGN];
+                                    11100: saveRes = flags[OVERFLOW] != flags[SIGN];
+                                    11101: saveRes = flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]);
+                                    default: reg0 = reg0;
+                                endcase
+                                // jump if condition is True
+                                if (saveRes) begin
+                                    ip <= firstOperand;
+                                end
                             end
                         end 
-                    end 
+                    end
+
                 end
             ip = ip + 1;
             end
@@ -201,3 +238,12 @@ module InstructionProcessor #(
     end
 
 endmodule
+
+// task movelLowestEightBits;
+//     input[WIDTH-1:0]  originalContent;
+//     input[7:0]        bits;
+//     output[WIDTH-1:0] res;
+
+
+
+// endtask

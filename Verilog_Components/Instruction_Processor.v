@@ -1,5 +1,6 @@
 // istruction processor module
 `include "ALU.v"
+`include "RAM1.v"
 module InstructionProcessor #(
     parameter
     WIDTH=16,
@@ -19,18 +20,39 @@ module InstructionProcessor #(
     output RAMWriteRead,
     output [WIDTH-2:0]instructionOut
 );
-    wire[15:0] ALURes;
+    wire[WIDTH-1:0] ALURes, RAMOutData;
     wire ALUCF, ALUSF, ALUOF, ALUZF;
 
     reg[14:0] coreInstr;
     reg[3:0] ALUSel = 4'b1111;
-    reg[15:0] firstOperand=0, secondOperand=0, ALUResReg=0;
-    reg cinReg, saveALURes;
+    reg[WIDTH-1:0] firstOperand=0, secondOperand=0, ALUResReg=0, RAMAddress=0, RAMData=0;
+    reg cinReg, saveRes, wren;
 
     assign instructionOut = coreInstr;
     assign ALURes = ALUResReg;
 
-    reg[15:0] reg0, reg1, reg2, reg3, reg4, reg5, sp, ip, flags; // CF, SF, OF, ZF
+    reg[WIDTH-1:0] reg0, reg1, reg2, reg3, reg4, reg5, sp, ip, flags; // CF, SF, OF, ZF
+
+    alu alu0 (
+        .A(firstOperand),
+        .B(secondOperand),
+        .ALUSel(ALUSel),
+        .CarryIn(cin),
+        .clk(clock),
+        .ALU_Out(ALURes),
+        .CarryOut(ALUCF),
+        .SignOut(ALUSF),
+        .OverflowOut(ALUOF),
+        .ZeroOut(ALUZF)
+    );
+
+    RAM1 ram1(
+        .address(RAMAddress),
+        .clock(clock),
+        .data(RAMData),
+        .wren(wren),
+        .q(RAMOutData)
+    );
 
     always @ (posedge clock) begin
         // if it's time to write into registers
@@ -51,53 +73,53 @@ module InstructionProcessor #(
                 coreInstr <= ROMData[WIDTH-1:1];
             end else begin
                 coreInstr <= NOP;
+                // suffix
+                case(ROMData[9:6])    // TODO: fix magic numbers
+                    4'b0000: saveRes = flags[ZERO] == 1;
+                    4'b0001: saveRes = flags[ZERO] == 0;
+                    4'b0010: saveRes = flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
+                    4'b0011: saveRes = flags[SIGN] != flags[OVERFLOW];
+                    4'b0100: saveRes = flags[SIGN] == flags[OVERFLOW];
+                    4'b0101: saveRes = flags[ZERO] == 1 || flags[SIGN] != OVERFLOW;
+                    4'b0110: saveRes = flags[CARRY] == 1;
+                    4'b0111: saveRes = flags[CARRY] == 0;
+                    4'b1000: saveRes = flags[SIGN] == 1;
+                    4'b1001: saveRes = flags[SIGN] == 0;
+                    4'b1010: saveRes = 1;    // AL
+                    4'b1011: saveRes = 0;    // NV
+                    4'b1100: saveRes = flags[OVERFLOW] == 1;
+                    4'b1101: saveRes = flags[OVERFLOW] == 0;
+                    4'b1110: saveRes = flags[CARRY] == 1 && flags[ZERO] == 0;
+                    4'b1111: saveRes = flags[CARRY] == 0 || flags[ZERO] == 0;
+                    default: saveRes = 0;
+                endcase
+                case(ROMData[12:10])    // TODO: fix magic numbers
+                    3'b000: firstOperand = reg0;
+                    3'b001: firstOperand = reg1;
+                    3'b010: firstOperand = reg2;
+                    3'b011: firstOperand = reg3;
+                    3'b100: firstOperand = reg4;
+                    3'b101: firstOperand = reg5;
+                    3'b110: firstOperand = sp;
+                    3'b111: firstOperand = ip;
+                    default: firstOperand = 0;
+                endcase
+                case(ROMData[15:13])    // TODO: fix magic numbers
+                    3'b000: secondOperand = reg0;
+                    3'b001: secondOperand = reg1;
+                    3'b010: secondOperand = reg2;
+                    3'b011: secondOperand = reg3;
+                    3'b100: secondOperand = reg4;
+                    3'b101: secondOperand = reg5;
+                    3'b110: secondOperand = sp;
+                    3'b111: secondOperand = ip;
+                    default: secondOperand = 0;
+                endcase
                 // alu command
                 if (ROMData[1] == 1) begin
                     ALUSel <= ROMData[5:2];
-                    case(ROMData[12:10])    // TODO: fix magic numbers
-                        3'b000: firstOperand = reg0;
-                        3'b001: firstOperand = reg1;
-                        3'b010: firstOperand = reg2;
-                        3'b011: firstOperand = reg3;
-                        3'b100: firstOperand = reg4;
-                        3'b101: firstOperand = reg5;
-                        3'b110: firstOperand = sp;
-                        3'b111: firstOperand = ip;
-                        default: firstOperand = 0;
-                    endcase
-                    case(ROMData[15:13])    // TODO: fix magic numbers
-                        3'b000: secondOperand = reg0;
-                        3'b001: secondOperand = reg1;
-                        3'b010: secondOperand = reg2;
-                        3'b011: secondOperand = reg3;
-                        3'b100: secondOperand = reg4;
-                        3'b101: secondOperand = reg5;
-                        3'b110: secondOperand = sp;
-                        3'b111: secondOperand = ip;
-                        default: secondOperand = 0;
-                    endcase
-                    // suffix
-                    case(ROMData[9:6])    // TODO: fix magic numbers
-                        4'b0000: saveALURes = flags[ZERO] == 1;
-                        4'b0001: saveALURes = flags[ZERO] == 0;
-                        4'b0010: saveALURes = flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
-                        4'b0011: saveALURes = flags[SIGN] != flags[OVERFLOW];
-                        4'b0100: saveALURes = flags[SIGN] == flags[OVERFLOW];
-                        4'b0101: saveALURes = flags[ZERO] == 1 || flags[SIGN] != OVERFLOW;
-                        4'b0110: saveALURes = flags[CARRY] == 1;
-                        4'b0111: saveALURes = flags[CARRY] == 0;
-                        4'b1000: saveALURes = flags[SIGN] == 1;
-                        4'b1001: saveALURes = flags[SIGN] == 0;
-                        4'b1010: saveALURes = 1;    // AL
-                        4'b1011: saveALURes = 0;    // NV
-                        4'b1100: saveALURes = flags[OVERFLOW] == 1;
-                        4'b1101: saveALURes = flags[OVERFLOW] == 0;
-                        4'b1110: saveALURes = flags[CARRY] == 1 && flags[ZERO] == 0;
-                        4'b1111: saveALURes = flags[CARRY] == 0 || flags[ZERO] == 0;
-                        default: saveALURes = 0;
-                    endcase
                     // if suffix condition is true
-                    if (saveALURes) begin
+                    if (saveRes) begin
                         case(ROMData[12:10])    // TODO: fix magic numbers
                             3'b000: reg0 = ALURes;
                             3'b001: reg1 = ALURes;
@@ -105,8 +127,8 @@ module InstructionProcessor #(
                             3'b011: reg3 = ALURes;
                             3'b100: reg4 = ALURes;
                             3'b101: reg5 = ALURes;
-                            3'b110: sp = ALURes;
-                            3'b111: ip = ALURes;
+                            3'b110: sp   = ALURes;
+                            3'b111: ip   = ALURes;
                             default: ;
                         endcase
                         // cin if addc subc or mulc
@@ -119,23 +141,63 @@ module InstructionProcessor #(
                         flags[OVERFLOW] <= ALUOF;
                         flags[ZERO]     <= ALUZF;
                     end
+                end else begin
+                    // loadi0 / loadi1
+                    if (ROMData[5:2] == 4'b0000) begin
+                        if (saveRes) begin
+                            wren <= 0;
+                            RAMAddress <= secondOperand;
+                            case(ROMData[12:10])    // TODO: fix magic numbers
+                                3'b000: reg0 = RAMOutData;
+                                3'b001: reg1 = RAMOutData;
+                                3'b010: reg2 = RAMOutData;
+                                3'b011: reg3 = RAMOutData;
+                                3'b100: reg4 = RAMOutData;
+                                3'b101: reg5 = RAMOutData;
+                                3'b110: sp   = RAMOutData;
+                                3'b111: ip   = RAMOutData;
+                                default:reg0 = reg0;
+                            endcase
+                        end
+                    end else begin
+                        if (ROMData[5:2] == 4'b0001) begin
+                            if (saveRes) begin
+                                wren <= 1;
+                                RAMAddress <= secondOperand;
+                                case(ROMData[12:10])    // TODO: fix magic numbers
+                                    3'b000: RAMData <= reg0;
+                                    3'b001: RAMData <= reg1;
+                                    3'b010: RAMData <= reg2;
+                                    3'b011: RAMData <= reg3;
+                                    3'b100: RAMData <= reg4;
+                                    3'b101: RAMData <= reg5;
+                                    3'b110: RAMData <= sp;
+                                    3'b111: RAMData <= ip;
+                                    default: RAMData <= 0;
+                                endcase
+                            end
+                        end else begin
+                            if (ROMData[5:2] == 4'b0010) begin
+                                if (saveRes) begin
+                                    case(ROMData[12:10])    // TODO: fix magic numbers
+                                        3'b000: reg0 = secondOperand;
+                                        3'b001: reg1 = secondOperand;
+                                        3'b010: reg2 = secondOperand;
+                                        3'b011: reg3 = secondOperand;
+                                        3'b100: reg4 = secondOperand;
+                                        3'b101: reg5 = secondOperand;
+                                        3'b110: sp   = secondOperand;
+                                        3'b111: ip   = secondOperand;
+                                        default:reg0 = reg0;
+                                    endcase
+                                end
+                            end
+                        end 
+                    end 
                 end
-            end
             ip = ip + 1;
+            end
         end
     end
-
-    alu alu0 (
-        .A(firstOperand),
-        .B(secondOperand),
-        .ALUSel(ALUSel),
-        .CarryIn(cin),
-        .clk(clock),
-        .ALU_Out(ALURes),
-        .CarryOut(ALUCF),
-        .SignOut(ALUSF),
-        .OverflowOut(ALUOF),
-        .ZeroOut(ALUZF)
-    );
 
 endmodule

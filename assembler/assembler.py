@@ -222,11 +222,11 @@ class Assembler:
                 'deci': '1110'
             },
             'memory': {
-                'loadi0' :'00000',  # TODO: rewrite preprocessor so that 'i' at the end is not a problem
-                'storei0':'00001',
-                'movi0' : '00010',
-                'loadi1': '00011',
-                'storei1':'00100',
+                'loadi0': '00000',  # TODO: rewrite preprocessor so that 'i' at the end is not a problem
+                'loadi1': '00001',
+                'storei0':'00010',
+                'storei1':'00011',
+                'movi0' : '00100',
                 'movi1' : '00101',
                 'movh0i': '00110',
                 'movh1i': '00111',

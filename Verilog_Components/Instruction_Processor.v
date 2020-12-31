@@ -1,6 +1,6 @@
 // istruction processor module
-`include "ALU.v"
-`include "RAM1.v"
+// `include "ALU.v"
+// `include "RAM1.v"
 module InstructionProcessor #(
     parameter
     WIDTH=16,
@@ -93,7 +93,7 @@ module InstructionProcessor #(
                     4'b1111: saveRes = flags[CARRY] == 0 || flags[ZERO] == 0;
                     default: saveRes = 0;
                 endcase
-                case(ROMData[12:10])    // TODO: fix magic numbers
+                case(ROMData[5:3])    // TODO: fix magic numbers
                     3'b000: firstOperand = reg0;
                     3'b001: firstOperand = reg1;
                     3'b010: firstOperand = reg2;
@@ -104,7 +104,7 @@ module InstructionProcessor #(
                     3'b111: firstOperand = ip;
                     default: firstOperand = 0;
                 endcase
-                case(ROMData[15:13])    // TODO: fix magic numbers
+                case(ROMData[2:0])    // TODO: fix magic numbers
                     3'b000: secondOperand = reg0;
                     3'b001: secondOperand = reg1;
                     3'b010: secondOperand = reg2;
@@ -117,10 +117,10 @@ module InstructionProcessor #(
                 endcase
                 // alu command
                 if (ROMData[1] == 1) begin
-                    ALUSel <= ROMData[5:2];
+                    ALUSel <= ROMData[13:10];
                     // if suffix condition is true
                     if (saveRes) begin
-                        case(ROMData[12:10])    // TODO: fix magic numbers
+                        case(ROMData[5:3])    // TODO: fix magic numbers
                             3'b000: reg0 = ALURes;
                             3'b001: reg1 = ALURes;
                             3'b010: reg2 = ALURes;
@@ -132,7 +132,7 @@ module InstructionProcessor #(
                             default: ;
                         endcase
                         // cin if addc subc or mulc
-                        case(ROMData[5:2])
+                        case(ROMData[13:10])
                             4'b0001, 4'b0011, 4'b0101: cinReg <= 1;
                             default: cinReg <= 0;
                         endcase
@@ -143,11 +143,11 @@ module InstructionProcessor #(
                     end
                 end else begin
                     // loadi0 / loadi1
-                    if (ROMData[5:2] == 4'b0000) begin
+                    if (ROMData[13:10] == 4'b0000) begin
                         if (saveRes) begin
                             wren <= 0;
                             RAMAddress <= secondOperand;
-                            case(ROMData[12:10])    // TODO: fix magic numbers
+                            case(ROMData[5:3])    // TODO: fix magic numbers
                                 3'b000: reg0 = RAMOutData;
                                 3'b001: reg1 = RAMOutData;
                                 3'b010: reg2 = RAMOutData;
@@ -161,11 +161,11 @@ module InstructionProcessor #(
                         end
                     end else begin
                         // store
-                        if (ROMData[5:2] == 4'b0001) begin
+                        if (ROMData[13:10] == 4'b0001) begin
                             if (saveRes) begin
                                 wren <= 1;
                                 RAMAddress <= secondOperand;
-                                case(ROMData[12:10])    // TODO: fix magic numbers
+                                case(ROMData[5:3])    // TODO: fix magic numbers
                                     3'b000: RAMData <= reg0;
                                     3'b001: RAMData <= reg1;
                                     3'b010: RAMData <= reg2;
@@ -179,9 +179,9 @@ module InstructionProcessor #(
                             end
                         // move
                         end else begin
-                            if (ROMData[5:2] == 4'b0010) begin
+                            if (ROMData[13:10] == 4'b0010) begin
                                 if (saveRes) begin
-                                    case(ROMData[12:10])    // TODO: fix magic numbers
+                                    case(ROMData[5:3])    // TODO: fix magic numbers
                                         3'b000: reg0 = secondOperand;
                                         3'b001: reg1 = secondOperand;
                                         3'b010: reg2 = secondOperand;
@@ -196,19 +196,19 @@ module InstructionProcessor #(
                             end else begin
                                 saveRes <= 0;
                                 // movl moh movf, jumps
-                                case (ROMData[6:2])
-                                    00110: reg0[7:0]       = ROMData[14:7];
-                                    00111: reg1[7:0]       = ROMData[14:7];
-                                    01000: reg2[7:0]       = ROMData[14:7];
-                                    01001: reg3[7:0]       = ROMData[14:7];
-                                    01010: reg4[7:0]       = ROMData[14:7];
-                                    01011: reg5[7:0]       = ROMData[14:7];
-                                    01100: reg0[WIDTH-1:8] = ROMData[14:7];
-                                    01101: reg1[WIDTH-1:8] = ROMData[14:7];
-                                    01110: reg2[WIDTH-1:8] = ROMData[14:7];
-                                    01111: reg3[WIDTH-1:8] = ROMData[14:7];
-                                    10000: reg4[WIDTH-1:8] = ROMData[14:7];
-                                    10001: reg5[WIDTH-1:8] = ROMData[14:7];
+                                case (ROMData[13:9])
+                                    00110: reg0[WIDTH-1:8] = ROMData[8:0];
+                                    00111: reg1[WIDTH-1:8] = ROMData[8:0];
+                                    01000: reg2[WIDTH-1:8] = ROMData[8:0];
+                                    01001: reg3[WIDTH-1:8] = ROMData[8:0];
+                                    01010: reg4[WIDTH-1:8] = ROMData[8:0];
+                                    01011: reg5[WIDTH-1:8] = ROMData[8:0];
+                                    01100: reg0[7:0]       = ROMData[8:0];
+                                    01101: reg1[7:0]       = ROMData[8:0];
+                                    01110: reg2[7:0]       = ROMData[8:0];
+                                    01111: reg3[7:0]       = ROMData[8:0];
+                                    10000: reg4[7:0]       = ROMData[8:0];
+                                    10001: reg5[7:0]       = ROMData[8:0];
                                     10010: reg0 = flags;
                                     10011: reg1 = flags;
                                     10100: reg2 = flags;

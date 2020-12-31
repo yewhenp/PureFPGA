@@ -20,6 +20,7 @@ module core
 	input wren,
 	input cpen,
 	input clk,
+	input clk_buffer,
 	output [DATA_WIDTH - 1:0]bufferData
 	);
   
@@ -73,25 +74,27 @@ module core
   Buffer buffer1(
   .address_a(bufferAddress),
   .address_b(core_address[12:0]),
-  .clock(clk),
+  .clock_a(clk_buffer),
+  .clock_b(clk),
   .data_a(16'b0),
   .data_b(core_output_data),
   .wren_a(1'b0),
   .wren_b(bufferWrite && buffer),
-  .q_a(),
-  .q_b(bufferDataFirst)
+  .q_a(bufferDataFirst),
+  .q_b()
 );
 
   Buffer buffer2(	
   .address_a(bufferAddress),	
   .address_b(core_address[12:0]),	
-  .clock(clk),	
+  .clock_a(clk_buffer),
+  .clock_b(clk),
   .data_a(16'b0),	
   .data_b(core_output_data),	
   .wren_a(1'b0),	
   .wren_b(bufferWrite && (~buffer)),	
-  .q_a(),
-  .q_b(bufferDataSecond)	
+  .q_a(bufferDataSecond),
+  .q_b()	
 );
 
   

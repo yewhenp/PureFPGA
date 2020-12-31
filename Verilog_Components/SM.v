@@ -12,9 +12,13 @@ module SM
 	input [BUFFER_ADDRESS_WIDTH - 1:0]bufferAddress,
 	input wren,
 	input [CORE_NUM - 1:0]coreEnable,
-	input clk,
+	input clk_input,
+	input clk_buffer,
 	output [DATA_WIDTH - 1:0]bufferData
 	);
+	
+	reg clk = 0;
+	reg clk_change = 0;
 	
 	wire [DATA_WIDTH - 1:0] bufferData0;
 	wire [DATA_WIDTH - 1:0] bufferData1;
@@ -85,712 +89,720 @@ module SM
 	reg [DATA_WIDTH - 1:0] bufferDataResult;
 	assign bufferData= bufferDataResult;
 	
-	wire [DATA_WIDTH - 1:0] data0 = (coreEnable[0]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data1 = (coreEnable[1]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data2 = (coreEnable[2]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data3 = (coreEnable[3]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data4 = (coreEnable[4]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data5 = (coreEnable[5]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data6 = (coreEnable[6]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data7 = (coreEnable[7]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data8 = (coreEnable[8]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data9 = (coreEnable[9]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data10 = (coreEnable[10]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data11 = (coreEnable[11]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data12 = (coreEnable[12]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data13 = (coreEnable[13]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data14 = (coreEnable[14]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data15 = (coreEnable[15]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data16 = (coreEnable[16]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data17 = (coreEnable[17]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data18 = (coreEnable[18]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data19 = (coreEnable[19]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data20 = (coreEnable[20]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data21 = (coreEnable[21]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data22 = (coreEnable[22]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data23 = (coreEnable[23]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data24 = (coreEnable[24]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data25 = (coreEnable[25]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data26 = (coreEnable[26]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data27 = (coreEnable[27]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data28 = (coreEnable[28]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data29 = (coreEnable[29]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data30 = (coreEnable[30]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data31 = (coreEnable[31]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data32 = (coreEnable[32]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data33 = (coreEnable[33]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data34 = (coreEnable[34]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data35 = (coreEnable[35]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data36 = (coreEnable[36]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data37 = (coreEnable[37]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data38 = (coreEnable[38]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data39 = (coreEnable[39]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data40 = (coreEnable[40]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data41 = (coreEnable[41]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data42 = (coreEnable[42]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data43 = (coreEnable[43]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data44 = (coreEnable[44]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data45 = (coreEnable[45]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data46 = (coreEnable[46]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data47 = (coreEnable[47]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data48 = (coreEnable[48]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data49 = (coreEnable[49]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data50 = (coreEnable[50]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data51 = (coreEnable[51]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data52 = (coreEnable[52]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data53 = (coreEnable[53]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data54 = (coreEnable[54]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data55 = (coreEnable[55]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data56 = (coreEnable[56]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data57 = (coreEnable[57]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data58 = (coreEnable[58]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data59 = (coreEnable[59]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data60 = (coreEnable[60]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data61 = (coreEnable[61]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data62 = (coreEnable[62]) ? data : 16'bZ;
-	wire [DATA_WIDTH - 1:0] data63 = (coreEnable[63]) ? data : 16'bZ;
-	
-	core core0(
-	  .data(data0),
+		core core0(
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[0]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData0)
 	  );
 	core core1(
-	  .data(data1),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[1]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData1)
 	  );
 	core core2(
-	  .data(data2),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[2]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData2)
 	  );
 	core core3(
-	  .data(data3),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[3]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData3)
 	  );
 	core core4(
-	  .data(data4),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[4]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData4)
 	  );
 	core core5(
-	  .data(data5),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[5]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData5)
 	  );
 	core core6(
-	  .data(data6),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[6]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData6)
 	  );
 	core core7(
-	  .data(data7),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[7]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData7)
 	  );
 	core core8(
-	  .data(data8),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[8]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData8)
 	  );
 	core core9(
-	  .data(data9),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[9]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData9)
 	  );
 	core core10(
-	  .data(data10),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[10]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData10)
 	  );
 	core core11(
-	  .data(data11),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[11]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData11)
 	  );
 	core core12(
-	  .data(data12),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[12]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData12)
 	  );
 	core core13(
-	  .data(data13),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[13]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData13)
 	  );
 	core core14(
-	  .data(data14),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[14]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData14)
 	  );
 	core core15(
-	  .data(data15),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[15]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData15)
 	  );
 	core core16(
-	  .data(data16),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[16]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData16)
 	  );
 	core core17(
-	  .data(data17),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[17]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData17)
 	  );
 	core core18(
-	  .data(data18),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[18]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData18)
 	  );
 	core core19(
-	  .data(data19),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[19]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData19)
 	  );
 	core core20(
-	  .data(data20),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[20]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData20)
 	  );
 	core core21(
-	  .data(data21),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[21]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData21)
 	  );
 	core core22(
-	  .data(data22),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[22]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData22)
 	  );
 	core core23(
-	  .data(data23),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[23]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData23)
 	  );
 	core core24(
-	  .data(data24),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[24]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData24)
 	  );
 	core core25(
-	  .data(data25),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[25]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData25)
 	  );
 	core core26(
-	  .data(data26),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[26]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData26)
 	  );
 	core core27(
-	  .data(data27),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[27]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData27)
 	  );
 	core core28(
-	  .data(data28),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[28]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData28)
 	  );
 	core core29(
-	  .data(data29),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[29]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData29)
 	  );
 	core core30(
-	  .data(data30),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[30]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData30)
 	  );
 	core core31(
-	  .data(data31),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[31]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData31)
 	  );
 	core core32(
-	  .data(data32),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[32]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData32)
 	  );
 	core core33(
-	  .data(data33),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[33]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData33)
 	  );
 	core core34(
-	  .data(data34),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[34]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData34)
 	  );
 	core core35(
-	  .data(data35),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[35]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData35)
 	  );
 	core core36(
-	  .data(data36),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[36]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData36)
 	  );
 	core core37(
-	  .data(data37),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[37]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData37)
 	  );
 	core core38(
-	  .data(data38),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[38]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData38)
 	  );
 	core core39(
-	  .data(data39),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[39]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData39)
 	  );
 	core core40(
-	  .data(data40),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[40]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData40)
 	  );
 	core core41(
-	  .data(data41),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[41]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData41)
 	  );
 	core core42(
-	  .data(data42),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[42]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData42)
 	  );
 	core core43(
-	  .data(data43),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[43]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData43)
 	  );
 	core core44(
-	  .data(data44),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[44]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData44)
 	  );
 	core core45(
-	  .data(data45),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[45]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData45)
 	  );
 	core core46(
-	  .data(data46),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[46]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData46)
 	  );
 	core core47(
-	  .data(data47),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[47]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData47)
 	  );
 	core core48(
-	  .data(data48),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[48]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData48)
 	  );
 	core core49(
-	  .data(data49),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[49]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData49)
 	  );
 	core core50(
-	  .data(data50),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[50]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData50)
 	  );
 	core core51(
-	  .data(data51),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[51]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData51)
 	  );
 	core core52(
-	  .data(data52),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[52]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData52)
 	  );
 	core core53(
-	  .data(data53),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[53]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData53)
 	  );
 	core core54(
-	  .data(data54),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[54]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData54)
 	  );
 	core core55(
-	  .data(data55),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[55]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData55)
 	  );
 	core core56(
-	  .data(data56),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[56]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData56)
 	  );
 	core core57(
-	  .data(data57),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[57]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData57)
 	  );
 	core core58(
-	  .data(data58),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[58]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData58)
 	  );
 	core core59(
-	  .data(data59),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[59]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData59)
 	  );
 	core core60(
-	  .data(data60),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[60]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData60)
 	  );
 	core core61(
-	  .data(data61),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[61]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData61)
 	  );
 	core core62(
-	  .data(data62),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[62]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData62)
 	  );
 	core core63(
-	  .data(data63),
+	  .data(data),
 	  .address(address),
 	  .instruction(instruction),
 	  .bufferAddress(bufferAddress[CORE_BUFFER_WIDTH-1:0]),
 	  .wren(wren),
 	  .cpen(coreEnable[63]),
 	  .clk(clk),
+      .clk_buffer(clk_buffer),
 	  .bufferData(bufferData63)
 	  );
 
+
+	always @(posedge clk_input) begin
+		if (clk_change == 0) begin
+			clk = ~clk;
+			clk_change = ~clk_change;
+		end else begin
+			clk_change = ~clk_change;
+		end
+	end
 
 	always @(posedge clk) begin
 		case(bufferAddress[BUFFER_ADDRESS_WIDTH-1:CORE_BUFFER_WIDTH-1])

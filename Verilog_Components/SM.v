@@ -12,13 +12,13 @@ module SM
 	input [BUFFER_ADDRESS_WIDTH - 1:0]bufferAddress,
 	input wren,
 	input [CORE_NUM - 1:0]coreEnable,
-	input clk_input,
+	input clk,
 	input clk_buffer,
 	output [DATA_WIDTH - 1:0]bufferData
 	);
 	
-	reg clk = 0;
-	reg clk_change = 0;
+//	reg clk = 0;
+//	reg clk_change = 0;
 	
 	wire [DATA_WIDTH - 1:0] bufferData0;
 	wire [DATA_WIDTH - 1:0] bufferData1;
@@ -97,7 +97,7 @@ module SM
 	  .wren(wren),
 	  .cpen(coreEnable[0]),
 	  .clk(clk),
-      .clk_buffer(clk_buffer),
+     .clk_buffer(clk_buffer),
 	  .bufferData(bufferData0)
 	  );
 	core core1(
@@ -108,7 +108,7 @@ module SM
 	  .wren(wren),
 	  .cpen(coreEnable[1]),
 	  .clk(clk),
-      .clk_buffer(clk_buffer),
+     .clk_buffer(clk_buffer),
 	  .bufferData(bufferData1)
 	  );
 	core core2(
@@ -795,14 +795,14 @@ module SM
 	  );
 
 
-	always @(posedge clk_input) begin
-		if (clk_change == 0) begin
-			clk = ~clk;
-			clk_change = ~clk_change;
-		end else begin
-			clk_change = ~clk_change;
-		end
-	end
+//	always @(posedge clk_input) begin
+//		if (clk_change == 0) begin
+//			clk = ~clk;
+//			clk_change = ~clk_change;
+//		end else begin
+//			clk_change = ~clk_change;
+//		end
+//	end
 
 	always @(posedge clk) begin
 		case(bufferAddress[BUFFER_ADDRESS_WIDTH-1:CORE_BUFFER_WIDTH-1])

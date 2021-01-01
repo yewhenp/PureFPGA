@@ -4,7 +4,7 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -21,7 +21,7 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 296 160)
+	(rect 16 16 360 160)
 	(text "buffer_manager" (rect 5 0 71 12)(font "Arial" ))
 	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
@@ -60,32 +60,32 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
-		(pt 280 32)
+		(pt 344 32)
 		(output)
-		(text "address" (rect 0 0 31 12)(font "Arial" ))
-		(text "address" (rect 228 27 259 39)(font "Arial" ))
-		(line (pt 280 32)(pt 264 32)(line_width 1))
+		(text "address[ADDRESS_WIDTH-1..0]" (rect 0 0 141 12)(font "Arial" ))
+		(text "address[ADDRESS_WIDTH-1..0]" (rect 182 27 323 39)(font "Arial" ))
+		(line (pt 344 32)(pt 328 32)(line_width 3))
 	)
 	(port
-		(pt 280 48)
+		(pt 344 48)
 		(output)
 		(text "red[RED-1..0]" (rect 0 0 56 12)(font "Arial" ))
-		(text "red[RED-1..0]" (rect 203 43 259 55)(font "Arial" ))
-		(line (pt 280 48)(pt 264 48)(line_width 3))
+		(text "red[RED-1..0]" (rect 267 43 323 55)(font "Arial" ))
+		(line (pt 344 48)(pt 328 48)(line_width 3))
 	)
 	(port
-		(pt 280 64)
+		(pt 344 64)
 		(output)
 		(text "green[GREEN-1..0]" (rect 0 0 80 12)(font "Arial" ))
-		(text "green[GREEN-1..0]" (rect 179 59 259 71)(font "Arial" ))
-		(line (pt 280 64)(pt 264 64)(line_width 3))
+		(text "green[GREEN-1..0]" (rect 243 59 323 71)(font "Arial" ))
+		(line (pt 344 64)(pt 328 64)(line_width 3))
 	)
 	(port
-		(pt 280 80)
+		(pt 344 80)
 		(output)
 		(text "blue[BLUE-1..0]" (rect 0 0 62 12)(font "Arial" ))
-		(text "blue[BLUE-1..0]" (rect 197 75 259 87)(font "Arial" ))
-		(line (pt 280 80)(pt 264 80)(line_width 3))
+		(text "blue[BLUE-1..0]" (rect 261 75 323 87)(font "Arial" ))
+		(line (pt 344 80)(pt 328 80)(line_width 3))
 	)
 	(parameter
 		"WIDTH"
@@ -117,8 +117,13 @@ https://fpgasoftware.intel.com/eula.
 		"800"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDRESS_WIDTH"
+		"19"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 264 128)(line_width 1))
+		(rectangle (rect 16 16 328 128)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 296 -64 396 16))
+	(annotation_block (parameter)(rect 360 -64 460 16))
 )

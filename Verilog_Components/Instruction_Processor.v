@@ -4,7 +4,7 @@
 module InstructionProcessor #(
     parameter
     WIDTH=16,
-    REGS_CODING=3,
+    REGS_CODING=8,
     NOP=15'b1_0000_1011_00_00_00,   // addnv reg0, reg0
     CARRY=0,
     SIGN=1,
@@ -16,9 +16,11 @@ module InstructionProcessor #(
     input [WIDTH-1:0]regData,
     input [REGS_CODING-1:0]regChoose,
     input [WIDTH-1:0]ROMData,
+//	 input regEn,
     // inout RAMData[WIDTH-1:0],
-    output RAMWriteRead,
-    output [WIDTH-2:0]instructionOut
+//    output RAMWriteRead,
+    output [WIDTH-2:0]instructionOut,
+	 output [WIDTH-1:0] ROMAddress
 );
     wire[WIDTH-1:0] ALURes, RAMOutData;
     wire ALUCF, ALUSF, ALUOF, ALUZF;
@@ -30,9 +32,10 @@ module InstructionProcessor #(
 
     assign instructionOut = coreInstr;
     assign ALURes = ALUResReg;
+	 
 
     reg[WIDTH-1:0] reg0, reg1, reg2, reg3, reg4, reg5, sp, ip, flags; // CF, SF, OF, ZF
-
+	 assign ROMAddress = ip;
     alu alu0 (
         .A(firstOperand),
         .B(secondOperand),
@@ -46,7 +49,7 @@ module InstructionProcessor #(
         .ZeroOut(ALUZF)
     );
 
-    RAM1 ram1(
+    RAM_1 ram1(
         .address(RAMAddress),
         .clock(clock),
         .data(RAMData),
@@ -58,14 +61,14 @@ module InstructionProcessor #(
         // if it's time to write into registers
         if (regChoose) begin
             case(regChoose)
-                3'b000: reg0 = regData;
-                3'b001: reg1 = regData;
-                3'b010: reg2 = regData;
-                3'b011: reg3 = regData;
-                3'b100: reg4 = regData;
-                3'b101: reg5 = regData;
-                3'b110: sp   = regData;
-                3'b111: ip   = regData;
+                8'b00000001: reg0 = regData;
+                8'b00000010: reg1 = regData;
+                8'b00000100: reg2 = regData;
+                8'b00001000: reg3 = regData;
+                8'b00010000: reg4 = regData;
+                8'b00100000: reg5 = regData;
+                8'b01000000: sp   = regData;
+                8'b10000000: ip   = regData;
                 default:reg0 = reg0;
             endcase
         end else begin

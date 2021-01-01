@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Components
-Thu Dec 31 15:13:08 2020
+Thu Dec 31 18:55:27 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -11,7 +11,6 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
   5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -38,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Thu Dec 31 15:13:08 2020           ;
+; Analysis & Synthesis Status ; Failed - Thu Dec 31 18:55:27 2020           ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; Components                                  ;
 ; Top-level Entity Name       ; Components                                  ;
@@ -162,18 +161,16 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Thu Dec 31 15:12:57 2020
+    Info: Processing started: Thu Dec 31 18:55:20 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Error (10759): Verilog HDL error at RAM1.v(12): object address declared in a list of port declarations cannot be redeclared within the module body File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM1.v Line: 12
-Error (10759): Verilog HDL error at RAM1.v(12): object data declared in a list of port declarations cannot be redeclared within the module body File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM1.v Line: 12
-Error (10759): Verilog HDL error at RAM1.v(12): object wren declared in a list of port declarations cannot be redeclared within the module body File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM1.v Line: 12
-Error (10759): Verilog HDL error at RAM1.v(13): object q declared in a list of port declarations cannot be redeclared within the module body File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM1.v Line: 13
-Error (10112): Ignored design unit "RAM1" at RAM1.v(1) due to previous errors File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM1.v Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file RAM1.v
+Info (12021): Found 1 design units, including 1 entities, in source file ROM.v
+    Info (12023): Found entity 1: ROM File: /home/tsapiv/POC/PureFPGA/Verilog_Components/ROM.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file RAM_1.v
+    Info (12023): Found entity 1: RAM_1 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM_1.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file Instruction_Processor.v
-    Info (12023): Found entity 1: InstructionProcessor File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 8
+    Info (12023): Found entity 1: InstructionProcessor File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file RAM.v
     Info (12023): Found entity 1: RAM File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file SM.v
@@ -196,17 +193,42 @@ Info (12021): Found 1 design units, including 1 entities, in source file BufferM
     Info (12023): Found entity 1: buffer_manager File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file SVGA.v
     Info (12023): Found entity 1: vga File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 1
-Info (144001): Generated suppressed messages file /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 5 errors, 1 warning
-    Error: Peak virtual memory: 902 megabytes
-    Error: Processing ended: Thu Dec 31 15:13:08 2020
-    Error: Elapsed time: 00:00:11
-    Error: Total CPU time (on all processors): 00:00:33
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg.
+Info (12021): Found 1 design units, including 1 entities, in source file Clock.v
+    Info (12023): Found entity 1: Clock File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock.v Line: 8
+Info (12021): Found 1 design units, including 1 entities, in source file Clock/Clock_0002.v
+    Info (12023): Found entity 1: Clock_0002 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 2
+Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
+Warning (10236): Verilog HDL Implicit Net warning at SM.v(99): created implicit net for "clk" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SM.v Line: 99
+Info (12127): Elaborating entity "Components" for the top level hierarchy
+Warning (275011): Block or symbol "vga" of instance "inst5" overlaps another block or symbol
+Error (275029): Incorrect connector style at port "core_address[CORE_WIDTH-1..0]" for symbol "inst" of type memory_manager
+Error (275029): Incorrect connector style at port "reg_en[NUM_REGS-1..0]" for symbol "inst" of type memory_manager
+Error (275029): Incorrect connector style at port "core_en[NUM_CORES-1..0]" for symbol "inst" of type memory_manager
+Error (275029): Incorrect connector style at port "data[DATA_WIDTH-1..0]" for symbol "inst" of type memory_manager
+Error (275029): Incorrect connector style at port "core_data[CORE_WIDTH-1..0]" for symbol "inst" of type memory_manager
+Error (275029): Incorrect connector style at port "x[COORDINATES-1..0]" for symbol "inst1" of type buffer_manager
+Error (275029): Incorrect connector style at port "y[COORDINATES-1..0]" for symbol "inst1" of type buffer_manager
+Error (275029): Incorrect connector style at port "data[WIDTH-1..0]" for symbol "inst1" of type buffer_manager
+Error (275029): Incorrect connector style at port "address[ADDRESS_WIDTH-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "instruction[INSTRUCTION_WIDTH-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "bufferAddress[BUFFER_ADDRESS_WIDTH-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "coreEnable[CORE_NUM-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "bufferData[DATA_WIDTH-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "data[DATA_WIDTH-1..0]" for symbol "inst3" of type SM
+Error (275029): Incorrect connector style at port "x[9..0]" for symbol "inst5" of type vga
+Error (275029): Incorrect connector style at port "y[9..0]" for symbol "inst5" of type vga
+Error (275029): Incorrect connector style at port "regData[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
+Error (275029): Incorrect connector style at port "regChoose[REGS_CODING-1..0]" for symbol "inst8" of type InstructionProcessor
+Error (275029): Incorrect connector style at port "ROMData[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
+Error (275029): Incorrect connector style at port "instructionOut[WIDTH-2..0]" for symbol "inst8" of type InstructionProcessor
+Error (275029): Incorrect connector style at port "ROMAddress[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
+Error (275029): Incorrect connector style at port "address[15..0]" for symbol "inst9" of type ROM
+Error (275029): Incorrect connector style at port "q[15..0]" for symbol "inst9" of type ROM
+Error (12153): Can't elaborate top-level user hierarchy
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 24 errors, 4 warnings
+    Error: Peak virtual memory: 903 megabytes
+    Error: Processing ended: Thu Dec 31 18:55:27 2020
+    Error: Elapsed time: 00:00:07
+    Error: Total CPU time (on all processors): 00:00:21
 
 

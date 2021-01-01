@@ -4,14 +4,15 @@ module buffer_manager
 				RED=6,
 				GREEN=5,
 				BLUE=5,
-            SCREEN_W=800)
+            SCREEN_W=800,
+				ADDRESS_WIDTH=19)
    (	
 	input [COORDINATES - 1:0]x, 
 	input [COORDINATES - 1:0]y, 
 	input on_air,
 	input clk,
 	input [WIDTH - 1: 0]data,
-	output reg address,
+	output reg [ADDRESS_WIDTH - 1:0]address,
    output reg [RED - 1:0]red,
 	output reg [GREEN - 1:0]green,
 	output reg [BLUE - 1:0]blue

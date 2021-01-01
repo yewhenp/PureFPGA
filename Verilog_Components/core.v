@@ -25,7 +25,7 @@ module core
 	);
   
   wire [DATA_WIDTH - 1:0] out_data;
-  assign data = (cpen) ? out_data: 16'bZ; 
+  assign data = (cpen & ~wren) ? out_data: 16'bZ; 
   
   wire [DATA_WIDTH - 1:0] aluOut;
   wire [NUM_FLAGS - 1: 0] flagsOut;
@@ -63,7 +63,7 @@ module core
   .address_a(address),
   .address_b(core_address),
   .clock(clk),
-  .data_a(data),
+  .data_a((cpen & wren) ? data: 16'bZ),
   .data_b(core_input_data),
   .wren_a(wren && cpen),
   .wren_b(core_wren),

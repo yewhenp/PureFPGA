@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Components
-Fri Jan  1 16:54:34 2021
+Fri Jan  1 18:17:32 2021
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -10,7 +10,9 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis IP Cores Summary
+  6. Analysis & Synthesis Messages
+  7. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -37,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri Jan  1 16:54:34 2021           ;
+; Analysis & Synthesis Status ; Failed - Fri Jan  1 18:17:32 2021           ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; Components                                  ;
 ; Top-level Entity Name       ; Components                                  ;
@@ -155,13 +157,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
++-----------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                     ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance         ; IP Include File ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
+; Altera ; altera_pll   ; 19.1    ; N/A          ; N/A          ; |Components|Clock:inst6 ; Clock.v         ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Jan  1 16:54:28 2021
+    Info: Processing started: Fri Jan  1 18:17:24 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -198,12 +209,201 @@ Info (12021): Found 1 design units, including 1 entities, in source file Decoder
 Info (12021): Found 1 design units, including 1 entities, in source file Decoder8.v
     Info (12023): Found entity 1: decoder8 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Decoder8.v Line: 1
 Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
-Error (10137): Verilog HDL Procedural Assignment error at MemoryManager.v(41): object "core_data" on left-hand side of assignment must have a variable data type File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
-Error (10137): Verilog HDL Procedural Assignment error at MemoryManager.v(44): object "core_data" on left-hand side of assignment must have a variable data type File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 44
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 2 warnings
-    Error: Peak virtual memory: 902 megabytes
-    Error: Processing ended: Fri Jan  1 16:54:34 2021
-    Error: Elapsed time: 00:00:06
-    Error: Total CPU time (on all processors): 00:00:16
+Info (12127): Elaborating entity "Components" for the top level hierarchy
+Info (12128): Elaborating entity "vga" for hierarchy "vga:inst5"
+Warning (10230): Verilog HDL assignment warning at SVGA.v(64): truncated value with size 32 to match size of target (10) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 64
+Warning (10230): Verilog HDL assignment warning at SVGA.v(68): truncated value with size 32 to match size of target (10) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 68
+Info (12128): Elaborating entity "Clock" for hierarchy "Clock:inst6"
+Info (12128): Elaborating entity "Clock_0002" for hierarchy "Clock:inst6|Clock_0002:clock_inst" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock.v Line: 21
+Info (12128): Elaborating entity "altera_pll" for hierarchy "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
+Info (12130): Elaborated megafunction instantiation "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+Info (12133): Instantiated megafunction "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+    Info (12134): Parameter "fractional_vco_multiplier" = "false"
+    Info (12134): Parameter "reference_clock_frequency" = "100.0 MHz"
+    Info (12134): Parameter "operation_mode" = "direct"
+    Info (12134): Parameter "number_of_clocks" = "2"
+    Info (12134): Parameter "output_clock_frequency0" = "5.000000 MHz"
+    Info (12134): Parameter "phase_shift0" = "0 ps"
+    Info (12134): Parameter "duty_cycle0" = "50"
+    Info (12134): Parameter "output_clock_frequency1" = "40.000000 MHz"
+    Info (12134): Parameter "phase_shift1" = "0 ps"
+    Info (12134): Parameter "duty_cycle1" = "50"
+    Info (12134): Parameter "output_clock_frequency2" = "0 MHz"
+    Info (12134): Parameter "phase_shift2" = "0 ps"
+    Info (12134): Parameter "duty_cycle2" = "50"
+    Info (12134): Parameter "output_clock_frequency3" = "0 MHz"
+    Info (12134): Parameter "phase_shift3" = "0 ps"
+    Info (12134): Parameter "duty_cycle3" = "50"
+    Info (12134): Parameter "output_clock_frequency4" = "0 MHz"
+    Info (12134): Parameter "phase_shift4" = "0 ps"
+    Info (12134): Parameter "duty_cycle4" = "50"
+    Info (12134): Parameter "output_clock_frequency5" = "0 MHz"
+    Info (12134): Parameter "phase_shift5" = "0 ps"
+    Info (12134): Parameter "duty_cycle5" = "50"
+    Info (12134): Parameter "output_clock_frequency6" = "0 MHz"
+    Info (12134): Parameter "phase_shift6" = "0 ps"
+    Info (12134): Parameter "duty_cycle6" = "50"
+    Info (12134): Parameter "output_clock_frequency7" = "0 MHz"
+    Info (12134): Parameter "phase_shift7" = "0 ps"
+    Info (12134): Parameter "duty_cycle7" = "50"
+    Info (12134): Parameter "output_clock_frequency8" = "0 MHz"
+    Info (12134): Parameter "phase_shift8" = "0 ps"
+    Info (12134): Parameter "duty_cycle8" = "50"
+    Info (12134): Parameter "output_clock_frequency9" = "0 MHz"
+    Info (12134): Parameter "phase_shift9" = "0 ps"
+    Info (12134): Parameter "duty_cycle9" = "50"
+    Info (12134): Parameter "output_clock_frequency10" = "0 MHz"
+    Info (12134): Parameter "phase_shift10" = "0 ps"
+    Info (12134): Parameter "duty_cycle10" = "50"
+    Info (12134): Parameter "output_clock_frequency11" = "0 MHz"
+    Info (12134): Parameter "phase_shift11" = "0 ps"
+    Info (12134): Parameter "duty_cycle11" = "50"
+    Info (12134): Parameter "output_clock_frequency12" = "0 MHz"
+    Info (12134): Parameter "phase_shift12" = "0 ps"
+    Info (12134): Parameter "duty_cycle12" = "50"
+    Info (12134): Parameter "output_clock_frequency13" = "0 MHz"
+    Info (12134): Parameter "phase_shift13" = "0 ps"
+    Info (12134): Parameter "duty_cycle13" = "50"
+    Info (12134): Parameter "output_clock_frequency14" = "0 MHz"
+    Info (12134): Parameter "phase_shift14" = "0 ps"
+    Info (12134): Parameter "duty_cycle14" = "50"
+    Info (12134): Parameter "output_clock_frequency15" = "0 MHz"
+    Info (12134): Parameter "phase_shift15" = "0 ps"
+    Info (12134): Parameter "duty_cycle15" = "50"
+    Info (12134): Parameter "output_clock_frequency16" = "0 MHz"
+    Info (12134): Parameter "phase_shift16" = "0 ps"
+    Info (12134): Parameter "duty_cycle16" = "50"
+    Info (12134): Parameter "output_clock_frequency17" = "0 MHz"
+    Info (12134): Parameter "phase_shift17" = "0 ps"
+    Info (12134): Parameter "duty_cycle17" = "50"
+    Info (12134): Parameter "pll_type" = "General"
+    Info (12134): Parameter "pll_subtype" = "General"
+Info (12128): Elaborating entity "buffer_manager" for hierarchy "buffer_manager:inst1"
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(21): truncated value with size 32 to match size of target (19) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 21
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(24): truncated value with size 32 to match size of target (6) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 24
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(25): truncated value with size 32 to match size of target (5) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 25
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(26): truncated value with size 32 to match size of target (5) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 26
+Info (12128): Elaborating entity "SM" for hierarchy "SM:inst3"
+Info (12128): Elaborating entity "core" for hierarchy "SM:inst3|core:core0" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SM.v Line: 102
+Info (12128): Elaborating entity "RAM" for hierarchy "SM:inst3|core:core0|RAM:raam" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 72
+Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12133): Instantiated megafunction "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+    Info (12134): Parameter "address_reg_b" = "CLOCK0"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
+    Info (12134): Parameter "indata_reg_b" = "CLOCK0"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "numwords_b" = "65536"
+    Info (12134): Parameter "operation_mode" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_aclr_b" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "outdata_reg_b" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_mixed_ports" = "DONT_CARE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "read_during_write_mode_port_b" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "widthad_b" = "16"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_b" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+    Info (12134): Parameter "width_byteena_b" = "1"
+    Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0im2.tdf
+    Info (12023): Found entity 1: altsyncram_0im2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_0im2" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dla.tdf
+    Info (12023): Found entity 1: decode_dla File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_dla.tdf Line: 23
+Info (12128): Elaborating entity "decode_dla" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_dla:decode2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 51
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_61a.tdf
+    Info (12023): Found entity 1: decode_61a File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_61a.tdf Line: 23
+Info (12128): Elaborating entity "decode_61a" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_61a:rden_decode_a" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 53
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_chb.tdf
+    Info (12023): Found entity 1: mux_chb File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/mux_chb.tdf Line: 23
+Info (12128): Elaborating entity "mux_chb" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|mux_chb:mux4" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 55
+Info (12128): Elaborating entity "Buffer" for hierarchy "SM:inst3|core:core0|Buffer:buffer1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 85
+Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12133): Instantiated megafunction "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+    Info (12134): Parameter "address_reg_b" = "CLOCK1"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
+    Info (12134): Parameter "indata_reg_b" = "CLOCK1"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "8192"
+    Info (12134): Parameter "numwords_b" = "8192"
+    Info (12134): Parameter "operation_mode" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_aclr_b" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "outdata_reg_b" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "read_during_write_mode_port_b" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "13"
+    Info (12134): Parameter "widthad_b" = "13"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_b" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+    Info (12134): Parameter "width_byteena_b" = "1"
+    Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_m4j2.tdf
+    Info (12023): Found entity 1: altsyncram_m4j2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_m4j2.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_m4j2" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "alu" for hierarchy "SM:inst3|core:core0|alu:allu" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 112
+Info (12128): Elaborating entity "memory_manager" for hierarchy "memory_manager:inst"
+Info (12128): Elaborating entity "decoder64" for hierarchy "memory_manager:inst|decoder64:d1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 40
+Info (12128): Elaborating entity "decoder8" for hierarchy "memory_manager:inst|decoder8:d2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
+Info (12128): Elaborating entity "InstructionProcessor" for hierarchy "InstructionProcessor:inst8"
+Warning (10036): Verilog HDL or VHDL warning at Instruction_Processor.v(31): object "cinReg" assigned a value but never read File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 31
+Info (10264): Verilog HDL Case Statement information at Instruction_Processor.v(63): all case item expressions in this case statement are onehot File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 63
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(203): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 203
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(204): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 204
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(205): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 205
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(206): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 206
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(207): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 207
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(208): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 208
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(209): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 209
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(210): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 210
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(211): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 211
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(212): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 212
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(213): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 213
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(214): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 214
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(215): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 215
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(216): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 216
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(217): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 217
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(218): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 218
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(219): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 219
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(220): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 220
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(221): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 221
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(222): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 222
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(223): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 223
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(224): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 224
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(225): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 225
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(226): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 226
+Error (10110): Verilog HDL error at Instruction_Processor.v(31): variable "saveRes" has mixed blocking and nonblocking Procedural Assignments -- must be all blocking or all nonblocking assignments File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 31
+Error (12152): Can't elaborate user hierarchy "InstructionProcessor:inst8"
+Info (144001): Generated suppressed messages file /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 33 warnings
+    Error: Peak virtual memory: 1122 megabytes
+    Error: Processing ended: Fri Jan  1 18:17:32 2021
+    Error: Elapsed time: 00:00:08
+    Error: Total CPU time (on all processors): 00:00:18
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg.
 
 

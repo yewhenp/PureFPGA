@@ -17,14 +17,29 @@ module memory_manager
    output reg [NUM_REGS - 1:0]reg_en,
 	output reg [NUM_CORES - 1:0]core_en
 	);
+	
   wire [NUM_CORES - 1:0]cores;
   wire [NUM_REGS - 1:0]regs;
-  reg [DATA_WIDTH - 1:0] data_read;
-  assign data = (wren_in) ? data_read : 8'bZ;
+  
+  
+  reg 	[DATA_WIDTH - 1:0] data_tx;
+  wire	[DATA_WIDTH - 1:0] data_rx;
+  
+  reg 	[CORE_WIDTH - 1:0] core_data_tx;
+  wire   [CORE_WIDTH - 1:0] core_data_rx;
+  
+  assign data = wren_in ? data_tx : 8'bZ;
+  assign data_rx = data;
+  
+  assign core_data = wren_in ? core_data_tx : 16'bZ;
+  assign core_data_rx = core_data;
+  
   assign core_address = address[ADDR_SPACE - 1:CORE_CODIND + 1];
   assign wren_out = wren_in;
+  
   decoder64 d1(.data(address[CORE_CODIND - 1:0]), .eq63(cores));
   decoder8 d2(.data(address[REGS_CODIND - 1:0]), .eq7(regs));
+  
   always @(posedge clk) begin
 		if(address > (2 << (ADDR_SPACE - 1) - NUM_REGS)) begin
 		  core_en = 0;
@@ -38,10 +53,12 @@ module memory_manager
 	
 	always @(posedge clk) begin
 		if (address[0]) begin
-			core_data[DATA_WIDTH * 2 - 1: DATA_WIDTH] = (wren_in) ? data : 8'bZ;
+			core_data_tx[DATA_WIDTH * 2 - 1: DATA_WIDTH] = data_rx;
+			data_tx = core_data_rx[DATA_WIDTH * 2 - 1: DATA_WIDTH];
 		end
 		else begin
-			core_data[DATA_WIDTH - 1: 0] = (wren_in) ? data : 8'bZ;
+			core_data_tx[DATA_WIDTH - 1: 0] = data_rx;
+			data_tx = core_data_rx[DATA_WIDTH - 1: 0];
 		end
 	end
 

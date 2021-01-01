@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Components
-Thu Dec 31 18:55:27 2020
+Fri Jan  1 16:54:34 2021
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Thu Dec 31 18:55:27 2020           ;
+; Analysis & Synthesis Status ; Failed - Fri Jan  1 16:54:34 2021           ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; Components                                  ;
 ; Top-level Entity Name       ; Components                                  ;
@@ -161,7 +161,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Thu Dec 31 18:55:20 2020
+    Info: Processing started: Fri Jan  1 16:54:28 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -185,10 +185,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file ALU.v
     Info (12023): Found entity 1: alu File: /home/tsapiv/POC/PureFPGA/Verilog_Components/ALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file MemoryManager.v
     Info (12023): Found entity 1: memory_manager File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file decoder8.v
-    Info (12023): Found entity 1: decoder8 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/decoder8.v Line: 40
-Info (12021): Found 1 design units, including 1 entities, in source file decoder64.v
-    Info (12023): Found entity 1: decoder64 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/decoder64.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file BufferManager.v
     Info (12023): Found entity 1: buffer_manager File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file SVGA.v
@@ -197,38 +193,17 @@ Info (12021): Found 1 design units, including 1 entities, in source file Clock.v
     Info (12023): Found entity 1: Clock File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock.v Line: 8
 Info (12021): Found 1 design units, including 1 entities, in source file Clock/Clock_0002.v
     Info (12023): Found entity 1: Clock_0002 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file Decoder64.v
+    Info (12023): Found entity 1: decoder64 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Decoder64.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file Decoder8.v
+    Info (12023): Found entity 1: decoder8 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Decoder8.v Line: 1
 Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
-Warning (10236): Verilog HDL Implicit Net warning at SM.v(99): created implicit net for "clk" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SM.v Line: 99
-Info (12127): Elaborating entity "Components" for the top level hierarchy
-Warning (275011): Block or symbol "vga" of instance "inst5" overlaps another block or symbol
-Error (275029): Incorrect connector style at port "core_address[CORE_WIDTH-1..0]" for symbol "inst" of type memory_manager
-Error (275029): Incorrect connector style at port "reg_en[NUM_REGS-1..0]" for symbol "inst" of type memory_manager
-Error (275029): Incorrect connector style at port "core_en[NUM_CORES-1..0]" for symbol "inst" of type memory_manager
-Error (275029): Incorrect connector style at port "data[DATA_WIDTH-1..0]" for symbol "inst" of type memory_manager
-Error (275029): Incorrect connector style at port "core_data[CORE_WIDTH-1..0]" for symbol "inst" of type memory_manager
-Error (275029): Incorrect connector style at port "x[COORDINATES-1..0]" for symbol "inst1" of type buffer_manager
-Error (275029): Incorrect connector style at port "y[COORDINATES-1..0]" for symbol "inst1" of type buffer_manager
-Error (275029): Incorrect connector style at port "data[WIDTH-1..0]" for symbol "inst1" of type buffer_manager
-Error (275029): Incorrect connector style at port "address[ADDRESS_WIDTH-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "instruction[INSTRUCTION_WIDTH-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "bufferAddress[BUFFER_ADDRESS_WIDTH-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "coreEnable[CORE_NUM-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "bufferData[DATA_WIDTH-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "data[DATA_WIDTH-1..0]" for symbol "inst3" of type SM
-Error (275029): Incorrect connector style at port "x[9..0]" for symbol "inst5" of type vga
-Error (275029): Incorrect connector style at port "y[9..0]" for symbol "inst5" of type vga
-Error (275029): Incorrect connector style at port "regData[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
-Error (275029): Incorrect connector style at port "regChoose[REGS_CODING-1..0]" for symbol "inst8" of type InstructionProcessor
-Error (275029): Incorrect connector style at port "ROMData[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
-Error (275029): Incorrect connector style at port "instructionOut[WIDTH-2..0]" for symbol "inst8" of type InstructionProcessor
-Error (275029): Incorrect connector style at port "ROMAddress[WIDTH-1..0]" for symbol "inst8" of type InstructionProcessor
-Error (275029): Incorrect connector style at port "address[15..0]" for symbol "inst9" of type ROM
-Error (275029): Incorrect connector style at port "q[15..0]" for symbol "inst9" of type ROM
-Error (12153): Can't elaborate top-level user hierarchy
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 24 errors, 4 warnings
-    Error: Peak virtual memory: 903 megabytes
-    Error: Processing ended: Thu Dec 31 18:55:27 2020
-    Error: Elapsed time: 00:00:07
-    Error: Total CPU time (on all processors): 00:00:21
+Error (10137): Verilog HDL Procedural Assignment error at MemoryManager.v(41): object "core_data" on left-hand side of assignment must have a variable data type File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
+Error (10137): Verilog HDL Procedural Assignment error at MemoryManager.v(44): object "core_data" on left-hand side of assignment must have a variable data type File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 44
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 2 warnings
+    Error: Peak virtual memory: 902 megabytes
+    Error: Processing ended: Fri Jan  1 16:54:34 2021
+    Error: Elapsed time: 00:00:06
+    Error: Total CPU time (on all processors): 00:00:16
 
 

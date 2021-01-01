@@ -11,7 +11,7 @@ module memory_manager
 	input [ADDR_SPACE - 1:0]address,
 	input wren_in,
 	input clk,
-	inout reg [CORE_WIDTH - 1:0]core_data,
+	inout [CORE_WIDTH - 1:0]core_data,
 	output [CORE_WIDTH - 1:0]core_address,
 	output wren_out,
    output reg [NUM_REGS - 1:0]reg_en,
@@ -19,6 +19,8 @@ module memory_manager
 	);
   wire [NUM_CORES - 1:0]cores;
   wire [NUM_REGS - 1:0]regs;
+  reg [DATA_WIDTH - 1:0] data_read;
+  assign data = (wren_in) ? data_read : 8'bZ;
   assign core_address = address[ADDR_SPACE - 1:CORE_CODIND + 1];
   assign wren_out = wren_in;
   decoder64 d1(.data(address[CORE_CODIND - 1:0]), .eq63(cores));
@@ -36,10 +38,10 @@ module memory_manager
 	
 	always @(posedge clk) begin
 		if (address[0]) begin
-			core_data[DATA_WIDTH * 2 - 1: DATA_WIDTH] = data;
+			core_data[DATA_WIDTH * 2 - 1: DATA_WIDTH] = (wren_in) ? data : 8'bZ;
 		end
 		else begin
-			core_data[DATA_WIDTH - 1: 0] = data;
+			core_data[DATA_WIDTH - 1: 0] = (wren_in) ? data : 8'bZ;
 		end
 	end
 

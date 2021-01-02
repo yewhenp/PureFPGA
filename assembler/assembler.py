@@ -1,6 +1,6 @@
 import sys
 import re
-
+import bitstring
 
 class Assembler:
     def __init__(self, source_name: str=None, dest_name: str=None):
@@ -8,16 +8,29 @@ class Assembler:
         self.dest_name = dest_name
 
 
-    def assemble_preprocessed(self, processed_file: str, verbose: bool=False):
-        with open(self.dest_name, "w") as dest_file:
-            result = ""
-            for line_n, line in enumerate(open(processed_file, "r")):
-                line = line.strip()
-                encoded = self.encode_command(line)
-                result += encoded + "\n"
-                if verbose:
-                    print(f"Processed line #{line_n}: {encoded}     ({line})")
-            dest_file.write(result)
+    # There are two mods - ascii and binary
+    def assemble_preprocessed(self, processed_file: str, verbose: bool=False, mode="ascii"):
+        if mode == "ascii":
+            with open(self.dest_name, "w") as dest_file:
+                result = ""
+                for line_n, line in enumerate(open(processed_file, "r")):
+                    line = line.strip()
+                    encoded = self.encode_command(line)
+                    result += encoded + "\n"
+                    if verbose:
+                        print(f"Processed line #{line_n}: {encoded}     ({line})")
+                dest_file.write(result)
+        elif mode == "bin":
+            with open(self.dest_name, "wb") as dest_file:
+                for line_n, line in enumerate(open(processed_file, "r")):
+                    line = line.strip()
+                    encoded = self.encode_command(line)
+                    value = bitstring.BitArray(bin=encoded)
+                    my_bytes = value.tobytes()
+
+                    dest_file.write(my_bytes)
+                    if verbose:
+                        print(f"Processed line #{line_n}: {encoded}     ({line})")
 
     def preprocess_source(self, preprocessed_file: str, verbose: bool=False):
         with open(preprocessed_file, "w") as prep_file:
@@ -351,5 +364,10 @@ if __name__ == '__main__':
         preprocessed = sys.argv[3]
         assembler = Assembler(source_name=source, dest_name="")
         assembler.preprocess_source(preprocessed, False)
+    elif len(sys.argv) == 4 and sys.argv[2] == "ab":
+        preprocessed = sys.argv[1]
+        dest = sys.argv[3]
+        assembler = Assembler(source_name="", dest_name=dest)
+        assembler.assemble_preprocessed(preprocessed, True, mode="bin")
     else:
         raise AttributeError("Bad options!")

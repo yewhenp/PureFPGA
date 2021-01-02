@@ -1,8 +1,8 @@
 --altsyncram ACF_BLOCK_RAM_AND_MLAB_EQUIVALENT_PAUSED_READ_CAPABILITIES="CARE" ADDRESS_REG_B="CLOCK0" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_INPUT_B="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_B="BYPASS" CYCLONEII_M4K_COMPATIBILITY="ON" DEVICE_FAMILY="Cyclone V" INDATA_REG_B="CLOCK0" LOW_POWER_MODE="AUTO" NUMWORDS_A=65536 NUMWORDS_B=65536 OPERATION_MODE="BIDIR_DUAL_PORT" OUTDATA_ACLR_A="NONE" OUTDATA_ACLR_B="NONE" OUTDATA_REG_A="CLOCK0" OUTDATA_REG_B="CLOCK0" POWER_UP_UNINITIALIZED="FALSE" READ_DURING_WRITE_MODE_MIXED_PORTS="DONT_CARE" read_during_write_mode_port_a="NEW_DATA_NO_NBE_READ" read_during_write_mode_port_b="NEW_DATA_NO_NBE_READ" WIDTH_A=16 WIDTH_B=16 WIDTH_BYTEENA_A=1 WIDTH_BYTEENA_B=1 WIDTHAD_A=16 WIDTHAD_B=16 WRCONTROL_WRADDRESS_REG_B="CLOCK0" address_a address_b clock0 data_a data_b q_a q_b wren_a wren_b CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
---VERSION_BEGIN 19.1 cbx_altera_syncram_nd_impl 2019:09:22:08:02:34:SJ cbx_altsyncram 2019:09:22:08:02:34:SJ cbx_cycloneii 2019:09:22:08:02:34:SJ cbx_lpm_add_sub 2019:09:22:08:02:34:SJ cbx_lpm_compare 2019:09:22:08:02:34:SJ cbx_lpm_decode 2019:09:22:08:02:34:SJ cbx_lpm_mux 2019:09:22:08:02:34:SJ cbx_mgl 2019:09:22:09:26:20:SJ cbx_nadder 2019:09:22:08:02:34:SJ cbx_stratix 2019:09:22:08:02:34:SJ cbx_stratixii 2019:09:22:08:02:34:SJ cbx_stratixiii 2019:09:22:08:02:34:SJ cbx_stratixv 2019:09:22:08:02:34:SJ cbx_util_mgl 2019:09:22:08:02:34:SJ  VERSION_END
+--VERSION_BEGIN 20.1 cbx_altera_syncram_nd_impl 2020:11:11:17:03:37:SJ cbx_altsyncram 2020:11:11:17:03:37:SJ cbx_cycloneii 2020:11:11:17:03:37:SJ cbx_lpm_add_sub 2020:11:11:17:03:37:SJ cbx_lpm_compare 2020:11:11:17:03:37:SJ cbx_lpm_decode 2020:11:11:17:03:37:SJ cbx_lpm_mux 2020:11:11:17:03:37:SJ cbx_mgl 2020:11:11:17:50:46:SJ cbx_nadder 2020:11:11:17:03:37:SJ cbx_stratix 2020:11:11:17:03:37:SJ cbx_stratixii 2020:11:11:17:03:37:SJ cbx_stratixiii 2020:11:11:17:03:37:SJ cbx_stratixv 2020:11:11:17:03:37:SJ cbx_util_mgl 2020:11:11:17:03:37:SJ  VERSION_END
 
 
--- Copyright (C) 2019  Intel Corporation. All rights reserved.
+-- Copyright (C) 2020  Intel Corporation. All rights reserved.
 --  Your use of Intel Corporation's design tools, logic functions 
 --  and other software and tools, and any partner logic 
 --  functions, and any output files from any of the foregoing 
@@ -28,7 +28,7 @@ FUNCTION cyclonev_ram_block (clk0, clk1, clr0, clr1, ena0, ena1, ena2, ena3, por
 WITH ( CLK0_CORE_CLOCK_ENABLE, CLK0_INPUT_CLOCK_ENABLE, CLK0_OUTPUT_CLOCK_ENABLE, CLK1_CORE_CLOCK_ENABLE, CLK1_INPUT_CLOCK_ENABLE, CLK1_OUTPUT_CLOCK_ENABLE, CONNECTIVITY_CHECKING, DATA_INTERLEAVE_OFFSET_IN_BITS, DATA_INTERLEAVE_WIDTH_IN_BITS, DONT_POWER_OPTIMIZE, ENABLE_ECC, INIT_FILE, INIT_FILE_LAYOUT, LOGICAL_RAM_NAME, mem_init0, mem_init1, mem_init10, mem_init11, mem_init12, mem_init13, mem_init14, mem_init15, mem_init16, mem_init17, mem_init18, mem_init19, mem_init2, mem_init20, mem_init21, mem_init22, mem_init23, mem_init24, mem_init25, mem_init26, mem_init27, mem_init28, mem_init29, mem_init3, mem_init30, mem_init31, mem_init32, mem_init33, mem_init34, mem_init35, mem_init36, mem_init37, mem_init38, mem_init39, mem_init4, mem_init40, mem_init41, mem_init42, mem_init43, mem_init44, mem_init45, mem_init46, mem_init47, mem_init48, mem_init49, mem_init5, mem_init50, mem_init51, mem_init52, mem_init53, mem_init54, mem_init55, mem_init56, mem_init57, mem_init58, mem_init59, mem_init6, mem_init60, mem_init61, mem_init62, mem_init63, mem_init64, mem_init65, mem_init66, mem_init67, mem_init68, mem_init69, mem_init7, mem_init70, mem_init71, mem_init8, mem_init9, MIXED_PORT_FEED_THROUGH_MODE, OPERATION_MODE, PORT_A_ADDRESS_CLEAR, PORT_A_ADDRESS_WIDTH = 1, PORT_A_BYTE_ENABLE_MASK_WIDTH = 1, PORT_A_BYTE_SIZE, PORT_A_DATA_OUT_CLEAR, PORT_A_DATA_OUT_CLOCK, PORT_A_DATA_WIDTH = 1, PORT_A_FIRST_ADDRESS, PORT_A_FIRST_BIT_NUMBER, PORT_A_LAST_ADDRESS, PORT_A_LOGICAL_RAM_DEPTH, PORT_A_LOGICAL_RAM_WIDTH, PORT_A_READ_DURING_WRITE_MODE, PORT_B_ADDRESS_CLEAR, PORT_B_ADDRESS_CLOCK, PORT_B_ADDRESS_WIDTH = 1, PORT_B_BYTE_ENABLE_CLOCK, PORT_B_BYTE_ENABLE_MASK_WIDTH = 1, PORT_B_BYTE_SIZE, PORT_B_DATA_IN_CLOCK, PORT_B_DATA_OUT_CLEAR, PORT_B_DATA_OUT_CLOCK, PORT_B_DATA_WIDTH = 1, PORT_B_FIRST_ADDRESS, PORT_B_FIRST_BIT_NUMBER, PORT_B_LAST_ADDRESS, PORT_B_LOGICAL_RAM_DEPTH, PORT_B_LOGICAL_RAM_WIDTH, PORT_B_READ_DURING_WRITE_MODE, PORT_B_READ_ENABLE_CLOCK, PORT_B_WRITE_ENABLE_CLOCK, POWER_UP_UNINITIALIZED, RAM_BLOCK_TYPE, WIDTH_ECCSTATUS = 3)
 RETURNS ( dftout[8..0], eccstatus[WIDTH_ECCSTATUS-1..0], portadataout[PORT_A_DATA_WIDTH-1..0], portbdataout[PORT_B_DATA_WIDTH-1..0]);
 
---synthesis_resources = M10K 128 reg 12 
+--synthesis_resources = lut 108 M10K 128 reg 12 
 OPTIONS ALTERA_INTERNAL_OPTION = "OPTIMIZE_POWER_DURING_SYNTHESIS=NORMAL_COMPILATION";
 
 SUBDESIGN altsyncram_0im2
@@ -4922,8 +4922,6 @@ VARIABLE
 	address_a_wire[15..0]	: WIRE;
 	address_b_sel[2..0]	: WIRE;
 	address_b_wire[15..0]	: WIRE;
-	w_addr_val_a2w[2..0]	: WIRE;
-	w_addr_val_a7w[2..0]	: WIRE;
 	w_addr_val_b4w[2..0]	: WIRE;
 	w_addr_val_b8w[2..0]	: WIRE;
 	wren_decode_addr_sel_a[2..0]	: WIRE;
@@ -4938,11 +4936,11 @@ BEGIN
 	out_address_reg_a[].d = address_reg_a[].q;
 	out_address_reg_b[].clk = clock0;
 	out_address_reg_b[].d = address_reg_b[].q;
-	decode2.data[] = w_addr_val_a2w[];
+	decode2.data[2..0] = address_a_wire[15..13];
 	decode2.enable = wren_a;
 	decode3.data[] = w_addr_val_b4w[];
 	decode3.enable = wren_b;
-	rden_decode_a.data[] = w_addr_val_a7w[];
+	rden_decode_a.data[] = wren_decode_addr_sel_a[];
 	rden_decode_b.data[] = w_addr_val_b8w[];
 	mux4.data[] = ( ram_block1a[127..0].portadataout[0..0]);
 	mux4.sel[] = out_address_reg_a[].q;
@@ -5220,8 +5218,6 @@ BEGIN
 	address_b_wire[] = address_b[];
 	q_a[] = mux4.result[];
 	q_b[] = mux5.result[];
-	w_addr_val_a2w[2..0] = address_a_wire[15..13];
-	w_addr_val_a7w[] = wren_decode_addr_sel_a[];
 	w_addr_val_b4w[2..0] = address_b_wire[15..13];
 	w_addr_val_b8w[] = wren_decode_addr_sel_b[];
 	wren_decode_addr_sel_a[2..0] = address_a_wire[15..13];

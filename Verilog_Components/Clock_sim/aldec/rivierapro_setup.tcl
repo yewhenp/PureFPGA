@@ -1,5 +1,5 @@
 
-# (C) 2001-2020 Altera Corporation. All rights reserved.
+# (C) 2001-2021 Altera Corporation. All rights reserved.
 # Your use of Altera Corporation's design tools, logic functions and 
 # other software and tools, and its AMPP partner logic functions, and 
 # any output files any of the foregoing (including device programming 
@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 19.1 670 linux 2020.12.31.18:01:30
+# ACDS 20.1 720 linux 2021.01.01.21:36:08
 # ----------------------------------------
 # Auto-generated simulation script rivierapro_setup.tcl
 # ----------------------------------------
@@ -113,7 +113,7 @@ if ![info exists QSYS_SIMDIR] {
 }
 
 if ![info exists QUARTUS_INSTALL_DIR] { 
-  set QUARTUS_INSTALL_DIR "/opt/intel_fpga_lite/19.1/quartus/"
+  set QUARTUS_INSTALL_DIR "/root/intelFPGA_lite/20.1/quartus/"
 }
 
 if ![info exists USER_DEFINED_COMPILE_OPTIONS] { 

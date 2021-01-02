@@ -1,25 +1,25 @@
-Analysis & Synthesis report for Components
-Fri Jan  1 18:17:32 2021
-Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Analysis & Elaboration report for Components
+Sat Jan  2 13:58:42 2021
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis IP Cores Summary
-  6. Analysis & Synthesis Messages
-  7. Analysis & Synthesis Suppressed Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Analysis & Elaboration IP Cores Summary
+  5. Analysis & Elaboration Settings
+  6. Analysis & Elaboration Messages
+  7. Analysis & Elaboration Suppressed Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -36,26 +36,51 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri Jan  1 18:17:32 2021           ;
-; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
-; Revision Name               ; Components                                  ;
-; Top-level Entity Name       ; Components                                  ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Failed - Sat Jan  2 13:58:42 2021           ;
+; Quartus Prime Version         ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                 ; Components                                  ;
+; Top-level Entity Name         ; Components                                  ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Analysis & Elaboration IP Cores Summary                                                                   ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance         ; IP Include File ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
+; Altera ; altera_pll   ; 20.1    ; N/A          ; N/A          ; |Components|Clock:inst6 ; Clock.v         ;
++--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
@@ -141,84 +166,59 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
-
-
-+-----------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                     ;
-+--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance         ; IP Include File ;
-+--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
-; Altera ; altera_pll   ; 19.1    ; N/A          ; N/A          ; |Components|Clock:inst6 ; Clock.v         ;
-+--------+--------------+---------+--------------+--------------+-------------------------+-----------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Jan  1 18:17:24 2021
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components
+Info: Running Quartus Prime Analysis & Elaboration
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sat Jan  2 13:58:35 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file ROM.v
-    Info (12023): Found entity 1: ROM File: /home/tsapiv/POC/PureFPGA/Verilog_Components/ROM.v Line: 40
+    Info (12023): Found entity 1: ROM File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ROM.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file RAM_1.v
-    Info (12023): Found entity 1: RAM_1 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM_1.v Line: 40
+    Info (12023): Found entity 1: RAM_1 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM_1.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file Instruction_Processor.v
-    Info (12023): Found entity 1: InstructionProcessor File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 4
+    Info (12023): Found entity 1: InstructionProcessor File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file RAM.v
-    Info (12023): Found entity 1: RAM File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 40
+    Info (12023): Found entity 1: RAM File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file SM.v
-    Info (12023): Found entity 1: SM File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SM.v Line: 1
+    Info (12023): Found entity 1: SM File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/SM.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file core.v
-    Info (12023): Found entity 1: core File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 4
+    Info (12023): Found entity 1: core File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/core.v Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file Buffer.v
-    Info (12023): Found entity 1: Buffer File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 40
+    Info (12023): Found entity 1: Buffer File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Buffer.v Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file Components.bdf
     Info (12023): Found entity 1: Components
 Info (12021): Found 1 design units, including 1 entities, in source file ALU.v
-    Info (12023): Found entity 1: alu File: /home/tsapiv/POC/PureFPGA/Verilog_Components/ALU.v Line: 1
+    Info (12023): Found entity 1: alu File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file MemoryManager.v
-    Info (12023): Found entity 1: memory_manager File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 1
+    Info (12023): Found entity 1: memory_manager File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/MemoryManager.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file BufferManager.v
-    Info (12023): Found entity 1: buffer_manager File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 1
+    Info (12023): Found entity 1: buffer_manager File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/BufferManager.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file SVGA.v
-    Info (12023): Found entity 1: vga File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 1
+    Info (12023): Found entity 1: vga File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/SVGA.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file Clock.v
-    Info (12023): Found entity 1: Clock File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock.v Line: 8
+    Info (12023): Found entity 1: Clock File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock.v Line: 8
 Info (12021): Found 1 design units, including 1 entities, in source file Clock/Clock_0002.v
-    Info (12023): Found entity 1: Clock_0002 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 2
+    Info (12023): Found entity 1: Clock_0002 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file Decoder64.v
-    Info (12023): Found entity 1: decoder64 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Decoder64.v Line: 1
+    Info (12023): Found entity 1: decoder64 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Decoder64.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file Decoder8.v
-    Info (12023): Found entity 1: decoder8 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Decoder8.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
+    Info (12023): Found entity 1: decoder8 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Decoder8.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
 Info (12127): Elaborating entity "Components" for the top level hierarchy
 Info (12128): Elaborating entity "vga" for hierarchy "vga:inst5"
-Warning (10230): Verilog HDL assignment warning at SVGA.v(64): truncated value with size 32 to match size of target (10) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 64
-Warning (10230): Verilog HDL assignment warning at SVGA.v(68): truncated value with size 32 to match size of target (10) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SVGA.v Line: 68
+Warning (10230): Verilog HDL assignment warning at SVGA.v(64): truncated value with size 32 to match size of target (10) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/SVGA.v Line: 64
+Warning (10230): Verilog HDL assignment warning at SVGA.v(68): truncated value with size 32 to match size of target (10) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/SVGA.v Line: 68
 Info (12128): Elaborating entity "Clock" for hierarchy "Clock:inst6"
-Info (12128): Elaborating entity "Clock_0002" for hierarchy "Clock:inst6|Clock_0002:clock_inst" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock.v Line: 21
-Info (12128): Elaborating entity "altera_pll" for hierarchy "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+Info (12128): Elaborating entity "Clock_0002" for hierarchy "Clock:inst6|Clock_0002:clock_inst" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock.v Line: 21
+Info (12128): Elaborating entity "altera_pll" for hierarchy "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
-Info (12130): Elaborated megafunction instantiation "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
-Info (12133): Instantiated megafunction "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+Info (12130): Elaborated megafunction instantiation "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
+Info (12133): Instantiated megafunction "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i" with the following parameter: File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock/Clock_0002.v Line: 88
     Info (12134): Parameter "fractional_vco_multiplier" = "false"
     Info (12134): Parameter "reference_clock_frequency" = "100.0 MHz"
     Info (12134): Parameter "operation_mode" = "direct"
@@ -280,16 +280,16 @@ Info (12133): Instantiated megafunction "Clock:inst6|Clock_0002:clock_inst|alter
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
 Info (12128): Elaborating entity "buffer_manager" for hierarchy "buffer_manager:inst1"
-Warning (10230): Verilog HDL assignment warning at BufferManager.v(21): truncated value with size 32 to match size of target (19) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 21
-Warning (10230): Verilog HDL assignment warning at BufferManager.v(24): truncated value with size 32 to match size of target (6) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 24
-Warning (10230): Verilog HDL assignment warning at BufferManager.v(25): truncated value with size 32 to match size of target (5) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 25
-Warning (10230): Verilog HDL assignment warning at BufferManager.v(26): truncated value with size 32 to match size of target (5) File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 26
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(21): truncated value with size 32 to match size of target (19) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/BufferManager.v Line: 21
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(24): truncated value with size 32 to match size of target (6) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/BufferManager.v Line: 24
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(25): truncated value with size 32 to match size of target (5) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/BufferManager.v Line: 25
+Warning (10230): Verilog HDL assignment warning at BufferManager.v(26): truncated value with size 32 to match size of target (5) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/BufferManager.v Line: 26
 Info (12128): Elaborating entity "SM" for hierarchy "SM:inst3"
-Info (12128): Elaborating entity "core" for hierarchy "SM:inst3|core:core0" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/SM.v Line: 102
-Info (12128): Elaborating entity "RAM" for hierarchy "SM:inst3|core:core0|RAM:raam" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 72
-Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
-Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
-Info (12133): Instantiated megafunction "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12128): Elaborating entity "core" for hierarchy "SM:inst3|core:core0" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/SM.v Line: 102
+Info (12128): Elaborating entity "RAM" for hierarchy "SM:inst3|core:core0|RAM:raam" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/core.v Line: 72
+Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12133): Instantiated megafunction "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component" with the following parameter: File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM.v Line: 98
     Info (12134): Parameter "address_reg_b" = "CLOCK0"
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
@@ -317,21 +317,21 @@ Info (12133): Instantiated megafunction "SM:inst3|core:core0|RAM:raam|altsyncram
     Info (12134): Parameter "width_byteena_b" = "1"
     Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK0"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0im2.tdf
-    Info (12023): Found entity 1: altsyncram_0im2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 34
-Info (12128): Elaborating entity "altsyncram_0im2" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+    Info (12023): Found entity 1: altsyncram_0im2 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_0im2" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated" File: /root/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dla.tdf
-    Info (12023): Found entity 1: decode_dla File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_dla.tdf Line: 23
-Info (12128): Elaborating entity "decode_dla" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_dla:decode2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 51
+    Info (12023): Found entity 1: decode_dla File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/decode_dla.tdf Line: 23
+Info (12128): Elaborating entity "decode_dla" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_dla:decode2" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 51
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_61a.tdf
-    Info (12023): Found entity 1: decode_61a File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_61a.tdf Line: 23
-Info (12128): Elaborating entity "decode_61a" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_61a:rden_decode_a" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 53
+    Info (12023): Found entity 1: decode_61a File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/decode_61a.tdf Line: 23
+Info (12128): Elaborating entity "decode_61a" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_61a:rden_decode_a" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 53
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_chb.tdf
-    Info (12023): Found entity 1: mux_chb File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/mux_chb.tdf Line: 23
-Info (12128): Elaborating entity "mux_chb" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|mux_chb:mux4" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 55
-Info (12128): Elaborating entity "Buffer" for hierarchy "SM:inst3|core:core0|Buffer:buffer1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 85
-Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
-Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
-Info (12133): Instantiated megafunction "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+    Info (12023): Found entity 1: mux_chb File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/mux_chb.tdf Line: 23
+Info (12128): Elaborating entity "mux_chb" for hierarchy "SM:inst3|core:core0|RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|mux_chb:mux4" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 55
+Info (12128): Elaborating entity "Buffer" for hierarchy "SM:inst3|core:core0|Buffer:buffer1" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/core.v Line: 85
+Info (12128): Elaborating entity "altsyncram" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12130): Elaborated megafunction instantiation "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12133): Instantiated megafunction "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component" with the following parameter: File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Buffer.v Line: 100
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
@@ -358,52 +358,97 @@ Info (12133): Instantiated megafunction "SM:inst3|core:core0|Buffer:buffer1|alts
     Info (12134): Parameter "width_byteena_b" = "1"
     Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_m4j2.tdf
-    Info (12023): Found entity 1: altsyncram_m4j2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_m4j2.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_m4j2" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "alu" for hierarchy "SM:inst3|core:core0|alu:allu" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 112
+    Info (12023): Found entity 1: altsyncram_m4j2 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_m4j2.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_m4j2" for hierarchy "SM:inst3|core:core0|Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated" File: /root/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "alu" for hierarchy "SM:inst3|core:core0|alu:allu" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/core.v Line: 112
 Info (12128): Elaborating entity "memory_manager" for hierarchy "memory_manager:inst"
-Info (12128): Elaborating entity "decoder64" for hierarchy "memory_manager:inst|decoder64:d1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 40
-Info (12128): Elaborating entity "decoder8" for hierarchy "memory_manager:inst|decoder8:d2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
+Info (12128): Elaborating entity "decoder64" for hierarchy "memory_manager:inst|decoder64:d1" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/MemoryManager.v Line: 40
+Info (12128): Elaborating entity "decoder8" for hierarchy "memory_manager:inst|decoder8:d2" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
 Info (12128): Elaborating entity "InstructionProcessor" for hierarchy "InstructionProcessor:inst8"
-Warning (10036): Verilog HDL or VHDL warning at Instruction_Processor.v(31): object "cinReg" assigned a value but never read File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 31
-Info (10264): Verilog HDL Case Statement information at Instruction_Processor.v(63): all case item expressions in this case statement are onehot File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 63
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(203): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 203
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(204): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 204
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(205): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 205
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(206): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 206
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(207): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 207
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(208): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 208
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(209): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 209
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(210): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 210
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(211): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 211
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(212): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 212
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(213): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 213
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(214): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 214
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(215): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 215
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(216): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 216
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(217): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 217
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(218): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 218
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(219): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 219
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(220): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 220
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(221): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 221
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(222): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 222
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(223): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 223
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(224): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 224
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(225): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 225
-Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(226): case item expression never matches the case expression File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 226
-Error (10110): Verilog HDL error at Instruction_Processor.v(31): variable "saveRes" has mixed blocking and nonblocking Procedural Assignments -- must be all blocking or all nonblocking assignments File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 31
-Error (12152): Can't elaborate user hierarchy "InstructionProcessor:inst8"
-Info (144001): Generated suppressed messages file /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 33 warnings
-    Error: Peak virtual memory: 1122 megabytes
-    Error: Processing ended: Fri Jan  1 18:17:32 2021
-    Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:18
+Warning (10036): Verilog HDL or VHDL warning at Instruction_Processor.v(30): object "ALUResReg" assigned a value but never read File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 30
+Warning (10036): Verilog HDL or VHDL warning at Instruction_Processor.v(31): object "cinReg" assigned a value but never read File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 31
+Info (10264): Verilog HDL Case Statement information at Instruction_Processor.v(63): all case item expressions in this case statement are onehot File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 63
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(203): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 203
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(204): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 204
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(205): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 205
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(206): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 206
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(207): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 207
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(208): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 208
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(209): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 209
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(210): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 210
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(211): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 211
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(212): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 212
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(213): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 213
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(214): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 214
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(215): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 215
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(216): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 216
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(217): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 217
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(218): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 218
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(219): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 219
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(220): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 220
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(221): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 221
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(222): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 222
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(223): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 223
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(224): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 224
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(225): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 225
+Warning (10199): Verilog HDL Case Statement warning at Instruction_Processor.v(226): case item expression never matches the case expression File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 226
+Warning (10230): Verilog HDL assignment warning at Instruction_Processor.v(238): truncated value with size 32 to match size of target (16) File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 238
+Warning (10030): Net "cin" at Instruction_Processor.v(43) has no driver or initial value, using a default initial value '0' File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
+Info (12128): Elaborating entity "RAM_1" for hierarchy "InstructionProcessor:inst8|RAM_1:ram1" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 58
+Info (12128): Elaborating entity "altsyncram" for hierarchy "InstructionProcessor:inst8|RAM_1:ram1|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM_1.v Line: 86
+Info (12130): Elaborated megafunction instantiation "InstructionProcessor:inst8|RAM_1:ram1|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM_1.v Line: 86
+Info (12133): Instantiated megafunction "InstructionProcessor:inst8|RAM_1:ram1|altsyncram:altsyncram_component" with the following parameter: File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/RAM_1.v Line: 86
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_crl1.tdf
+    Info (12023): Found entity 1: altsyncram_crl1 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_crl1.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_crl1" for hierarchy "InstructionProcessor:inst8|RAM_1:ram1|altsyncram:altsyncram_component|altsyncram_crl1:auto_generated" File: /root/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "ROM" for hierarchy "ROM:inst9"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ROM:inst9|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ROM.v Line: 82
+Info (12130): Elaborated megafunction instantiation "ROM:inst9|altsyncram:altsyncram_component" File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ROM.v Line: 82
+Info (12133): Instantiated megafunction "ROM:inst9|altsyncram:altsyncram_component" with the following parameter: File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ROM.v Line: 82
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "add_res.hex"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_lnf1.tdf
+    Info (12023): Found entity 1: altsyncram_lnf1 File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/db/altsyncram_lnf1.tdf Line: 32
+Info (12128): Elaborating entity "altsyncram_lnf1" for hierarchy "ROM:inst9|altsyncram:altsyncram_component|altsyncram_lnf1:auto_generated" File: /root/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Error (127001): Can't find Memory Initialization File or Hexadecimal (Intel-Format) File /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/add_res.hex for ROM instance ALTSYNCRAM File: /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/ROM.v Line: 82
+Error (12152): Can't elaborate user hierarchy "ROM:inst9|altsyncram:altsyncram_component|altsyncram_lnf1:auto_generated" File: /root/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (144001): Generated suppressed messages file /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/output_files/Components.map.smsg
+Error: Quartus Prime Analysis & Elaboration was unsuccessful. 2 errors, 36 warnings
+    Error: Peak virtual memory: 924 megabytes
+    Error: Processing ended: Sat Jan  2 13:58:42 2021
+    Error: Elapsed time: 00:00:07
+    Error: Total CPU time (on all processors): 00:00:17
 
 
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg.
++--------------------------------------------+
+; Analysis & Elaboration Suppressed Messages ;
++--------------------------------------------+
+The suppressed messages can be found in /home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/output_files/Components.map.smsg.
 
 

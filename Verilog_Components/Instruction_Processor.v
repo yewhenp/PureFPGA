@@ -31,7 +31,7 @@ module InstructionProcessor #(
     reg cinReg, saveRes, wren;
 
     assign instructionOut = coreInstr;
-    assign ALURes = ALUResReg;
+    //assign ALURes = ALUResReg;
 	 
 
     reg[WIDTH-1:0] reg0, reg1, reg2, reg3, reg4, reg5, sp, ip, flags; // CF, SF, OF, ZF
@@ -197,7 +197,7 @@ module InstructionProcessor #(
                                     endcase
                                 end
                             end else begin
-                                saveRes <= 0;
+                                saveRes = 0;
                                 // movl moh movf, jumps
                                 case (ROMData[13:9])
                                     00110: reg0[WIDTH-1:8] = ROMData[8:0];

@@ -1,0 +1,22 @@
+module MemoryManagerTest;
+   localparam DATA_WIDTH	=8;
+	localparam ADDRESS_WIDTH=23;
+	localparam CORE_WIDTH	=16;
+	reg wren_sig, clock_reference_sig, clock_reset_sig, vga_reset_sig;
+	wire hsync_sig, vsync_sig, p_tick_sig; 
+	wire	[4:0]	blue_sig;
+	wire	[4:0]	green_sig;
+	wire	[5:0]	red_sig;
+	reg	[ADDRESS_WIDTH - 1:0] adress_sig;
+	reg	[DATA_WIDTH - 1:0] input_value;
+	wire	[DATA_WIDTH - 1:0] bidir_signal;
+	wire	[DATA_WIDTH - 1:0] output_value;
+	
+//	assign bidir_signal = wren_sig ? input_value : 8'bZ;
+//	assign output_value = bidir_signal;
+	
+	assign bidir_signal = wren_sig ? input_value : 8'bZ;
+	assign output_value = ~wren_sig ? bidir_signal : 8'bZ;
+	integer i = 0;
+	 
+endmodule 

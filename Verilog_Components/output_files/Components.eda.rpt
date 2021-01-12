@@ -1,5 +1,5 @@
 EDA Netlist Writer report for Components
-Thu Dec 31 10:29:27 2020
+Sat Jan  2 19:24:11 2021
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Dec 31 10:29:27 2020 ;
+; EDA Netlist Writer Status ; Successful - Sat Jan  2 19:24:11 2021 ;
 ; Revision Name             ; Components                            ;
 ; Top-level Entity Name     ; Components                            ;
 ; Family                    ; Cyclone V                             ;
@@ -45,34 +45,34 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------+---------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Simulation Settings                                                                                                    ;
-+---------------------------------------------------------------------------------------------------+--------------------+
-; Option                                                                                            ; Setting            ;
-+---------------------------------------------------------------------------------------------------+--------------------+
-; Tool Name                                                                                         ; ModelSim (Verilog) ;
-; Generate functional simulation netlist                                                            ; On                 ;
-; Truncate long hierarchy paths                                                                     ; Off                ;
-; Map illegal HDL characters                                                                        ; Off                ;
-; Flatten buses into individual nodes                                                               ; Off                ;
-; Maintain hierarchy                                                                                ; Off                ;
-; Bring out device-wide set/reset signals as ports                                                  ; Off                ;
-; Enable glitch filtering                                                                           ; Off                ;
-; Do not write top level VHDL entity                                                                ; Off                ;
-; Disable detection of setup and hold time violations in the input registers of bi-directional pins ; Off                ;
-; Architecture name in VHDL output netlist                                                          ; structure          ;
-; Generate third-party EDA tool command script for RTL functional simulation                        ; Off                ;
-; Generate third-party EDA tool command script for gate-level simulation                            ; Off                ;
-+---------------------------------------------------------------------------------------------------+--------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Settings                                                                                                           ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Option                                                                                            ; Setting                   ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Tool Name                                                                                         ; ModelSim-Altera (Verilog) ;
+; Generate functional simulation netlist                                                            ; On                        ;
+; Truncate long hierarchy paths                                                                     ; Off                       ;
+; Map illegal HDL characters                                                                        ; Off                       ;
+; Flatten buses into individual nodes                                                               ; Off                       ;
+; Maintain hierarchy                                                                                ; Off                       ;
+; Bring out device-wide set/reset signals as ports                                                  ; Off                       ;
+; Enable glitch filtering                                                                           ; Off                       ;
+; Do not write top level VHDL entity                                                                ; Off                       ;
+; Disable detection of setup and hold time violations in the input registers of bi-directional pins ; Off                       ;
+; Architecture name in VHDL output netlist                                                          ; structure                 ;
+; Generate third-party EDA tool command script for RTL functional simulation                        ; Off                       ;
+; Generate third-party EDA tool command script for gate-level simulation                            ; Off                       ;
++---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+--------------------------------------------------------------------------------+
-; Simulation Generated Files                                                     ;
-+--------------------------------------------------------------------------------+
-; Generated Files                                                                ;
-+--------------------------------------------------------------------------------+
-; /home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/modelsim/Components.vo ;
-+--------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------+
+; Simulation Generated Files                                                  ;
++-----------------------------------------------------------------------------+
+; Generated Files                                                             ;
++-----------------------------------------------------------------------------+
+; /home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/qsim//Components.vo ;
++-----------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -81,14 +81,30 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Thu Dec 31 10:29:26 2020
-Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off Components -c Components
+    Info: Copyright (C) 2019  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Sat Jan  2 19:23:57 2021
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=/home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/qsim/ Components -c Components
+Info (119006): Selected device 5CGXFC7C7F23C8 for design "Components"
+Warning (21300): LOCKED port on the PLL is not properly connected on instance "Clock:inst6|Clock_0002:clock_inst|altera_pll:altera_pll_i|general[0].gpll". The LOCKED port on the PLL should be connected when the FBOUTCLK port is connected. Although it is unnecessary to connect the LOCKED signal, any logic driven off of an output clock of the PLL will not know when the PLL is locked and ready.
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (204019): Generated file Components.vo in folder "/home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/modelsim/" for EDA simulation tool
-Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1106 megabytes
-    Info: Processing ended: Thu Dec 31 10:29:27 2020
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+Info (204019): Generated file Components.vo in folder "/home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/qsim//" for EDA simulation tool
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 1752 megabytes
+    Info: Processing ended: Sat Jan  2 19:24:11 2021
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:14
 
 

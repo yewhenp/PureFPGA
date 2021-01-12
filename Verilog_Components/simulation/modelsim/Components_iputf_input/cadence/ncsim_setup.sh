@@ -1,3 +1,3 @@
 
 
-ncvlog "/home/pasha/Documents/poc/project/PureFPGA/Verilog_Components/Clock_sim/Clock.vo"
+ncvlog "/home/tsapiv/POC/PureFPGA/Verilog_Components/Clock_sim/Clock.vo"

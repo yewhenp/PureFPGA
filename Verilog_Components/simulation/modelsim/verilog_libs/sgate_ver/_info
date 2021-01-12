@@ -1,0 +1,448 @@
+m255
+K4
+z2
+!s11f vlog 2020.3 2020.07, Jul 22 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/tsapiv/POC/PureFPGA/Verilog_Components/simulation/modelsim
+vio_buf_opdrn
+Z1 !s110 1610448663
+!i10b 1
+!s100 z0EcHz62UYUVHTAOUgnd]2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IX?1k@b<BN3P>VGaF;oC`I3
+R0
+Z3 w1608998748
+Z4 8/opt/intel_fpga_lite/19.1/quartus/eda/sim_lib/sgate.v
+Z5 F/opt/intel_fpga_lite/19.1/quartus/eda/sim_lib/sgate.v
+!i122 20
+L0 249 22
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z8 !s108 1610448663.000000
+!s107 /opt/intel_fpga_lite/19.1/quartus/eda/sim_lib/sgate.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|sgate_ver|/opt/intel_fpga_lite/19.1/quartus/eda/sim_lib/sgate.v|
+!i113 1
+Z10 o-vlog01compat -work sgate_ver
+Z11 tCvgOpt 0
+vio_buf_tri
+R1
+!i10b 1
+!s100 OkVkfhJlbI5njJOG1hTe^2
+R2
+Ii[H9RFI<OJ7_N]0[^[dLh2
+R0
+R3
+R4
+R5
+!i122 20
+L0 221 23
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 /opt/intel_fpga_lite/19.1/quartus/eda/sim_lib/sgate.v|
+R9
+!i113 1
+R10
+R11
+vmux21
+R1
+!i10b 1
+!s100 Sc^=5aRZnTN9<QgD6G?[00
+R2
+IlD0>]m2?A1bQk[NVFn7Gh0
+R0
+R3
+R4
+R5
+!i122 20
+L0 191 26
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_add
+R1
+!i10b 1
+!s100 ZR=EZ2WV8G<94^6TNJgX?0
+R2
+I^0M4RXV`8_lhB[14<_Wg:0
+R0
+R3
+R4
+R5
+!i122 20
+L0 19 74
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_addsub
+R1
+!i10b 1
+!s100 <1G1iC9RHGaXFX]m5]F:L1
+R2
+IK6oiTc[AVWB=_6UAQ`^dT1
+R0
+R3
+R4
+R5
+!i122 20
+L0 96 91
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_bus_mux
+R1
+!i10b 1
+!s100 Yh<nR1o=YIi<HDhM9J[UE3
+R2
+I2D<MZ`=dzagE3Vkd@hP030
+R0
+R3
+R4
+R5
+!i122 20
+L0 1073 59
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_decoder
+R1
+!i10b 1
+!s100 7A>?IXP`Yj:aEj5TORzhN0
+R2
+Ii;CgM18RBTO[mSnMm5<[E2
+R0
+R3
+R4
+R5
+!i122 20
+L0 1037 32
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_div
+R1
+!i10b 1
+!s100 hnQA^c[7zEOGQc2W[KR6O3
+R2
+IDLQlX^1AZ_l9C>2lH6m@`0
+R0
+R3
+R4
+R5
+!i122 20
+L0 395 85
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_latch
+R1
+!i10b 1
+!s100 ]l:H1;gM=ZLgFVb;FK4GJ2
+R2
+I5OYb@EcRDY]X0cz=SFGD[0
+R0
+R3
+R4
+R5
+!i122 20
+L0 1136 17
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_left_shift
+R1
+!i10b 1
+!s100 J2GE@5C@aGbZ:]90@c92N0
+R2
+IYQc<L@gQaK_?2g`EgFFU31
+R0
+R3
+R4
+R5
+!i122 20
+L0 573 72
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_less_than
+R1
+!i10b 1
+!s100 JJV5Gz8:6iG7g1^_hjA9:1
+R2
+IY[>OdAVjETG?3zQQ_BPF93
+R0
+R3
+R4
+R5
+!i122 20
+L0 854 88
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_mod
+R1
+!i10b 1
+!s100 02Tza445NgDJJ?Djl`@K`3
+R2
+IG4:jl:EeSk[Xjz[AbVdGM3
+R0
+R3
+R4
+R5
+!i122 20
+L0 484 85
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_mult
+R1
+!i10b 1
+!s100 fSLnhaYom_OPiTTF;aMFT1
+R2
+I]<hYmNz2J5`NnF<Pf[:]c3
+R0
+R3
+R4
+R5
+!i122 20
+L0 275 68
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_mux
+R1
+!i10b 1
+!s100 O]6gciK:1W6Z<z:X6cIgn0
+R2
+I8hM7j1]gdMc3d15T:HjB?1
+R0
+R3
+R4
+R5
+!i122 20
+L0 946 42
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_right_shift
+R1
+!i10b 1
+!s100 4JLWgO]R0OYfj`aMW[34>0
+R2
+I^j6B?8]lWdL5`Ifa5[S7c1
+R0
+R3
+R4
+R5
+!i122 20
+L0 650 79
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_rotate_left
+R1
+!i10b 1
+!s100 0VQX`l^On;Vf^I0]GHIi63
+R2
+I[2bj^m;[dh77`VMzQ9?D=3
+R0
+R3
+R4
+R5
+!i122 20
+L0 733 57
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_rotate_right
+R1
+!i10b 1
+!s100 SBez6G5C20l@Ag]S6mN4a0
+R2
+I5JfYi8oaGfG>=3nCgRn2c0
+R0
+R3
+R4
+R5
+!i122 20
+L0 794 56
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+voper_selector
+R1
+!i10b 1
+!s100 IjdF9i1^I`Ja]QScHQUG<1
+R2
+I3fN:DN4;`<DI3m:F9zeV80
+R0
+R3
+R4
+R5
+!i122 20
+L0 992 41
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vtri_bus
+R1
+!i10b 1
+!s100 ZCbCQ[6PzBHXG=_Vb`23j3
+R2
+I1lB5RBcP<6IR^X0ZnFU;Q2
+R0
+R3
+R4
+R5
+!i122 20
+L0 348 43
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11

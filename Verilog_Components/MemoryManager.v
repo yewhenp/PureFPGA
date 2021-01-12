@@ -37,11 +37,11 @@ module memory_manager
   assign core_address = address[ADDR_SPACE - 1:CORE_CODIND + 1];
   assign wren_out = wren_in;
   
-  decoder64 d1(.data(address[CORE_CODIND - 1:0]), .eq63(cores));
-  decoder8 d2(.data(address[REGS_CODIND - 1:0]), .eq7(regs));
+  decoder64 d1(.data(address[CORE_CODIND:1]), .eq63(cores));
+  decoder8 d2(.data(address[REGS_CODIND:1]), .eq7(regs));
   
   always @(posedge clk) begin
-		if(address > (2 << (ADDR_SPACE - 1) - NUM_REGS)) begin
+		if(address[ADDR_SPACE - 1: 1] >= (1 << (ADDR_SPACE - 1) - NUM_REGS)) begin
 		  core_en = 0;
 		  reg_en = regs;
 		end 

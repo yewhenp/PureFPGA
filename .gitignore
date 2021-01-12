@@ -5,3 +5,4 @@ venv
 python_simulation/venv
 quartus
 Verilog_Components/db
+Verilog_Components/simulation

@@ -12,26 +12,23 @@ module InstructionProcessor #(
     ZERO=3
 )
     (
-    input clock,
-    input [WIDTH-1:0]regData,
-    input [REGS_CODING-1:0]regChoose,
-    input [WIDTH-1:0]ROMData,
-//	 input regEn,
-    // inout RAMData[WIDTH-1:0],
-//    output RAMWriteRead,
-    output [WIDTH-2:0]instructionOut,
-	 output [WIDTH-1:0] ROMAddress
+    input                   clock,
+    input [WIDTH-1:0]       regData,
+    input [REGS_CODING-1:0] regChoose,
+    input [WIDTH-1:0]       ROMData,
+    output [WIDTH-2:0]      instructionOut,
+	 output [WIDTH-1:0]      ROMAddress
 );
     wire[WIDTH-1:0] ALURes, RAMOutData;
-    wire ALUCF, ALUSF, ALUOF, ALUZF;
+    wire ALUCF, ALUSF, ALUOF, ALUZF, cin;
 
     reg[14:0] coreInstr;
     reg[3:0] ALUSel = 4'b1111;
-    reg[WIDTH-1:0] firstOperand=0, secondOperand=0, ALUResReg=0, RAMAddress=0, RAMData=0;
+    reg[WIDTH-1:0] firstOperand=0, secondOperand=0, RAMAddress=0, RAMData=0;
     reg cinReg, saveRes, wren;
 
     assign instructionOut = coreInstr;
-    //assign ALURes = ALUResReg;
+    assign cin = cinReg;
 	 
 
     reg[WIDTH-1:0] reg0, reg1, reg2, reg3, reg4, reg5, sp, ip, flags; // CF, SF, OF, ZF
@@ -69,7 +66,7 @@ module InstructionProcessor #(
                 8'b00100000: reg5 = regData;
                 8'b01000000: sp   = regData;
                 8'b10000000: ip   = regData;
-                default:reg0 = reg0;
+                default:     reg0 = reg0;
             endcase
         end else begin
             if (ROMData[0] == 1) begin
@@ -200,18 +197,18 @@ module InstructionProcessor #(
                                 saveRes = 0;
                                 // movl moh movf, jumps
                                 case (ROMData[13:9])
-                                    00110: reg0[WIDTH-1:8] = ROMData[8:0];
-                                    00111: reg1[WIDTH-1:8] = ROMData[8:0];
-                                    01000: reg2[WIDTH-1:8] = ROMData[8:0];
-                                    01001: reg3[WIDTH-1:8] = ROMData[8:0];
-                                    01010: reg4[WIDTH-1:8] = ROMData[8:0];
-                                    01011: reg5[WIDTH-1:8] = ROMData[8:0];
-                                    01100: reg0[7:0]       = ROMData[8:0];
-                                    01101: reg1[7:0]       = ROMData[8:0];
-                                    01110: reg2[7:0]       = ROMData[8:0];
-                                    01111: reg3[7:0]       = ROMData[8:0];
-                                    10000: reg4[7:0]       = ROMData[8:0];
-                                    10001: reg5[7:0]       = ROMData[8:0];
+                                    00110: reg0[WIDTH-1:8] = ROMData[8:1];
+                                    00111: reg1[WIDTH-1:8] = ROMData[8:1];
+                                    01000: reg2[WIDTH-1:8] = ROMData[8:1];
+                                    01001: reg3[WIDTH-1:8] = ROMData[8:1];
+                                    01010: reg4[WIDTH-1:8] = ROMData[8:1];
+                                    01011: reg5[WIDTH-1:8] = ROMData[8:1];
+                                    01100: reg0[7:0]       = ROMData[8:1];
+                                    01101: reg1[7:0]       = ROMData[8:1];
+                                    01110: reg2[7:0]       = ROMData[8:1];
+                                    01111: reg3[7:0]       = ROMData[8:1];
+                                    10000: reg4[7:0]       = ROMData[8:1];
+                                    10001: reg5[7:0]       = ROMData[8:1];
                                     10010: reg0 = flags;
                                     10011: reg1 = flags;
                                     10100: reg2 = flags;

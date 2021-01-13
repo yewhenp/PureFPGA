@@ -1,4 +1,4 @@
-module InstructionProcessorTB();
+module Instruction_Processor_tb();
 
 localparam WIDTH=16;
 localparam REGS_CODING=8;
@@ -30,6 +30,34 @@ initial begin
 
     $stop;
 
+    $display("Core instruction execution");
+    regChoose = 0;
+    regData = 0;
+    ROMData = 16'b11_0000_1010_00_00_01;  // addal reg0, reg0, reg1
+    #10;
+    
+    ROMData = 16'b10_01010_111111110;     // movl reg0 255
+    #10;
+
+    $display("Instruction processor execution");
+    $display("reg0 = 13");
+    regChoose = 8'b00000001;
+    regData = 13;
+    #10;
+
+    ROMData = 16'b01_0000_1010_000_010;  // add reg0, reg2
+    #10;
+
+    ROMData = 16'b00_01101_111111100;   // movli reg1 254
+    #10;
+
+    ROMData = 16'b00_00011_010_010_000; // store reg1, reg0
+    #10;
+
+    ROMData = 16'b00_00001_010_011_000; // load reg3, reg0
+    #10
+
+    $stop;
 
 end
 

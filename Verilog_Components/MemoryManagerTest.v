@@ -1,3 +1,4 @@
+`timescale 1 ns/10 ps 
 module MemoryManagerTest;
    localparam DATA_WIDTH	=8;
 	localparam ADDRESS_WIDTH=23;
@@ -21,11 +22,12 @@ module MemoryManagerTest;
 	reg 	[DATA_WIDTH-1:0] data_tx;
 	wire	[DATA_WIDTH-1:0] data_rx;
 	
-	assign data = wren_in ? data_tx : 8'bZ;
 	assign data_rx = data;
+	assign data = wren_in ? data_tx : 8'bZ;
 	
 	
-//	assign core_data = ~wren_in ? core_data_tx : 16'bZ;
+	
+	assign core_data = ~wren_in ? core_data_tx : 16'bZ;
 	assign core_data_rx = core_data;
 	
 //	assign bidir_signal = wren_sig ? input_value : 8'bZ;
@@ -43,6 +45,19 @@ module MemoryManagerTest;
 	.reg_en(reg_en) ,	// output [NUM_REGS-1:0] reg_en_sig
 	.core_en(core_en) 	// output [NUM_CORES-1:0] core_en_sig
 );
+//	RAM_1 ram(
+//        .address(core_address),
+//        .clock(clk),
+//        .data(core_data),
+//        .wren(wren_in),
+//        .q(core_data)
+//    );
+	 RAM raam(
+	  .address_a(core_address),
+	  .clock(clk),
+	  .data_a(core_data),
+	  .wren_a(wren_in),
+	  .q_a(core_data));
 	initial
 	 
     begin 
@@ -58,6 +73,17 @@ module MemoryManagerTest;
 		#10;
 		wren_in = 0;
 		#20;
+		address = 0;
+		#10;
+		address = 1;
+		
+		
+//		core_data_tx = 16'b11110000_00001111;
+//		wren_in = 0;
+//		address = 0;
+//		#10;
+//		address = 1;
+		
 		
 		
 		

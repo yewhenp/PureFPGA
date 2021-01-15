@@ -1,4 +1,5 @@
-Warning (10268): Verilog HDL information at Instruction_Processor.v(60): always construct contains both blocking and non-blocking assignments File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 60
+Warning (10273): Verilog HDL warning at core_test.v(18): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core_test.v Line: 18
+Warning (10268): Verilog HDL information at Instruction_Processor.v(57): always construct contains both blocking and non-blocking assignments File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 57
 Warning (10273): Verilog HDL warning at core.v(28): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 28
 Warning (10273): Verilog HDL warning at core.v(66): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 66
 Warning (10273): Verilog HDL warning at MemoryManager.v(31): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 31
@@ -7,4 +8,5 @@ Info (10281): Verilog HDL Declaration information at BufferManager.v(4): object 
 Info (10281): Verilog HDL Declaration information at BufferManager.v(5): object "GREEN" differs only in case from object "green" in the same scope File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 5
 Info (10281): Verilog HDL Declaration information at BufferManager.v(6): object "BLUE" differs only in case from object "blue" in the same scope File: /home/tsapiv/POC/PureFPGA/Verilog_Components/BufferManager.v Line: 6
 Warning (10273): Verilog HDL warning at Videocard_test.v(17): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Videocard_test.v Line: 17
-Warning (10273): Verilog HDL warning at MemoryManagerTest.v(24): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 24
+Warning (10273): Verilog HDL warning at MemoryManagerTest.v(26): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 26
+Warning (10273): Verilog HDL warning at MemoryManagerTest.v(30): extended using "x" or "z" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 30

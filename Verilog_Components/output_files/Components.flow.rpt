@@ -1,5 +1,5 @@
 Flow report for Components
-Tue Jan 12 12:49:26 2021
+Fri Jan 15 22:07:12 2021
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -41,10 +41,10 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Flow Summary                                                              ;
 +-----------------------------+---------------------------------------------+
-; Flow Status                 ; Successful - Tue Jan 12 12:49:26 2021       ;
+; Flow Status                 ; Successful - Fri Jan 15 22:07:12 2021       ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; Components                                  ;
-; Top-level Entity Name       ; MemoryManagerTest                           ;
+; Top-level Entity Name       ; core                                        ;
 ; Family                      ; Cyclone V                                   ;
 ; Device                      ; 5CGXFC7C7F23C8                              ;
 ; Timing Models               ; Final                                       ;
@@ -63,39 +63,39 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/12/2021 12:49:19 ;
+; Start date & time ; 01/15/2021 22:07:05 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; Components          ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                     ;
-+-------------------------------------+----------------------------------------+---------------+-------------------+-----------------------------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name       ; Section Id                        ;
-+-------------------------------------+----------------------------------------+---------------+-------------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 70870729223739.161044855904860         ; --            ; --                ; --                                ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --                ; eda_board_design_timing           ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --                ; eda_board_design_boundary_scan    ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --                ; eda_board_design_signal_integrity ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --                ; eda_board_design_symbol           ;
-; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --                ; eda_simulation                    ;
-; EDA_SIMULATION_TOOL                 ; ModelSim (Verilog)                     ; <None>        ; --                ; --                                ;
-; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --                ; eda_simulation                    ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --                ; --                                ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --                ; --                                ;
-; MISC_FILE                           ; Clock.cmp                              ; --            ; --                ; --                                ;
-; MISC_FILE                           ; Clock_sim/Clock.vo                     ; --            ; --                ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; MemoryManagerTest ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; MemoryManagerTest ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; MemoryManagerTest ; Top                               ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --                ; --                                ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --                ; --                                ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --                ; --                                ;
-; SPD_FILE                            ; Clock.spd                              ; --            ; --                ; --                                ;
-; SYNTHESIS_ONLY_QIP                  ; On                                     ; --            ; --                ; --                                ;
-; TOP_LEVEL_ENTITY                    ; MemoryManagerTest                      ; Components    ; --                ; --                                ;
-+-------------------------------------+----------------------------------------+---------------+-------------------+-----------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                               ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID               ; 70870729223739.161074122506974         ; --            ; --          ; --                                ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_symbol           ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                 ; ModelSim (Verilog)                     ; <None>        ; --          ; --                                ;
+; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation                    ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --                                ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --                                ;
+; MISC_FILE                           ; Clock.cmp                              ; --            ; --          ; --                                ;
+; MISC_FILE                           ; Clock_sim/Clock.vo                     ; --            ; --          ; --                                ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; core        ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; core        ; Top                               ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; core        ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --                                ;
+; SPD_FILE                            ; Clock.spd                              ; --            ; --          ; --                                ;
+; SYNTHESIS_ONLY_QIP                  ; On                                     ; --            ; --          ; --                                ;
+; TOP_LEVEL_ENTITY                    ; core                                   ; Components    ; --          ; --                                ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------+
@@ -103,7 +103,7 @@ https://fpgasoftware.intel.com/eula.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:07     ; 1.0                     ; 1231 MB             ; 00:00:18                           ;
+; Analysis & Elaboration ; 00:00:07     ; 1.0                     ; 1280 MB             ; 00:00:18                           ;
 ; Total                  ; 00:00:07     ; --                      ; --                  ; 00:00:18                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 

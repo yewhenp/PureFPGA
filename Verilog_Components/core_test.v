@@ -1,3 +1,4 @@
+`timescale 1 ns/10 ps 
 module core_test;
 
 localparam DATA_WIDTH=16;
@@ -13,8 +14,9 @@ reg [ADDRESS_WIDTH-1:0]	address;
 reg 	wren = 1;
 reg 	cpen = 1;
 
-assign data = (wren & cpen) ? data_in : 16`bZ;
 assign data_out = data;
+assign data = (wren & cpen) ? data_in : 16'bZ;
+
 
 core cooree (
 	.data(data), 
@@ -32,27 +34,27 @@ initial begin
     $display("Testing writing into memory");
     $display("Load 0 to address 0");
 	 
-	 address = 16`b0000000000000000;
-	 data_in = 16`b0100000000000000;
+	 address = 16'b0000000000000000;
+	 data_in = 16'b0100000000000000;
 	 #10;
 	 
-	 address = 16`b0000000000000001;
-	 data_in = 16`b0000000111000000;
+	 address = 16'b0000000000000001;
+	 data_in = 16'b0000000111000000;
 	 #10;
 	 
 	 $display("Testing reading into memory");
 	 
-	 address = 16`b0000000000000000;
+	 address = 16'b0000000000000000;
 	 wren = 0;
 	 #10;
 	 
-	 address = 16`b0000000000000001;
+	 address = 16'b0000000000000001;
 	 #10;
 	 
 	 $display("Testing instruction execution");
 	 
 end
 
-always #5 clk = ~clk;
+always #10 clk = ~clk;
 
 endmodule 

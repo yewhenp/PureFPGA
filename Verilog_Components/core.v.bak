@@ -65,7 +65,7 @@ module core
   .clock(clk),
   .data_a((cpen & wren) ? data: 16'bZ),
   .data_b(core_input_data),
-  .wren_a(wren & cpen),
+  .wren_a(wren && cpen),
   .wren_b(core_wren),
   .q_a(out_data),
   .q_b(core_output_data)

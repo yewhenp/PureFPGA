@@ -1,5 +1,5 @@
 Analysis & Elaboration report for Components
-Tue Jan 12 12:49:26 2021
+Fri Jan 15 22:07:12 2021
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -9,11 +9,19 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Parameter Settings for User Entity Instance: memory_manager:memory_manager_inst
-  5. Analysis & Elaboration Settings
-  6. Port Connectivity Checks: "memory_manager:memory_manager_inst"
-  7. Analysis & Elaboration Messages
-  8. Analysis & Elaboration Suppressed Messages
+  4. Source assignments for RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated
+  5. Source assignments for Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated
+  6. Source assignments for Buffer:buffer2|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated
+  7. Parameter Settings for User Entity Instance: Top-level Entity: |core
+  8. Parameter Settings for User Entity Instance: RAM:raam|altsyncram:altsyncram_component
+  9. Parameter Settings for User Entity Instance: Buffer:buffer1|altsyncram:altsyncram_component
+ 10. Parameter Settings for User Entity Instance: Buffer:buffer2|altsyncram:altsyncram_component
+ 11. altsyncram Parameter Settings by Entity Instance
+ 12. Analysis & Elaboration Settings
+ 13. Port Connectivity Checks: "Buffer:buffer2"
+ 14. Port Connectivity Checks: "Buffer:buffer1"
+ 15. Analysis & Elaboration Messages
+ 16. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -40,10 +48,10 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                              ;
 +-------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Tue Jan 12 12:49:26 2021       ;
+; Analysis & Elaboration Status ; Successful - Fri Jan 15 22:07:12 2021       ;
 ; Quartus Prime Version         ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                 ; Components                                  ;
-; Top-level Entity Name         ; MemoryManagerTest                           ;
+; Top-level Entity Name         ; core                                        ;
 ; Family                        ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
 ; Total registers               ; N/A until Partition Merge                   ;
@@ -71,20 +79,275 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: memory_manager:memory_manager_inst ;
-+----------------+-------+--------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                   ;
-+----------------+-------+--------------------------------------------------------+
-; CORE_WIDTH     ; 16    ; Signed Integer                                         ;
-; DATA_WIDTH     ; 8     ; Signed Integer                                         ;
-; ADDR_SPACE     ; 23    ; Signed Integer                                         ;
-; NUM_CORES      ; 64    ; Signed Integer                                         ;
-; NUM_REGS       ; 8     ; Signed Integer                                         ;
-; REGS_CODIND    ; 3     ; Signed Integer                                         ;
-; CORE_CODIND    ; 6     ; Signed Integer                                         ;
-+----------------+-------+--------------------------------------------------------+
++------------------------------------------------------------------------------------------------+
+; Source assignments for RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------+
+; Assignment                      ; Value              ; From ; To                               ;
++---------------------------------+--------------------+------+----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
++---------------------------------+--------------------+------+----------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Source assignments for Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------+
+; Assignment                      ; Value              ; From ; To                                     ;
++---------------------------------+--------------------+------+----------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                      ;
++---------------------------------+--------------------+------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Source assignments for Buffer:buffer2|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------+
+; Assignment                      ; Value              ; From ; To                                     ;
++---------------------------------+--------------------+------+----------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                      ;
++---------------------------------+--------------------+------+----------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |core ;
++----------------------+-------+---------------------------------------+
+; Parameter Name       ; Value ; Type                                  ;
++----------------------+-------+---------------------------------------+
+; DATA_WIDTH           ; 16    ; Signed Integer                        ;
+; ADDRESS_WIDTH        ; 16    ; Signed Integer                        ;
+; BUFFER_ADDRESS_WIDTH ; 13    ; Signed Integer                        ;
+; INSTRUCTION_WIDTH    ; 15    ; Signed Integer                        ;
+; NUM_REGS             ; 4     ; Signed Integer                        ;
+; NUM_FLAGS            ; 4     ; Signed Integer                        ;
+; CARRY                ; 0     ; Signed Integer                        ;
+; SIGN                 ; 1     ; Signed Integer                        ;
+; OVERFLOW             ; 2     ; Signed Integer                        ;
+; ZERO                 ; 3     ; Signed Integer                        ;
++----------------------+-------+---------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: RAM:raam|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+---------------------------+
+; Parameter Name                     ; Value                ; Type                      ;
++------------------------------------+----------------------+---------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                   ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY              ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE              ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE            ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                   ;
+; OPERATION_MODE                     ; BIDIR_DUAL_PORT      ; Untyped                   ;
+; WIDTH_A                            ; 16                   ; Signed Integer            ;
+; WIDTHAD_A                          ; 16                   ; Signed Integer            ;
+; NUMWORDS_A                         ; 65536                ; Signed Integer            ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                   ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                   ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WIDTH_B                            ; 16                   ; Signed Integer            ;
+; WIDTHAD_B                          ; 16                   ; Signed Integer            ;
+; NUMWORDS_B                         ; 65536                ; Signed Integer            ;
+; INDATA_REG_B                       ; CLOCK0               ; Untyped                   ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK0               ; Untyped                   ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                   ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                   ;
+; OUTDATA_REG_B                      ; CLOCK0               ; Untyped                   ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                   ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer            ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Signed Integer            ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                   ;
+; BYTE_SIZE                          ; 8                    ; Untyped                   ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; INIT_FILE                          ; UNUSED               ; Untyped                   ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                   ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_B               ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_B              ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                   ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                   ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                   ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                   ;
+; CBXI_PARAMETER                     ; altsyncram_0im2      ; Untyped                   ;
++------------------------------------+----------------------+---------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Buffer:buffer1|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+---------------------------------+
+; Parameter Name                     ; Value                ; Type                            ;
++------------------------------------+----------------------+---------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                         ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                    ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                  ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                         ;
+; OPERATION_MODE                     ; BIDIR_DUAL_PORT      ; Untyped                         ;
+; WIDTH_A                            ; 16                   ; Signed Integer                  ;
+; WIDTHAD_A                          ; 13                   ; Signed Integer                  ;
+; NUMWORDS_A                         ; 8192                 ; Signed Integer                  ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                         ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                         ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WIDTH_B                            ; 16                   ; Signed Integer                  ;
+; WIDTHAD_B                          ; 13                   ; Signed Integer                  ;
+; NUMWORDS_B                         ; 8192                 ; Signed Integer                  ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                         ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                         ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                         ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                         ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                  ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Signed Integer                  ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                         ;
+; BYTE_SIZE                          ; 8                    ; Untyped                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; INIT_FILE                          ; UNUSED               ; Untyped                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                         ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_B               ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                         ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                         ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                         ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                         ;
+; CBXI_PARAMETER                     ; altsyncram_m4j2      ; Untyped                         ;
++------------------------------------+----------------------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Buffer:buffer2|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+---------------------------------+
+; Parameter Name                     ; Value                ; Type                            ;
++------------------------------------+----------------------+---------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                         ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                    ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                  ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                         ;
+; OPERATION_MODE                     ; BIDIR_DUAL_PORT      ; Untyped                         ;
+; WIDTH_A                            ; 16                   ; Signed Integer                  ;
+; WIDTHAD_A                          ; 13                   ; Signed Integer                  ;
+; NUMWORDS_A                         ; 8192                 ; Signed Integer                  ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                         ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                         ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WIDTH_B                            ; 16                   ; Signed Integer                  ;
+; WIDTHAD_B                          ; 13                   ; Signed Integer                  ;
+; NUMWORDS_B                         ; 8192                 ; Signed Integer                  ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                         ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                         ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                         ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                         ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                  ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Signed Integer                  ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                         ;
+; BYTE_SIZE                          ; 8                    ; Untyped                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; INIT_FILE                          ; UNUSED               ; Untyped                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                         ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_B               ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                         ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                         ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                         ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                         ;
+; CBXI_PARAMETER                     ; altsyncram_m4j2      ; Untyped                         ;
++------------------------------------+----------------------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                           ;
++-------------------------------------------+------------------------------------------------+
+; Name                                      ; Value                                          ;
++-------------------------------------------+------------------------------------------------+
+; Number of entity instances                ; 3                                              ;
+; Entity Instance                           ; RAM:raam|altsyncram:altsyncram_component       ;
+;     -- OPERATION_MODE                     ; BIDIR_DUAL_PORT                                ;
+;     -- WIDTH_A                            ; 16                                             ;
+;     -- NUMWORDS_A                         ; 65536                                          ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                         ;
+;     -- WIDTH_B                            ; 16                                             ;
+;     -- NUMWORDS_B                         ; 65536                                          ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                         ;
+;     -- OUTDATA_REG_B                      ; CLOCK0                                         ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
+; Entity Instance                           ; Buffer:buffer1|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; BIDIR_DUAL_PORT                                ;
+;     -- WIDTH_A                            ; 16                                             ;
+;     -- NUMWORDS_A                         ; 8192                                           ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                         ;
+;     -- WIDTH_B                            ; 16                                             ;
+;     -- NUMWORDS_B                         ; 8192                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
+; Entity Instance                           ; Buffer:buffer2|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; BIDIR_DUAL_PORT                                ;
+;     -- WIDTH_A                            ; 16                                             ;
+;     -- NUMWORDS_A                         ; 8192                                           ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                         ;
+;     -- WIDTH_B                            ; 16                                             ;
+;     -- NUMWORDS_B                         ; 8192                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
++-------------------------------------------+------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -93,7 +356,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; MemoryManagerTest  ; Components         ;
+; Top-level entity name                                                           ; core               ; Components         ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -174,18 +437,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "memory_manager:memory_manager_inst"                                                         ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port         ; Type   ; Severity ; Details                                                                             ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; data         ; Bidir  ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; core_data    ; Bidir  ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; core_address ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; wren_out     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; reg_en       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; core_en      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------------------+
+; Port Connectivity Checks: "Buffer:buffer2"          ;
++--------+--------+----------+------------------------+
+; Port   ; Type   ; Severity ; Details                ;
++--------+--------+----------+------------------------+
+; data_a ; Input  ; Info     ; Stuck at GND           ;
+; wren_a ; Input  ; Info     ; Stuck at GND           ;
+; q_b    ; Output ; Info     ; Explicitly unconnected ;
++--------+--------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "Buffer:buffer1"          ;
++--------+--------+----------+------------------------+
+; Port   ; Type   ; Severity ; Details                ;
++--------+--------+----------+------------------------+
+; data_a ; Input  ; Info     ; Stuck at GND           ;
+; wren_a ; Input  ; Info     ; Stuck at GND           ;
+; q_b    ; Output ; Info     ; Explicitly unconnected ;
++--------+--------+----------+------------------------+
 
 
 +---------------------------------+
@@ -194,10 +465,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue Jan 12 12:49:19 2021
+    Info: Processing started: Fri Jan 15 22:07:05 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Components -c Components --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file core_test.v
+    Info (12023): Found entity 1: core_test File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core_test.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file Components.v
     Info (12023): Found entity 1: Components File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Components.v Line: 20
 Info (12021): Found 1 design units, including 1 entities, in source file ROM.v
@@ -233,28 +506,92 @@ Info (12021): Found 1 design units, including 1 entities, in source file Decoder
 Info (12021): Found 1 design units, including 1 entities, in source file Videocard_test.v
     Info (12023): Found entity 1: Videocard_test File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Videocard_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file MemoryManagerTest.v
-    Info (12023): Found entity 1: MemoryManagerTest File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at Instruction_Processor.v(43): created implicit net for "cin" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Instruction_Processor.v Line: 43
-Info (12127): Elaborating entity "MemoryManagerTest" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at MemoryManagerTest.v(18): object "core_data_rx" assigned a value but never read File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 18
-Warning (10036): Verilog HDL or VHDL warning at MemoryManagerTest.v(22): object "data_rx" assigned a value but never read File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 22
-Warning (10036): Verilog HDL or VHDL warning at MemoryManagerTest.v(33): object "i" assigned a value but never read File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 33
-Warning (10755): Verilog HDL warning at MemoryManagerTest.v(78): assignments to clk create a combinational loop File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 78
-Info (12128): Elaborating entity "memory_manager" for hierarchy "memory_manager:memory_manager_inst" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 45
-Info (12128): Elaborating entity "decoder64" for hierarchy "memory_manager:memory_manager_inst|decoder64:d1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 40
-Info (12128): Elaborating entity "decoder8" for hierarchy "memory_manager:memory_manager_inst|decoder8:d2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManager.v Line: 41
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "clk" is missing source, defaulting to GND File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 7
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+    Info (12023): Found entity 1: MemoryManagerTest File: /home/tsapiv/POC/PureFPGA/Verilog_Components/MemoryManagerTest.v Line: 2
+Info (12127): Elaborating entity "core" for the top level hierarchy
+Info (12128): Elaborating entity "RAM" for hierarchy "RAM:raam" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 72
+Info (12128): Elaborating entity "altsyncram" for hierarchy "RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12130): Elaborated megafunction instantiation "RAM:raam|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+Info (12133): Instantiated megafunction "RAM:raam|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/RAM.v Line: 98
+    Info (12134): Parameter "address_reg_b" = "CLOCK0"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
+    Info (12134): Parameter "indata_reg_b" = "CLOCK0"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "numwords_b" = "65536"
+    Info (12134): Parameter "operation_mode" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_aclr_b" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "outdata_reg_b" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_mixed_ports" = "DONT_CARE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "read_during_write_mode_port_b" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "widthad_b" = "16"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_b" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+    Info (12134): Parameter "width_byteena_b" = "1"
+    Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0im2.tdf
+    Info (12023): Found entity 1: altsyncram_0im2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_0im2" for hierarchy "RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dla.tdf
+    Info (12023): Found entity 1: decode_dla File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_dla.tdf Line: 23
+Info (12128): Elaborating entity "decode_dla" for hierarchy "RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_dla:decode2" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 51
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_61a.tdf
+    Info (12023): Found entity 1: decode_61a File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/decode_61a.tdf Line: 23
+Info (12128): Elaborating entity "decode_61a" for hierarchy "RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|decode_61a:rden_decode_a" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 53
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_chb.tdf
+    Info (12023): Found entity 1: mux_chb File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/mux_chb.tdf Line: 23
+Info (12128): Elaborating entity "mux_chb" for hierarchy "RAM:raam|altsyncram:altsyncram_component|altsyncram_0im2:auto_generated|mux_chb:mux4" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_0im2.tdf Line: 55
+Info (12128): Elaborating entity "Buffer" for hierarchy "Buffer:buffer1" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 85
+Info (12128): Elaborating entity "altsyncram" for hierarchy "Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12130): Elaborated megafunction instantiation "Buffer:buffer1|altsyncram:altsyncram_component" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+Info (12133): Instantiated megafunction "Buffer:buffer1|altsyncram:altsyncram_component" with the following parameter: File: /home/tsapiv/POC/PureFPGA/Verilog_Components/Buffer.v Line: 100
+    Info (12134): Parameter "address_reg_b" = "CLOCK1"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
+    Info (12134): Parameter "indata_reg_b" = "CLOCK1"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "8192"
+    Info (12134): Parameter "numwords_b" = "8192"
+    Info (12134): Parameter "operation_mode" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_aclr_b" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "outdata_reg_b" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "read_during_write_mode_port_b" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "13"
+    Info (12134): Parameter "widthad_b" = "13"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_b" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+    Info (12134): Parameter "width_byteena_b" = "1"
+    Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_m4j2.tdf
+    Info (12023): Found entity 1: altsyncram_m4j2 File: /home/tsapiv/POC/PureFPGA/Verilog_Components/db/altsyncram_m4j2.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_m4j2" for hierarchy "Buffer:buffer1|altsyncram:altsyncram_component|altsyncram_m4j2:auto_generated" File: /opt/intel_fpga_lite/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "alu" for hierarchy "alu:allu" File: /home/tsapiv/POC/PureFPGA/Verilog_Components/core.v Line: 112
 Warning (20013): Ignored 16 assignments for entity "Clock" -- entity does not exist in design
     Warning (20014): Assignment for entity set_global_assignment -name IP_TOOL_NAME altera_pll -entity Clock -sip Clock.sip -library lib_Clock was ignored
     Warning (20014): Assignment for entity set_global_assignment -name IP_TOOL_VERSION 20.1 -entity Clock -sip Clock.sip -library lib_Clock was ignored
     Warning (20014): Assignment for entity set_global_assignment -name IP_TOOL_ENV mwpim -entity Clock -sip Clock.sip -library lib_Clock was ignored
 Warning (20013): Ignored 318 assignments for entity "Clock_0002" -- entity does not exist in design
 Info (144001): Generated suppressed messages file /home/tsapiv/POC/PureFPGA/Verilog_Components/output_files/Components.map.smsg
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 1231 megabytes
-    Info: Processing ended: Tue Jan 12 12:49:26 2021
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 1280 megabytes
+    Info: Processing ended: Fri Jan 15 22:07:12 2021
     Info: Elapsed time: 00:00:07
     Info: Total CPU time (on all processors): 00:00:18
 

@@ -17,7 +17,7 @@ module InstructionProcessor #(
     input [REGS_CODING-1:0] regChoose,
     input [WIDTH-1:0]       ROMData,
     output [WIDTH-2:0]      instructionOut,
-	 output [WIDTH-1:0]     ROMAddress
+	output [WIDTH-1:0]      ROMAddress
 );
     wire[WIDTH-1:0] ALURes, RAMOutData;
     wire ALUCF, ALUSF, ALUOF, ALUZF, cin;
@@ -70,7 +70,7 @@ module InstructionProcessor #(
             endcase
         end else begin
             if (ROMData[0] == 1) begin
-                coreInstr <= ROMData[WIDTH-1:1];
+                coreInstr <= ROMData[WIDTH-2:0];
             end else begin
                 coreInstr <= NOP;
                 // suffix

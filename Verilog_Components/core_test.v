@@ -99,6 +99,7 @@ module core_test;
 		instruction = 15'b1_0000_1011_00_00_00;
 		address = 1;
 		#40;
+		$stop;
 		
 //		for(i = 0; i<10; i = i + 1) begin
 //			address = i;

@@ -46,7 +46,7 @@ module InstructionProcessor #(
         .ZeroOut(ALUZF)
     );
 
-    RAM_1 ram1(
+    OnePortRAM ram1(
         .address(RAMAddress),
         .clock(clock),
         .data(RAMData),
@@ -76,46 +76,70 @@ module InstructionProcessor #(
             4'b1111: saveRes <= flags[CARRY] == 0 || flags[ZERO] == 0;
             default: saveRes <= 0;
         endcase
-        ALUSel <= ROMData[13:10];
-        case(ROMData[5:3])    // TODO: fix magic numbers
-            3'b000: firstOperand <= reg0;
-            3'b001: firstOperand <= reg1;
-            3'b010: firstOperand <= reg2;
-            3'b011: firstOperand <= reg3;
-            3'b100: firstOperand <= reg4;
-            3'b101: firstOperand <= reg5;
-            3'b110: firstOperand <= sp;
-            3'b111: firstOperand <= ip;
-            default: firstOperand <= 0;
-        endcase
-        case(ROMData[2:0])    // TODO: fix magic numbers
-            3'b000: secondOperand <= reg0;
-            3'b001: secondOperand <= reg1;
-            3'b010: secondOperand <= reg2;
-            3'b011: secondOperand <= reg3;
-            3'b100: secondOperand <= reg4;
-            3'b101: secondOperand <= reg5;
-            3'b110: secondOperand <= sp;
-            3'b111: secondOperand <= ip;
-            default: secondOperand <= 0;
-        endcase
-        // cin if addc subc or mulc
+        
+        // alu command
         if (ROMData[WIDTH-2] == 1) begin
+            ALUSel <= ROMData[13:10];
+            case(ROMData[5:3])    // TODO: fix magic numbers
+                3'b000: firstOperand <= reg0;
+                3'b001: firstOperand <= reg1;
+                3'b010: firstOperand <= reg2;
+                3'b011: firstOperand <= reg3;
+                3'b100: firstOperand <= reg4;
+                3'b101: firstOperand <= reg5;
+                3'b110: firstOperand <= sp;
+                3'b111: firstOperand <= ip;
+                default:firstOperand <= 0;
+            endcase
+            case(ROMData[2:0])    // TODO: fix magic numbers
+                3'b000: secondOperand <= reg0;
+                3'b001: secondOperand <= reg1;
+                3'b010: secondOperand <= reg2;
+                3'b011: secondOperand <= reg3;
+                3'b100: secondOperand <= reg4;
+                3'b101: secondOperand <= reg5;
+                3'b110: secondOperand <= sp;
+                3'b111: secondOperand <= ip;
+                default:secondOperand <= 0;
+            endcase
             case(ROMData[13:10])
                 4'b0001, 4'b0011, 4'b0101: cinReg <= flags[CARRY];
                 default: cinReg <= 0;
             endcase
         end else begin
-
             // load
             if (ROMData[13:10] == 4'b0000 && saveRes) begin
+                // address is always second operand
+                case(ROMData[2:0])    // TODO: fix magic numbers
+                    3'b000: RAMAddress <= reg0;
+                    3'b001: RAMAddress <= reg1;
+                    3'b010: RAMAddress <= reg2;
+                    3'b011: RAMAddress <= reg3;
+                    3'b100: RAMAddress <= reg4;
+                    3'b101: RAMAddress <= reg5;
+                    3'b110: RAMAddress <= sp;
+                    3'b111: RAMAddress <= ip;
+                    default:RAMAddress <= 0;
+                endcase
                 wren <= 0;
-                RAMAddress <= secondOperand;
+                
             end else begin
                 // store
                 if (ROMData[13:10] == 4'b0001 && saveRes) begin
                     wren <= 1;
-                    RAMAddress <= secondOperand;
+                    // address is always second operand
+                    case(ROMData[2:0])    // TODO: fix magic numbers
+                        3'b000: RAMAddress <= reg0;
+                        3'b001: RAMAddress <= reg1;
+                        3'b010: RAMAddress <= reg2;
+                        3'b011: RAMAddress <= reg3;
+                        3'b100: RAMAddress <= reg4;
+                        3'b101: RAMAddress <= reg5;
+                        3'b110: RAMAddress <= sp;
+                        3'b111: RAMAddress <= ip;
+                        default:RAMAddress <= 0;
+                    endcase
+
                     case(ROMData[5:3])    // TODO: fix magic numbers
                         3'b000: RAMData <= reg0;
                         3'b001: RAMData <= reg1;
@@ -212,7 +236,7 @@ module InstructionProcessor #(
                                 endcase
                             end
                         end else begin
-                            makeJump <= 0;    // probably needed blocking
+                            // makeJump <= 0;    // probably needed blocking
                             // movl moh movf, jumps
                             case (ROMData[13:9])
                                 5'b00110: reg0[WIDTH-1:8] <= ROMData[8:1];
@@ -233,33 +257,36 @@ module InstructionProcessor #(
                                 5'b10101: reg3 <= flags;
                                 5'b10110: reg4 <= flags;
                                 5'b10111: reg5 <= flags;
-                                5'b11000: makeJump <= flags[ZERO] == 1;
-                                5'b11001: makeJump <= flags[ZERO] == 0;
-                                5'b11010: makeJump <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]);
-                                5'b11011: makeJump <= flags[OVERFLOW] == flags[SIGN];
-                                5'b11100: makeJump <= flags[OVERFLOW] != flags[SIGN];
-                                5'b11101: makeJump <= flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]);
+                                5'b11000: makeJump = flags[ZERO] == 1;
+                                5'b11001: makeJump = flags[ZERO] == 0;
+                                5'b11010: makeJump = flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]);
+                                5'b11011: makeJump = flags[OVERFLOW] == flags[SIGN];
+                                5'b11100: makeJump = flags[OVERFLOW] != flags[SIGN];
+                                5'b11101: makeJump = flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]);
                                 default: reg0 <= reg0;
-                            endcase
-                            // jump if condition is True
-                            if (makeJump) begin
-                                ip <= firstOperand;
-                            end     
+                            endcase   
                         end
                     end
                 end
             end
-            ip <= ip + 1;
+            // jump if condition is True
+            if (makeJump) begin
+                case(ROMData[5:3])    // TODO: fix magic numbers
+                    3'b000: ip <= reg0;
+                    3'b001: ip <= reg1;
+                    3'b010: ip <= reg2;
+                    3'b011: ip <= reg3;
+                    3'b100: ip <= reg4;
+                    3'b101: ip <= reg5;
+                    3'b110: ip <= sp;
+                    3'b111: ip <= ip;
+                    default:ip <= ip;
+                endcase
+                makeJump = 0;
+            end else begin
+                ip <= ip + 1; 
+            end
         end
     end
 
 endmodule
-
-// task movelLowestEightBits;
-//     input[WIDTH-1:0]  originalContent;
-//     input[7:0]        bits;
-//     output[WIDTH-1:0] res;
-
-
-
-// endtask

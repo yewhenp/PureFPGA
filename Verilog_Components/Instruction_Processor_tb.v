@@ -71,8 +71,22 @@ initial begin
     #10;
 
     ROMData = 16'b00_00001_010_011_000;  // load reg3, reg0
-    #10
+    #10;
 
+    ROMData = 16'b00_01110_000100000;    // movli reg2 16
+    #10;
+
+    ROMData = 16'b00_10000_000100010;    // movli reg2 17
+    #10;
+
+    ROMData = 16'b01_0010_1010_000_000;  // sub reg0 reg0 
+    #10;
+
+    ROMData = 16'b00_11000_000_001_000;  // je reg1
+    #10; 
+
+	 ROMData = {1'b1, NOP};
+    #30;
     $stop;
 
 end

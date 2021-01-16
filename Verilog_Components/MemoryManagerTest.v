@@ -5,7 +5,7 @@ module MemoryManagerTest;
 	localparam CORE_WIDTH	=16;
 	localparam NUM_REGS		=8;
 	localparam NUM_CORES		=64;
-	reg wren_in, clk;
+	reg wren_in, clk, ram_clk;
 	 
 	wire	[NUM_REGS-1:0] reg_en;
 	wire	[NUM_CORES-1:0] core_en;
@@ -14,24 +14,21 @@ module MemoryManagerTest;
 	reg	[ADDRESS_WIDTH-1:0] address;
 	wire	[CORE_WIDTH-1:0] core_address;
 	
+
 	wire	[CORE_WIDTH-1:0] core_data;
-	reg 	[CORE_WIDTH-1:0] core_data_tx;
+	wire 	[CORE_WIDTH-1:0] core_data_tx;
 	wire	[CORE_WIDTH-1:0] core_data_rx;
 	
 	wire	[DATA_WIDTH-1:0] data;
 	reg 	[DATA_WIDTH-1:0] data_tx;
 	wire	[DATA_WIDTH-1:0] data_rx;
 	
-	assign data_rx = data;
 	assign data = wren_in ? data_tx : 8'bZ;
-	
-	
+	assign data_rx = data;
 	
 	assign core_data = ~wren_in ? core_data_tx : 16'bZ;
 	assign core_data_rx = core_data;
 	
-//	assign bidir_signal = wren_sig ? input_value : 8'bZ;
-//	assign output_value = ~wren_sig ? bidir_signal : 8'bZ;
 	integer i = 0;
 	memory_manager memory_manager_inst
 (
@@ -45,59 +42,37 @@ module MemoryManagerTest;
 	.reg_en(reg_en) ,	// output [NUM_REGS-1:0] reg_en_sig
 	.core_en(core_en) 	// output [NUM_CORES-1:0] core_en_sig
 );
-//	RAM_1 ram(
-//        .address(core_address),
-//        .clock(clk),
-//        .data(core_data),
-//        .wren(wren_in),
-//        .q(core_data)
-//    );
-	 RAM raam(
-	  .address_a(core_address),
+
+	 OnePortRAM raam(
+	  .address((address >> 1)),
 	  .clock(clk),
-	  .data_a(core_data),
-	  .wren_a(wren_in),
-	  .q_a(core_data));
+	  .data(core_data_rx),
+	  .wren(wren_in),
+	  .q(core_data_tx));
 	initial
 	 
     begin 
-		clk = 0;
+		clk = 0;	
+		
+		
+		// writing loop
 		wren_in = 1;
+		for(i = 0; i<20; i = i + 1) begin
+			address = i;
+			data_tx = i;
+			#20;
+			
+		end
+		#5;
+		// reading loop
 		address = 0;
-		data_tx = 5;
-		
-		#10;
-		
-		address = 1;
-		data_tx = 0;
-		#10;
 		wren_in = 0;
-		#20;
-		address = 0;
-		#10;
-		address = 1;
-		
-		
-//		core_data_tx = 16'b11110000_00001111;
-//		wren_in = 0;
-//		address = 0;
-//		#10;
-//		address = 1;
-		
-		
-		
-		
-//		for(i = 0; i<20; i = i + 1) begin
-//			wren_in = 1;
-//			address = i;
-//			data_tx = (i & 1) ? 0: i;
-//			#10;
-//			wren_in = (i & 1) ? 0: 1;
-//			
-//			#10;
-//			
-//		end
-//		#10;
+		for(i = 0; i<20; i = i + 1) begin
+			address = i;
+			#20;	
+		end
+		#40;
+		$stop;
 
 		
     end

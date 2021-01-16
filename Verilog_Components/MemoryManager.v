@@ -1,4 +1,4 @@
-module memory_manager 
+module memory_manager
 #(parameter CORE_WIDTH=16,
 				DATA_WIDTH=8,
             ADDR_SPACE=23,

@@ -21,7 +21,7 @@ module alu(
 	xor(OverflowOut, CarryOut, SignOut);
 	assign ZeroOut = 0 == ALUOut;
 
-	always @(posedge clk)
+	always @(A, B, ALUSel)
 	case(ALUSel)
 		4'b0000: // Addition
 			ALUOut = A + B;

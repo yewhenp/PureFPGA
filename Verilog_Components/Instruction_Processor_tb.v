@@ -12,12 +12,12 @@ wire[WIDTH-2: 0]      instructionOut;
 wire[WIDTH-1: 0]      ROMAddress;
 
 InstructionProcessor IP (
-    .clock(clk), 
-	 .regData(regData), 
-	 .regChoose(regChoose), 
-	 .ROMData(ROMData), 
-    .instructionOut(instructionOut), 
-	 .ROMAddress(ROMAddress)
+   .clock(clk), 
+	.regData(regData), 
+	.regChoose(regChoose), 
+	.ROMData(ROMData), 
+   .instructionOut(instructionOut), 
+	.ROMAddress(ROMAddress)
 );
 
 
@@ -54,14 +54,20 @@ initial begin
     regChoose = 8'b00000001;
     regData = 13;
     #10;
-
+    regChoose = 0;
     ROMData = 16'b01_0000_1010_000_010;  // add reg0, reg2
+    #10;
+ 
+    ROMData = 16'b01_0000_1010_000_010;  // add reg0, reg2
+    #10;
+    
+    ROMData = 16'b01_0100_1010_000_010; // mul reg0, reg2
     #10;
 
     ROMData = 16'b00_01101_111111100;    // movli reg1 254
     #10;
 
-    ROMData = 16'b00_00011_010_010_000;  // store reg1, reg0
+    ROMData = 16'b00_00011_010_001_000;  // store reg1, reg0
     #10;
 
     ROMData = 16'b00_00001_010_011_000;  // load reg3, reg0

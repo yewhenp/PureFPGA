@@ -1,0 +1,6 @@
+movl0 0
+load1al reg1 reg0
+mov1al reg2 reg1
+addal reg1 reg2 reg1
+store1al reg1 reg0
+addnv reg0 reg0 reg0

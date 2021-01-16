@@ -22,7 +22,6 @@ module alu(
 	assign ZeroOut = 0 == ALUOut;
 
 	always @(A, B, ALUSel, CarryIn)
-
 	case(ALUSel)
 		4'b0000: // Addition
 			ALUOut = A + B;

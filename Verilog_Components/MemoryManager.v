@@ -21,6 +21,8 @@ module memory_manager
   wire [NUM_CORES - 1:0]cores;
   wire [NUM_REGS - 1:0]regs;
   
+  wire [ADDR_SPACE - 2:0] inner_address;
+  wire  lowhigh;
   
   reg 	[DATA_WIDTH - 1:0] data_tx;
   wire	[DATA_WIDTH - 1:0] data_rx;
@@ -28,31 +30,37 @@ module memory_manager
   reg 	[CORE_WIDTH - 1:0] core_data_tx;
   wire   [CORE_WIDTH - 1:0] core_data_rx;
   
+  assign {inner_address, lowhigh} = address;
+  
   assign data = ~wren_in ? data_tx : 8'bZ;
   assign data_rx = data;
   
   assign core_data = wren_in ? core_data_tx : 16'bZ;
   assign core_data_rx = core_data;
   
-  assign core_address = address[ADDR_SPACE - 1:CORE_CODIND + 1];
+  assign core_address = inner_address[ADDR_SPACE - 2:CORE_CODIND];
   assign wren_out = wren_in;
   
-  decoder64 d1(.data(address[CORE_CODIND:1]), .eq63(cores));
-  decoder8 d2(.data(address[REGS_CODIND:1]), .eq7(regs));
-  /// removed posedge
+  decoder64 d1(.data(inner_address[CORE_CODIND - 1:0]), .eq63(cores));
+  decoder8 d2(.data(inner_address[REGS_CODIND - 1:0]), .eq7(regs));
+  
   always @(posedge clk) begin
-		if(address[ADDR_SPACE - 1: 1] >= (1 << (ADDR_SPACE - 1) - NUM_REGS)) begin
+		if(inner_address[ADDR_SPACE - 2:0] < (1 << (ADDR_SPACE - 1) - NUM_REGS)) begin
+			reg_en <= 0;
+			core_en <= cores;	  
+		end 
+		else if(inner_address[ADDR_SPACE - 2:0] < (1 << (ADDR_SPACE - 1))) begin
 		  core_en <= 0;
 		  reg_en <= regs;
-		end 
+		end
 		else begin
-		  reg_en <= 0;
-		  core_en <= cores;
+			core_en <= 0;
+			reg_en <= 0;
 		end
 	end
-	/// removed posedge
+	
 	always @(posedge clk) begin
-		if (address[0]) begin
+		if (lowhigh) begin
 			core_data_tx[DATA_WIDTH * 2 - 1: DATA_WIDTH] <= data_rx;
 			data_tx <= core_data_rx[DATA_WIDTH * 2 - 1: DATA_WIDTH];
 		end

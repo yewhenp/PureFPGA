@@ -21,7 +21,11 @@ module alu(
 	xor(OverflowOut, CarryOut, SignOut);
 	assign ZeroOut = 0 == ALUOut;
 
+<<<<<<< HEAD
+	always @(A, B, ALUSel, CarryIn)
+=======
 	always @(A, B, ALUSel)
+>>>>>>> e355c8b426a777e913b516ea784c0cec91f5b9c9
 	case(ALUSel)
 		4'b0000: // Addition
 			ALUOut = A + B;

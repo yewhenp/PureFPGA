@@ -1,6 +1,3 @@
-//`include "ALU.v"
-//`include "RAM.v"
-
 module core 
 #(parameter DATA_WIDTH=16,
 				ADDRESS_WIDTH=16,
@@ -32,9 +29,6 @@ module core
 	reg [DATA_WIDTH - 1:0] aluA;
 	reg [DATA_WIDTH - 1:0] aluB;
 	reg suffixUse;
-
-	//  reg [DATA_WIDTH - 1:0] ALUOut = 16'b0;
-	//  assign aluOut = ALUOut;
 
 	reg [DATA_WIDTH - 1:0]reg0 = 16'b0;
 	reg [DATA_WIDTH - 1:0]reg1 = 16'b0;
@@ -79,33 +73,6 @@ module core
 		.q_a(out_data),
 		.q_b(core_output_data)
 	);
-
-//  Buffer buffer1(
-//  .address_a(bufferAddress),
-//  .address_b(core_address[12:0]),
-//  .clock_a(clk_buffer),
-//  .clock_b(clk),
-//  .data_a(16'b0),
-//  .data_b(core_output_data),
-//  .wren_a(1'b0),
-//  .wren_b(bufferWrite && buffer),
-//  .q_a(bufferDataFirst),
-//  .q_b()
-//);
-//
-//  Buffer buffer2(	
-//  .address_a(bufferAddress),	
-//  .address_b(core_address[12:0]),	
-//  .clock_a(clk_buffer),
-//  .clock_b(clk),
-//  .data_a(16'b0),	
-//  .data_b(core_output_data),	
-//  .wren_a(1'b0),	
-//  .wren_b(bufferWrite && (~buffer)),	
-//  .q_a(bufferDataSecond),
-//  .q_b()	
-//);
-
   
 	alu allu(
 		.A(aluA),
@@ -119,11 +86,8 @@ module core
 		.OverflowOut(flagsOut[OVERFLOW]),
 		.ZeroOut(flagsOut[ZERO])
 	);
-
-  always @(posedge clk) begin
-  
-		core_wren = 0;
-  
+	
+  always @(negedge clk) begin
 		case (suffixes)
 			4'b0000: suffixUse = flags[ZERO] == 1;
 			4'b0001: suffixUse = flags[ZERO] == 0;
@@ -143,7 +107,7 @@ module core
 			4'b1111: suffixUse = flags[CARRY] == 0 || flags[ZERO] == 0;
 			default: suffixUse = 0;
 		endcase
-  
+		
 		if (instruction[14]) begin
 			case(instruction[3:2])
 				2'b00: aluA = reg0;
@@ -160,41 +124,22 @@ module core
 				2'b11: aluB = reg3;
 				default: aluB = reg0;
 			endcase
-			
+
+		end
+		
+		case (registerMovLast)
+			2'b00: core_address = reg0;
+			2'b01: core_address = reg1;
+			2'b10: core_address = reg2;
+			2'b11: core_address = reg3;
+			default: reg0 = reg0;
+		endcase
+		
+  end
+
+  always @(posedge clk) begin
+		if (instruction[14]) begin
 			if (suffixUse) begin
-//				case(instruction[13:10])
-//					4'b0000: // Addition
-//						ALUOut = aluA + aluB;
-//					4'b0001: // Addition with carry
-//						ALUOut = aluA + aluB + flags[CARRY];
-//					4'b0010: // Subtraction
-//						ALUOut = aluA - aluB;
-//					4'b0011: // Subtraction with carry
-//						ALUOut = aluA - aluB - flags[CARRY];
-//					4'b0100: // Multiplication
-//						ALUOut = aluA * aluB;
-//					4'b0101: // Multiplication with carry??????
-//						ALUOut = aluA * aluB;
-//					4'b0110:  //  Logical and
-//						ALUOut = aluA & aluB;
-//					4'b0111: //  Logical or
-//						ALUOut = aluA | aluB;
-//					4'b1000: //  Logical xor
-//						ALUOut = aluA ^ aluB;
-//					4'b1001: //  Left shift
-//						ALUOut = aluA << aluB;
-//					4'b1010: //  Right shift
-//						ALUOut = aluA >> aluB;
-//					4'b1011: //  Not A
-//						ALUOut = ~aluA;
-//					4'b1100: // Compare
-//						ALUOut = aluA - aluB;
-//					4'b1101: // Increment A
-//						ALUOut = aluA + 1'b1;
-//					4'b1110: // Decrement A
-//						ALUOut = aluA - 1'b1;
-//					default: ALUOut = aluA;
-//				endcase
 			
 				flags = flagsOut;
 				case(instruction[5:4])
@@ -219,21 +164,14 @@ module core
 							2'b11: reg3 = core_output_data;
 							default: reg0 = reg0;
 						endcase
-						
-						case (registerMovLast)
-							2'b00: core_address = reg0;
-							2'b01: core_address = reg1;
-							2'b10: core_address = reg2;
-							2'b11: core_address = reg3;
-							default: reg0 = reg0;
-						endcase
+			
 					end
 				end
 					
 				5'b00001: begin
 					if (suffixUse) begin
 						core_wren = 0;
-					
+
 						case (registerMovFirst)
 							2'b00: reg0 = core_output_data;
 							2'b01: reg1 = core_output_data;
@@ -242,20 +180,13 @@ module core
 							default: reg0 = reg0;
 						endcase
 						
-						case (registerMovLast)
-							2'b00: core_address = reg0;
-							2'b01: core_address = reg1;
-							2'b10: core_address = reg2;
-							2'b11: core_address = reg3;
-							default: reg0 = reg0;
-						endcase
 					end
 				end
 				
 				5'b00010: begin
 					if (suffixUse) begin
 						core_wren = 1;
-					
+						
 						case (registerMovFirst)
 							2'b00: core_input_data = reg0;
 							2'b01: core_input_data = reg1;
@@ -263,14 +194,7 @@ module core
 							2'b11: core_input_data = reg3;
 							default: reg0 = reg0;
 						endcase
-						
-						case (registerMovLast)
-							2'b00: core_address = reg0;
-							2'b01: core_address = reg1;
-							2'b10: core_address = reg2;
-							2'b11: core_address = reg3;
-							default: reg0 = reg0;
-						endcase
+					
 					end
 				end
 				
@@ -286,13 +210,6 @@ module core
 							default: reg0 = reg0;
 						endcase
 						
-						case (registerMovLast)
-							2'b00: core_address = reg0;
-							2'b01: core_address = reg1;
-							2'b10: core_address = reg2;
-							2'b11: core_address = reg3;
-							default: reg0 = reg0;
-						endcase
 					end
 				end
 				

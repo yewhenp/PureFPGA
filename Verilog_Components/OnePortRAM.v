@@ -4,11 +4,11 @@ module OnePortRAM
 	(
     output [DATA_WIDTH - 1:0] q,
     input [ADDR_SPACE - 1:0] address,
-    input [DATA_WIDTH:0] data, 
+    input [DATA_WIDTH - 1:0] data, 
     input wren,
     input clock);
 
-    reg [DATA_WIDTH:0] memory [0:(1 << ADDR_SPACE) - 1];
+    reg [DATA_WIDTH - 1:0] memory [0:(1 << ADDR_SPACE) - 1];
 
     always @(posedge clock) begin
         if (wren) begin

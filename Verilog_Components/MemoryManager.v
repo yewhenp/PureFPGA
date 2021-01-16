@@ -24,7 +24,7 @@ module memory_manager
   wire [ADDR_SPACE - 2:0] inner_address;
   wire  lowhigh;
   
-  reg 	[DATA_WIDTH - 1:0] data_tx;
+  wire 	[DATA_WIDTH - 1:0] data_tx;
   wire	[DATA_WIDTH - 1:0] data_rx;
   
   reg 	[CORE_WIDTH - 1:0] core_data_tx;
@@ -58,15 +58,15 @@ module memory_manager
 			reg_en <= 0;
 		end
 	end
-	
+	assign data_tx = (lowhigh) ? core_data_rx[DATA_WIDTH * 2 - 1: DATA_WIDTH]: core_data_rx[DATA_WIDTH - 1: 0];
 	always @(posedge clk) begin
 		if (lowhigh) begin
 			core_data_tx[DATA_WIDTH * 2 - 1: DATA_WIDTH] <= data_rx;
-			data_tx <= core_data_rx[DATA_WIDTH * 2 - 1: DATA_WIDTH];
+//			data_tx <= core_data_rx[DATA_WIDTH * 2 - 1: DATA_WIDTH];
 		end
 		else begin
 			core_data_tx[DATA_WIDTH - 1: 0] <= data_rx;
-			data_tx <= core_data_rx[DATA_WIDTH - 1: 0];
+//			data_tx <= core_data_rx[DATA_WIDTH - 1: 0];
 		end
 	end
 

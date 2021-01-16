@@ -55,22 +55,26 @@ module my_ram #(
    //=========
    // Port A
    //=========
-   always @(clk) begin
+   always @(posedge clk) begin
 		if (wren_a) begin
 			mem[address_a] <= data_a;
-		end else begin
+		end 
+		else begin
 			q_a  <= mem[address_a];
 		end
    end
+//	assign q_a = mem[address_a];
    
    //=========
    // Port B
    //=========
-   always @(clk) begin
+   always @(posedge clk) begin
 		if (wren_b) begin
 			mem[address_b] <= data_b;
-		end else begin
+		end 
+		else begin
 			q_b  <= mem[address_b];
 		end
    end
+//	assign q_b = mem[address_b];
 endmodule

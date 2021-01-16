@@ -56,12 +56,12 @@ SM SM_inst
 	.clk(clk)	// input  clk_sig
 );
 
-	 OnePortRAM ram(
-	  .address((address >> 1)),
-	  .clock(clk),
-	  .data(core_data_rx),
-	  .wren(wren_in),
-	  .q(core_data_tx));
+//	 OnePortRAM ram(
+//	  .address((address >> 1)),
+//	  .clock(clk),
+//	  .data(core_data_rx),
+//	  .wren(wren_in),
+//	  .q(core_data_tx));
 	initial
 	 
     begin 		
@@ -83,29 +83,34 @@ SM SM_inst
 //		15'b100001010011001
 //		15'b000011010010000
 //		15'b100001011000000
-		instruction = 15'b001010000000000;
-		#30;
-		
-		instruction = 15'b000001010010000;
-		#30;
-		
-		// mov 13 to reg 1
-		instruction = 15'b000101010100100;
-		#30;
-		
-		instruction = 15'b100001010011001;
-		#30;
-		
-		// add reg0+reg1, save to reg2
-		instruction = 15'b000011010010000;
-		#30;
-		
-		// mov 1 to reg3
-		instruction = 15'b100001011000000;
-		#105;
+		// movl reg0 0
+		wren_in = 0;
+		instruction = 15'b0_01010_000000000;
+		#20;
+
+		// load reg1 reg0
+		instruction = 15'b0_00001_010010000;
+		#20;
+
+		// mov reg2 reg1
+		instruction = 15'b0_00101_010_10_01_00;
+		#20;
+
+		// add reg1 reg2 reg1
+		instruction = 15'b1_0000_1010_11_10_01;
+		#20;
+
+		// store reg1 reg0
+		instruction = 15'b0_00011_010_11_00_00;
+		#20;
+
+		// nop
+		instruction = 15'b1_0000_1011_00_00_00;
+		address = 0;
+		#45;
 		
 		address = 0; // set read pointer at the beginning
-		wren_in = 0; // enable reading
+//		wren_in = 0; // enable reading
 		for(i = 0; i<128; i = i + 2) begin
 			address = i; // on even read LS byte, on odd read MS byte
 			#20;	

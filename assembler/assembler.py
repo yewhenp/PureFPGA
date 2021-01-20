@@ -354,23 +354,33 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         source = sys.argv[1]
         dest = "a.out"
-    # assemblng
-    elif len(sys.argv) == 4 and sys.argv[2] == "a":
-        preprocessed = sys.argv[1]
-        dest = sys.argv[3]
-        assembler = Assembler(source_name="", dest_name=dest)
-        assembler.assemble_preprocessed(preprocessed, True)
-    # preprocessing
-    elif len(sys.argv) == 4 and sys.argv[2] == "p":
-        source = sys.argv[1]
-        preprocessed = sys.argv[3]
-        assembler = Assembler(source_name=source, dest_name="")
-        assembler.preprocess_source(preprocessed, False)
-    # binary assembling
-    elif len(sys.argv) == 4 and sys.argv[2] == "ab":
-        preprocessed = sys.argv[1]
-        dest = sys.argv[3]
-        assembler = Assembler(source_name="", dest_name=dest)
-        assembler.assemble_preprocessed(preprocessed, True, mode="bin")
+    elif len(sys.argv) == 4:
+        # assemblng
+        if sys.argv[2] == "a":
+            preprocessed = sys.argv[1]
+            dest = sys.argv[3]
+            assembler = Assembler(source_name="", dest_name=dest)
+            assembler.assemble_preprocessed(preprocessed, True)
+        # preprocessing
+        elif sys.argv[2] == "p":
+            source = sys.argv[1]
+            preprocessed = sys.argv[3]
+            assembler = Assembler(source_name=source, dest_name="")
+            assembler.preprocess_source(preprocessed, False)
+        elif sys.argv[2] == "ap":
+            source = sys.argv[1]
+            preprocessed = "tmp_p"
+            dest = sys.argv[3]
+            assembler = Assembler(source_name=source, dest_name=dest)
+            assembler.preprocess_source(preprocessed, False)
+            assembler.assemble_preprocessed(preprocessed, True)
+        # binary assembling
+        elif sys.argv[2] == "ab":
+            preprocessed = sys.argv[1]
+            dest = sys.argv[3]
+            assembler = Assembler(source_name="", dest_name=dest)
+            assembler.assemble_preprocessed(preprocessed, True, mode="bin")
+        else:
+            raise AttributeError("Bad options!")
     else:
         raise AttributeError("Bad options!")

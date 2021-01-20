@@ -248,10 +248,10 @@ class Disassembler:
 
     proc_mem_inst_string = {
         '00000': 'loadi0',
-        '00001': 'storei0',
-        '00010': 'movi0',
-        '00011': 'loadi1',
-        '00100': 'storei1',
+        '00001': 'loadi1',
+        '00010': 'storei0',
+        '00011': 'storei1',
+        '00100': 'movi0',
         '00101': 'movi1',
         '00110': 'movh0i',
         '00111': 'movh1i',
@@ -313,6 +313,7 @@ class Disassembler:
     }
 
     suffixes = {
+        '0000': 'eq',
         '0001': 'ne',
         '0010': 'gt',
         '0011': 'lt',
@@ -331,6 +332,7 @@ class Disassembler:
     }
 
     suffixes0 = {
+        '000': 'eq',
         '001': 'ne',
         '010': 'gt',
         '011': 'lt',

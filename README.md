@@ -46,7 +46,7 @@ In this project is used DE10-nano Cyclone V FPGA.
 ### Кодування інструкцій TODO: перекласти і оформити по людськи
 
 Кодування регістра флажків
-[carry_flag, neg_flag, zero_flag, overflowe_flag, signed_flag]
+[carry_flag, SIGN_flag, zero_flag, overflowe_flag]
 
 1	- тип інструкції (ядра / процесор)
 

@@ -1,5 +1,8 @@
 .idea
 python_simulation/venv
-python_simulation/__pycache__
+*/__pycache__
 venv
 python_simulation/venv
+quartus
+Verilog_Components/db
+Verilog_Components/simulation

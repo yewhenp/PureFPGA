@@ -66,40 +66,40 @@ SM SM_inst
 			// [8-bit on odd][8-bit on even] = [16-bit memory cell]
 			address = i;
 			data_tx = (i & 1) ? 0 : i;
-			#20;
+			#10;
 			
 		end
 		// movl reg0 0
 		wren_in = 0;
 		instruction = 15'b0_01010_000000000;
-		#20;
+		#10;
 
 		// load reg1 reg0
 		instruction = 15'b0_00001_010010000;
-		#20;
+		#10;
 
 		// mov reg2 reg1
 		instruction = 15'b0_00101_010_10_01_00;
-		#20;
+		#10;
 
 		// add reg3 reg2 reg1
 		instruction = 15'b1_0000_1010_11_10_01;
-		#20;
+		#10;
 
 		// store reg3 reg0
 		instruction = 15'b0_00011_010_11_00_00;
-		#20;
+		#10;
 
 		// nop
 		instruction = 15'b1_0000_1011_00_00_00;
 		address = 0;
-		#45;
+		#15;
 		
 		address = 0; // set read pointer at the beginning
 //		wren_in = 0; // enable reading
 		for(i = 0; i<128; i = i + 2) begin
 			address = i; // on even read LS byte, on odd read MS byte
-			#20;	
+			#10;	
 		end
 		#40;
 		$stop;

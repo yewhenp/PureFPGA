@@ -28,7 +28,7 @@ module Videocard_test;
     initial
 	 
     begin 
-		clk = 0;
+		clk = 1;
 		
 		wren = 1; // enable writing
 		for(i = 0; i<1280; i = i + 1) begin

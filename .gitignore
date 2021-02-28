@@ -2,13 +2,9 @@
 python_simulation/venv
 */__pycache__
 venv
-python_simulation/venv
-quartus
-Verilog_Components/db
-Verilog_Components/simulation
-Verilog_Components/incremental_db
-Reborn/db
+
+Verilog_Components
+Reborn/db/
 Reborn/incremental_db
 *.bak
-Verilog_Components
 Reborn/simulation

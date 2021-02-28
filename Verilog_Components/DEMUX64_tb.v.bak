@@ -1,0 +1,16 @@
+module DEMUX64_tb();
+
+reg [5: 0]sel;
+reg [15: 0]data;
+wire [15:0] out [63:0];
+
+DEMUX64 dd
+(
+.sel(sel),
+.data(data),
+.out(out)
+);
+
+
+
+endmodule 

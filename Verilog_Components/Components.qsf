@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY MemoryManagerTest
+set_global_assignment -name TOP_LEVEL_ENTITY DEMUX64_tb
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:10:47  DECEMBER 14, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
@@ -76,7 +76,16 @@ set_global_assignment -name VERILOG_FILE Decoder64.v
 set_global_assignment -name VERILOG_FILE Decoder8.v
 set_global_assignment -name VERILOG_FILE Videocard_test.v
 set_global_assignment -name VERILOG_FILE MemoryManagerTest.v
+set_global_assignment -name QIP_FILE RAM1Gb.qip
+set_global_assignment -name QIP_FILE Count64.qip
+set_global_assignment -name QIP_FILE MUX64.qip
+set_global_assignment -name VERILOG_FILE DEMUX64.v
+set_global_assignment -name VERILOG_FILE DEMUX64_tb.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE MMU.v
+set_global_assignment -name VERILOG_FILE CMUX64.v

@@ -1,0 +1,19 @@
+module DEMUX64 
+#(parameter CORE_WIDTH=16,
+				DATA_WIDTH=16,
+            ADDR_SPACE=23,
+            NUM_CORES=64,
+            NUM_REGS=8,
+            REGS_CODIND=3,
+            SEL_WIDTH=6)
+	(
+	input [DATA_WIDTH - 1: 0]data,
+	input [SEL_WIDTH - 1: 0] sel,
+	output reg [DATA_WIDTH - 1: 0] out64 [NUM_CORES - 1 : 0]
+	);
+	
+	always @ begin
+		out[sel][DATA_WIDTH - 1: 0] <= data;
+	end
+
+endmodule 

@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at instr_decoder.v(39): always construct contains both blocking and non-blocking assignments File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/instr_decoder.v Line: 39
+Info (10281): Verilog HDL Declaration information at instr_decoder.v(6): object "FLAGS" differs only in case from object "flags" in the same scope File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/instr_decoder.v Line: 6
+Info (10281): Verilog HDL Declaration information at alu.v(4): object "OPCODE" differs only in case from object "opcode" in the same scope File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/alu.v Line: 4
+Info (10281): Verilog HDL Declaration information at alu.v(6): object "FLAGS" differs only in case from object "flags" in the same scope File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/alu.v Line: 6

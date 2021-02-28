@@ -62,6 +62,27 @@ always @(posedge clk) begin
 
                 default: op1 <= op1;
             endcase
+
+            // TODO: modify assembler to support sufixes for muvlh
+            case (long_instr[24:21])
+                4'b0000: suffix <= flags[ZERO] == 1;
+                4'b0001: suffix <= flags[ZERO] == 0;
+                4'b0010: suffix <= flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
+                4'b0011: suffix <= flags[SIGN] != flags[OVERFLOW];
+                4'b0100: suffix <= flags[SIGN] == flags[OVERFLOW];
+                4'b0101: suffix <= flags[ZERO] == 1 || flags[SIGN] != OVERFLOW;
+                4'b0110: suffix <= flags[CARRY] == 1;
+                4'b0111: suffix <= flags[CARRY] == 0;
+                4'b1000: suffix <= flags[SIGN] == 1;
+                4'b1001: suffix <= flags[SIGN] == 0;
+                4'b1010: suffix <= 1;    // AL
+                4'b1011: suffix <= 0;    // NV
+                4'b1100: suffix <= flags[OVERFLOW] == 1;
+                4'b1101: suffix <= flags[OVERFLOW] == 0;
+                4'b1110: suffix <= flags[CARRY] == 1 && flags[ZERO] == 0;
+                4'b1111: suffix <= flags[CARRY] == 0 || flags[ZERO] == 0;
+                default: suffix <= 1;
+            endcase
         end else begin
             short_instr = instr_choose ? long_instr[WIDTH/2-1: 0] : long_instr[WIDTH-1: WIDTH/2];
 
@@ -87,7 +108,7 @@ always @(posedge clk) begin
             endcase
 
             // ALU instruction
-            if (short_instr[WIDTH-2] == 1) begin
+            if (short_instr[WIDTH/2-2] == 1) begin
                 alu_en =  1;
                 mem_en =  0;
                 move_en = 0;
@@ -97,7 +118,7 @@ always @(posedge clk) begin
                 op2 <= short_instr[2:0];
             end 
 
-            if (short_instr[WIDTH-2] == 0) begin
+            if (short_instr[WIDTH/2-2] == 0) begin
                 // load / store
                 if (short_instr[13:11] == 3'b000) begin
                     alu_en =  0;

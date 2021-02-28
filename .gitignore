@@ -6,3 +6,9 @@ python_simulation/venv
 quartus
 Verilog_Components/db
 Verilog_Components/simulation
+Verilog_Components/incremental_db
+Reborn/db
+Reborn/incremental_db
+*.bak
+Verilog_Components
+Reborn/simulation

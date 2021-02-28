@@ -9,30 +9,32 @@ module move_ctrl #(
  OVERFLOW=2,
  ZERO=3
 )(
-input 				  		 clk;
-input 				  		 en;
+input 				  		 clk,
+input 				  		 en,
 
-input[WIDTH/2-1: 0]     immediate;
-input[1:0]              mode;
+input[WIDTH/2-1: 0]     immediate,
+input[1:0]              mode,
 
 
-input [WIDTH-1: 0] 		 long_instr;
-input                    instr_choose;
-input [FLAGS-1: 0]       flags;
+input [WIDTH-1: 0] 		 long_instr,
+input                    instr_choose,
+input [FLAGS-1: 0]       flags,
 //alu
-output                   alu_en;
-output[OPCODE-1 :0]      opcode;
+output                   alu_en,
+output[OPCODE-1 :0]      opcode,
 //mem
-output                   mem_en;
-output                   wren;
+output                   mem_en,
+output                   wren,
 //move
-output                   move_en;
-output[WIDTH/2-1: 0]     immediate;
-output[1:0]              mode;
+output                   move_en,
+output[WIDTH/2-1: 0]     immediate,
+output[1:0]              mode,
 
 // alu + mem + move
-output[REGS_CODING-1: 0] op1;
-output[REGS_CODING-1: 0] op2;
-output                   suffix;
+output[REGS_CODING-1: 0] op1,
+output[REGS_CODING-1: 0] op2,
+output                   suffix,
 
 );
+
+endmodule

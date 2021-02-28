@@ -8,14 +8,15 @@ module core #(
  OVERFLOW=2,
  ZERO=3
 )(
-input 				 clk;
-input					 response;
-input	[WIDTH-1: 0] instruction;
-output 				 wren;
-output             request;
-input	[WIDTH-1: 0] readdata;
-output[WIDTH-1: 0] address;
-output[WIDTH-1: 0] writedata;
-output[WIDTH-1: 0] instr_addr;
-
+input 				 clk,
+input			     response,
+input	[WIDTH-1: 0] instruction,
+output 				 wren,
+output               request,
+input	[WIDTH-1: 0] readdata,
+output[WIDTH-1: 0]   address,
+output[WIDTH-1: 0]   writedata,
+output[WIDTH-1: 0]   instr_addr
 );
+
+endmodule

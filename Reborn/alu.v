@@ -9,16 +9,18 @@ module alu #(
  OVERFLOW=2,
  ZERO=3
 )(
-input 				  		 clk;
-input 				  		 en;
-input [REGS_CODING-1: 0] dest_in;
-input	[OPCODE-1: 0] 		 opcode;
-input [WIDTH-1: 0] op1;
-input [WIDTH-1: 0] op2;
-input cin;
-output[WIDTH-1: 0] instr_addr;
-output[FLAGS-1: 0] flags;
-output[REGS_CODING-1: 0] dest_out;
-output[WIDTH-1: 0] result;
+input 				  		 clk,
+input 				  		 en,
+input [REGS_CODING-1: 0] dest_in,
+input	[OPCODE-1: 0] 		 opcode,
+input [WIDTH-1: 0] op1,
+input [WIDTH-1: 0] op2,
+input cin,
+output[WIDTH-1: 0] instr_addr,
+output[FLAGS-1: 0] flags,
+output[REGS_CODING-1: 0] dest_out,
+output[WIDTH-1: 0] result,
 
 );
+
+endmodule

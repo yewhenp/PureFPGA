@@ -19,8 +19,7 @@ input cin,
 output[WIDTH-1: 0] instr_addr,
 output[FLAGS-1: 0] flags,
 output[REGS_CODING-1: 0] dest_out,
-output[WIDTH-1: 0] result,
-
+output[WIDTH-1: 0] result
 );
 
 endmodule

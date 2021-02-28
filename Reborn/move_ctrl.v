@@ -27,13 +27,13 @@ output                   mem_en,
 output                   wren,
 //move
 output                   move_en,
-output[WIDTH/2-1: 0]     immediate,
-output[1:0]              mode,
+output[WIDTH/2-1: 0]     immediate_out,
+output[1:0]              mode_out,
 
 // alu + mem + move
 output[REGS_CODING-1: 0] op1,
 output[REGS_CODING-1: 0] op2,
-output                   suffix,
+output                   suffix
 
 );
 

@@ -38,15 +38,15 @@ wire [REGS_CODING-1: 0] operand1_code, operand2_code, result_code;
 reg [WIDTH-1: 0] operand1, operand2, result;
 
 // using decoder, get this values
-reg [WIDTH/2-1: 0] immediate;
-reg [MOV_CODE-1: 0] move_type;
-reg [OPCODE-1: 0] alu_opcode;
+wire [WIDTH/2-1: 0] immediate;
+wire [MOV_CODE-1: 0] move_type;
+wire [OPCODE-1: 0] alu_opcode;
 
 // which part of instruction (first 16 bit or second) use
 reg instr_choose=0;
 
 // enables and suffix use
-reg alu_en, move_en, mem_en;
+wire alu_en, move_en, mem_en;
 wire suffix;
 
 // help regs for memory
@@ -62,7 +62,7 @@ assign save = (state == 2);
 assign do_nothing = (state == 3);
 assign instr_addr = ip;
 assign address = address_reg;
-assign writedata = writedata_reg;
+assign writedata = writedata_reg; 
 
 instr_decoder instr_decoder_main (
 	.clk(clk),

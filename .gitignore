@@ -8,3 +8,4 @@ Reborn/db/
 Reborn/incremental_db
 *.bak
 Reborn/simulation
+Reborn/output_files

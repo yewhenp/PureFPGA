@@ -38,11 +38,12 @@ reg [WIDTH/2-1: 0] short_instr;
 
 always @(posedge clk) begin
     if (en) begin
+        alu_en =  0;
+        mem_en =  0;
+        move_en = 0;
         // long 32bit instruction - movl / movh
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH-1: WIDTH/2];
-            alu_en =  0;
-            mem_en =  0;
             move_en = 1;
             
             case(long_instr[13:9]) 
@@ -110,8 +111,6 @@ always @(posedge clk) begin
             // ALU instruction
             if (short_instr[WIDTH/2-2] == 1) begin
                 alu_en =  1;
-                mem_en =  0;
-                move_en = 0;
 
                 alu_opcode <= short_instr[13:10];
                 op1 <= short_instr[5:3];
@@ -121,9 +120,7 @@ always @(posedge clk) begin
             if (short_instr[WIDTH/2-2] == 0) begin
                 // load / store
                 if (short_instr[13:11] == 3'b000) begin
-                    alu_en =  0;
                     mem_en =  1;
-                    move_en = 0;
                     //register with data
                     op1 <= short_instr[5:3];
                     // register with address
@@ -133,6 +130,7 @@ always @(posedge clk) begin
 
                 // mov reg reg
                 if (short_instr[13:10] == 4'b0010) begin
+                    move_en = 1;
                     op1 <= short_instr[5:3];
                     op2 <= short_instr[2:0];
                     mov_type <= 3'b000; 
@@ -140,19 +138,19 @@ always @(posedge clk) begin
 
                 // movf & jumps
                 case (short_instr[13:9])
-                    5'b10010: begin op1 <= 3'b000; mov_type <= 3'b011; end   // movf
-                    5'b10011: begin op1 <= 3'b001; mov_type <= 3'b011; end
-                    5'b10100: begin op1 <= 3'b010; mov_type <= 3'b011; end
-                    5'b10101: begin op1 <= 3'b011; mov_type <= 3'b011; end
-                    5'b10110: begin op1 <= 3'b100; mov_type <= 3'b011; end
-                    5'b10111: begin op1 <= 3'b101; mov_type <= 3'b011; end
+                    5'b10010: begin op1 <= 3'b000; mov_type <= 3'b011; move_en = 1; end   // movf
+                    5'b10011: begin op1 <= 3'b001; mov_type <= 3'b011; move_en = 1; end
+                    5'b10100: begin op1 <= 3'b010; mov_type <= 3'b011; move_en = 1; end
+                    5'b10101: begin op1 <= 3'b011; mov_type <= 3'b011; move_en = 1; end
+                    5'b10110: begin op1 <= 3'b100; mov_type <= 3'b011; move_en = 1; end
+                    5'b10111: begin op1 <= 3'b101; mov_type <= 3'b011; move_en = 1; end
 
-                    5'b11000: begin suffix <= flags[ZERO] == 1; mov_type <= 3'b111; end // jumps
-                    5'b11001: begin suffix <= flags[ZERO] == 0; mov_type <= 3'b111; end
-                    5'b11010: begin suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; end
-                    5'b11011: begin suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; end
-                    5'b11100: begin suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; end
-                    5'b11101: begin suffix <= flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; end
+                    5'b11000: begin suffix <= flags[ZERO] == 1; mov_type <= 3'b111; move_en = 1; end // jumps
+                    5'b11001: begin suffix <= flags[ZERO] == 0; mov_type <= 3'b111; move_en = 1; end
+                    5'b11010: begin suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en = 1; end
+                    5'b11011: begin suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en = 1; end
+                    5'b11100: begin suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en = 1; end
+                    5'b11101: begin suffix <= flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en = 1; end
 
                     default: op1 <= op1;
                 endcase

@@ -59,8 +59,8 @@ wire [WIDTH-1: 0] flags_wire, result_wire;
 // assigns
 assign fetch = (state == 0);
 assign decode = (state == 1);
-assign execute = (state == 2);
-assign save = (state == 3);
+assign execute = (state == 1);
+assign save = (state == 2);
 assign address = address_reg;
 assign writedata = writedata_reg;
 assign instr_addr = ip;
@@ -179,6 +179,20 @@ always @(posedge clk) begin
 			
 			// work with movs
 			if (move_en) begin
+
+				// jumps
+				if (suffix && move_type == 3'b100) begin
+					case (operand1_code)
+						3'b000 : ip <= reg0;
+						3'b001 : ip <= reg1;
+						3'b010 : ip <= reg2;
+						3'b011 : ip <= reg3;
+						3'b100 : ip <= reg4;
+						3'b101 : ip <= reg5;
+						3'b110 : ip <= sp;
+						3'b111 : ip <= ip;
+					endcase
+				end
 				
 				// mov reg reg
 				if (suffix && move_type == 0) begin
@@ -224,17 +238,17 @@ always @(posedge clk) begin
 										3'b101 : reg5 <= flags;
 										3'b110 : sp <= flags;
 									endcase
-						// jump
-						3'b100 : case (operand1_code)
-										3'b000 : ip <= reg0;
-										3'b001 : ip <= reg1;
-										3'b010 : ip <= reg2;
-										3'b011 : ip <= reg3;
-										3'b100 : ip <= reg4;
-										3'b101 : ip <= reg5;
-										3'b110 : ip <= sp;
-										3'b111 : ip <= ip;
-									endcase
+						// // jump
+						// 3'b100 : case (operand1_code)
+						// 				3'b000 : ip <= reg0;
+						// 				3'b001 : ip <= reg1;
+						// 				3'b010 : ip <= reg2;
+						// 				3'b011 : ip <= reg3;
+						// 				3'b100 : ip <= reg4;
+						// 				3'b101 : ip <= reg5;
+						// 				3'b110 : ip <= sp;
+						// 				3'b111 : ip <= ip;
+						// 			endcase
 					endcase
 				end
 			end
@@ -243,11 +257,11 @@ always @(posedge clk) begin
 			if (mem_en) begin
 			
 				// set address
-				address_reg <= operand1;
+				address_reg <= operand2;
 				
 				// write to memory
 				if (wren) begin
-					writedata_reg <= operand2;
+					writedata_reg <= operand1;
 				end else begin
 					// read from memory to reg
 //					case (operand1_code)
@@ -274,13 +288,13 @@ always @(posedge clk) begin
 		end else begin
 			// reset machine cycle
 			state = 0;
-			
-			// choose another instruction
-			instr_choose = ~instr_choose;
-			
-			// increase ip
-			if (!instr_choose) begin
-				ip = ip + 1; 
+
+			if ( (!instr_choose && instruction[WIDTH-1] == 1) || instr_choose) begin
+				ip <= ip + 1;
+				instr_choose = 0;
+			end else begin
+				// choose another instruction
+				instr_choose = ~instr_choose;
 			end
 		end
 	end

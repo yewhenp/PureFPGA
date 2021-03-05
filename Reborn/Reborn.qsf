@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY core
+set_global_assignment -name TOP_LEVEL_ENTITY videocard
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:25:31  FEBRUARY 27, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
@@ -63,6 +63,11 @@ set_global_assignment -name VERILOG_FILE core/instr_decoder.v
 set_global_assignment -name VERILOG_FILE core/core.v
 set_global_assignment -name VERILOG_FILE core/alu.v
 set_global_assignment -name VERILOG_FILE test_benches/instruction_decoder_tb.v
+set_global_assignment -name QIP_FILE memory/RAM.qip
+set_global_assignment -name VERILOG_FILE memory/arbiter.v
+set_global_assignment -name VERILOG_FILE test_benches/arbiter_tb.v
+set_global_assignment -name VERILOG_FILE videocard/videocard.v
+set_global_assignment -name VERILOG_FILE memory/four_way_rom.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

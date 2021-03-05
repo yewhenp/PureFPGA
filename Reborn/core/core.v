@@ -72,7 +72,7 @@ instr_decoder instr_decoder_main (
 	.en(decode),
 	.long_instr(instruction),
 	.instr_choose(instr_choose),
-	.flags(flags),
+	.flags(flags[FLAGS-1: 0]),
 	.alu_en(alu_en),
 	.alu_opcode(alu_opcode),
 	.mem_en(mem_en),
@@ -125,6 +125,7 @@ always @ * begin
 	endcase
 end
 
+
 always @(posedge clk) begin
 
 	if (wait_memory) begin
@@ -139,7 +140,7 @@ always @(posedge clk) begin
 				3'b100 : reg4 <= readdata;
 				3'b101 : reg5 <= readdata;
 				3'b110 : sp <= readdata;
-				3'b111 : ip <= readdata;
+				3'b111 : ip = readdata;
 			endcase
 		end else begin
 			// wait for data
@@ -175,60 +176,26 @@ always @(posedge clk) begin
 					3'b100 : reg4 <= result;
 					3'b101 : reg5 <= result;
 					3'b110 : sp <= result;
-					3'b111 : ip <= result;
+					3'b111 : ip = result;
 				endcase
 			end
 			
 			// work with movs
 			if (move_en) begin
-
-				// jumps
-				if (suffix && move_type == 3'b100) begin
-					case (operand1_code)
-						3'b000 : ip <= reg0;
-						3'b001 : ip <= reg1;
-						3'b010 : ip <= reg2;
-						3'b011 : ip <= reg3;
-						3'b100 : ip <= reg4;
-						3'b101 : ip <= reg5;
-						3'b110 : ip <= sp;
-						3'b111 : ip <= ip;
-					endcase
-				end
 				
-				// mov reg reg
-				if (suffix && move_type == 0) begin
-					case (operand1_code)
-						3'b000 : reg0 <= operand2;
-						3'b001 : reg1 <= operand2;
-						3'b010 : reg2 <= operand2;
-						3'b011 : reg3 <= operand2;
-						3'b100 : reg4 <= operand2;
-						3'b101 : reg5 <= operand2;
-						3'b110 : sp <= operand2;
-						3'b111 : ip <= operand2;
-					endcase
-				end else begin
+				if (suffix) begin
+				
 					case (move_type)
-						// mov high
-						3'b010 : case (operand1_code)
-										3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
-										3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
-										3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
-										3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
-										3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
-										3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
-										3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
-									endcase
-						// mov lov
-						3'b001 : case (operand1_code)
-										3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
-										3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
-										3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
-										3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
-										3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
-										3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
-										3'b110 : sp[WIDTH/2-1: 0] <= immediate;
+						//mov reg
+						3'b000: 	case (operand1_code)
+										3'b000 : reg0 <= operand2;
+										3'b001 : reg1 <= operand2;
+										3'b010 : reg2 <= operand2;
+										3'b011 : reg3 <= operand2;
+										3'b100 : reg4 <= operand2;
+										3'b101 : reg5 <= operand2;
+										3'b110 : sp <= operand2;
+										3'b111 : ip = operand2;
 									endcase
 						// mov flags
 						3'b011 : case (operand1_code)
@@ -240,19 +207,42 @@ always @(posedge clk) begin
 										3'b101 : reg5 <= flags;
 										3'b110 : sp <= flags;
 									endcase
-						// // jump
-						// 3'b100 : case (operand1_code)
-						// 				3'b000 : ip <= reg0;
-						// 				3'b001 : ip <= reg1;
-						// 				3'b010 : ip <= reg2;
-						// 				3'b011 : ip <= reg3;
-						// 				3'b100 : ip <= reg4;
-						// 				3'b101 : ip <= reg5;
-						// 				3'b110 : ip <= sp;
-						// 				3'b111 : ip <= ip;
-						// 			endcase
+						// jump
+						3'b111 : case (operand1_code)
+						 				3'b000 : ip = reg0;
+						 				3'b001 : ip = reg1;
+						 				3'b010 : ip = reg2;
+						 				3'b011 : ip = reg3;
+						 				3'b100 : ip = reg4;
+						 				3'b101 : ip = reg5;
+						 				3'b110 : ip = sp;
+						 				3'b111 : ip = ip;
+						 			endcase
 					endcase
+
 				end
+				case (move_type)
+					// mov high
+					3'b010 : case (operand1_code)
+									3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
+									3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
+									3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
+									3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
+									3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
+									3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
+									3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
+								endcase
+					// mov lov
+					3'b001 : case (operand1_code)
+									3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
+									3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
+									3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
+									3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
+									3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
+									3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
+									3'b110 : sp[WIDTH/2-1: 0] <= immediate;
+								endcase
+				endcase
 			end
 			
 			// work with memory
@@ -266,16 +256,6 @@ always @(posedge clk) begin
 					writedata_reg <= operand1;
 				end else begin
 					// read from memory to reg
-//					case (operand1_code)
-//						3'b000 : reg0 <= writedata;
-//						3'b001 : reg1 <= writedata;
-//						3'b010 : reg2 <= writedata;
-//						3'b011 : reg3 <= writedata;
-//						3'b100 : reg4 <= writedata;
-//						3'b101 : reg5 <= writedata;
-//						3'b110 : sp <= writedata;
-//						3'b111 : ip <= writedata;
-//					endcase
 					// lock core
 					wait_memory <= 1'b1;
 				end
@@ -291,8 +271,8 @@ always @(posedge clk) begin
 			// reset machine cycle
 			state = 0;
 
-			if (instr_choose) begin
-				ip <= ip + 1;
+			if (instr_choose || (instruction[WIDTH-1] == 1)) begin
+				ip = ip + 1;
 				instr_choose = 0;
 			end else begin
 				// choose another instruction

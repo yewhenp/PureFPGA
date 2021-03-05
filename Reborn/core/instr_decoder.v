@@ -35,11 +35,12 @@ module instr_decoder #(
 
 reg [WIDTH/2-1: 0] short_instr;
 
-always @(posedge clk) begin
+always @(negedge clk) begin
     if (en) begin
         alu_en <=  0;
         mem_en <=  0;
         move_en <= 0;
+		  wren <= 0;
         // long 32bit instruction - movl / movh
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH/2-1: 0];
@@ -152,7 +153,8 @@ always @(posedge clk) begin
 
 								  default: op1 <= op1;
 							 endcase
-						 
+						 	 op1 <= short_instr[5:3];
+							 op2 <= short_instr[2:0];
 						 end
 					 
 					 end

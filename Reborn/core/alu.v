@@ -74,8 +74,8 @@ always @ (negedge clk)
 			default: result = op1;
 		endcase
 	
-		dest_out <= dest_in;
-		//flags <= flags_wire;
+		dest_out = dest_in;
+//		flags = flags_wire;
 		flags[CARRY] = tmp[16];
 		flags[SIGN] = result[15];
 		flags[OVERFLOW] = tmp[16] ^ result[15];

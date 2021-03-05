@@ -61,11 +61,34 @@ initial begin
 	 
 	 
 	 #40
-	 // store reg0 to memory (address = reg2); nop (addnv reg0, reg0)
-	 instruction <= 32'b00_0001_1010_000_010__01_0000_1011_000_000;
+	 // store reg0 to memory (address = reg2); mov reg0 reg1
+	 instruction <= 32'b00_0001_1010_000_010__00_0010_1010_000_001;
 	 
 	 
 	 #80
+	 // load reg3 (address = reg1); div reg1 reg3
+	 instruction <= 32'b00_0000_1010_011_001__01_0101_1010_001_011;
+	 
+	 #150
+	 readdata <= 32'b00000000000000000000000000000010;
+	 response <= 1;
+	 
+	 #40
+	 response <= 0;
+	 
+	 #20
+	 // sub reg0 reg0; add reg0 ip if eq
+	 instruction <= 32'b01_0010_1010_000_000__01_0000_0000_000_111;
+	 
+	 #80
+	 // sub reg0 reg0; je reg1
+	 instruction <= 32'b01_0010_1010_000_000__00_1100_0000_001_000;
+	 
+	 #80
+	 // nop; nop
+	 instruction <= 32'b01_0000_1011_000_000__01_0000_1011_000_000;
+	 
+	 #160
     $stop;
 
 end

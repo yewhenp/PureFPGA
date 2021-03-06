@@ -41,8 +41,8 @@ always @ (posedge clk) begin
 	 // store reg0 to memory (address = reg2); mov reg0 reg1
 	 data[7] <= 32'b00_0001_1010_000_010__00_0010_1010_000_001;
 	 
-	 // load reg3 (address = reg1); div reg1 reg3
-	 data[8] <= 32'b00_0000_1010_011_001__01_0101_1010_001_011;
+	 // load reg3 (address = reg2); div reg1 reg3
+	 data[8] <= 32'b00_0000_1010_011_010__01_0101_1010_011_001;
 
 	 // sub reg0 reg0; add reg0 ip if eq
 	 data[9] <= 32'b01_0010_1010_000_000__01_0000_0000_000_111;

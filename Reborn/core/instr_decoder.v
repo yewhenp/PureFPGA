@@ -9,7 +9,7 @@ module instr_decoder #(
     OVERFLOW=2,
     ZERO=3,
 
-    CORE_NUMBER=4
+    CORE_NUMBER=2
 )
 (
     input 				     clk,
@@ -17,7 +17,7 @@ module instr_decoder #(
     input [WIDTH-1: 0] 		 long_instr,
     input                    instr_choose,
     input [FLAGS-1: 0]       flags,
-    input [CORE_NUMBER:0]    core_index,
+    input [CORE_NUMBER-1:0]    core_index,
     //alu
     output reg                    alu_en,
     output reg [OPCODE-1 :0]      alu_opcode,

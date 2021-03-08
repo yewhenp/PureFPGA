@@ -6,6 +6,8 @@ add wave -noupdate -radix decimal /videocard_tb/videocard_main/data_in
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/data_out
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/address
 add wave -noupdate -radix binary /videocard_tb/videocard_main/wren
+add wave -noupdate -radix binary /videocard_tb/videocard_main/interrupt_start
+add wave -noupdate -radix binary /videocard_tb/videocard_main/interrupt_finish
 add wave -noupdate -divider core0
 add wave -noupdate -radix binary /videocard_tb/videocard_main/core0/clk
 add wave -noupdate -radix binary /videocard_tb/videocard_main/core0/response
@@ -39,8 +41,13 @@ add wave -noupdate -divider rom
 add wave -noupdate -radix binary /videocard_tb/videocard_main/rom/clk
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/rom/address_core0
 add wave -noupdate -radix binary /videocard_tb/videocard_main/rom/data_core0
+add wave -noupdate -divider interrupt_controller
+add wave -noupdate -radix binary /videocard_tb/videocard_main/inter_controller/clk
+add wave -noupdate -radix binary /videocard_tb/videocard_main/inter_controller/core_interrupts
+add wave -noupdate -radix binary /videocard_tb/videocard_main/inter_controller/interrupt
+add wave -noupdate -radix binary /videocard_tb/videocard_main/inter_controller/internal_interrupt
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {23155 ps} 0}
+WaveRestoreCursors {{Cursor 1} {322639 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 364
 configure wave -valuecolwidth 100
@@ -56,4 +63,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {392888 ps}
+WaveRestoreZoom {0 ps} {456658 ps}

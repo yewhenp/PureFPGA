@@ -3,11 +3,13 @@ module videocard #(
  WIDTH=32,
  CORE_NUM=4
 )(
-input clk,
-input [WIDTH-1: 0] data_in,
-output [WIDTH-1: 0] data_out,
-output [WIDTH-1: 0] address,
-output wren
+input 					clk,
+input [WIDTH-1: 0] 	data_in,
+output [WIDTH-1: 0] 	data_out,
+output [WIDTH-1: 0] 	address,
+output 					wren,
+input 					interrupt_start,
+output 					interrupt_finish
 );
 
 
@@ -40,6 +42,8 @@ wire [WIDTH-1: 0] address_instr_core3;
 wire [CORE_NUM-1: 0] request;
 wire [CORE_NUM-1: 0] response;
 wire [CORE_NUM-1: 0] wren_core;
+wire [CORE_NUM-1: 0] core_interrupts;
+
 
 
 four_way_rom rom
@@ -80,6 +84,13 @@ arbiter arbiter_inst
 	.clk(clk) 	// input  clk_sig
 );
 
+interrupt_controller inter_controller
+(
+	.clk(clk),
+	.core_interrupts(core_interrupts),
+	.interrupt(interrupt_finish)
+);
+
 
 core core0
 (
@@ -87,12 +98,14 @@ core core0
 	.response(response[0]) ,	// input  response_sig
 	.instruction(instruction_core0) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[0]) ,	// output  wren_sig
-	.core_index(0),
+	.core_index(2'b00),
 	.request(request[0]) ,	// output  request_sig
 	.readdata(data_out_core0) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core0) ,	// output [WIDTH-1:0] address_sig
 	.writedata(data_in_core0) ,	// output [WIDTH-1:0] writedata_sig
-	.instr_addr(address_instr_core0) 	// output [WIDTH-1:0] instr_addr_sig
+	.instr_addr(address_instr_core0), 	// output [WIDTH-1:0] instr_addr_sig
+	.interrupt_start(interrupt_start),
+	.interrupt_finish(core_interrupts[0])
 );
 
 core core1
@@ -101,12 +114,14 @@ core core1
 	.response(response[1]) ,	// input  response_sig
 	.instruction(instruction_core1) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[1]) ,	// output  wren_sig
-	.core_index(1),
+	.core_index(2'b01),
 	.request(request[1]) ,	// output  request_sig
 	.readdata(data_out_core1) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core1) ,	// output [WIDTH-1:0] address_sig
 	.writedata(data_in_core1) ,	// output [WIDTH-1:0] writedata_sig
-	.instr_addr(address_instr_core1) 	// output [WIDTH-1:0] instr_addr_sig
+	.instr_addr(address_instr_core1), 	// output [WIDTH-1:0] instr_addr_sig
+	.interrupt_start(interrupt_start),
+	.interrupt_finish(core_interrupts[1])
 );
 
 core core2
@@ -115,12 +130,14 @@ core core2
 	.response(response[2]) ,	// input  response_sig
 	.instruction(instruction_core2) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[2]) ,	// output  wren_sig
-	.core_index(2),
+	.core_index(2'b10),
 	.request(request[2]) ,	// output  request_sig
 	.readdata(data_out_core2) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core2) ,	// output [WIDTH-1:0] address_sig
 	.writedata(data_in_core2) ,	// output [WIDTH-1:0] writedata_sig
-	.instr_addr(address_instr_core2) 	// output [WIDTH-1:0] instr_addr_sig
+	.instr_addr(address_instr_core2), 	// output [WIDTH-1:0] instr_addr_sig
+	.interrupt_start(interrupt_start),
+	.interrupt_finish(core_interrupts[2])
 );
 
 core core3
@@ -129,12 +146,14 @@ core core3
 	.response(response[3]) ,	// input  response_sig
 	.instruction(instruction_core3) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[3]) ,	// output  wren_sig
-	.core_index(3),
+	.core_index(2'b11),
 	.request(request[3]) ,	// output  request_sig
 	.readdata(data_out_core3) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core3) ,	// output [WIDTH-1:0] address_sig
 	.writedata(data_in_core3) ,	// output [WIDTH-1:0] writedata_sig
-	.instr_addr(address_instr_core3) 	// output [WIDTH-1:0] instr_addr_sig
+	.instr_addr(address_instr_core3), 	// output [WIDTH-1:0] instr_addr_sig
+	.interrupt_start(interrupt_start),
+	.interrupt_finish(core_interrupts[3])
 );
 
 

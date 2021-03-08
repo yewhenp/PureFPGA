@@ -9,6 +9,10 @@ wire [WIDTH-1: 0] address;
 wire [WIDTH-1: 0] data_in;
 wire [WIDTH-1: 0] data_out;
 wire wren;
+reg interrupt;
+
+wire intt;
+assign intt = interrupt;
 
 
 RAM ram_inst
@@ -26,12 +30,19 @@ videocard videocard_main
 	.data_in(data_in),
 	.data_out(data_out),
 	.address(address),
-	.wren(wren)
+	.wren(wren),
+	.interrupt_start(intt)
 );
 
 
 
 initial begin
+	
+	interrupt <= 1'b0;
+	#40
+	interrupt <= 1'b1;
+	#10
+	interrupt <= 1'b0;
    
 	#1000
    $stop;

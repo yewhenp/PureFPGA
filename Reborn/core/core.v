@@ -245,28 +245,6 @@ always @(posedge clk) begin
 					endcase
 
 				end
-			// 	case (move_type)
-			// 		// mov high
-			// 		3'b010 : case (operand1_code)
-			// 						3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
-			// 						3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
-			// 					endcase
-			// 		// mov lov
-			// 		3'b001 : case (operand1_code)
-			// 						3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
-			// 						3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
-			// 						3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
-			// 						3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
-			// 						3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
-			// 						3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
-			// 						3'b110 : sp[WIDTH/2-1: 0] <= immediate;
-			// 					endcase
-			// 	endcase
 			end
 			
 			// work with memory

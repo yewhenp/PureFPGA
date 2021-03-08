@@ -63,7 +63,7 @@
 ## Some features
 
 ### Suffixes
-All instructions except for jumps, movf and yet movl/movh (will be implemented soon) support suffixes. This is 2 letters at the end of the instruction. Basically the instruction will be executed if some condition is satisfied. It's like one-instruction if statement. Idea is stolen from ARM ISA
+All instructions except for jumps, movf support suffixes. This is 2 letters at the end of the instruction. Basically the instruction will be executed if some condition is satisfied. It's like one-instruction if statement. Idea is stolen from ARM ISA
 
 
 Here is the list of suffixes, and the conditions to be satisfied:

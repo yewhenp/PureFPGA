@@ -9,11 +9,14 @@ module core #(
  ZERO=3,
  OPCODE=4,
  MOV_CODE=3,
- STATE_WIDTH=2
+ STATE_WIDTH=2,
+
+ CORE_NUM=4
 )(
 input 				 	clk,
 input			       	response,
 input	[WIDTH-1: 0] 	instruction,
+input   [CORE_NUM:0]	core_index,
 output 				 	wren,
 output             	request,
 input	[WIDTH-1: 0] 	readdata,
@@ -73,6 +76,7 @@ instr_decoder instr_decoder_main (
 	.long_instr(instruction),
 	.instr_choose(instr_choose),
 	.flags(flags[FLAGS-1: 0]),
+	.core_index(core_index),
 	.alu_en(alu_en),
 	.alu_opcode(alu_opcode),
 	.mem_en(mem_en),
@@ -218,31 +222,51 @@ always @(posedge clk) begin
 						 				3'b110 : ip = sp;
 						 				3'b111 : ip = ip;
 						 			endcase
+						// mov high
+						3'b010 : case (operand1_code)
+										3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
+										3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
+										3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
+										3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
+										3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
+										3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
+										3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
+									endcase
+						// mov lov
+						3'b001 : case (operand1_code)
+										3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
+										3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
+										3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
+										3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
+										3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
+										3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
+										3'b110 : sp[WIDTH/2-1: 0] <= immediate;
+									endcase
 					endcase
 
 				end
-				case (move_type)
-					// mov high
-					3'b010 : case (operand1_code)
-									3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
-									3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
-									3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
-									3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
-									3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
-									3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
-									3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
-								endcase
-					// mov lov
-					3'b001 : case (operand1_code)
-									3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
-									3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
-									3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
-									3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
-									3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
-									3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
-									3'b110 : sp[WIDTH/2-1: 0] <= immediate;
-								endcase
-				endcase
+			// 	case (move_type)
+			// 		// mov high
+			// 		3'b010 : case (operand1_code)
+			// 						3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b001 : reg1[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b010 : reg2[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b011 : reg3[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b100 : reg4[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b101 : reg5[WIDTH-1: WIDTH/2] <= immediate;
+			// 						3'b110 : sp[WIDTH-1: WIDTH/2] <= immediate;
+			// 					endcase
+			// 		// mov lov
+			// 		3'b001 : case (operand1_code)
+			// 						3'b000 : reg0[WIDTH/2-1: 0] <= immediate;
+			// 						3'b001 : reg1[WIDTH/2-1: 0] <= immediate;
+			// 						3'b010 : reg2[WIDTH/2-1: 0] <= immediate;
+			// 						3'b011 : reg3[WIDTH/2-1: 0] <= immediate;
+			// 						3'b100 : reg4[WIDTH/2-1: 0] <= immediate;
+			// 						3'b101 : reg5[WIDTH/2-1: 0] <= immediate;
+			// 						3'b110 : sp[WIDTH/2-1: 0] <= immediate;
+			// 					endcase
+			// 	endcase
 			end
 			
 			// work with memory

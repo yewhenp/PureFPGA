@@ -7,7 +7,9 @@ module instr_decoder #(
     CARRY=0,
     SIGN=1,
     OVERFLOW=2,
-    ZERO=3
+    ZERO=3,
+
+    CORE_NUMBER=4
 )
 (
     input 				     clk,
@@ -15,6 +17,7 @@ module instr_decoder #(
     input [WIDTH-1: 0] 		 long_instr,
     input                    instr_choose,
     input [FLAGS-1: 0]       flags,
+    input [CORE_NUMBER:0]    core_index,
     //alu
     output reg                    alu_en,
     output reg [OPCODE-1 :0]      alu_opcode,
@@ -40,7 +43,8 @@ always @(negedge clk) begin
         alu_en <=  0;
         mem_en <=  0;
         move_en <= 0;
-		  wren <= 0;
+		wren <= 0;
+
         // long 32bit instruction - movl / movh
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH/2-1: 0];
@@ -64,7 +68,6 @@ always @(negedge clk) begin
                 default: op1 <= op1;
             endcase
 
-            // TODO: modify assembler to support sufixes for muvlh
             case (long_instr[24:21])
                 4'b0000: suffix <= flags[ZERO] == 1;
                 4'b0001: suffix <= flags[ZERO] == 0;
@@ -88,7 +91,7 @@ always @(negedge clk) begin
             short_instr = instr_choose ? long_instr[WIDTH/2-1: 0] : long_instr[WIDTH-1: WIDTH/2];
 
             // suffix
-            case(short_instr[9:6])    // TODO: fix magic numbers
+            case(short_instr[9:6])
                 4'b0000: suffix <= flags[ZERO] == 1;
                 4'b0001: suffix <= flags[ZERO] == 0;
                 4'b0010: suffix <= flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
@@ -149,7 +152,10 @@ always @(negedge clk) begin
 								  5'b11010: begin suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
 								  5'b11011: begin suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
 								  5'b11100: begin suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
-								  5'b11101: begin suffix <= flags[ZERO] == 1 && (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+								  5'b11101: begin suffix <= flags[ZERO] == 1 || (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+                                  5'b11110: begin suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
+
+                                  5'b11111: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; end
 
 								  default: op1 <= op1;
 							 endcase

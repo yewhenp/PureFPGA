@@ -87,6 +87,7 @@ core core0
 	.response(response[0]) ,	// input  response_sig
 	.instruction(instruction_core0) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[0]) ,	// output  wren_sig
+	.core_index(0),
 	.request(request[0]) ,	// output  request_sig
 	.readdata(data_out_core0) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core0) ,	// output [WIDTH-1:0] address_sig
@@ -100,6 +101,7 @@ core core1
 	.response(response[1]) ,	// input  response_sig
 	.instruction(instruction_core1) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[1]) ,	// output  wren_sig
+	.core_index(1),
 	.request(request[1]) ,	// output  request_sig
 	.readdata(data_out_core1) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core1) ,	// output [WIDTH-1:0] address_sig
@@ -113,6 +115,7 @@ core core2
 	.response(response[2]) ,	// input  response_sig
 	.instruction(instruction_core2) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[2]) ,	// output  wren_sig
+	.core_index(2),
 	.request(request[2]) ,	// output  request_sig
 	.readdata(data_out_core2) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core2) ,	// output [WIDTH-1:0] address_sig
@@ -126,6 +129,7 @@ core core3
 	.response(response[3]) ,	// input  response_sig
 	.instruction(instruction_core3) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[3]) ,	// output  wren_sig
+	.core_index(3),
 	.request(request[3]) ,	// output  request_sig
 	.readdata(data_out_core3) ,	// input [WIDTH-1:0] readdata_sig
 	.address(address_core3) ,	// output [WIDTH-1:0] address_sig

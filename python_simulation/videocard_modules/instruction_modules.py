@@ -1,6 +1,6 @@
 from python_simulation.videocard_modules.mem_modules import *
 from python_simulation.videocard_modules.instructions import *
-from assembler.disassembler import Disassembler
+from assembler.src.disassembler_legacy import Disassembler
 # from core_modules import SM
 
 

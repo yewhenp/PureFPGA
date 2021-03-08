@@ -1,0 +1,49 @@
+// double values in memory starting from RAM[RAM[0]] to RAM[RAM[0]+10*core_number]
+// each core will double 10 values
+
+// Let's say that in reg0 there is index of core
+
+// starting infinite loop
+coreidx reg0
+movl reg5 0
+cmp reg0 reg0
+je reg5
+
+// reg1 = RAM[0]
+movl reg2 0
+load reg1 reg2
+
+// reg2 = 10 reg3 = 2 reg5 = 12 - start of cycle
+movl reg2 10
+movh reg2 0
+
+movl reg3 2
+movh reg3 0
+
+movl reg5 12
+movh reg5 0
+
+// So, the first address of each core = RAM[0] + coreidx*10
+// coreidx = coreidx * 10 + reg1 - starting index
+mul reg0 reg2
+add reg0 reg1
+
+// reg1 = i = 0;
+movl reg1 0
+
+// RAM[reg0] *= 2
+load reg4 reg0
+mul reg4 reg3
+store reg4 reg0
+
+// reg0++ i++
+inc reg0
+inc reg1
+
+// if reg1 < reg2 jump to start of cycle
+cmp reg1 reg2
+jlt reg5
+
+// go again to infinite loop
+xor reg0 reg0
+je reg0

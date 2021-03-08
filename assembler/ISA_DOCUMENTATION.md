@@ -41,7 +41,7 @@
 - movl op1 <uint16 number>  - op1[15:0] = <number>
 - movh op1 <uint16 number>  - op2[31:16] = <number>
 - movf op1                  - op1 = flag register
-- coreidx op1               - op1 = coreidx (not implemented yet)
+- coreidx op1               - op1 = coreidx
 
 ### Memory
 - load op1 op2  - op1 = RAM[op2]
@@ -54,6 +54,7 @@
 - jge op1 - jump if greater or equal - ip = op1 if OVERFLOW_FLAG==SIGN_FLAG
 - jlt op1 - jump if less then        - ip = op1 if OVERFLOW_FLAG!=SIGN_FLAG
 - jle op1 - jump if less or equal    - ip = op1 if ZERO_FLAG==1 && OVERFLOW_FLAG!=SIGN_FLAG
+- jmp     - jump always              - ip = op1
 
 ### Legacy (not deleted yet)
 - chbuf - change buffer
@@ -163,9 +164,9 @@ Here is the list of suffixes, and the conditions to be satisfied:
         'jge': '11011',
         'jlt': '11100',
         'jle': '11101',
+        'jmp': '11110',
 
-        'chmod': '11110',
-        'chbuf': '11111',
+        'coreidx': '11111'
     }
 ```
 
@@ -180,3 +181,10 @@ Here is the list of suffixes, and the conditions to be satisfied:
 
 **jumps**
 - [7:9] bit - op1
+
+
+## Assembler USAGE
+1) ```$  python3 ./pure_assembler.py program``` - will create in your directory a.prep - preprocessed file, a.out - text result
+2) ```$ python3 ./pure_assembler.py program p output ``` -  will preprocess given program and save result to output
+3) ```$ python3 ./pure_assembler.py preprocessed a output``` - will assemble preprocessed and save result as text file to output
+4) ```$ python3 ./pure_assembler.py preprocessed ab output``` - will assemble preprocessed and save result as binary file to output

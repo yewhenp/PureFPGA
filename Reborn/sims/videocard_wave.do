@@ -26,6 +26,7 @@ add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/reg4
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/reg5
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/sp
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/ip
+add wave -noupdate /videocard_tb/videocard_main/core0/state
 add wave -noupdate -divider arbiter
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/data_in_core0
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/data_out_core0
@@ -33,9 +34,6 @@ add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/addr
 add wave -noupdate -radix binary /videocard_tb/videocard_main/arbiter_inst/request
 add wave -noupdate -radix binary /videocard_tb/videocard_main/arbiter_inst/response
 add wave -noupdate -radix binary /videocard_tb/videocard_main/arbiter_inst/wren_core
-add wave -noupdate -radix binary /videocard_tb/videocard_main/arbiter_inst/current_state
-add wave -noupdate -radix binary /videocard_tb/videocard_main/arbiter_inst/wait_memory
-add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/last_res
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/time_spent
 add wave -noupdate -divider rom
 add wave -noupdate -radix binary /videocard_tb/videocard_main/rom/clk
@@ -63,4 +61,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {456658 ps}
+WaveRestoreZoom {988686 ps} {1053228 ps}

@@ -146,16 +146,20 @@ always @(posedge clk) begin
 				// got response, read data and unlock core
 				if (response) begin
 					wait_memory <= 0;
-					case (operand1_code)
-						3'b000 : reg0 <= readdata;
-						3'b001 : reg1 <= readdata;
-						3'b010 : reg2 <= readdata;
-						3'b011 : reg3 <= readdata;
-						3'b100 : reg4 <= readdata;
-						3'b101 : reg5 <= readdata;
-						3'b110 : sp <= readdata;
-						3'b111 : ip = readdata;
-					endcase
+
+					if (wren==0) begin 
+						case (operand1_code)
+							3'b000 : reg0 <= readdata;
+							3'b001 : reg1 <= readdata;
+							3'b010 : reg2 <= readdata;
+							3'b011 : reg3 <= readdata;
+							3'b100 : reg4 <= readdata;
+							3'b101 : reg5 <= readdata;
+							3'b110 : sp <= readdata;
+							3'b111 : ip = readdata;
+						endcase
+					end
+
 				end else begin
 					// wait for data
 					reg0 <= reg0;
@@ -223,14 +227,14 @@ always @(posedge clk) begin
 											endcase
 								// jump
 								3'b111 : case (operand1_code)
-												3'b000 : ip = reg0;
-												3'b001 : ip = reg1;
-												3'b010 : ip = reg2;
-												3'b011 : ip = reg3;
-												3'b100 : ip = reg4;
-												3'b101 : ip = reg5;
-												3'b110 : ip = sp;
-												3'b111 : ip = ip;
+												3'b000 : ip = reg0-1;
+												3'b001 : ip = reg1-1;
+												3'b010 : ip = reg2-1;
+												3'b011 : ip = reg3-1;
+												3'b100 : ip = reg4-1;
+												3'b101 : ip = reg5-1;
+												3'b110 : ip = sp-1;
+												3'b111 : ip = ip-1;
 											endcase
 								// mov high
 								3'b010 : case (operand1_code)
@@ -262,15 +266,20 @@ always @(posedge clk) begin
 					
 						// set address
 						address_reg <= operand2;
+
+						// read from memory to reg
+						// lock core
+						wait_memory <= 1'b1;
 						
 						// write to memory
 						if (wren) begin
 							writedata_reg <= operand1;
-						end else begin
-							// read from memory to reg
-							// lock core
-							wait_memory <= 1'b1;
-						end
+						end 
+						// else begin
+						// 	// read from memory to reg
+						// 	// lock core
+						// 	wait_memory <= 1'b1;
+						// end
 
 					end
 					

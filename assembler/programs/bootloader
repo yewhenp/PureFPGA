@@ -1,0 +1,4 @@
+// Let's say that address for functions for ith core lays in RAM[i]
+coreidx reg0
+load reg1 reg0
+jmp reg1

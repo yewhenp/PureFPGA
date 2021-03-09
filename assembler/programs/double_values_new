@@ -1,30 +1,24 @@
-// double values in memory starting from RAM[RAM[0]] to RAM[RAM[0]+10*core_number]
+// double values in memory starting from RAM[RAM[10]] to RAM[RAM[10]+10*core_number]
 // each core will double 10 values
 
-// Let's say that in reg0 there is index of core
-
-// starting infinite loop
+// Let's say that address for functions for ith core lays in RAM[i]
+// Here linux part should insert 3 in RAM[0:4]
 coreidx reg0
-movl reg5 0
-cmp reg0 reg0
-je reg5
+load reg1 reg0
+jmp reg1
 
-// reg1 = RAM[0]
-movl reg2 0
-load reg1 reg2
-
-// reg2 = 10 reg3 = 2 reg5 = 12 - start of cycle
+// reg2 = 10 reg3 = 2 reg5 = 12 - start of cycle - constants
 movl reg2 10
-movh reg2 0
-
 movl reg3 2
-movh reg3 0
+movl reg5 12//
 
-movl reg5 12
-movh reg5 0
+// So, the first address of each core = RAM[10] + coreidx*10
+// get address of first cell to reg1
+movl reg0 10
+load reg1 reg0
 
-// So, the first address of each core = RAM[0] + coreidx*10
-// coreidx = coreidx * 10 + reg1 - starting index
+// save address of first cell of this core to reg0
+coreidx reg0
 mul reg0 reg2
 add reg0 reg1
 
@@ -40,10 +34,9 @@ store reg4 reg0
 inc reg0
 inc reg1
 
-// if reg1 < reg2 jump to start of cycle
-cmp reg1 reg2
+// if reg0 < 10 jump to start of cycle
+cmp reg0 reg2
 jlt reg5
 
-// go again to infinite loop
-xor reg0 reg0
-je reg0
+// send interrupt, finished work
+int 1

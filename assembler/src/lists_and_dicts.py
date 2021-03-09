@@ -15,7 +15,7 @@ commands = {
         'sub': '0010',
         'subc': '0011',
         'mul': '0100',
-        'mulc': '0101',
+        'div': '0101',
         'and': '0110',
         'or': '0111',
         'xor': '1000',
@@ -36,36 +36,20 @@ commands = {
         'mov0': '00100',
         'mov1': '00101',
 
-        'movh0': '00110',
-        'movh1': '00111',
-        'movh2': '01000',
-        'movh3': '01001',
-        'movh4': '01010',
-        'movh5': '01011',
+        'movh': '00110',
+        'movl': '00111',
+        'movf': '01000',
 
-        'movl0': '01100',
-        'movl1': '01101',
-        'movl2': '01110',
-        'movl3': '01111',
-        'movl4': '10000',
-        'movl5': '10001',
+        'je':  '01001',
+        'jne': '01010',
+        'jgt': '01011',
+        'jge': '01100',
+        'jlt': '01101',
+        'jle': '01110',
+        'jmp': '01111',
 
-        'movf0': '10010',
-        'movf1': '10011',
-        'movf2': '10100',
-        'movf3': '10101',
-        'movf4': '10110',
-        'movf5': '10111',
-
-        'je': '11000',
-        'jne': '11001',
-        'jgt': '11010',
-        'jge': '11011',
-        'jlt': '11100',
-        'jle': '11101',
-        'jmp': '11110',
-
-        'coreidx': '11111'
+        'coreidx': '10000',
+        'int'    : '10001'
 
         # 'chmod': '11110',
         # 'chbuf': '11111',
@@ -112,21 +96,21 @@ mem_suffix_commands = [
     "mov0", "mov1", "load0", "load1", "store0", "store1",
 ]
 
-mem_number_commands = [
-    'movh0', 'movh1', 'movh2', 'movh3', 'movh4', 'movh5',
-    'movl0', 'movl1', 'movl2', 'movl3', 'movl4', 'movl5'
-]
+# mem_number_commands = [
+#     'movh0', 'movh1', 'movh2', 'movh3', 'movh4', 'movh5',
+#     'movl0', 'movl1', 'movl2', 'movl3', 'movl4', 'movl5'
+# ]
 
-mem_movf_commands = [
-    "movf0", "movf1", "movf2", "movf3", "movf4", "movf5"
-]
+# mem_movf_commands = [
+#     "movf0", "movf1", "movf2", "movf3", "movf4", "movf5"
+# ]
 
 mem_jump_commmands = [
-    'je', 'jne', 'jgt', 'jge', 'jlt', 'jle'
+    'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp'
 ]
 
 not_suffix_commands = [
-    'je', 'jne', 'jgt', 'jge', 'jlt', 'jle' # , "chbuf", "chmod"
+    'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp', 'movf' # , "chbuf", "chmod"
 ]
 
 coreidx = [

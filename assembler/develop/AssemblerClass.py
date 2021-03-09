@@ -43,6 +43,7 @@ class Assembler:
     def preprocess_source(self, verbose: bool = False):
         with open(self.prep_file, "w") as prep_file:
             instr_counter = 0
+            last_inst_was_16_bit = False
             for line in open(self.source_file, "r"):
                 # skip comments and empty lines
                 if line.startswith("//") or line.strip() == "":
@@ -56,8 +57,14 @@ class Assembler:
                     print(f"Preprocessing {line}")
 
                 # insert NOP in front of movl / movh if instruction's number is odd
-                if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
+                if line[0] in mem_only_num_command_unprocessed and instr_counter % 2 and last_inst_was_16_bit:
+                    print(instr_counter, last_inst_was_16_bit)
                     prep_file.write(self.NOP + "\n")
+
+                if line[0] in mem_only_num_command_unprocessed:
+                    last_inst_was_16_bit = False
+                else:
+                    last_inst_was_16_bit = True
 
                 # mov - mov0-1 store - store0-1 load - load0-1 conversion
                 if line[0][:-2] in mem_suffix_commands_unprocessed and \
@@ -78,14 +85,17 @@ class Assembler:
                 if verbose:
                     print(f"Preprocess res: {line}")
 
-                if line[0] == "nop":
+                if line[0] == "nopal":
                     prep_file.write(self.NOP + "\n")
                 else:
                     prep_file.write(" ".join(line) + "\n")
 
                 # insert NOP if jump's ip is even number.
                 if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+                    print(instr_counter)
                     prep_file.write(self.NOP + "\n")
+
+                instr_counter += 1
 
     @staticmethod
     def encode_command(parsed_command: str):

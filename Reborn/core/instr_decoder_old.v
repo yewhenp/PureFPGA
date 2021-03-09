@@ -9,8 +9,7 @@ module instr_decoder #(
     OVERFLOW=2,
     ZERO=3,
 
-    CORE_NUMBER=2,
-    INT_NUM=3
+    CORE_NUMBER=2
 )
 (
     input 				     clk,
@@ -33,10 +32,7 @@ module instr_decoder #(
     // alu + mem + move
     output reg [REGS_CODING-1: 0] op1,
     output reg [REGS_CODING-1: 0] op2,
-    output reg                    suffix,
-
-    output reg                      interrupt,
-    output reg [INT_NUM-1:0]        int_num
+    output reg                    suffix
 
 );
 
@@ -48,22 +44,29 @@ always @(negedge clk) begin
         mem_en <=  0;
         move_en <= 0;
 		wren <= 0;
-        interrupt <= 0;
-        int_num <= 0;
 
         // long 32bit instruction - movl / movh
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH/2-1: 0];
             move_en <= 1;
+            
+            case(long_instr[29:25]) 
+                5'b00110: begin op1 <= 3'b000; mov_type <= 3'b010; end   // movh
+                5'b00111: begin op1 <= 3'b001; mov_type <= 3'b010; end
+                5'b01000: begin op1 <= 3'b010; mov_type <= 3'b010; end
+                5'b01001: begin op1 <= 3'b011; mov_type <= 3'b010; end
+                5'b01010: begin op1 <= 3'b100; mov_type <= 3'b010; end
+                5'b01011: begin op1 <= 3'b101; mov_type <= 3'b010; end
 
-            // register coding
-            op1 <= long_instr[20:18];
+                5'b01100: begin op1 <= 3'b000; mov_type <= 3'b001; end   // movl
+                5'b01101: begin op1 <= 3'b001; mov_type <= 3'b001; end
+                5'b01110: begin op1 <= 3'b010; mov_type <= 3'b001; end
+                5'b01111: begin op1 <= 3'b011; mov_type <= 3'b001; end
+                5'b10000: begin op1 <= 3'b100; mov_type <= 3'b001; end
+                5'b10001: begin op1 <= 3'b101; mov_type <= 3'b001; end
 
-            if (long_instr[25]) begin // movl
-                mov_type <= 3'b001;
-            end else begin            // movh
-                mov_type <= 3'b010;
-            end
+                default: op1 <= op1;
+            endcase
 
             case (long_instr[24:21])
                 4'b0000: suffix <= flags[ZERO] == 1;
@@ -135,30 +138,29 @@ always @(negedge clk) begin
 						 end else begin
 						 
 
-							 // others
-							case (short_instr[13:9])
-                                // movf
-                                5'b01000: begin op1 <= short_instr[8:6]; mov_type <= 3'b011; move_en <= 1; end   // movf
-								  
-                                // jumps
-								5'b01001: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1; mov_type <= 3'b111; move_en <= 1; end
-								5'b01010: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0; mov_type <= 3'b111; move_en <= 1; end
-								5'b01011: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
-								5'b01100: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
-								5'b01101: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
-								5'b01110: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1 || (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
-                                5'b01111: begin op1 <= short_instr[8:6]; suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
+							 // movf & jumps
+							 case (short_instr[13:9])
+								  5'b10010: begin op1 <= 3'b000; mov_type <= 3'b011; move_en <= 1; end   // movf
+								  5'b10011: begin op1 <= 3'b001; mov_type <= 3'b011; move_en <= 1; end
+								  5'b10100: begin op1 <= 3'b010; mov_type <= 3'b011; move_en <= 1; end
+								  5'b10101: begin op1 <= 3'b011; mov_type <= 3'b011; move_en <= 1; end
+								  5'b10110: begin op1 <= 3'b100; mov_type <= 3'b011; move_en <= 1; end
+								  5'b10111: begin op1 <= 3'b101; mov_type <= 3'b011; move_en <= 1; end
 
-                                // coreidx
-                                5'b10000: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; end 
+								  5'b11000: begin suffix <= flags[ZERO] == 1; mov_type <= 3'b111; move_en <= 1; end // jumps
+								  5'b11001: begin suffix <= flags[ZERO] == 0; mov_type <= 3'b111; move_en <= 1; end
+								  5'b11010: begin suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+								  5'b11011: begin suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
+								  5'b11100: begin suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
+								  5'b11101: begin suffix <= flags[ZERO] == 1 || (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+                                  5'b11110: begin suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
 
-                                // int
-                                5'b10001: begin op1 <= short_instr[4:2]; interrupt <= 1; int_num <= short_instr[4:2]; end
+                                  5'b11111: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; end
 
-								default: op1 <= op1;
-                            endcase
-                            // op1 <= short_instr[5:3];
-                            // op2 <= short_instr[2:0];
+								  default: op1 <= op1;
+							 endcase
+						 	 op1 <= short_instr[5:3];
+							 op2 <= short_instr[2:0];
 						 end
 					 
 					 end

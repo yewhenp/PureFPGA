@@ -1,7 +1,8 @@
 module videocard #(
  parameter
  WIDTH=32,
- CORE_NUM=4
+ CORE_NUM=4,
+ INT_NUM=3
 )(
 input 					clk,
 input [WIDTH-1: 0] 	data_in,
@@ -43,6 +44,11 @@ wire [CORE_NUM-1: 0] request;
 wire [CORE_NUM-1: 0] response;
 wire [CORE_NUM-1: 0] wren_core;
 wire [CORE_NUM-1: 0] core_interrupts;
+
+wire [INT_NUM-1:0]   int_num0; 
+wire [INT_NUM-1:0]   int_num1;
+wire [INT_NUM-1:0]   int_num2;
+wire [INT_NUM-1:0]   int_num3;
 
 
 
@@ -105,7 +111,8 @@ core core0
 	.writedata(data_in_core0) ,	// output [WIDTH-1:0] writedata_sig
 	.instr_addr(address_instr_core0), 	// output [WIDTH-1:0] instr_addr_sig
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(core_interrupts[0])
+	.interrupt_finish(core_interrupts[0]),
+	.int_num(int_num0)
 );
 
 core core1
@@ -121,7 +128,8 @@ core core1
 	.writedata(data_in_core1) ,	// output [WIDTH-1:0] writedata_sig
 	.instr_addr(address_instr_core1), 	// output [WIDTH-1:0] instr_addr_sig
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(core_interrupts[1])
+	.interrupt_finish(core_interrupts[1]),
+	.int_num(int_num1)
 );
 
 core core2
@@ -137,7 +145,8 @@ core core2
 	.writedata(data_in_core2) ,	// output [WIDTH-1:0] writedata_sig
 	.instr_addr(address_instr_core2), 	// output [WIDTH-1:0] instr_addr_sig
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(core_interrupts[2])
+	.interrupt_finish(core_interrupts[2]),
+	.int_num(int_num2)
 );
 
 core core3
@@ -153,7 +162,8 @@ core core3
 	.writedata(data_in_core3) ,	// output [WIDTH-1:0] writedata_sig
 	.instr_addr(address_instr_core3), 	// output [WIDTH-1:0] instr_addr_sig
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(core_interrupts[3])
+	.interrupt_finish(core_interrupts[3]),
+	.int_num(int_num3)
 );
 
 

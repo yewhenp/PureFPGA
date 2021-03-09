@@ -44,7 +44,7 @@ initial begin
 	#10
 	interrupt <= 1'b0;
    
-	#1000
+	#1200
    $stop;
 
 end

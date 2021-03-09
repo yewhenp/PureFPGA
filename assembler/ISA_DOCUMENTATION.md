@@ -1,4 +1,5 @@
 # ISA documentation of our videocard cores
+*neeeds update*
 
 ## General things
 - There are 8 registers, reg0-reg7

@@ -27,6 +27,8 @@ add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/reg5
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/sp
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/core0/ip
 add wave -noupdate /videocard_tb/videocard_main/core0/state
+add wave -noupdate /videocard_tb/videocard_main/core0/int_num
+add wave -noupdate /videocard_tb/videocard_main/core0/interrupt_finish
 add wave -noupdate -divider arbiter
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/data_in_core0
 add wave -noupdate -radix decimal /videocard_tb/videocard_main/arbiter_inst/data_out_core0
@@ -47,7 +49,7 @@ add wave -noupdate -radix binary /videocard_tb/videocard_main/inter_controller/i
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {322639 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 364
+configure wave -namecolwidth 421
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -61,4 +63,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {988686 ps} {1053228 ps}
+WaveRestoreZoom {865030 ps} {925438 ps}

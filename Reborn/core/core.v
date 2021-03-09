@@ -10,7 +10,8 @@ module core #(
  OPCODE=4,
  MOV_CODE=3,
  STATE_WIDTH=2,
- CORE_NUM=2
+ CORE_NUM=2,
+ INT_NUM=3
 )(
 input 				 	clk,
 input			       	response,
@@ -23,7 +24,9 @@ output[WIDTH-1: 0] 	address,
 output[WIDTH-1: 0] 	writedata,
 output[WIDTH-1: 0] 	instr_addr,
 input 					interrupt_start,
-output 					interrupt_finish
+output reg				interrupt_finish,
+output 	  [INT_NUM-1:0] int_num
+
 );
 
 
@@ -64,6 +67,9 @@ reg wait_memory=0;
 wire [WIDTH-1: 0] result_wire;
 wire [FLAGS-1: 0] flags_wire;
 
+// interupt
+wire interrupt;
+
 // assigns
 assign fetch = (state == 0);
 assign decode = (state == 1);
@@ -90,7 +96,9 @@ instr_decoder instr_decoder_main (
 	.mov_type(move_type),  //000 - mov reg reg, 001 - movl 010 - movh, 011 - movf, 100 - jump
 	.op1(operand1_code),
 	.op2(operand2_code),
-	.suffix(suffix)
+	.suffix(suffix),
+	.interrupt(interrupt),
+	.int_num(int_num)
 );
 
 
@@ -182,6 +190,12 @@ always @(posedge clk) begin
 				
 				// on save stage
 				if (save) begin
+
+					// interrupt from command
+					if (interrupt && suffix) begin
+						interrupt_finish <= 1;
+						perform <= 0;
+					end
 
 					// work with alu
 					if (suffix && alu_en) begin
@@ -301,6 +315,8 @@ always @(posedge clk) begin
 					end
 				end
 			end
+		end else begin
+			interrupt_finish <= 0;
 		end
 	end
 	

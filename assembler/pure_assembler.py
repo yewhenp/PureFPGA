@@ -1,5 +1,5 @@
 import sys
-from src.AssemblerClass import Assembler
+from assembler.develop.AssemblerClass import Assembler
 
 
 if __name__ == '__main__':

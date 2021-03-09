@@ -1,6 +1,6 @@
 import re
 import bitstring
-from assembler.src.lists_and_dicts import *
+from assembler.develop.lists_and_dicts import *
 
 
 class Assembler:
@@ -75,15 +75,17 @@ class Assembler:
                 if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
                     line[0] += "al"
 
-                # movl movh movf preprocessing
-                if line[0][:-2] in mem_number_commands_unprocessed:
-                    line[0] = line[0][0:-2] + line[1][-1] + line[0][-2:]
-                    line.pop(1)
-
                 if verbose:
                     print(f"Preprocess res: {line}")
 
-                prep_file.write(" ".join(line) + "\n")
+                if line[0] == "nop":
+                    prep_file.write(self.NOP + "\n")
+                else:
+                    prep_file.write(" ".join(line) + "\n")
+
+                # insert NOP if jump's ip is even number.
+                if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+                    prep_file.write(self.NOP + "\n")
 
     @staticmethod
     def encode_command(parsed_command: str):
@@ -107,7 +109,7 @@ class Assembler:
             raise KeyError(f"Unknown command: {command_clear}")
 
         # first two bits of command
-        result = result + "1" if command_clear[:-1] in mem_only_num_command_unprocessed else result + "0"
+        result = result + "1" if command_clear in mem_only_num_command_unprocessed else result + "0"
         result = result + "1" if command_type == "alu" else result + "0"
 
         if command_type == "alu":
@@ -122,28 +124,43 @@ class Assembler:
         elif command_type == "memory":
             result += commands["memory"][command_clear]        # 5 bits - opcode
 
+            # load / store / mov
             if command_clear in mem_suffix_commands:
                 result += suffixes[suffix][1:]                # 3 bits - suffix
                 result += registers[command_list[1]]          # 3 bits - first reg
                 result += registers[command_list[2]]          # 3 bits - second reg
+
             # movl/movh
-            elif command_clear in mem_number_commands:
+            elif command_clear in mem_only_num_command_unprocessed:
                 result += suffixes[suffix]                    # 4 bits - suffix
+                result += registers[command_list[1]]          # 3 bits - register
                 bin_num = bin(int(command_list[-1]))[2:]
                 if len(bin_num) > 16:
                     raise ValueError(f"Can't move number to register: {command_list[-1]}")
                 bin_num = "0" * (16 - len(bin_num)) + bin_num
-                result += "0" * 5                                  # unused bits
+                result += "0" * 2                                  # unused bits
                 result += bin_num                                  # 16 bit number
+
             # jumps / movf
-            elif command_clear in mem_jump_commmands or command_clear in mem_movf_commands:
+            elif command_clear in not_suffix_commands:
                 result += registers[command_list[1]]          # 3 bits - first reg
                 result += "0" * 6
+
+            # coreidx
             elif command_clear in coreidx:
                 result += suffixes[suffix]
                 result += registers[command_list[1]]
                 result += "0" * 2
+
+            # int
+            elif command_clear == "int":
+                result += suffixes[suffix]                      # 4 bits suffix
+                bin_num = bin(int(command_list[-1]))[2:]
+                bin_num = "0" * (3 - len(bin_num)) + bin_num
+                result += bin_num                               # 3 bits interrupt number
+                result += "0" * 2
             else:
-                result += "0" * 9
+                print(f"Unknow command: {command_list}")
+                raise ValueError
 
         return result

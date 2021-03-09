@@ -66,9 +66,10 @@ initial begin
 	for(i = 0; i< 5; i = i + 1) begin
 		address_in_core0 <= i;
 		data_in_core0 <= 3*i;
-		#40;
+		#80;
 	end
 	
+	request[0] <= 0;
 	wren_core[0] <= 0;
 	request[0] <= 0;
 
@@ -77,7 +78,7 @@ initial begin
 	for(i = 5; i< 10; i = i + 1) begin
 		address_in_core1 <= i;
 		data_in_core1 <= 4*i;
-		#40;
+		#80;
 	end
 	request[1] <= 0;
 	wren_core[1] <= 0;

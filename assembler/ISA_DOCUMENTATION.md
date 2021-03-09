@@ -8,7 +8,11 @@
 - All instructions are 16bit (except for movl/movh that are 32bit)
 - ISA is strict RISC, so the memory model is load-store
 - There is flag register [CARRY, SIGN, OVERFLOW, ZERO]
-- The address bus is obly 16bit.
+- The address bus is only 16bit (even  though  you can put 32bit number into register).
+- Each core knows it's index through ```coreidx op1``` instruction
+- At the end of program, you should call interrupt with code 1 (```int 1```)
+- If jump instruction is in even address in ROM, then assembler puts NOP after jump, becase instruction after jump is always executed
+- If 32-bit instruction is in odd address in ROM, then assembler puts NOP before it, because when half of 32bit instruction is loaded in core - that's undefined behaviour.
 - There is no (yet) hardware support of mutexes, so be carefull
 
 ## Instructions
@@ -42,7 +46,6 @@
 - movl op1 <uint16 number>  - op1[15:0] = <number>
 - movh op1 <uint16 number>  - op2[31:16] = <number>
 - movf op1                  - op1 = flag register
-- coreidx op1               - op1 = coreidx
 
 ### Memory
 - load op1 op2  - op1 = RAM[op2]
@@ -57,9 +60,9 @@
 - jle op1 - jump if less or equal    - ip = op1 if ZERO_FLAG==1 && OVERFLOW_FLAG!=SIGN_FLAG
 - jmp     - jump always              - ip = op1
 
-### Legacy (not deleted yet)
-- chbuf - change buffer
-- chmod - change mod
+### Others
+- coreidx op1 - op1 = coreidx
+- int int_num - call interupt with given 3-bit number. Yet implementer only 1 - core finished its job, stop working.
 
 ## Some features
 
@@ -122,11 +125,7 @@ Here is the list of suffixes, and the conditions to be satisfied:
 - [13:15] bit - op2
 
 **Other instructions**
-- [2:6] bit - opcode. Here is few tricks:
-
-    1) movl0-5/movh0-5/movf0-5 - number codes destination register op1
-
-    2) load0-1/store0-1 - 0-1 is the first bit of the corresponding suffix  
+- [2:6] bit - opcode. Here is one tricks: load0-1/store0-1 - 0-1 is the first bit of the corresponding suffix  
 ```json
 'other': {
         'load0': '00000',
@@ -138,36 +137,20 @@ Here is the list of suffixes, and the conditions to be satisfied:
         'mov0': '00100',
         'mov1': '00101',
 
-        'movh0': '00110',
-        'movh1': '00111',
-        'movh2': '01000',
-        'movh3': '01001',
-        'movh4': '01010',
-        'movh5': '01011',
+        'movh': '00110',
+        'movl': '00111',
+        'movf': '01000',
 
-        'movl0': '01100',
-        'movl1': '01101',
-        'movl2': '01110',
-        'movl3': '01111',
-        'movl4': '10000',
-        'movl5': '10001',
+        'je':  '01001',
+        'jne': '01010',
+        'jgt': '01011',
+        'jge': '01100',
+        'jlt': '01101',
+        'jle': '01110',
+        'jmp': '01111',
 
-        'movf0': '10010',
-        'movf1': '10011',
-        'movf2': '10100',
-        'movf3': '10101',
-        'movf4': '10110',
-        'movf5': '10111',
-
-        'je': '11000',
-        'jne': '11001',
-        'jgt': '11010',
-        'jge': '11011',
-        'jlt': '11100',
-        'jle': '11101',
-        'jmp': '11110',
-
-        'coreidx': '11111'
+        'coreidx': '10000',
+        'int'    : '10001'
     }
 ```
 
@@ -177,11 +160,16 @@ Here is the list of suffixes, and the conditions to be satisfied:
 - [12:15] bit - op2
 
 **movl/movh**
-- [7:10] bit  - suffix (not yet implemented)
+- [7:10] bit  - suffix
+- [11:13] bit - register
 - [16:31] bit - immediate
 
 **jumps**
 - [7:9] bit - op1
+
+**coreidx/int**
+- [7:10] - suffix
+- [11:13] - register/int_number
 
 
 ## Assembler USAGE

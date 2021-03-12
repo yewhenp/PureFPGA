@@ -1,0 +1,180 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 320 344)
+	(text "videocard_gen" (rect 118 -1 177 11)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 328 20 340)(font "Arial" ))
+	(port
+		(pt 320 312)
+		(input)
+		(text "memory_oct_rzqin" (rect 0 0 76 12)(font "Arial" (font_size 8)))
+		(text "memory_oct_rzqin" (rect 227 301 323 312)(font "Arial" (font_size 8)))
+		(line (pt 320 312)(pt 192 312)(line_width 1))
+	)
+	(port
+		(pt 0 72)
+		(input)
+		(text "pll_0_refclk_clk" (rect 0 0 62 12)(font "Arial" (font_size 8)))
+		(text "pll_0_refclk_clk" (rect 4 61 100 72)(font "Arial" (font_size 8)))
+		(line (pt 0 72)(pt 96 72)(line_width 1))
+	)
+	(port
+		(pt 320 72)
+		(output)
+		(text "memory_mem_a[12..0]" (rect 0 0 96 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_a[12..0]" (rect 210 61 324 72)(font "Arial" (font_size 8)))
+		(line (pt 320 72)(pt 192 72)(line_width 3))
+	)
+	(port
+		(pt 320 88)
+		(output)
+		(text "memory_mem_ba[2..0]" (rect 0 0 97 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_ba[2..0]" (rect 208 77 322 88)(font "Arial" (font_size 8)))
+		(line (pt 320 88)(pt 192 88)(line_width 3))
+	)
+	(port
+		(pt 320 104)
+		(output)
+		(text "memory_mem_ck" (rect 0 0 77 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_ck" (rect 233 93 311 104)(font "Arial" (font_size 8)))
+		(line (pt 320 104)(pt 192 104)(line_width 1))
+	)
+	(port
+		(pt 320 120)
+		(output)
+		(text "memory_mem_ck_n" (rect 0 0 88 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_ck_n" (rect 220 109 310 120)(font "Arial" (font_size 8)))
+		(line (pt 320 120)(pt 192 120)(line_width 1))
+	)
+	(port
+		(pt 320 136)
+		(output)
+		(text "memory_mem_cke" (rect 0 0 82 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_cke" (rect 227 125 311 136)(font "Arial" (font_size 8)))
+		(line (pt 320 136)(pt 192 136)(line_width 1))
+	)
+	(port
+		(pt 320 152)
+		(output)
+		(text "memory_mem_cs_n" (rect 0 0 88 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_cs_n" (rect 219 141 309 152)(font "Arial" (font_size 8)))
+		(line (pt 320 152)(pt 192 152)(line_width 1))
+	)
+	(port
+		(pt 320 168)
+		(output)
+		(text "memory_mem_ras_n" (rect 0 0 92 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_ras_n" (rect 215 157 311 168)(font "Arial" (font_size 8)))
+		(line (pt 320 168)(pt 192 168)(line_width 1))
+	)
+	(port
+		(pt 320 184)
+		(output)
+		(text "memory_mem_cas_n" (rect 0 0 93 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_cas_n" (rect 213 173 309 184)(font "Arial" (font_size 8)))
+		(line (pt 320 184)(pt 192 184)(line_width 1))
+	)
+	(port
+		(pt 320 200)
+		(output)
+		(text "memory_mem_we_n" (rect 0 0 89 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_we_n" (rect 215 189 305 200)(font "Arial" (font_size 8)))
+		(line (pt 320 200)(pt 192 200)(line_width 1))
+	)
+	(port
+		(pt 320 216)
+		(output)
+		(text "memory_mem_reset_n" (rect 0 0 99 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_reset_n" (rect 206 205 314 216)(font "Arial" (font_size 8)))
+		(line (pt 320 216)(pt 192 216)(line_width 1))
+	)
+	(port
+		(pt 320 280)
+		(output)
+		(text "memory_mem_odt" (rect 0 0 80 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_odt" (rect 229 269 313 280)(font "Arial" (font_size 8)))
+		(line (pt 320 280)(pt 192 280)(line_width 1))
+	)
+	(port
+		(pt 320 296)
+		(output)
+		(text "memory_mem_dm" (rect 0 0 81 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_dm" (rect 230 285 308 296)(font "Arial" (font_size 8)))
+		(line (pt 320 296)(pt 192 296)(line_width 1))
+	)
+	(port
+		(pt 320 232)
+		(bidir)
+		(text "memory_mem_dq[7..0]" (rect 0 0 97 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_dq[7..0]" (rect 208 221 322 232)(font "Arial" (font_size 8)))
+		(line (pt 320 232)(pt 192 232)(line_width 3))
+	)
+	(port
+		(pt 320 248)
+		(bidir)
+		(text "memory_mem_dqs" (rect 0 0 82 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_dqs" (rect 226 237 310 248)(font "Arial" (font_size 8)))
+		(line (pt 320 248)(pt 192 248)(line_width 1))
+	)
+	(port
+		(pt 320 264)
+		(bidir)
+		(text "memory_mem_dqs_n" (rect 0 0 93 12)(font "Arial" (font_size 8)))
+		(text "memory_mem_dqs_n" (rect 213 253 309 264)(font "Arial" (font_size 8)))
+		(line (pt 320 264)(pt 192 264)(line_width 1))
+	)
+	(drawing
+		(text "memory" (rect 193 43 422 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "mem_a" (rect 157 67 344 144)(font "Arial" (color 0 0 0)))
+		(text "mem_ba" (rect 152 83 340 176)(font "Arial" (color 0 0 0)))
+		(text "mem_ck" (rect 152 99 340 208)(font "Arial" (color 0 0 0)))
+		(text "mem_ck_n" (rect 141 115 330 240)(font "Arial" (color 0 0 0)))
+		(text "mem_cke" (rect 147 131 336 272)(font "Arial" (color 0 0 0)))
+		(text "mem_cs_n" (rect 141 147 330 304)(font "Arial" (color 0 0 0)))
+		(text "mem_ras_n" (rect 137 163 328 336)(font "Arial" (color 0 0 0)))
+		(text "mem_cas_n" (rect 136 179 326 368)(font "Arial" (color 0 0 0)))
+		(text "mem_we_n" (rect 140 195 328 400)(font "Arial" (color 0 0 0)))
+		(text "mem_reset_n" (rect 129 211 324 432)(font "Arial" (color 0 0 0)))
+		(text "mem_dq" (rect 152 227 340 464)(font "Arial" (color 0 0 0)))
+		(text "mem_dqs" (rect 147 243 336 496)(font "Arial" (color 0 0 0)))
+		(text "mem_dqs_n" (rect 136 259 326 528)(font "Arial" (color 0 0 0)))
+		(text "mem_odt" (rect 149 275 340 560)(font "Arial" (color 0 0 0)))
+		(text "mem_dm" (rect 149 291 334 592)(font "Arial" (color 0 0 0)))
+		(text "oct_rzqin" (rect 150 307 354 624)(font "Arial" (color 0 0 0)))
+		(text "pll_0_refclk" (rect 28 43 128 99)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 101 67 220 144)(font "Arial" (color 0 0 0)))
+		(text " videocard_gen " (rect 254 328 598 666)(font "Arial" ))
+		(line (pt 96 32)(pt 192 32)(line_width 1))
+		(line (pt 192 32)(pt 192 328)(line_width 1))
+		(line (pt 96 328)(pt 192 328)(line_width 1))
+		(line (pt 96 32)(pt 96 328)(line_width 1))
+		(line (pt 191 52)(pt 191 316)(line_width 1))
+		(line (pt 190 52)(pt 190 316)(line_width 1))
+		(line (pt 97 52)(pt 97 76)(line_width 1))
+		(line (pt 98 52)(pt 98 76)(line_width 1))
+		(line (pt 0 0)(pt 320 0)(line_width 1))
+		(line (pt 320 0)(pt 320 344)(line_width 1))
+		(line (pt 0 344)(pt 320 344)(line_width 1))
+		(line (pt 0 0)(pt 0 344)(line_width 1))
+	)
+)

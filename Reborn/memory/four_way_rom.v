@@ -14,7 +14,7 @@ output reg [WIDTH-1: 0] data_core3
 );
 
 
-reg [WIDTH-1: 0] data [511: 0];
+reg [WIDTH-1: 0] data [11: 0];
 
 always @ (posedge clk) begin
 
@@ -52,7 +52,7 @@ always @ (posedge clk) begin
 	data[10] <= 32'b0100101010000000_0001001001000000;
 
 	// nop; int 1
-	data[13] <= 32'b0100001011000000_0010001101000100;
+	data[11] <= 32'b0100001011000000_0010001101000100;
 
 	//  // mov lov imm = 7 to reg 0
 	//  data[0] <= 32'b10_01100_1010_00000_0000000000000111;

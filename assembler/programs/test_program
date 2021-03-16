@@ -22,6 +22,4 @@ sub reg0 reg0
 je reg1
 
 nop
-nop
-
 int 1

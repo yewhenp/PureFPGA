@@ -13,13 +13,18 @@ input 						write,
 input 						read,
 input							reset_sink_reset,
 input 						interrupt_start,
-output 						interrupt_finish
+output [WIDTH-1: 0]		data_finish,
+input 						read_finish
 );
 
 wire [WIDTH-1: 0] data_in_internal;
 wire [WIDTH-1: 0] data_out_internal;
 wire [WIDTH-1: 0] address_internal;
 wire 					wren_internal;
+wire					interrupt_finish;
+wire [WIDTH-1: 0] data_finish_wire;
+
+assign data_finish = data_finish_wire & read_finish;
 
 
 videocard videocard_inst (
@@ -47,6 +52,12 @@ RAM_dual ram_inst (
 	.wren_b(write),
 	.q_a(data_in_internal),
 	.q_b(data_out)
+);
+
+memory_mapped_control mm_control (
+	.clk(clk),
+	.interrupt(interrupt_finish),
+	.data(data_finish_wire)
 );
 
 endmodule

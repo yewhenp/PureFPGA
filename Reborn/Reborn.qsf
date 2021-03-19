@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY videocard_gen
+set_global_assignment -name TOP_LEVEL_ENTITY videocard_tb
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:25:31  FEBRUARY 27, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -68,6 +68,27 @@ set_global_assignment -name USE_DLL_FREQUENCY_FOR_DQS_DELAY_CHAIN ON
 set_global_assignment -name UNIPHY_SEQUENCER_DQS_CONFIG_ENABLE ON
 set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
 set_global_assignment -name ECO_REGENERATE_REPORT ON
+set_global_assignment -name SDC_FILE scripts/Reborn.sdc
+set_global_assignment -name VERILOG_FILE test_benches/videocard_tb.v
+set_global_assignment -name VERILOG_FILE test_benches/core_tb.v
+set_global_assignment -name VERILOG_FILE core/move_ctrl.v
+set_global_assignment -name VERILOG_FILE core/memory_ctrl.v
+set_global_assignment -name VERILOG_FILE core/instr_decoder.v
+set_global_assignment -name VERILOG_FILE core/core.v
+set_global_assignment -name VERILOG_FILE core/alu.v
+set_global_assignment -name VERILOG_FILE test_benches/instruction_decoder_tb.v
+set_global_assignment -name QIP_FILE memory/RAM.qip
+set_global_assignment -name VERILOG_FILE memory/arbiter.v
+set_global_assignment -name VERILOG_FILE test_benches/arbiter_tb.v
+set_global_assignment -name VERILOG_FILE videocard/videocard.v
+set_global_assignment -name VERILOG_FILE memory/four_way_rom.v
+set_global_assignment -name VERILOG_FILE videocard/interrupt_controller.v
+set_global_assignment -name VERILOG_FILE test_benches/interrupt_controller_tb.v
+set_global_assignment -name QIP_FILE memory/RAM_dual.qip
+set_global_assignment -name QIP_FILE core/divider.qip
+set_global_assignment -name VERILOG_FILE videocard/videocard_top.v
+set_location_assignment PIN_AC18 -to pll_0_refclk_clk
+set_global_assignment -name VERILOG_FILE videocard/memory_mapped_control.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -199,25 +220,4 @@ set_instance_assignment -name GLOBAL_SIGNAL OFF -to hps_0|hps_io|border|hps_sdra
 set_instance_assignment -name GLOBAL_SIGNAL OFF -to hps_0|hps_io|border|hps_sdram_inst|p0|umemphy|uread_datapath|reset_n_fifo_wraddress[0] -tag __hps_sdram_p0
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION_FOR_NON_GLOBAL_CLOCKS ON -to hps_0|hps_io|border|hps_sdram_inst -tag __hps_sdram_p0
 set_instance_assignment -name PLL_COMPENSATION_MODE DIRECT -to hps_0|hps_io|border|hps_sdram_inst|pll0|fbout -tag __hps_sdram_p0
-set_global_assignment -name QIP_FILE generated/synthesis/videocard_gen.qip
-set_global_assignment -name SDC_FILE scripts/Reborn.sdc
-set_global_assignment -name VERILOG_FILE test_benches/videocard_tb.v
-set_global_assignment -name VERILOG_FILE test_benches/core_tb.v
-set_global_assignment -name VERILOG_FILE core/move_ctrl.v
-set_global_assignment -name VERILOG_FILE core/memory_ctrl.v
-set_global_assignment -name VERILOG_FILE core/instr_decoder.v
-set_global_assignment -name VERILOG_FILE core/core.v
-set_global_assignment -name VERILOG_FILE core/alu.v
-set_global_assignment -name VERILOG_FILE test_benches/instruction_decoder_tb.v
-set_global_assignment -name QIP_FILE memory/RAM.qip
-set_global_assignment -name VERILOG_FILE memory/arbiter.v
-set_global_assignment -name VERILOG_FILE test_benches/arbiter_tb.v
-set_global_assignment -name VERILOG_FILE videocard/videocard.v
-set_global_assignment -name VERILOG_FILE memory/four_way_rom.v
-set_global_assignment -name VERILOG_FILE videocard/interrupt_controller.v
-set_global_assignment -name VERILOG_FILE test_benches/interrupt_controller_tb.v
-set_global_assignment -name QIP_FILE memory/RAM_dual.qip
-set_global_assignment -name QIP_FILE core/divider.qip
-set_global_assignment -name VERILOG_FILE videocard/videocard_top.v
-set_location_assignment PIN_AC18 -to pll_0_refclk_clk
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

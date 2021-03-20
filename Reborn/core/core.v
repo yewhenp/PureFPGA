@@ -195,6 +195,7 @@ always @(posedge clk) begin
 					if (interrupt && suffix) begin
 						interrupt_finish <= 1;
 						perform <= 0;
+						ip = -1;
 					end
 
 					// work with alu

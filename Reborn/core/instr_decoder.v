@@ -20,27 +20,27 @@ module instr_decoder #(
     input [FLAGS-1: 0]       flags,
     input [CORE_NUMBER-1:0]    core_index,
     //alu
-    output reg                    alu_en,
-    output reg [OPCODE-1 :0]      alu_opcode,
+    output reg                    alu_en = 1'b0,
+    output reg [OPCODE-1 :0]      alu_opcode = 4'b0,
     //mem
-    output reg                    mem_en,
+    output reg                    mem_en = 1'b0,
     output reg                    wren = 0,
     //move
-    output reg                    move_en,
-    output reg [WIDTH/2-1: 0]     immediate,
-    output reg [2:0]              mov_type,  //000 - mov reg reg, 001 - movl 010 - movh, 011 - movf, 100 - jump
+    output reg                    move_en = 1'b0,
+    output reg [WIDTH/2-1: 0]     immediate = 16'b0,
+    output reg [2:0]              mov_type = 3'b0,  //000 - mov reg reg, 001 - movl 010 - movh, 011 - movf, 100 - jump
 
     // alu + mem + move
-    output reg [REGS_CODING-1: 0] op1,
-    output reg [REGS_CODING-1: 0] op2,
-    output reg                    suffix,
+    output reg [REGS_CODING-1: 0] op1 = 3'b0,
+    output reg [REGS_CODING-1: 0] op2 = 3'b0,
+    output reg                    suffix = 1'b0,
 
-    output reg                      interrupt,
-    output reg [INT_NUM-1:0]        int_num
+    output reg                      interrupt = 1'b0,
+    output reg [INT_NUM-1:0]        int_num = 3'b0
 
 );
 
-reg [WIDTH/2-1: 0] short_instr;
+reg [WIDTH/2-1: 0] short_instr = 16'b0;
 
 always @(negedge clk) begin
     if (en) begin
@@ -150,7 +150,7 @@ always @(negedge clk) begin
                                 5'b01111: begin op1 <= short_instr[8:6]; suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
 
                                 // coreidx
-                                5'b10000: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; end 
+                                5'b10000: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; immediate[15:2] <= 14'b0; immediate[1:0] <= core_index; end 
 
                                 // int
                                 5'b10001: begin op1 <= short_instr[4:2]; interrupt <= 1; int_num <= short_instr[4:2]; end

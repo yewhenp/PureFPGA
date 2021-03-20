@@ -84,7 +84,7 @@ always @(posedge clk) begin
 		end
 		
 		// if we have updated data or if time limit was reached
-		if (time_spent > 1) begin
+		if (time_spent > 3) begin
 		
 			// give core data
 			case (current_state)

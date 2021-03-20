@@ -8,9 +8,12 @@ reg clk = 0;
 reg [WIDTH/2-1: 0] address = 16'b0;
 reg [WIDTH-1: 0] data_in = 16'b0;
 wire [WIDTH-1: 0] data_out;
-wire [WIDTH-1: 0] data_out_mm;
 reg wren = 1'b0;
-reg interrupt = 1'b0;
+
+reg address_control = 1'b0;
+reg [WIDTH-1: 0] data_in_control = 32'b0;
+wire [WIDTH-1: 0] data_out_control;
+reg wren_control = 1'b0;
 
 
 //RAM ram_inst
@@ -41,24 +44,64 @@ videocard_top videocard_top_inst
 	.address(address) ,	// input [WIDTH/2-1:0] address_sig
 	.byteenable(4'b1111) ,	// input [BYTES-1:0] byteenable_sig
 	.write(wren) ,	// input  write_sig
-	.read(~wren) ,	// input  read_sig
+	.read(1'b1) ,	// input  read_sig
 	.reset_sink_reset(1'b0) ,	// input  reset_sink_reset_sig
-	.interrupt_start(interrupt) ,	// input  interrupt_start_sig
-	.data_finish(data_out_mm), 	// output [WIDTH-1:0] data_finish_sig
-	.read_finish(1'b1)
+	.data_out_control(data_out_control),
+	.data_in_control(data_in_control),
+	.read_control(~wren_control),
+	.write_control(wren_control),
+	.address_control(address_control)
 );
 
 
 
 initial begin
-	
-	interrupt <= 1'b0;
 	#200
-	interrupt <= 1'b1;
-	#10
-	interrupt <= 1'b0;
+	
+	address <= 0;
+	data_in <= 1;
+	wren <= 1;
+	
+	#40
+	
+	address <= 1;
+	data_in <= 2;
+	
+	#40
+	address <= 2;
+	data_in <= 3;
+	
+	#40
+	address <= 3;
+	data_in <= 4;
+	
+	#40
+	address <= 4;
+	wren <= 0;
+	
+	#40
+	wren_control <= 1;
+	address_control <= 0;
+	data_in_control <= 1;
+	
+	#20
+	wren_control <= 0;
+	address_control <= 1;
+	data_in_control <= 0;
    
-	#2000
+	#800
+	address <= 0;
+	
+	#40
+	address <= 1;
+	
+	#40
+	address <= 2;
+	
+	#40
+	address <= 3;
+	
+	#200
    $stop;
 
 end

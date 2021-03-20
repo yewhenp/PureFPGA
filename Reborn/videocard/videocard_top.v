@@ -12,9 +12,11 @@ input [BYTES-1: 0]		byteenable,
 input 						write,
 input 						read,
 input							reset_sink_reset,
-input 						interrupt_start,
-output [WIDTH-1: 0]		data_finish,
-input 						read_finish
+output [WIDTH-1: 0]		data_out_control,
+input [WIDTH-1: 0]		data_in_control,
+input 						read_control,
+input 						write_control,
+input 						address_control
 );
 
 wire [WIDTH-1: 0] data_in_internal;
@@ -23,8 +25,7 @@ wire [WIDTH-1: 0] address_internal;
 wire 					wren_internal;
 wire					interrupt_finish;
 wire [WIDTH-1: 0] data_finish_wire;
-
-assign data_finish = data_finish_wire & read_finish;
+wire 					interrupt_start;
 
 
 videocard videocard_inst (
@@ -56,8 +57,14 @@ RAM_dual ram_inst (
 
 memory_mapped_control mm_control (
 	.clk(clk),
+	.clk_hps(clk_hps),
 	.interrupt(interrupt_finish),
-	.data(data_finish_wire)
+	.address(address_control),
+	.read(read_control),
+	.write(write_control),
+	.data_write(data_in_control),
+	.data_read(data_out_control),
+	.interrupt_internal(interrupt_start)
 );
 
 endmodule

@@ -1,0 +1,10 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v}
+vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/instruction_decoder_tb.v}
+

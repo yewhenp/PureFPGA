@@ -1,0 +1,70 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst videocard_gen_new.ARM_A9_HPS.axi_sdram -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.gmac1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.timer1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.hps_io.border -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.scu -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.gpio0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.timer2 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.arm_gic_0 -pg 1
+preplace inst videocard_gen_new.videocard_module_0 -pg 1 -lvl 5 -y 30
+preplace inst videocard_gen_new.ARM_A9_HPS.i2c0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.gpio1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.timer3 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.f2s_periph_ref_clk -pg 1
+preplace inst videocard_gen_new -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst videocard_gen_new.sys_pll -pg 1 -lvl 3 -y 270
+preplace inst videocard_gen_new.ARM_A9_HPS.i2c1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.gpio2 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.dma -pg 1
+preplace inst videocard_gen_new.sys_pll.reset_from_locked -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.dcan0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.usb0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.spim0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.i2c2 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.L2 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.timer -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.dcan1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.usb1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.spim1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.i2c3 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.wd_timer0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.arm_a9_0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.bridges -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.clk_0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS -pg 1 -lvl 3 -y 50
+preplace inst videocard_gen_new.ARM_A9_HPS.wd_timer1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.sysmgr -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.arm_a9_1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.nand0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.f2s_sdram_ref_clk -pg 1
+preplace inst videocard_gen_new.pll_0 -pg 1 -lvl 4 -y 220
+preplace inst videocard_gen_new.ARM_A9_HPS.sdmmc -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.uart0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.eosc1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.l3regs -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.uart1 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.rstmgr -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.eosc2 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.hps_io -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.fpga_interfaces -pg 1
+preplace inst videocard_gen_new.sys_pll.sys_pll -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.axi_ocram -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.fpgamgr -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.clkmgr -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.sdrctl -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.gmac0 -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.qspi -pg 1
+preplace inst videocard_gen_new.ARM_A9_HPS.timer0 -pg 1
+preplace netloc EXPORT<net_container>videocard_gen_new</net_container>(SLAVE)videocard_gen_new.hps_0_hps_io,(SLAVE)ARM_A9_HPS.hps_io) 1 0 3 NJ 100 NJ 100 NJ
+preplace netloc EXPORT<net_container>videocard_gen_new</net_container>(SLAVE)videocard_gen_new.memory,(SLAVE)ARM_A9_HPS.memory) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>videocard_gen_new</net_container>(SLAVE)sys_pll.ref_clk,(SLAVE)videocard_gen_new.clk) 1 0 3 NJ 280 NJ 280 NJ
+preplace netloc POINT_TO_POINT<net_container>videocard_gen_new</net_container>(MASTER)ARM_A9_HPS.h2f_lw_axi_master,(SLAVE)videocard_module_0.memory_control) 1 3 2 NJ 80 N
+preplace netloc EXPORT<net_container>videocard_gen_new</net_container>(SLAVE)sys_pll.ref_reset,(SLAVE)videocard_gen_new.reset) 1 0 3 NJ 300 NJ 300 NJ
+preplace netloc FAN_OUT<net_container>videocard_gen_new</net_container>(SLAVE)videocard_module_0.clock_hps,(SLAVE)ARM_A9_HPS.h2f_lw_axi_clock,(SLAVE)pll_0.refclk,(MASTER)sys_pll.sys_clk,(SLAVE)ARM_A9_HPS.h2f_axi_clock) 1 2 3 320 170 870 170 1110
+preplace netloc INTERCONNECT<net_container>videocard_gen_new</net_container>(SLAVE)pll_0.reset,(MASTER)ARM_A9_HPS.h2f_reset,(MASTER)sys_pll.reset_source,(SLAVE)videocard_module_0.reset_sink) 1 3 2 850 120 N
+preplace netloc POINT_TO_POINT<net_container>videocard_gen_new</net_container>(MASTER)ARM_A9_HPS.h2f_axi_master,(SLAVE)videocard_module_0.memory_main) 1 3 2 NJ 60 1070
+preplace netloc POINT_TO_POINT<net_container>videocard_gen_new</net_container>(MASTER)pll_0.outclk0,(SLAVE)videocard_module_0.clock) 1 4 1 1090
+levelinfo -pg 1 0 90 1300
+levelinfo -hier videocard_gen_new 100 120 280 660 940 1150 1290

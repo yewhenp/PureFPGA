@@ -1,0 +1,128 @@
+# do Reborn_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying /opt/intelFPGA/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:12 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v 
+# -- Compiling module videocard_tb
+# 
+# Top level modules:
+# 	videocard_tb
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v 
+# -- Compiling module instr_decoder
+# 
+# Top level modules:
+# 	instr_decoder
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v 
+# -- Compiling module core
+# 
+# Top level modules:
+# 	core
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v 
+# -- Compiling module RAM
+# 
+# Top level modules:
+# 	RAM
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v 
+# -- Compiling module arbiter
+# 
+# Top level modules:
+# 	arbiter
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v 
+# -- Compiling module videocard
+# 
+# Top level modules:
+# 	videocard
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v 
+# -- Compiling module four_way_rom
+# 
+# Top level modules:
+# 	four_way_rom
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard {/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:53:13 on Mar 09,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard" /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v 
+# -- Compiling module interrupt_controller
+# 
+# Top level modules:
+# 	interrupt_controller
+# End time: 17:53:13 on Mar 09,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+do ../../sims/videocard_sim.do
+# vsim work.videocard_tb -L altera_mf_ver 
+# Start time: 17:53:20 on Mar 09,2021
+# Loading work.videocard_tb
+# Loading work.RAM
+# Loading altera_mf_ver.altsyncram
+# Loading work.videocard
+# Loading work.four_way_rom
+# Loading work.arbiter
+# Loading work.interrupt_controller
+# Loading work.core
+# Loading work.instr_decoder
+# Loading work.alu
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (32) for port 'address'. The port definition is at: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/ram_inst File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v Line: 18
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'videocard_main'.  Expected 7, found 6.
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_main File: /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v Line: 27
+# ** Warning: (vsim-3722) /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v(27): [TFMPC] - Missing connection for port 'interrupt_finish'.
+# ** Note: $stop    : /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v(48)
+#    Time: 1250 ns  Iteration: 0  Instance: /videocard_tb
+# Break in Module videocard_tb at /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v line 48
+# End time: 18:33:27 on Mar 09,2021, Elapsed time: 0:40:07
+# Errors: 0, Warnings: 3

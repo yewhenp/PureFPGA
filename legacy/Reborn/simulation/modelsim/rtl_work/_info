@@ -1,0 +1,228 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/pasha/Documents/poc_acs/PureFPGA/Reborn/simulation/modelsim
+valu
+Z1 !s110 1615305193
+!i10b 1
+!s100 07^NAL286=:PM84L;6VPi3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IZU=X49B5o0fY@Wd?R64eY1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1615196163
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v
+!i122 3
+L0 1 86
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1615305193.000000
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v|
+!i113 1
+Z7 o-vlog01compat -work work
+Z8 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core
+Z9 tCvgOpt 0
+varbiter
+R1
+!i10b 1
+!s100 oHRm3Q^`A55I[g@1JPUUG2
+R2
+IN2`dDXYngL@EB^N5bo8^43
+R3
+R0
+w1615295399
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v
+!i122 5
+L0 1 113
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v|
+!i113 1
+R7
+Z10 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory
+R9
+vcore
+R1
+!i10b 1
+!s100 Aoz]7z<6oGIP<IAVdQzeC1
+R2
+Ih6;XR1[mZR7<e[fME<QW]1
+R3
+R0
+w1615304986
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v
+!i122 2
+L0 1 325
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v|
+!i113 1
+R7
+R8
+R9
+vfour_way_rom
+R1
+!i10b 1
+!s100 CQON7KQbHkoC2BG;^Ce=J0
+R2
+IoIifcaLC]RL8=ZEk6hJAD0
+R3
+R0
+w1615304206
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v
+!i122 7
+L0 1 100
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v|
+!i113 1
+R7
+R10
+R9
+vinstr_decoder
+R1
+!i10b 1
+!s100 <OmJm70[BB_SR1dH;4QF30
+R2
+IEJBnB4LaNddSWlBjNWEH=0
+R3
+R0
+w1615305172
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v
+!i122 1
+Z11 L0 1 172
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v|
+!i113 1
+R7
+R8
+R9
+vinterrupt_controller
+R1
+!i10b 1
+!s100 VNT8dd`TN]e35VnaZfAmf3
+R2
+I[?SK=]@;:<JFLZnK:H1Ed2
+R3
+R0
+w1615227441
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v
+!i122 8
+L0 1 30
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v|
+!i113 1
+R7
+Z12 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard
+R9
+vRAM
+R1
+!i10b 1
+!s100 SldOC3WBX6n?8KkEH?;oV1
+R2
+IE2li4fY:Q2NckC3Y`J9AC3
+R3
+R0
+R4
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v
+!i122 4
+L0 40 65
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v|
+!i113 1
+R7
+R10
+R9
+n@r@a@m
+vvideocard
+R1
+!i10b 1
+!s100 6V57Rkb_SDB9Uf^8bEcK;3
+R2
+I;Km5j;MgIK@b02EPoOZ@T3
+R3
+R0
+w1615303238
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v
+!i122 6
+R11
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v|
+!i113 1
+R7
+R12
+R9
+vvideocard_tb
+R1
+!i10b 1
+!s100 23UcEl=WI_ELacm4dGJVT0
+R2
+IJR6<niCkV;>SP<K1=BB;S0
+R3
+R0
+w1615303034
+8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v
+F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v
+!i122 0
+L0 2 53
+R5
+r1
+!s85 0
+31
+!s108 1615305192.000000
+!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v|
+!i113 1
+R7
+!s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches
+R9

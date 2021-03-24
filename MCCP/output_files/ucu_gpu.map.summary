@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Tue Mar 23 09:52:50 2021
+Analysis & Synthesis Status : Successful - Wed Mar 24 23:18:12 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : ucu_gpu
 Top-level Entity Name : ucu_gpu_top
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 14304
+Total registers : 14577
 Total pins : 172
 Total virtual pins : 0
-Total block memory bits : 2,492,672
+Total block memory bits : 3,541,248
 Total DSP Blocks : 8
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

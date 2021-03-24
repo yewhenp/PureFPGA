@@ -44,8 +44,8 @@ module ROM (
 	q_a,
 	q_b);
 
-	input	[14:0]  address_a;
-	input	[14:0]  address_b;
+	input	[13:0]  address_a;
+	input	[13:0]  address_b;
 	input	  clock;
 	output	[31:0]  q_a;
 	output	[31:0]  q_b;
@@ -102,21 +102,21 @@ module ROM (
 `ifdef NO_PLI
 		altsyncram_component.init_file = "./memory/program.rif"
 `else
-		altsyncram_component.init_file = "/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/program.mif"
+		altsyncram_component.init_file = "./memory/program.mif"
 `endif
 ,
 		altsyncram_component.intended_device_family = "Cyclone V",
 		altsyncram_component.lpm_type = "altsyncram",
-		altsyncram_component.numwords_a = 32768,
-		altsyncram_component.numwords_b = 32768,
+		altsyncram_component.numwords_a = 16384,
+		altsyncram_component.numwords_b = 16384,
 		altsyncram_component.operation_mode = "BIDIR_DUAL_PORT",
 		altsyncram_component.outdata_aclr_a = "NONE",
 		altsyncram_component.outdata_aclr_b = "NONE",
 		altsyncram_component.outdata_reg_a = "CLOCK0",
 		altsyncram_component.outdata_reg_b = "CLOCK0",
 		altsyncram_component.power_up_uninitialized = "FALSE",
-		altsyncram_component.widthad_a = 15,
-		altsyncram_component.widthad_b = 15,
+		altsyncram_component.widthad_a = 14,
+		altsyncram_component.widthad_b = 14,
 		altsyncram_component.width_a = 32,
 		altsyncram_component.width_b = 32,
 		altsyncram_component.width_byteena_a = 1,

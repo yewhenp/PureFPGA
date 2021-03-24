@@ -6,6 +6,7 @@ module videocard_top #(
 )(
 input 						clk,
 input							clk_hps,
+input							clk_rom,
 input [WIDTH-1: 0] 		data_in,
 output [WIDTH-1: 0] 		data_out,
 input [WIDTH/2-1: 0] 	address,
@@ -36,7 +37,8 @@ videocard videocard_inst (
 	.address(address_internal),
 	.wren(wren_internal),
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(interrupt_finish)
+	.interrupt_finish(interrupt_finish),
+	.clk_rom(clk_rom)
 );
 
 RAM_dual ram_inst (

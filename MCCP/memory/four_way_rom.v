@@ -14,16 +14,16 @@ output [WIDTH-1: 0] data_core3
 );
 
 ROM rom1 (
-	.address_a(address_core0[14:0]),
-	.address_b(address_core1[14:0]),
+	.address_a(address_core0[13:0]),
+	.address_b(address_core1[13:0]),
 	.clock(clk),
 	.q_a(data_core0),
 	.q_b(data_core1)
 );
 
 ROM rom2 (
-	.address_a(address_core2[14:0]),
-	.address_b(address_core3[14:0]),
+	.address_a(address_core2[13:0]),
+	.address_b(address_core3[13:0]),
 	.clock(clk),
 	.q_a(data_core2),
 	.q_b(data_core3)

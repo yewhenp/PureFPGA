@@ -99,6 +99,7 @@ module soc_system (
 	wire          alt_vip_cl_tpg_1_dout_endofpacket;                           // alt_vip_cl_tpg_1:dout_endofpacket -> alt_vip_cl_mixer_0:din1_endofpacket
 	wire          pll_0_outclk0_clk;                                           // pll_0:outclk_0 -> [ARM_A9_HPS:f2h_axi_clk, ARM_A9_HPS:f2h_sdram0_clk, ARM_A9_HPS:f2h_sdram1_clk, ARM_A9_HPS:h2f_axi_clk, alt_vip_cl_cvo_0:main_clock_clk, alt_vip_cl_mixer_0:main_clock_clk, alt_vip_cl_tpg_0:main_clock, alt_vip_cl_tpg_1:main_clock, mm_interconnect_0:pll_0_outclk0_clk, mm_interconnect_2:pll_0_outclk0_clk, mm_interconnect_3:pll_0_outclk0_clk, rst_controller:clk, rst_controller_003:clk, video_dma:clk]
 	wire          pll_0_outclk2_clk;                                           // pll_0:outclk_2 -> [mm_interconnect_0:pll_0_outclk2_clk, mm_interconnect_2:pll_0_outclk2_clk, rst_controller_002:clk, videocard_new_0:clk]
+	wire          pll_0_outclk3_clk;                                           // pll_0:outclk_3 -> videocard_new_0:clk_rom
 	wire          sys_pll_sys_clk_clk;                                         // sys_pll:sys_clk_clk -> [ARM_A9_HPS:h2f_lw_axi_clk, dma_0:clk, mm_bridge_0:clk, mm_interconnect_1:sys_pll_sys_clk_clk, mm_interconnect_2:sys_pll_sys_clk_clk, mm_interconnect_3:sys_pll_sys_clk_clk, pll_0:refclk, rst_controller_001:clk, rst_controller_004:clk, videocard_new_0:clk_hps]
 	wire          sys_pll_reset_source_reset;                                  // sys_pll:reset_source_reset -> [pll_0:rst, rst_controller:reset_in1, rst_controller_001:reset_in1, rst_controller_002:reset_in1]
 	wire    [1:0] arm_a9_hps_h2f_axi_master_awburst;                           // ARM_A9_HPS:h2f_AWBURST -> mm_interconnect_0:ARM_A9_HPS_h2f_axi_master_awburst
@@ -664,6 +665,7 @@ module soc_system (
 		.outclk_0 (pll_0_outclk0_clk),          // outclk0.clk
 		.outclk_1 (clk_hdmi_clk),               // outclk1.clk
 		.outclk_2 (pll_0_outclk2_clk),          // outclk2.clk
+		.outclk_3 (pll_0_outclk3_clk),          // outclk3.clk
 		.locked   ()                            // (terminated)
 	);
 
@@ -714,7 +716,8 @@ module soc_system (
 		.data_in_control  (mm_interconnect_2_videocard_new_0_memory_control_writedata), //               .writedata
 		.data_out_control (mm_interconnect_2_videocard_new_0_memory_control_readdata),  //               .readdata
 		.clk_hps          (sys_pll_sys_clk_clk),                                        //      clock_hps.clk
-		.reset_sink_reset (rst_controller_002_reset_out_reset)                          //     reset_sink.reset
+		.reset_sink_reset (rst_controller_002_reset_out_reset),                         //     reset_sink.reset
+		.clk_rom          (pll_0_outclk3_clk)                                           //      clock_rom.clk
 	);
 
 	soc_system_mm_interconnect_0 mm_interconnect_0 (

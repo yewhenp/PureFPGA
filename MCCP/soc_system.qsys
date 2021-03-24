@@ -1318,7 +1318,7 @@
   <parameter name="gui_fractional_cout" value="32" />
   <parameter name="gui_mif_generate" value="false" />
   <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="3" />
+  <parameter name="gui_number_of_clocks" value="4" />
   <parameter name="gui_operation_mode" value="direct" />
   <parameter name="gui_output_clock_frequency0" value="100.0" />
   <parameter name="gui_output_clock_frequency1" value="65.0" />
@@ -1331,7 +1331,7 @@
   <parameter name="gui_output_clock_frequency16" value="100.0" />
   <parameter name="gui_output_clock_frequency17" value="100.0" />
   <parameter name="gui_output_clock_frequency2" value="5.0" />
-  <parameter name="gui_output_clock_frequency3" value="100.0" />
+  <parameter name="gui_output_clock_frequency3" value="10.0" />
   <parameter name="gui_output_clock_frequency4" value="100.0" />
   <parameter name="gui_output_clock_frequency5" value="100.0" />
   <parameter name="gui_output_clock_frequency6" value="100.0" />
@@ -1669,6 +1669,11 @@
    version="20.1"
    start="pll_0.outclk2"
    end="videocard_new_0.clock" />
+ <connection
+   kind="clock"
+   version="20.1"
+   start="pll_0.outclk3"
+   end="videocard_new_0.clock_rom" />
  <connection
    kind="clock"
    version="20.1"

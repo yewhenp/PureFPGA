@@ -5,7 +5,7 @@ venv
 
 Verilog_Components
 MCCP/db/
-MCCP/incremental_db
+MCCP/incremental_db/
 *.bak
 MCCP/simulation
 MCCP/output_files

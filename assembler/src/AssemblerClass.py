@@ -43,7 +43,7 @@ class Assembler:
 
         elif mode == "quartus_bin":
             with open(self.dest_file, "w") as dest_file:
-                dest_file.write("DEPTH = 32768;\n")
+                dest_file.write("DEPTH = 16384;\n")
                 dest_file.write("WIDTH = 32;\n")
                 dest_file.write("ADDRESS_RADIX = BIN;\n")
                 dest_file.write("DATA_RADIX = BIN;\n")

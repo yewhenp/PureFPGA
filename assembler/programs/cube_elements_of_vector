@@ -1,0 +1,39 @@
+// vector_size = RAM[0]
+// vector_address = RAM[1]
+// reg1 = address = RAM[1] + coreidx
+movl reg5 1
+load reg1 reg5
+coreidx reg5
+add reg1 reg5
+
+// reg3 = i = vector_size / 4
+movl reg5 0
+mov reg3 reg5
+movl reg5 CORE_NUM
+div reg3 reg5
+
+LOOP:
+    load reg2 reg1          // value = RAM[address]
+    mov reg6 AFTER_CUBE     // reg6=return address
+    jmp CUBE                // call function
+AFTER_CUBE:
+    // address+=CORE_NUM
+    movl reg5 CORE_NUM
+    add reg1 reg5
+
+    // i--
+    dec reg3
+
+    // if local_size > 0: go to LOOP
+    jne LOOP
+
+int 1
+
+// argument is passed to reg2
+// return value is in reg0
+// expects return address in reg6
+CUBE:
+    mov reg0 reg2
+    mul reg0 reg2
+    mul reg0 reg2
+    jmp reg6

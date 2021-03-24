@@ -14,6 +14,8 @@
 - If jump instruction is in even address in ROM, then assembler puts NOP after jump, becase instruction after jump is always executed
 - If 32-bit instruction is in odd address in ROM, then assembler puts NOP before it, because when half of 32bit instruction is loaded in core - that's undefined behaviour.
 - There is no (yet) hardware support of mutexes, so be carefull
+- ** Important note: make sure that you saved value of reg5 before using label!**
+
 
 ## Instructions
 
@@ -173,7 +175,7 @@ Here is the list of suffixes, and the conditions to be satisfied:
 
 
 ## Assembler USAGE
-1) ```$  python3 ./pure_assembler.py program``` - will create in your directory a.prep - preprocessed file, a.out - text result
+1) ```$  python3 ./pure_assembler.py program``` - will create in your directory a.prep - preprocessed file, program.mif - text result for quartus to load to ROM
 2) ```$ python3 ./pure_assembler.py program p output ``` -  will preprocess given program and save result to output
 3) ```$ python3 ./pure_assembler.py preprocessed a output``` - will assemble preprocessed and save result as text file to output
 4) ```$ python3 ./pure_assembler.py preprocessed ab output``` - will assemble preprocessed and save result as binary file to output

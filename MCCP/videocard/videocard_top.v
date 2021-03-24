@@ -36,7 +36,8 @@ videocard videocard_inst (
 	.address(address_internal),
 	.wren(wren_internal),
 	.interrupt_start(interrupt_start),
-	.interrupt_finish(interrupt_finish)
+	.interrupt_finish(interrupt_finish),
+	.clk_hps(clk_hps)
 );
 
 RAM_dual ram_inst (

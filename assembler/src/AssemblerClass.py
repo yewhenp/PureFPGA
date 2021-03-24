@@ -1,15 +1,16 @@
 import re
 import bitstring
-from assembler.src.lists_and_dicts import *
+from src.lists_and_dicts import *
 
 
 class Assembler:
     NOP = "addnv reg0 reg0"
 
-    def __init__(self, source_file: str = None, prep_file: str = None, dest_file: str = None):
+    def __init__(self, source_file: str = None, prep_file: str = None, dest_file: str = None, dest_quartus: str = None):
         self.source_file = source_file
         self.prep_file = prep_file
         self.dest_file = dest_file
+        self.dest_quartus = dest_quartus
 
     # There are two mods - ascii and binary
     def assemble_preprocessed(self, verbose: bool = False, mode="ascii"):
@@ -39,6 +40,34 @@ class Assembler:
                     dest_file.write(my_bytes)
                     if verbose:
                         print(f"Processed line #{line_n}: {encoded}     ({line})")
+
+        with open(self.dest_quartus, "w") as dest_file:
+            dest_file.write("DEPTH = 32768;\n")
+            dest_file.write("WIDTH = 32;\n")
+            dest_file.write("ADDRESS_RADIX = BIN;\n")
+            dest_file.write("DATA_RADIX = BIN;\n")
+            dest_file.write("CONTENT\n")
+            dest_file.write("BEGIN\n")
+
+            temp = ""
+            counter = 0
+            for line_n, line in enumerate(open(self.prep_file, "r")):
+                line = line.strip()
+                encoded = self.encode_command(line)
+
+                if len(encoded) == 32:
+                    dest_file.write('{:015b}'.format(counter) + " : " + encoded + ";\n")
+                    counter += 1
+                else:
+                    if temp == "":
+                        temp = encoded
+                    else:
+                        temp += encoded
+                        dest_file.write('{:015b}'.format(counter) + " : " + temp + ";\n")
+                        counter += 1
+                        temp = ""
+            dest_file.write("\nEND;\n")
+
 
     def preprocess_source(self, verbose: bool = False):
         with open(self.prep_file, "w") as prep_file:

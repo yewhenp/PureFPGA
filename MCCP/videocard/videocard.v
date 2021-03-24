@@ -10,7 +10,8 @@ output [WIDTH-1: 0] 	data_out,
 output [WIDTH-1: 0] 	address,
 output 					wren,
 input 					interrupt_start,
-output 					interrupt_finish
+output 					interrupt_finish,
+input						clk_hps
 );
 
 
@@ -54,7 +55,7 @@ wire [INT_NUM-1:0]   int_num3;
 
 four_way_rom rom
 (
-	.clk(clk),
+	.clk(clk_hps),
 	.address_core0(address_instr_core0),
 	.address_core1(address_instr_core1),
 	.address_core2(address_instr_core2),

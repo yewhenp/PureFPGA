@@ -1,0 +1,31 @@
+movlal reg5 1
+load1al reg1 reg5
+coreidxal reg5
+addal reg1 reg5
+addnv reg0 reg0
+movlal reg5 0
+mov1al reg3 reg5
+addnv reg0 reg0
+movlal reg5 4
+dival reg3 reg5
+addnv reg0 reg0
+load1al reg2 reg1
+movlal reg6 11
+movhal reg6 0
+movlal reg5 16
+movhal reg5 0
+jmp reg5
+addnv reg0 reg0
+addnv reg0 reg0
+movlal reg5 4
+addal reg1 reg5
+decal reg3
+movlal reg5 7
+movhal reg5 0
+jne reg5
+intal 1
+mov1al reg0 reg2
+mulal reg0 reg2
+mulal reg0 reg2
+jmp reg6
+addnv reg0 reg0

@@ -88,10 +88,11 @@ class Assembler:
                 if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
                     continue
 
-                # insert nop in front of jump value if it's instruction is not even
+                # insert nop before jump label if it's instruction is not even
                 if re.match(r"\s*\w+\s*(:)\s*", line):
-                    prep_file.write(self.NOP + "\n")
-                    instr_counter += 1
+                    if instr_counter % 2:
+                        prep_file.write(self.NOP + "\n")
+                        instr_counter += 1
                     continue
 
                 line = line.split()
@@ -107,6 +108,12 @@ class Assembler:
 
                 result = []
 
+                # insert NOP before movl / movh if instruction's number is odd
+                if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
+                    result.append(self.NOP + "\n")
+                    instr_counter += 1
+
+                # ######################################## LABELS ###################################################
                 # change CORE_NUM to 4 for movl/movh
                 if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
                     line[2] = CORE_NUM
@@ -126,61 +133,47 @@ class Assembler:
                 if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers:
                     if line[2] in labels:
                         result += self.__num_to_reg(LABEL_REGISTER, labels[line[2]])
-                        line[2] = LABEL_REGISTER
                         instr_counter += 2
+                        line[2] = LABEL_REGISTER
                     else:
                         raise ValueError(f"Unknown label: {line[2]}")
-
-                # insert NOP in front of movl / movh if instruction's number is odd
-                if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
-                    result.append(self.NOP + "\n")
-                    instr_counter += 1
-
-                # mov - mov0-1 store - store0-1 load - load0-1 conversion
-                if line[0][:-2] in mem_suffix_commands_unprocessed and \
-                        line[0][-2:] in suffixes:  # there is a suffix
-                    if line[0][-2:] in suffixes_0:
-                        line[0] = line[0][0:-2] + "0" + line[0][-2:]
-                    elif line[0][-2:] in suffixes:
-                        line[0] = line[0][0:-2] + "1" + line[0][-2:]
-                    else:
-                        raise ValueError(f"Bad suffix: {line[0][-2:]}")
-                elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
-                    line[0] += "1"
-
-                # add 'al' if needed
-                if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
-                    line[0] += "al"
 
                 # substituting label to jump
                 if line[0] in mem_jump_commmands and line[1] not in registers:
                     if line[1] in labels:
-                        result += self.__num_to_reg(LABEL_REGISTER, labels[line[1]])     # write label address to reg5
+                        result += self.__num_to_reg(LABEL_REGISTER,
+                                                    labels[line[1]])  # write label address to reg5
                         instr_counter += 2
-                        line[1] = LABEL_REGISTER   # programmer has to save content of reg5 before jumping to label
+                        line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
                     else:
                         raise ValueError(f"Unknown label: {line[1]}")
+
+                # movl/movh is basically two instructions
+                if line[0] in mem_only_num_command_unprocessed:
+                    instr_counter += 1
+
+                # mov0/1; load0/1; store0/1; 'al'
+                self.__coding_related_prep(line)
 
                 result.append(" ".join(line) + "\n")
                 instr_counter += 1
 
-                # insert NOP if jump's ip is even number.
+                # insert NOP after jump if jump's ip is even number.
                 if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
                     result.append(self.NOP + "\n")
                     instr_counter += 1
 
                 if verbose:
-                    print(f"Preprocess res: {result}")
+                    print(f"Preprocess res: {result}, {instr_counter}")
 
                 for instr in result:
                     prep_file.write(instr)
 
-                if line[0] in mem_only_num_command_unprocessed:
-                    instr_counter += 1  # movl/movh is basically two instructions
-
-            print(instr_counter)
-            if instr_counter % 2:
+            if instr_counter % 2 == 0:
                 prep_file.write(self.NOP + "\n")  # number of instructions should be even, else undefined behaviour
+                instr_counter += 1
+            if verbose:
+                print(f"Number of instructions: {instr_counter}")
 
     @staticmethod
     def __encode_command(parsed_command: str):
@@ -270,17 +263,33 @@ class Assembler:
     def __find_labels(file, verbose):
         instr_counter = 0
         labels = {}
+
+        label_names = set()
+        # just find label names
         for line in open(file, "r"):
             if line.strip().startswith("//") or line.strip() == "":
                 continue
-            line = re.sub("//(.)*", "", line)  # delete comments at the same line
-            line = line.strip()
-            line = line.lower()
+            line = re.sub("//(.)*", "", line).strip().lower()
+            if re.match(r"\s*\w+\s*(:)\s*", line):
+                label_names.add(re.findall(r"[a-zA-Z_]+", line)[0])
+                continue
+            if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
+                label_names.add(re.findall(r"[a-zA-Z_]+", line)[0])
+                continue
+
+        # now find values of labels
+        for line in open(file, "r"):
+            if line.strip().startswith("//") or line.strip() == "":
+                continue
+            line = re.sub("//(.)*", "", line).strip().lower()
 
             # jump label preprocessing
             if re.match(r"\s*\w+\s*(:)\s*", line):
+                # nop before label if odd number of instructions
+                if instr_counter % 2:
+                    instr_counter += 1
                 name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[name] = instr_counter  # take only text part
+                labels[name] = math.ceil(instr_counter / 2)  # take only text part; /2 bacause there are 2 instructions in one memory cell
                 # instr_counter += 1
                 if verbose:
                     print(f"Found new jump label: " + name + "=" + str(labels[name]))
@@ -294,6 +303,50 @@ class Assembler:
                 if verbose:
                     print(f"Found new value label: " + name + "=" + str(labels[name]))
                 continue
-            instr_counter += 1
 
+            line = line.split()
+
+            # nop
+            if line[0] == "nop":
+                instr_counter += 1
+                continue
+            # insert NOP before movl / movh if instruction's number is odd
+            if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
+                instr_counter += 1
+            # mov regi label = movl regi label[16:] + movl regi label[:16]
+            if line[0] == "mov" and line[2] not in registers and line[2] in label_names:
+                instr_counter += 1
+            # substitute label to load / store
+            if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers and line[2] in label_names:
+                instr_counter += 2
+            # substituting label to jump
+            if line[0] in mem_jump_commmands and line[1] not in registers and line[1] in label_names:
+                instr_counter += 2
+            # insert NOP if jump's ip is even number.
+            if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+                instr_counter += 1
+            # movl/movh is basically two instructions
+            if line[0] in mem_only_num_command_unprocessed:
+                instr_counter += 1
+
+            instr_counter += 1
+        print(instr_counter)
         return labels
+
+    @staticmethod
+    def __coding_related_prep(line):
+        # mov - mov0-1 store - store0-1 load - load0-1 conversion
+        if line[0][:-2] in mem_suffix_commands_unprocessed and \
+                line[0][-2:] in suffixes:  # there is a suffix
+            if line[0][-2:] in suffixes_0:
+                line[0] = line[0][0:-2] + "0" + line[0][-2:]
+            elif line[0][-2:] in suffixes:
+                line[0] = line[0][0:-2] + "1" + line[0][-2:]
+            else:
+                raise ValueError(f"Bad suffix: {line[0][-2:]}")
+        elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
+            line[0] += "1"
+
+        # add 'al' if needed
+        if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
+            line[0] += "al"

@@ -44,17 +44,26 @@ class Assembler:
         with open(self.prep_file, "w") as prep_file:
             instr_counter = 0
             last_inst_was_16_bit = False
+
+            labels = {}
+
             for line in open(self.source_file, "r"):
                 # skip comments and empty lines
                 if line.startswith("//") or line.strip() == "":
                     continue
                 line = re.sub("//(.)*", "", line)  # delete comments at the same line
                 line = line.strip()
+
+                # label
+                if re.match(r"\s*\w+\s*(:)\s*", line):
+                    pass
+
                 line = line.lower()
                 line = line.split()
 
                 if verbose:
                     print(f"Preprocessing {line}")
+
 
                 # insert NOP in front of movl / movh if instruction's number is odd
                 if line[0] in mem_only_num_command_unprocessed and instr_counter % 2 and last_inst_was_16_bit:

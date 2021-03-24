@@ -4,8 +4,8 @@ python_simulation/venv
 venv
 
 Verilog_Components
-Reborn/db/
-Reborn/incremental_db
+MCCP/db/
+MCCP/incremental_db
 *.bak
-Reborn/simulation
-Reborn/output_files
+MCCP/simulation
+MCCP/output_files

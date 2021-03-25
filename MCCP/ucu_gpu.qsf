@@ -30,7 +30,7 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEBA6U23I7
-set_global_assignment -name TOP_LEVEL_ENTITY ucu_gpu_top
+set_global_assignment -name TOP_LEVEL_ENTITY videocard_tb
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "03:49:18  FEBRUARY 28, 2021"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
@@ -158,9 +158,9 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "soc_s
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
-set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ns" -section_id eda_simulation
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH mac_tb -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME mac_tb -section_id eda_simulation
@@ -1324,6 +1324,32 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE test_benches/videocard_tb.v
+set_global_assignment -name QIP_FILE memory/ROM.qip
+set_global_assignment -name VERILOG_FILE videocard/videocard_top.v
+set_global_assignment -name VERILOG_FILE videocard/videocard.v
+set_global_assignment -name VERILOG_FILE videocard/memory_mapped_control.v
+set_global_assignment -name VERILOG_FILE videocard/interrupt_controller.v
+set_global_assignment -name QIP_FILE memory/RAM_dual.qip
+set_global_assignment -name VERILOG_FILE memory/four_way_rom.v
+set_global_assignment -name VERILOG_FILE memory/arbiter.v
+set_global_assignment -name VERILOG_FILE core/instr_decoder.v
+set_global_assignment -name QIP_FILE core/divider.qip
+set_global_assignment -name VERILOG_FILE core/core.v
+set_global_assignment -name VERILOG_FILE core/alu.v
+set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_WRITE_WDATA.v
+set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_HDMI_Config.v
+set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_Controller.v
+set_global_assignment -name SDC_FILE DE10_NANO_SOC_GHRD.sdc
+set_global_assignment -name VERILOG_FILE ip/intr_capturer/intr_capturer.v
+set_global_assignment -name VERILOG_FILE ip/edge_detect/altera_edge_detector.v
+set_global_assignment -name VERILOG_FILE ip/debounce/debounce.v
+set_global_assignment -name QIP_FILE ip/altsource_probe/hps_reset.qip
+set_global_assignment -name QIP_FILE soc_system/synthesis/soc_system.qip
+set_global_assignment -name VERILOG_FILE mac_ip/mac.v
+set_global_assignment -name VERILOG_FILE mac_ip/mac_tb.v
+set_global_assignment -name SIGNALTAP_FILE signal_tap.stp
+set_global_assignment -name VERILOG_FILE ucu_gpu_top.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -1715,30 +1741,5 @@ set_instance_assignment -name GLOBAL_SIGNAL OFF -to u0|arm_a9_hps|hps_io|border|
 set_instance_assignment -name GLOBAL_SIGNAL OFF -to u0|arm_a9_hps|hps_io|border|hps_sdram_inst|p0|umemphy|uread_datapath|reset_n_fifo_wraddress[3] -tag __hps_sdram_p0
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION_FOR_NON_GLOBAL_CLOCKS ON -to u0|arm_a9_hps|hps_io|border|hps_sdram_inst -tag __hps_sdram_p0
 set_instance_assignment -name PLL_COMPENSATION_MODE DIRECT -to u0|arm_a9_hps|hps_io|border|hps_sdram_inst|pll0|fbout -tag __hps_sdram_p0
-set_global_assignment -name QIP_FILE memory/ROM.qip
-set_global_assignment -name VERILOG_FILE videocard/videocard_top.v
-set_global_assignment -name VERILOG_FILE videocard/videocard.v
-set_global_assignment -name VERILOG_FILE videocard/memory_mapped_control.v
-set_global_assignment -name VERILOG_FILE videocard/interrupt_controller.v
-set_global_assignment -name QIP_FILE memory/RAM_dual.qip
-set_global_assignment -name VERILOG_FILE memory/four_way_rom.v
-set_global_assignment -name VERILOG_FILE memory/arbiter.v
-set_global_assignment -name VERILOG_FILE core/instr_decoder.v
-set_global_assignment -name QIP_FILE core/divider.qip
-set_global_assignment -name VERILOG_FILE core/core.v
-set_global_assignment -name VERILOG_FILE core/alu.v
-set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_WRITE_WDATA.v
-set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_HDMI_Config.v
-set_global_assignment -name VERILOG_FILE ip/i2c_hdmi/I2C_Controller.v
-set_global_assignment -name SDC_FILE DE10_NANO_SOC_GHRD.sdc
-set_global_assignment -name VERILOG_FILE ip/intr_capturer/intr_capturer.v
-set_global_assignment -name VERILOG_FILE ip/edge_detect/altera_edge_detector.v
-set_global_assignment -name VERILOG_FILE ip/debounce/debounce.v
-set_global_assignment -name QIP_FILE ip/altsource_probe/hps_reset.qip
-set_global_assignment -name QIP_FILE soc_system/synthesis/soc_system.qip
-set_global_assignment -name VERILOG_FILE mac_ip/mac.v
-set_global_assignment -name VERILOG_FILE mac_ip/mac_tb.v
-set_global_assignment -name SIGNALTAP_FILE signal_tap.stp
-set_global_assignment -name VERILOG_FILE ucu_gpu_top.v
 set_global_assignment -name SLD_FILE db/signal_tap_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

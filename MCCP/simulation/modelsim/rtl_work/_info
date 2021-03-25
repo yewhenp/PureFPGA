@@ -8,75 +8,99 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/pasha/Documents/poc_acs/PureFPGA/Reborn/simulation/modelsim
+Z0 d/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/simulation/modelsim
 valu
-Z1 !s110 1615305193
+Z1 !s110 1616703873
 !i10b 1
-!s100 07^NAL286=:PM84L;6VPi3
+!s100 PndK@f_CdK0@kkFg5h54e3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IZU=X49B5o0fY@Wd?R64eY1
+IZl@ljb12`GN<Wd>gfMh1K2
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z4 w1615196163
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v
-!i122 3
-L0 1 86
+Z4 w1616622830
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v
+!i122 12
+L0 1 97
 Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1615305193.000000
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/alu.v|
+Z6 !s108 1616703873.000000
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v|
 !i113 1
 Z7 o-vlog01compat -work work
-Z8 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core
+Z8 !s92 -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core
 Z9 tCvgOpt 0
 varbiter
 R1
 !i10b 1
-!s100 oHRm3Q^`A55I[g@1JPUUG2
+!s100 iMeH?UO08WIPPn^1IKbkY2
 R2
-IN2`dDXYngL@EB^N5bo8^43
+I?8BjKBifP=J:TbCh=5mi?1
 R3
 R0
-w1615295399
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v
-!i122 5
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v
+!i122 8
 L0 1 113
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/arbiter.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v|
 !i113 1
 R7
-Z10 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory
+Z10 !s92 -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory
 R9
 vcore
 R1
 !i10b 1
-!s100 Aoz]7z<6oGIP<IAVdQzeC1
+!s100 4Zj1;NmCPalGgkAHP8M]j0
 R2
-Ih6;XR1[mZR7<e[fME<QW]1
+IOYQTfmh=nhQS4mEShdE912
 R3
 R0
-w1615304986
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v
-!i122 2
-L0 1 325
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v
+!i122 11
+L0 1 326
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/core.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v|
+!i113 1
+R7
+R8
+R9
+vdivider
+R1
+!i10b 1
+!s100 51;Oj5M1MmmKnC`LcN@P33
+R2
+IjfJ;om8BGbH2IE<`[R;6X3
+R3
+R0
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v
+!i122 10
+L0 40 34
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v|
 !i113 1
 R7
 R8
@@ -84,23 +108,23 @@ R9
 vfour_way_rom
 R1
 !i10b 1
-!s100 CQON7KQbHkoC2BG;^Ce=J0
+!s100 f0dCB<S_?R^ejAW2S?Oe30
 R2
-IoIifcaLC]RL8=ZEk6hJAD0
+ITTZ9Nan[7K;`D=V2ejHnR0
 R3
 R0
-w1615304206
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v
 !i122 7
-L0 1 100
+L0 1 124
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/four_way_rom.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v|
 !i113 1
 R7
 R10
@@ -108,23 +132,23 @@ R9
 vinstr_decoder
 R1
 !i10b 1
-!s100 <OmJm70[BB_SR1dH;4QF30
+!s100 fN;SR?=YKf>Rc8>_aUYDR2
 R2
-IEJBnB4LaNddSWlBjNWEH=0
+InIoJg=k7AX_fI5ddJgY8F1
 R3
 R0
-w1615305172
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v
-!i122 1
-Z11 L0 1 172
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v
+!i122 9
+L0 1 172
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/core/instr_decoder.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v|
 !i113 1
 R7
 R8
@@ -132,97 +156,194 @@ R9
 vinterrupt_controller
 R1
 !i10b 1
-!s100 VNT8dd`TN]e35VnaZfAmf3
+!s100 JR@K0VG=h^CX52gg7e>Nh0
 R2
-I[?SK=]@;:<JFLZnK:H1Ed2
-R3
-R0
-w1615227441
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v
-!i122 8
-L0 1 30
-R5
-r1
-!s85 0
-31
-R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/interrupt_controller.v|
-!i113 1
-R7
-Z12 !s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard
-R9
-vRAM
-R1
-!i10b 1
-!s100 SldOC3WBX6n?8KkEH?;oV1
-R2
-IE2li4fY:Q2NckC3Y`J9AC3
+IHf0H^?VaO8kkQdg;_K4fB3
 R3
 R0
 R4
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v
-!i122 4
-L0 40 65
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v
+!i122 5
+L0 1 40
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/memory/RAM.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v|
+!i113 1
+R7
+Z11 !s92 -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard
+R9
+vmemory_mapped_control
+R1
+!i10b 1
+!s100 T;Cbf8I54[NWZ0[[i^5I@1
+R2
+Id_6^l8geUQ;ENVEcGQdOB3
+R3
+R0
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v
+!i122 4
+L0 1 59
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v|
+!i113 1
+R7
+R11
+R9
+vRAM_dual
+R1
+!i10b 1
+!s100 U<RSIhZ6kZ>=6DzP@Q5AK2
+R2
+IcJ6zC<kOfS7BL^PS]1B`b0
+R3
+R0
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v
+!i122 6
+L0 40 104
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v|
 !i113 1
 R7
 R10
 R9
-n@r@a@m
-vvideocard
-R1
+n@r@a@m_dual
+vROM
+Z12 !s110 1616703872
 !i10b 1
-!s100 6V57Rkb_SDB9Uf^8bEcK;3
+!s100 kOizN;DUGfJk2_5OP[DXZ2
 R2
-I;Km5j;MgIK@b02EPoOZ@T3
+IOQKn0=>Mf?^1o2VOGg:dC2
 R3
 R0
-w1615303238
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v
-!i122 6
-R11
+w1616703613
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v
+!i122 1
+L0 40 88
+R5
+r1
+!s85 0
+31
+Z13 !s108 1616703872.000000
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v|
+!i113 1
+R7
+R10
+R9
+n@r@o@m
+vtb
+R1
+!i10b 1
+!s100 ?H1KJQ`ba;iQRKFg_V7mV1
+R2
+IMhf731F7QIS]C`h<_d=HX1
+R3
+R0
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v
+!i122 13
+L0 3 62
 R5
 r1
 !s85 0
 31
 R6
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/videocard/videocard.v|
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v|
 !i113 1
 R7
-R12
+!s92 -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip
 R9
-vvideocard_tb
+vvideocard
 R1
 !i10b 1
-!s100 23UcEl=WI_ELacm4dGJVT0
+!s100 T1j[ZhfT<aX>2Jn4EX]H`1
 R2
-IJR6<niCkV;>SP<K1=BB;S0
+I_im:E>9Y]L]Nobz`fOMa`3
 R3
 R0
-w1615303034
-8/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v
-F/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v
-!i122 0
-L0 2 53
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v
+!i122 3
+L0 1 173
 R5
 r1
 !s85 0
 31
-!s108 1615305192.000000
-!s107 /home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches|/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches/videocard_tb.v|
+R6
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v|
 !i113 1
 R7
-!s92 -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/PureFPGA/Reborn/test_benches
+R11
+R9
+vvideocard_tb
+R12
+!i10b 1
+!s100 Ldg4KFIS0^:kl]kcKE>?A1
+R2
+ICAkY:;O3R5kePUIld6BM;0
+R3
+R0
+w1616703397
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v
+!i122 0
+L0 2 135
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v|
+!i113 1
+R7
+!s92 -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches
+R9
+vvideocard_top
+R12
+!i10b 1
+!s100 _3`d2C272IgcW192DZOK72
+R2
+IGM[a7^>1oVZ8AfYE3D[W40
+R3
+R0
+R4
+8/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v
+F/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v
+!i122 2
+L0 1 73
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard|/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v|
+!i113 1
+R7
+R11
 R9

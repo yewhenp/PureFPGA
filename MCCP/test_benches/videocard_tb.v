@@ -5,7 +5,7 @@ localparam WIDTH=32;
 
 
 reg clk = 0;
-reg clk_hps = 0;
+reg clk_rom = 0;
 reg [WIDTH/2-1: 0] address = 16'b0;
 reg [WIDTH-1: 0] data_in = 16'b0;
 wire [WIDTH-1: 0] data_out;
@@ -39,7 +39,8 @@ reg wren_control = 1'b0;
 videocard_top videocard_top_inst
 (
 	.clk(clk) ,	// input  clk_sig
-	.clk_hps(clk_hps) ,	// input  clk_hps_sig
+	.clk_hps(clk) ,	// input  clk_hps_sig
+	.clk_rom(clk_rom),
 	.data_in(data_in) ,	// input [WIDTH-1:0] data_in_sig
 	.data_out(data_out) ,	// output [WIDTH-1:0] data_out_sig
 	.address(address) ,	// input [WIDTH/2-1:0] address_sig
@@ -89,7 +90,7 @@ initial begin
 	data_in <= 6;
 	
 	#40
-	address <= 4;
+	address <= 7;
 	wren <= 0;
 	
 	#40
@@ -102,7 +103,7 @@ initial begin
 	address_control <= 1;
 	data_in_control <= 0;
    
-	#800
+	#5000
 	address <= 0;
 	
 	#40
@@ -130,6 +131,6 @@ initial begin
 end
 
 always #5 clk = ~clk;
-always #1 clk_hps = ~clk_hps;
+always #1 clk_rom = ~clk_rom;
 
 endmodule 

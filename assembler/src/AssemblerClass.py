@@ -168,7 +168,7 @@ class Assembler:
                     prep_file.write(instr)
                 instr_counter += 1
 
-            if instr_counter % 2 == 0:
+            if instr_counter % 2 == 1:
                 prep_file.write(self.NOP + "\n")  # number of instructions should be even, else undefined behaviour
                 instr_counter += 1
             if verbose:

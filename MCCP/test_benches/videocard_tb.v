@@ -58,23 +58,35 @@ videocard_top videocard_top_inst
 
 initial begin
 	#200
-	
+	// RAM[0] = veector_size = 4
 	address <= 0;
-	data_in <= 1;
+	data_in <= 4;
 	wren <= 1;
 	
 	#40
-	
+	// RAM[1] = address = 2
 	address <= 1;
 	data_in <= 2;
 	
 	#40
+	// RAN[2]=3
 	address <= 2;
 	data_in <= 3;
 	
 	#40
+	// RAN[3]=4
 	address <= 3;
 	data_in <= 4;
+
+	#40
+	// RAN[4]=5
+	address <= 4;
+	data_in <= 5;
+
+	#40
+	// RAN[5]=6
+	address <= 5;
+	data_in <= 6;
 	
 	#40
 	address <= 4;
@@ -101,6 +113,16 @@ initial begin
 	
 	#40
 	address <= 3;
+
+	#40
+	address <= 4;
+
+	#40
+	address <= 5;
+	
+	#40
+	address <= 6;
+	
 	
 	#200
    $stop;

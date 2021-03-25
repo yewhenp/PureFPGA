@@ -196,6 +196,13 @@ always @(posedge clk) begin
 						interrupt_finish <= 1;
 						perform <= 0;
 						ip = -1;
+						reg0 <= 0;
+						reg1 <= 0;
+						reg2 <= 0;
+						reg3 <= 0;
+						reg4 <= 0;
+						reg5 <= 0;
+						sp <= 0;
 					end
 
 					// work with alu

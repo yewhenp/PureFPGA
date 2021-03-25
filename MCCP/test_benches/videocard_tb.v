@@ -61,7 +61,7 @@ initial begin
 	#200
 	// RAM[0] = veector_size = 4
 	address <= 0;
-	data_in <= 4;
+	data_in <= 8;
 	wren <= 1;
 	
 	#40
@@ -90,7 +90,27 @@ initial begin
 	data_in <= 6;
 	
 	#40
+	// RAN[6]=7
+	address <= 6;
+	data_in <= 7;
+	
+	#40
+	// RAN[7]=8
 	address <= 7;
+	data_in <= 8;
+	
+	#40
+	// RAN[8]=9
+	address <= 8;
+	data_in <= 9;
+	
+	#40
+	// RAN[9]=10
+	address <= 9;
+	data_in <= 10;
+	
+	#40
+	address <= 10;
 	wren <= 0;
 	
 	#40
@@ -103,7 +123,7 @@ initial begin
 	address_control <= 1;
 	data_in_control <= 0;
    
-	#5000
+	#15000
 	address <= 0;
 	
 	#40
@@ -123,6 +143,18 @@ initial begin
 	
 	#40
 	address <= 6;
+	
+	#40
+	address <= 7;
+	
+	#40
+	address <= 8;
+	
+	#40
+	address <= 9;
+	
+	#40
+	address <= 10;
 	
 	
 	#200

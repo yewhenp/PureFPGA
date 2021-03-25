@@ -154,9 +154,7 @@ class Assembler:
 
                 # mov0/1; load0/1; store0/1; 'al'
                 self.__coding_related_prep(line)
-
                 result.append(" ".join(line) + "\n")
-                instr_counter += 1
 
                 # insert NOP after jump if jump's ip is even number.
                 if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
@@ -168,6 +166,7 @@ class Assembler:
 
                 for instr in result:
                     prep_file.write(instr)
+                instr_counter += 1
 
             if instr_counter % 2 == 0:
                 prep_file.write(self.NOP + "\n")  # number of instructions should be even, else undefined behaviour

@@ -8,7 +8,7 @@ add reg1 reg5
 
 // reg3 = i = vector_size / 4
 movl reg5 0
-mov reg3 reg5
+load reg3 reg5
 movl reg5 CORE_NUM
 div reg3 reg5
 

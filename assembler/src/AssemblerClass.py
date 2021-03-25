@@ -121,6 +121,9 @@ class Assembler:
                 # mov regi label = movl regi label[16:] + movl regi label[:16]
                 if line[0] == "mov" and line[2] not in registers:
                     if line[2] in labels:
+                        if instr_counter % 2:
+                            result.append(self.NOP + "\n")
+                            instr_counter += 1
                         result += self.__num_to_reg(line[1], labels[line[2]])
                         instr_counter += 2
                         for instr in result:
@@ -132,6 +135,9 @@ class Assembler:
                 # substitute label to load / store
                 if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers:
                     if line[2] in labels:
+                        if instr_counter % 2:
+                            result.append(self.NOP + "\n")
+                            instr_counter += 1
                         result += self.__num_to_reg(LABEL_REGISTER, labels[line[2]])
                         instr_counter += 2
                         line[2] = LABEL_REGISTER
@@ -141,6 +147,9 @@ class Assembler:
                 # substituting label to jump
                 if line[0] in mem_jump_commmands and line[1] not in registers:
                     if line[1] in labels:
+                        if instr_counter % 2:
+                            result.append(self.NOP + "\n")
+                            instr_counter += 1
                         result += self.__num_to_reg(LABEL_REGISTER,
                                                     labels[line[1]])  # write label address to reg5
                         instr_counter += 2

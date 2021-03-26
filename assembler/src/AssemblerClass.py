@@ -314,29 +314,48 @@ class Assembler:
 
             line = line.split()
 
+            if verbose:
+                print(f"Preprocessing {line}")
+
             # nop
             if line[0] == "nop":
                 instr_counter += 1
                 continue
+
             # insert NOP before movl / movh if instruction's number is odd
             if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
                 instr_counter += 1
+
             # mov regi label = movl regi label[16:] + movl regi label[:16]
             if line[0] == "mov" and line[2] not in registers and line[2] in label_names:
-                instr_counter += 1
+                if instr_counter % 2:
+                    instr_counter += 1
+                instr_counter += 2
+                continue
+
             # substitute label to load / store
             if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers and line[2] in label_names:
+                if instr_counter % 2:
+                    instr_counter += 1
                 instr_counter += 2
+
             # substituting label to jump
             if line[0] in mem_jump_commmands and line[1] not in registers and line[1] in label_names:
+                if instr_counter % 2:
+                    instr_counter += 1
                 instr_counter += 2
-            # insert NOP if jump's ip is even number.
-            if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
-                instr_counter += 1
+
             # movl/movh is basically two instructions
             if line[0] in mem_only_num_command_unprocessed:
                 instr_counter += 1
 
+            # insert NOP after jump if jump's ip is even number.
+            if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+                instr_counter += 1
+
+            instr_counter += 1
+
+        if instr_counter % 2 == 1:
             instr_counter += 1
         print(instr_counter)
         return labels

@@ -39,8 +39,8 @@ assign dest_out = dest_in;
 wire [WIDTH-1: 0] div_result;
 	
 divider div_module (
-	.denom(op1),
-	.numer(op2),
+	.denom(op2),
+	.numer(op1),
 	.quotient(div_result),
 	.remain()
 );

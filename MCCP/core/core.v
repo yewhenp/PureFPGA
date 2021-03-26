@@ -196,6 +196,13 @@ always @(posedge clk) begin
 						interrupt_finish <= 1;
 						perform <= 0;
 						ip = -1;
+						reg0 <= 0;
+						reg1 <= 0;
+						reg2 <= 0;
+						reg3 <= 0;
+						reg4 <= 0;
+						reg5 <= 0;
+						sp <= 0;
 					end
 
 					// work with alu
@@ -241,7 +248,8 @@ always @(posedge clk) begin
 												3'b110 : sp <= flags;
 											endcase
 								// jump
-								3'b111 : case (operand1_code)
+								3'b111 : begin
+											case (operand1_code)
 												3'b000 : ip = reg0-1;
 												3'b001 : ip = reg1-1;
 												3'b010 : ip = reg2-1;
@@ -251,6 +259,8 @@ always @(posedge clk) begin
 												3'b110 : ip = sp-1;
 												3'b111 : ip = ip-1;
 											endcase
+											instr_choose = 1;
+											end
 								// mov high
 								3'b010 : case (operand1_code)
 												3'b000 : reg0[WIDTH-1: WIDTH/2] <= immediate;

@@ -36,4 +36,5 @@ CUBE:
     mov reg0 reg2
     mul reg0 reg2
     mul reg0 reg2
+    store reg0 reg1
     jmp reg6

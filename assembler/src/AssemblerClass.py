@@ -17,18 +17,31 @@ class Assembler:
         if mode == "ascii":
             with open(self.dest_file, "w") as dest_file:
                 result = ""
+
+                temp = ""
+                counter = 0
                 for line_n, line in enumerate(open(self.prep_file, "r")):
                     line = line.strip()
                     encoded = self.__encode_command(line)
 
-                    # long instruction
                     if len(encoded) == 32:
-                        result += encoded[:16] + "\n" + encoded[16:] + "\n"
-                    else:
+                        if verbose:
+                            print(f"Processed line #{counter}: {encoded}    ({line})")
                         result += encoded + "\n"
-                    if verbose:
-                        print(f"Processed line #{line_n}: {encoded}     ({line})")
+                        counter += 1
+                    else:
+                        if temp == "":
+                            temp = encoded
+                            line_before = line
+                        else:
+                            temp += encoded
+                            if verbose:
+                                print(f"Processed line #{counter}: {temp}    ({[line_before, line]})")
+                            result += temp + "\n"
+                            counter += 1
+                            temp = ""
                 dest_file.write(result)
+
         elif mode == "bin":
             with open(self.dest_file, "wb") as dest_file:
                 for line_n, line in enumerate(open(self.prep_file, "r")):
@@ -125,7 +138,7 @@ class Assembler:
                             result.append(self.NOP + "\n")
                             instr_counter += 1
                         result += self.__num_to_reg(line[1], labels[line[2]])
-                        instr_counter += 2
+                        instr_counter += 4
                         for instr in result:
                             prep_file.write(instr)
                         continue
@@ -139,7 +152,7 @@ class Assembler:
                             result.append(self.NOP + "\n")
                             instr_counter += 1
                         result += self.__num_to_reg(LABEL_REGISTER, labels[line[2]])
-                        instr_counter += 2
+                        instr_counter += 4
                         line[2] = LABEL_REGISTER
                     else:
                         raise ValueError(f"Unknown label: {line[2]}")
@@ -152,7 +165,7 @@ class Assembler:
                             instr_counter += 1
                         result += self.__num_to_reg(LABEL_REGISTER,
                                                     labels[line[1]])  # write label address to reg5
-                        instr_counter += 2
+                        instr_counter += 4
                         line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
                     else:
                         raise ValueError(f"Unknown label: {line[1]}")
@@ -297,7 +310,7 @@ class Assembler:
                 if instr_counter % 2:
                     instr_counter += 1
                 name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[name] = math.ceil(instr_counter / 2)  # take only text part; /2 bacause there are 2 instructions in one memory cell
+                labels[name] = instr_counter // 2   # take only text part; /2 bacause there are 2 instructions in one memory cell
                 # instr_counter += 1
                 if verbose:
                     print(f"Found new jump label: " + name + "=" + str(labels[name]))
@@ -314,9 +327,6 @@ class Assembler:
 
             line = line.split()
 
-            if verbose:
-                print(f"Preprocessing {line}")
-
             # nop
             if line[0] == "nop":
                 instr_counter += 1
@@ -330,20 +340,20 @@ class Assembler:
             if line[0] == "mov" and line[2] not in registers and line[2] in label_names:
                 if instr_counter % 2:
                     instr_counter += 1
-                instr_counter += 2
+                instr_counter += 4
                 continue
 
             # substitute label to load / store
             if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers and line[2] in label_names:
                 if instr_counter % 2:
                     instr_counter += 1
-                instr_counter += 2
+                instr_counter += 4
 
             # substituting label to jump
             if line[0] in mem_jump_commmands and line[1] not in registers and line[1] in label_names:
                 if instr_counter % 2:
                     instr_counter += 1
-                instr_counter += 2
+                instr_counter += 4
 
             # movl/movh is basically two instructions
             if line[0] in mem_only_num_command_unprocessed:
@@ -353,7 +363,10 @@ class Assembler:
             if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
                 instr_counter += 1
 
+            print(line, instr_counter)
+
             instr_counter += 1
+
 
         if instr_counter % 2 == 1:
             instr_counter += 1

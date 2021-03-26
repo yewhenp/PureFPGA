@@ -4,21 +4,20 @@ module videocard_top #(
  WIDTH_CTRL=8,
  BYTES=4
 )(
-input 						clk,
-input							clk_hps,
-input							clk_rom,
-input [WIDTH-1: 0] 		data_in,
-output [WIDTH-1: 0] 		data_out,
-input [WIDTH/2-1: 0] 	address,
-input [BYTES-1: 0]		byteenable,
-input 						write,
-input 						read,
-input							reset_sink_reset,
+input 								clk,
+input									clk_hps,
+input [WIDTH-1: 0] 				data_in,
+output [WIDTH-1: 0] 				data_out,
+input [WIDTH/2: 0] 				address,
+input [BYTES-1: 0]				byteenable,
+input 								write,
+input 								read,
+input									reset_sink_reset,
 output [WIDTH_CTRL-1: 0]		data_out_control,
-input [WIDTH_CTRL-1: 0]		data_in_control,
-input 						read_control,
-input 						write_control,
-input 						address_control
+input [WIDTH_CTRL-1: 0]			data_in_control,
+input 								read_control,
+input 								write_control,
+input 								address_control
 );
 
 wire [WIDTH-1: 0] data_in_internal;
@@ -38,7 +37,10 @@ videocard videocard_inst (
 	.wren(wren_internal),
 	.interrupt_start(interrupt_start),
 	.interrupt_finish(interrupt_finish),
-	.clk_rom(clk_rom)
+	.clk_rom(clk_hps),
+	.address_rom(address[WIDTH/2-1: 0]),
+	.data_in_rom(data_in),
+	.wren_rom(write && address[WIDTH/2])
 );
 
 RAM_dual ram_inst (
@@ -53,7 +55,7 @@ RAM_dual ram_inst (
 	.rden_a(1'b1),
 	.rden_b(read),
 	.wren_a(wren_internal),
-	.wren_b(write),
+	.wren_b(write && ~address[WIDTH/2]),
 	.q_a(data_in_internal),
 	.q_b(data_out)
 );

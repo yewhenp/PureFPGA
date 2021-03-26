@@ -6,7 +6,7 @@ localparam WIDTH=32;
 
 reg clk = 0;
 reg clk_rom = 0;
-reg [WIDTH/2-1: 0] address = 16'b0;
+reg [WIDTH/2: 0] address = 16'b0;
 reg [WIDTH-1: 0] data_in = 16'b0;
 wire [WIDTH-1: 0] data_out;
 reg wren = 1'b0;
@@ -39,8 +39,7 @@ reg wren_control = 1'b0;
 videocard_top videocard_top_inst
 (
 	.clk(clk) ,	// input  clk_sig
-	.clk_hps(clk) ,	// input  clk_hps_sig
-	.clk_rom(clk_rom),
+	.clk_hps(clk_rom) ,	// input  clk_hps_sig
 	.data_in(data_in) ,	// input [WIDTH-1:0] data_in_sig
 	.data_out(data_out) ,	// output [WIDTH-1:0] data_out_sig
 	.address(address) ,	// input [WIDTH/2-1:0] address_sig
@@ -59,10 +58,29 @@ videocard_top videocard_top_inst
 
 initial begin
 	#200
+	wren <= 1;
+	address <= 65536;
+	data_in <= 32'b0010000101000000_0000001010001000;
+	
+	#40
+	address <= 65537;
+	data_in <= 32'b1000111101001000_0000000000000011;
+	
+	
+	#40
+	address <= 65538;
+	data_in <= 32'b0101001010001010_0000011010001000;
+	
+	
+	#40
+	address <= 65539;
+	data_in <= 32'b0010001101000100_0100001011000000;
+	
 	// RAM[0] = veector_size = 4
+	#40
 	address <= 0;
 	data_in <= 8;
-	wren <= 1;
+	
 	
 	#40
 	// RAM[1] = address = 2

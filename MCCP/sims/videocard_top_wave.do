@@ -76,6 +76,17 @@ add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst
 add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/core_interrupts
 add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/interrupt
 add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/internal_interrupt
+add wave -noupdate -divider rom
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/address_a
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/address_b
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_a
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_b
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/data_a
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/data_b
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_a
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_b
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/q_a
+add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/q_b
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {507959 ps} 0}
 quietly wave cursor active 1
@@ -93,4 +104,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1377588 ps} {1548549 ps}
+WaveRestoreZoom {0 ps} {170961 ps}

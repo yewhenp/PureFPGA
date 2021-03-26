@@ -47,7 +47,7 @@ module soc_system_mm_interconnect_0 (
 		input  wire         pll_0_outclk2_clk,                                                     //                                                   pll_0_outclk2.clk
 		input  wire         ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		input  wire         videocard_new_0_reset_sink_reset_bridge_in_reset_reset,                //                videocard_new_0_reset_sink_reset_bridge_in_reset.reset
-		output wire [15:0]  videocard_new_0_memory_main_address,                                   //                                     videocard_new_0_memory_main.address
+		output wire [16:0]  videocard_new_0_memory_main_address,                                   //                                     videocard_new_0_memory_main.address
 		output wire         videocard_new_0_memory_main_write,                                     //                                                                .write
 		output wire         videocard_new_0_memory_main_read,                                      //                                                                .read
 		input  wire [31:0]  videocard_new_0_memory_main_readdata,                                  //                                                                .readdata
@@ -205,7 +205,7 @@ module soc_system_mm_interconnect_0 (
 	wire    [0:0] avalon_st_adapter_out_0_error;                                   // avalon_st_adapter:out_0_error -> videocard_new_0_memory_main_agent:rdata_fifo_sink_error
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (16),
+		.AV_ADDRESS_W                   (17),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

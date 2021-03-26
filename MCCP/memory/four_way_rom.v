@@ -3,31 +3,90 @@ module four_way_rom #(
  WIDTH=32
 )(
 input clk,
-input [WIDTH-1: 0] address_core0,
-input [WIDTH-1: 0] address_core1,
-input [WIDTH-1: 0] address_core2,
-input [WIDTH-1: 0] address_core3,
-output [WIDTH-1: 0] data_core0,
-output [WIDTH-1: 0] data_core1,
-output [WIDTH-1: 0] data_core2,
-output [WIDTH-1: 0] data_core3
+input [WIDTH-1: 0] 	address_core0,
+input [WIDTH-1: 0] 	address_core1,
+input [WIDTH-1: 0] 	address_core2,
+input [WIDTH-1: 0] 	address_core3,
+output [WIDTH-1: 0] 	data_core0,
+output [WIDTH-1: 0] 	data_core1,
+output [WIDTH-1: 0] 	data_core2,
+output [WIDTH-1: 0] 	data_core3,
+
+input [WIDTH/2-1: 0]	address_rom,
+input	[WIDTH-1: 0]	data_in_rom,
+input						wren_rom,
+input						clk_rom
 );
 
-ROM rom1 (
-	.address_a(address_core0[13:0]),
-	.address_b(address_core1[13:0]),
-	.clock(clk),
-	.q_a(data_core0),
-	.q_b(data_core1)
+ROM_RAM rom0 (
+.address_a(address_rom),
+.address_b(address_core0),
+.clock_a(clk_rom),
+.clock_b(clk_rom),
+.data_a(data_in_rom),
+.data_b(32'b0),
+.wren_a(wren_rom),
+.wren_b(1'b0),
+.q_a(),
+.q_b(data_core0)
 );
 
-ROM rom2 (
-	.address_a(address_core2[13:0]),
-	.address_b(address_core3[13:0]),
-	.clock(clk),
-	.q_a(data_core2),
-	.q_b(data_core3)
+ROM_RAM rom1 (
+.address_a(address_rom),
+.address_b(address_core1),
+.clock_a(clk_rom),
+.clock_b(clk_rom),
+.data_a(data_in_rom),
+.data_b(32'b0),
+.wren_a(wren_rom),
+.wren_b(1'b0),
+.q_a(),
+.q_b(data_core1)
 );
+
+ROM_RAM rom2 (
+.address_a(address_rom),
+.address_b(address_core2),
+.clock_a(clk_rom),
+.clock_b(clk_rom),
+.data_a(data_in_rom),
+.data_b(32'b0),
+.wren_a(wren_rom),
+.wren_b(1'b0),
+.q_a(),
+.q_b(data_core2)
+);
+
+ROM_RAM rom3 (
+.address_a(address_rom),
+.address_b(address_core3),
+.clock_a(clk_rom),
+.clock_b(clk_rom),
+.data_a(data_in_rom),
+.data_b(32'b0),
+.wren_a(wren_rom),
+.wren_b(1'b0),
+.q_a(),
+.q_b(data_core3)
+);
+
+
+
+//ROM rom1 (
+//	.address_a(address_core0[13:0]),
+//	.address_b(address_core1[13:0]),
+//	.clock(clk),
+//	.q_a(data_core0),
+//	.q_b(data_core1)
+//);
+//
+//ROM rom2 (
+//	.address_a(address_core2[13:0]),
+//	.address_b(address_core3[13:0]),
+//	.clock(clk),
+//	.q_a(data_core2),
+//	.q_b(data_core3)
+//);
 
 //reg [WIDTH-1: 0] data [3: 0];
 //

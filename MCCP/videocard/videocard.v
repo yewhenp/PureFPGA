@@ -11,7 +11,10 @@ output [WIDTH-1: 0] 	address,
 output 					wren,
 input 					interrupt_start,
 output 					interrupt_finish,
-input						clk_rom
+input						clk_rom,
+input [WIDTH/2-1: 0]	address_rom,
+input	[WIDTH-1: 0]	data_in_rom,
+input						wren_rom
 );
 
 
@@ -63,7 +66,11 @@ four_way_rom rom
 	.data_core0(instruction_core0),
 	.data_core1(instruction_core1),
 	.data_core2(instruction_core2),
-	.data_core3(instruction_core3)
+	.data_core3(instruction_core3),
+	.address_rom(address_rom),
+	.data_in_rom(data_in_rom),
+	.wren_rom(wren_rom),
+	.clk_rom(clk_rom)
 );
 
 

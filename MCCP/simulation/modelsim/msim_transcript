@@ -11,133 +11,133 @@
 # 
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:32 on Mar 26,2021
+# Start time: 18:05:57 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v 
 # -- Compiling module videocard_tb
 # 
 # Top level modules:
 # 	videocard_tb
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM.v 
-# -- Compiling module ROM
-# 
-# Top level modules:
-# 	ROM
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:57 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
+# Start time: 18:05:57 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v 
 # -- Compiling module videocard_top
 # 
 # Top level modules:
 # 	videocard_top
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard.v 
 # -- Compiling module videocard
 # 
 # Top level modules:
 # 	videocard
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/memory_mapped_control.v 
 # -- Compiling module memory_mapped_control
 # 
 # Top level modules:
 # 	memory_mapped_control
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/interrupt_controller.v 
 # -- Compiling module interrupt_controller
 # 
 # Top level modules:
 # 	interrupt_controller
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:33 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v 
 # -- Compiling module RAM_dual
 # 
 # Top level modules:
 # 	RAM_dual
-# End time: 00:51:33 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v 
 # -- Compiling module four_way_rom
 # 
 # Top level modules:
 # 	four_way_rom
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/arbiter.v 
 # -- Compiling module arbiter
 # 
 # Top level modules:
 # 	arbiter
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/instr_decoder.v 
 # -- Compiling module instr_decoder
 # 
 # Top level modules:
 # 	instr_decoder
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/divider.v 
 # -- Compiling module divider
 # 
 # Top level modules:
 # 	divider
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/core.v 
 # -- Compiling module core
 # 
 # Top level modules:
 # 	core
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:34 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/core/alu.v 
 # -- Compiling module alu
 # 
 # Top level modules:
 # 	alu
-# End time: 00:51:34 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:05:58 on Mar 26,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v 
+# -- Compiling module ROM_RAM
+# 
+# Top level modules:
+# 	ROM_RAM
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlib soc_system
 # ** Warning: (vlib-34) Library already exists at "soc_system".
@@ -148,18 +148,18 @@
 # 
 # vlog -vlog01compat -work work +incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip {/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:51:35 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip" /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v 
 # -- Compiling module tb
 # 
 # Top level modules:
 # 	tb
-# End time: 00:51:35 on Mar 26,2021, Elapsed time: 0:00:00
+# End time: 18:05:58 on Mar 26,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -L soc_system -voptargs="+acc"  tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -L soc_system -voptargs=""+acc"" tb 
-# Start time: 00:51:35 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # Loading work.tb
 # ** Error: (vsim-3033) Instantiation of 'mac' failed. The design unit was not found.
 #    Time: 0 ps  Iteration: 0  Instance: /tb File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/mac_ip/mac_tb.v Line: 48
@@ -184,12 +184,12 @@ do ../../sims/videocard_top_sim.do
 # view structure
 # vsim work.videocard_tb -L altera_mf_ver -L lpm_ver
 # vsim work.videocard_tb -L altera_mf_ver -L lpm_ver 
-# Start time: 00:51:35 on Mar 26,2021
+# Start time: 18:05:58 on Mar 26,2021
 # Loading work.videocard_tb
 # Loading work.videocard_top
 # Loading work.videocard
 # Loading work.four_way_rom
-# Loading work.ROM
+# Loading work.ROM_RAM
 # Loading altera_mf_ver.altsyncram
 # Loading work.arbiter
 # Loading work.interrupt_controller
@@ -204,25 +204,25 @@ do ../../sims/videocard_top_sim.do
 # Loading altera_mf_ver.altsyncram_body
 # Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
 # Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_out_control'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v(17).
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_out_control'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v(16).
 #    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v Line: 39
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_in_control'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v(18).
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_in_control'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v(17).
 #    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v Line: 39
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v Line: 21
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v Line: 34
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v Line: 47
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/four_way_rom.v Line: 60
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (17) for port 'address_b'. The port definition is at: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/memory/RAM_dual.v(43).
+#    Time: 0 ps  Iteration: 0  Instance: /videocard_tb/videocard_top_inst/ram_inst File: /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/videocard/videocard_top.v Line: 46
 # do ../../sims/videocard_top_wave.do
 # onerror {resume}
 # quietly WaveActivateNextPane {} 0
 # add wave -noupdate -divider videocard_top
 # add wave -noupdate /videocard_tb/clk
-# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
-# Cannot lock WLF file: "vsim.wlf"
-#           errno 11: Resource temporarily unavailable.
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: yevhen  Hostname: userhost-yevhenpc  ProcessID: 22791
-#           Attempting to use alternate WLF file "./wlftyWe4MJ".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftyWe4MJ
 # add wave -noupdate -radix unsigned /videocard_tb/address
 # add wave -noupdate -radix unsigned /videocard_tb/data_in
 # add wave -noupdate -radix unsigned /videocard_tb/data_out
@@ -297,6 +297,17 @@ do ../../sims/videocard_top_sim.do
 # add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/core_interrupts
 # add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/interrupt
 # add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/inter_controller/internal_interrupt
+# add wave -noupdate -divider rom
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/address_a
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/address_b
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_a
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_b
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/data_a
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/data_b
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_a
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_b
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/q_a
+# add wave -noupdate -radix binary /videocard_tb/videocard_top_inst/videocard_inst/rom/rom0/q_b
 # TreeUpdate [SetDefaultTree]
 # WaveRestoreCursors {{Cursor 1} {507959 ps} 0}
 # quietly wave cursor active 1
@@ -314,10 +325,10 @@ do ../../sims/videocard_top_sim.do
 # configure wave -timeline 0
 # configure wave -timelineunits ps
 # update
-# WaveRestoreZoom {1377588 ps} {1548549 ps}
+# WaveRestoreZoom {0 ps} {170961 ps}
 # run -all
-# ** Note: $stop    : /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v(161)
-#    Time: 16260 ns  Iteration: 0  Instance: /videocard_tb
-# Break in Module videocard_tb at /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v line 161
-# End time: 00:52:56 on Mar 26,2021, Elapsed time: 0:01:21
-# Errors: 1, Warnings: 4
+# ** Note: $stop    : /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v(179)
+#    Time: 16420 ns  Iteration: 0  Instance: /videocard_tb
+# Break in Module videocard_tb at /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/test_benches/videocard_tb.v line 179
+# End time: 18:09:15 on Mar 26,2021, Elapsed time: 0:03:17
+# Errors: 1, Warnings: 7

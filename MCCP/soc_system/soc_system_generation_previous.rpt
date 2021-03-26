@@ -1,6 +1,6 @@
 Info: Starting: Create block symbol file (.bsf)
-Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system.qsys --block-symbol-file --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system --family="Cyclone V" --part=5CSEBA6U23I7
-Progress: Loading ucu_gpu_v1.02/soc_system.qsys
+Info: qsys-generate D:\aks_labs\PureFPGA\MCCP\soc_system.qsys --block-symbol-file --output-directory=D:\aks_labs\PureFPGA\MCCP\soc_system --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading MCCP/soc_system.qsys
 Progress: Reading input file
 Progress: Adding ARM_A9_HPS [altera_hps 20.1]
 Progress: Parameterizing module ARM_A9_HPS
@@ -53,8 +53,8 @@ Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system.qsys --synthesis=VERILOG --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis --family="Cyclone V" --part=5CSEBA6U23I7
-Progress: Loading ucu_gpu_v1.02/soc_system.qsys
+Info: qsys-generate D:\aks_labs\PureFPGA\MCCP\soc_system.qsys --synthesis=VERILOG --output-directory=D:\aks_labs\PureFPGA\MCCP\soc_system\synthesis --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading MCCP/soc_system.qsys
 Progress: Reading input file
 Progress: Adding ARM_A9_HPS [altera_hps 20.1]
 Progress: Parameterizing module ARM_A9_HPS
@@ -137,8 +137,8 @@ Info: alt_vip_cl_tpg_0: "soc_system" instantiated alt_vip_cl_tpg "alt_vip_cl_tpg
 Info: alt_vip_cl_tpg_1: "soc_system" instantiated alt_vip_cl_tpg "alt_vip_cl_tpg_1"
 Info: dma_0: softresetEnable = 1
 Info: dma_0: Starting RTL generation for module 'soc_system_dma_0'
-Info: dma_0:   Generation command is [exec /opt/intelFPGA/20.1/quartus/linux64//perl/bin/perl -I /opt/intelFPGA/20.1/quartus/linux64//perl/lib -I /opt/intelFPGA/20.1/quartus/sopc_builder/bin/europa -I /opt/intelFPGA/20.1/quartus/sopc_builder/bin -I /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_dma -- /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_dma/generate_rtl.pl --name=soc_system_dma_0 --dir=/tmp/alt8708_2206362243547056538.dir/0004_dma_0_gen/ --quartus_dir=/opt/intelFPGA/20.1/quartus --verilog --config=/tmp/alt8708_2206362243547056538.dir/0004_dma_0_gen//soc_system_dma_0_component_configuration.pl  --do_build_sim=0  ]
-Info: dma_0: # 2021.03.22 09:57:37 (*)   soc_system_dma_0: allowing these transactions: word, byte_access
+Info: dma_0:   Generation command is [exec D:/fpga/quartus/bin64//perl/bin/perl.exe -I D:/fpga/quartus/bin64//perl/lib -I D:/fpga/quartus/sopc_builder/bin/europa -I D:/fpga/quartus/sopc_builder/bin -I D:/fpga/quartus/../ip/altera/sopc_builder_ip/common -I D:/fpga/quartus/../ip/altera/sopc_builder_ip/altera_avalon_dma -- D:/fpga/quartus/../ip/altera/sopc_builder_ip/altera_avalon_dma/generate_rtl.pl --name=soc_system_dma_0 --dir=C:/Users/yevhen/AppData/Local/Temp/alt8712_8554553054115344951.dir/0004_dma_0_gen/ --quartus_dir=D:/fpga/quartus --verilog --config=C:/Users/yevhen/AppData/Local/Temp/alt8712_8554553054115344951.dir/0004_dma_0_gen//soc_system_dma_0_component_configuration.pl  --do_build_sim=0  ]
+Info: dma_0: # 2021.03.26 14:31:04 (*)   soc_system_dma_0: allowing these transactions: word, byte_access
 Info: dma_0: Done RTL generation for module 'soc_system_dma_0'
 Info: dma_0: "soc_system" instantiated altera_avalon_dma "dma_0"
 Info: mm_bridge_0: "soc_system" instantiated altera_avalon_mm_bridge "mm_bridge_0"
@@ -164,65 +164,65 @@ Info: hps_io: "ARM_A9_HPS" instantiated altera_hps_io "hps_io"
 Info: video_in: "alt_vip_cl_cvo_0" instantiated alt_vip_video_input_bridge "video_in"
 Info: scheduler: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_scheduler "scheduler"
 Info: sop_align: "alt_vip_cl_cvo_0" instantiated alt_vip_pip_sop_realign "sop_align"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: cvo_core: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_core "cvo_core"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
 Info: vib_resp0: "alt_vip_cl_mixer_0" instantiated alt_vip_video_input_bridge_resp "vib_resp0"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: vib_cmd0: "alt_vip_cl_mixer_0" instantiated alt_vip_video_input_bridge_cmd "vib_cmd0"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: alpha_merge0: "alt_vip_cl_mixer_0" instantiated alt_vip_mixer_alpha_merge "alpha_merge0"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
 Info: tpg: "alt_vip_cl_mixer_0" instantiated alt_vip_tpg_alg_core "tpg"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: mixer_core: "alt_vip_cl_mixer_0" instantiated alt_vip_mix_alg_core "mixer_core"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_sop_align/src_hdl/alt_vip_common_sop_align.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_sop_align/src_hdl/alt_vip_common_sop_align.sv
 Info: vob: "alt_vip_cl_mixer_0" instantiated alt_vip_video_output_bridge "vob"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_message_pipeline_stage/src_hdl/alt_vip_common_message_pipeline_stage.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_sop_align/src_hdl/alt_vip_common_sop_align.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_message_pipeline_stage/src_hdl/alt_vip_common_message_pipeline_stage.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_sop_align/src_hdl/alt_vip_common_sop_align.sv
 Info: scheduler: "alt_vip_cl_mixer_0" instantiated alt_vip_mix_scheduler "scheduler"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: cmd_mux_term: "alt_vip_cl_mixer_0" instantiated alt_vip_message_sink_terminator "cmd_mux_term"
 Info: scheduler: "alt_vip_cl_tpg_0" instantiated alt_vip_tpg_multi_scheduler "scheduler"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface_mux.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface_mux.sv
 Info: core_0: "alt_vip_cl_tpg_0" instantiated alt_vip_tpg_bars_alg_core "core_0"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: scheduler: "alt_vip_cl_tpg_1" instantiated alt_vip_tpg_multi_scheduler "scheduler"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface_mux.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/src_hdl/alt_vip_tpg_multi_scheduler.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/src_hdl/alt_vip_tpg_multi_scheduler.ocp
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_slave_interface/src_hdl/alt_vip_common_slave_interface_mux.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/src_hdl/alt_vip_tpg_multi_scheduler.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/src_hdl/alt_vip_tpg_multi_scheduler.ocp
 Info: core_0: "alt_vip_cl_tpg_1" instantiated alt_vip_tpg_const_alg_core "core_0"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: sys_pll: "sys_pll" instantiated altera_pll "sys_pll"
 Info: reset_from_locked: "sys_pll" instantiated altera_up_avalon_reset_from_locked_signal "reset_from_locked"
 Info: videocard_new_0_memory_main_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "videocard_new_0_memory_main_translator"
@@ -232,57 +232,121 @@ Info: videocard_new_0_memory_main_agent_rsp_fifo: "mm_interconnect_0" instantiat
 Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
 Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
 Info: videocard_new_0_memory_main_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "videocard_new_0_memory_main_burst_adapter"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: videocard_new_0_memory_main_rsp_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "videocard_new_0_memory_main_rsp_width_adapter"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
 Info: crosser: "mm_interconnect_0" instantiated altera_avalon_st_handshake_clock_crosser "crosser"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
 Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
 Info: router_002: "mm_interconnect_1" instantiated altera_merlin_router "router_002"
 Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: mm_bridge_0_m0_translator: "mm_interconnect_2" instantiated altera_merlin_master_translator "mm_bridge_0_m0_translator"
 Info: mm_bridge_0_m0_agent: "mm_interconnect_2" instantiated altera_merlin_master_agent "mm_bridge_0_m0_agent"
 Info: router: "mm_interconnect_2" instantiated altera_merlin_router "router"
 Info: router_001: "mm_interconnect_2" instantiated altera_merlin_router "router_001"
 Info: router_004: "mm_interconnect_2" instantiated altera_merlin_router "router_004"
 Info: mm_bridge_0_m0_limiter: "mm_interconnect_2" instantiated altera_merlin_traffic_limiter "mm_bridge_0_m0_limiter"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
 Info: cmd_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "cmd_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_demux_003: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "rsp_demux_003"
 Info: rsp_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: avalon_st_adapter_003: "mm_interconnect_2" instantiated altera_avalon_st_adapter "avalon_st_adapter_003"
 Info: ARM_A9_HPS_f2h_axi_slave_agent: "mm_interconnect_3" instantiated altera_merlin_axi_slave_ni "ARM_A9_HPS_f2h_axi_slave_agent"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
 Info: router: "mm_interconnect_3" instantiated altera_merlin_router "router"
 Info: router_001: "mm_interconnect_3" instantiated altera_merlin_router "router_001"
 Info: cmd_demux: "mm_interconnect_3" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_3" instantiated altera_merlin_multiplexer "cmd_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_demux: "mm_interconnect_3" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_3" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/total/ucu_gpu_v1.02/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file D:/aks_labs/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Error: border: Error during execution of script generate_hps_sdram.tcl: seq: Error during execution of "{D:/fpga/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt": child process exited abnormally
+Error: border: Error during execution of script generate_hps_sdram.tcl: seq: Execution of command "{D:/fpga/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt" failed
+Error: border: Error during execution of script generate_hps_sdram.tcl: seq: child process exited abnormally
+Error: border: Error during execution of script generate_hps_sdram.tcl: seq: add_fileset_file: No such file C:/Users/yevhen/AppData/Local/Temp/alt8712_7103442402271015122.dir/0004_seq_gen/hps_AC_ROM.hex
+Error: border: Error during execution of script generate_hps_sdram.tcl: Generation stopped, 3 or more modules remaining
+Error: border: Execution of script generate_hps_sdram.tcl failed
+Error: border: 2021.03.26.14:31:35 Info:
+Error: border: ********************************************************************************************************************
+Error: border: 
+Error: border: Use qsys-generate for a simpler command-line interface for generating IP.
+Error: border: 
+Error: border: Run ip-generate with switch --remove-qsys-generate-warning to prevent this notice from appearing in subsequent runs.
+Error: border: 
+Error: border: ********************************************************************************************************************
+Error: border: 2021.03.26.14:31:40 Warning: Ignored parameter assignment device=5CSEBA6U23I7
+Error: border: 2021.03.26.14:31:40 Warning: Ignored parameter assignment extended_family_support=true
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram: 'Quick' simulation modes are NOT timing accurate. Some simulation memory models may issue warnings or errors
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.seq: This module has no ports or interfaces
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.p0: p0.scc must be exported, or connected to a matching conduit.
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.as: as.afi_init_cal_req must be exported, or connected to a matching conduit.
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.as: as.tracking must be exported, or connected to a matching conduit.
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.c0: c0.status must be exported, or connected to a matching conduit.
+Error: border: 2021.03.26.14:31:47 Warning: hps_sdram.p0: p0.avl must be connected to an Avalon-MM master
+Error: border: 2021.03.26.14:31:47 Info: hps_sdram: Generating altera_mem_if_hps_emif "hps_sdram" for QUARTUS_SYNTH
+Error: border: 2021.03.26.14:31:50 Info: pll: "hps_sdram" instantiated altera_mem_if_hps_pll "pll"
+Error: border: 2021.03.26.14:31:50 Info: p0: Generating clock pair generator
+Error: border: 2021.03.26.14:31:51 Info: p0: Generating hps_sdram_p0_altdqdqs
+Error: border: 2021.03.26.14:31:59 Info: p0:
+Error: border: 2021.03.26.14:31:59 Info: p0: *****************************
+Error: border: 2021.03.26.14:31:59 Info: p0:
+Error: border: 2021.03.26.14:31:59 Info: p0: Remember to run the hps_sdram_p0_pin_assignments.tcl
+Error: border: 2021.03.26.14:31:59 Info: p0: script after running Synthesis and before Fitting.
+Error: border: 2021.03.26.14:31:59 Info: p0:
+Error: border: 2021.03.26.14:31:59 Info: p0: *****************************
+Error: border: 2021.03.26.14:31:59 Info: p0:
+Error: border: 2021.03.26.14:31:59 Info: p0: "hps_sdram" instantiated altera_mem_if_ddr3_hard_phy_core "p0"
+Error: border: 2021.03.26.14:31:59 Error: seq: Error during execution of "{D:/fpga/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt": child process exited abnormally
+Error: border: 2021.03.26.14:31:59 Error: seq: Execution of command "{D:/fpga/quartus/../nios2eds/Nios II Command Shell.bat} make all 2>> stderr.txt" failed
+Error: border: 2021.03.26.14:31:59 Error: seq: child process exited abnormally
+Error: border: 2021.03.26.14:31:59 Error: seq: add_fileset_file: No such file C:/Users/yevhen/AppData/Local/Temp/alt8712_7103442402271015122.dir/0004_seq_gen/hps_AC_ROM.hex
+Error: border: while executing
+Error: border: "add_fileset_file $file_name [::alt_mem_if::util::hwtcl_utils::get_file_type $file_name 0] PATH $file_pathname"
+Error: border: ("foreach" body line 4)
+Error: border: invoked from within
+Error: border: "foreach file_pathname $return_files_sw {
+Error: border: 		_dprint 1 "Preparing to add $file_pathname"
+Error: border: 		set file_name [file tail $file_pathname]
+Error: border: 		add_fileset_file $..."
+Error: border: (procedure "generate_sw" line 18)
+Error: border: invoked from within
+Error: border: "generate_sw $name $fileset"
+Error: border: ("if" then script line 4)
+Error: border: invoked from within
+Error: border: "if {[string compare -nocase $fileset QUARTUS_SYNTH] == 0} {
+Error: border: 		set top_level_file "altera_mem_if_hhp_qseq_synth_top.v"
+Error: border: 		add_fileset_file $top_level_fi..."
+Error: border: (procedure "generate_files" line 4)
+Error: border: invoked from within
+Error: border: "generate_files $name QUARTUS_SYNTH"
+Error: border: (procedure "generate_synth" line 3)
+Error: border: invoked from within
+Error: border: "generate_synth altera_mem_if_hhp_qseq_synth_top"
+Error: border: 2021.03.26.14:31:59 Info: seq: "hps_sdram" instantiated altera_mem_if_hhp_ddr3_qseq "seq"
+Error: border: 2021.03.26.14:31:59 Error: Generation stopped, 3 or more modules remaining
+Error: border: 2021.03.26.14:31:59 Info: hps_sdram: Done "hps_sdram" with 7 modules, 33 files
 Info: border: "hps_io" instantiated altera_interface_generator "border"
-Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
-Info: error_adapter_0: "avalon_st_adapter_003" instantiated error_adapter "error_adapter_0"
-Info: soc_system: Done "soc_system" with 80 modules, 192 files
-Info: qsys-generate succeeded.
+Error: Generation stopped, 4 or more modules remaining
+Info: soc_system: Done "soc_system" with 80 modules, 182 files
+Error: qsys-generate failed with exit code 1: 66 Errors, 11 Warnings
 Info: Finished: Create HDL design files for synthesis

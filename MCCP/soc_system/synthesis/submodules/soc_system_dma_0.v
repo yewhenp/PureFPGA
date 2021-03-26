@@ -453,7 +453,7 @@ reg              soc_system_dma_0_mem_read_idle;
           soc_system_dma_0_mem_read_idle <= ((soc_system_dma_0_mem_read_idle == 1) & (go == 0)) |
                     ((soc_system_dma_0_mem_read_idle == 1) & (p1_done_read == 1)) |
                     ((soc_system_dma_0_mem_read_idle == 1) & (p1_fifo_full == 1)) |
-                    ((soc_system_dma_0_mem_read_access == 1) & (read_waitrequest == 0) & (p1_fifo_full == 1)) |
+                    ((soc_system_dma_0_mem_read_access == 1) & (p1_fifo_full == 1) & (read_waitrequest == 0)) |
                     ((soc_system_dma_0_mem_read_access == 1) & (read_waitrequest == 0) & (p1_done_read == 1));
 
     end
@@ -465,7 +465,7 @@ reg              soc_system_dma_0_mem_read_idle;
       if (reset_n == 0)
           soc_system_dma_0_mem_read_access <= 0;
       else if (clk_en)
-          soc_system_dma_0_mem_read_access <= ((soc_system_dma_0_mem_read_idle == 1) & (p1_done_read == 0) & (go == 1) & (p1_fifo_full == 0)) |
+          soc_system_dma_0_mem_read_access <= ((soc_system_dma_0_mem_read_idle == 1) & (p1_fifo_full == 0) & (go == 1) & (p1_done_read == 0)) |
                     ((soc_system_dma_0_mem_read_access == 1) & (read_waitrequest == 1)) |
                     ((soc_system_dma_0_mem_read_access == 1) & (p1_fifo_full == 0) & (read_waitrequest == 0) & (p1_done_read == 0));
 

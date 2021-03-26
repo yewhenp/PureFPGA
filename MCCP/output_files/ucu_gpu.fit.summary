@@ -1,12 +1,12 @@
-Fitter Status : Successful - Fri Mar 26 01:12:46 2021
+Fitter Status : Successful - Fri Mar 26 17:43:27 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : ucu_gpu
 Top-level Entity Name : ucu_gpu_top
 Family : Cyclone V
 Device : 5CSEBA6U23I7
 Timing Models : Final
-Logic utilization (in ALMs) : 11,892 / 41,910 ( 28 % )
-Total registers : 15195
+Logic utilization (in ALMs) : 11,807 / 41,910 ( 28 % )
+Total registers : 15287
 Total pins : 172 / 314 ( 55 % )
 Total virtual pins : 0
 Total block memory bits : 3,541,248 / 5,662,720 ( 63 % )

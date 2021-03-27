@@ -24,7 +24,7 @@ preplace inst soc_system.ARM_A9_HPS.nand0 -pg 1
 preplace inst soc_system.alt_vip_cl_tpg_0.core_0 -pg 1
 preplace inst soc_system.alt_vip_cl_tpg_1.av_st_clk_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer0 -pg 1
-preplace inst soc_system.dma_0 -pg 1 -lvl 3 -y 540
+preplace inst soc_system.dma_0 -pg 1 -lvl 3 -y 560
 preplace inst soc_system.ARM_A9_HPS.timer1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.dcan0 -pg 1
 preplace inst soc_system.video_dma -pg 1 -lvl 7 -y 220
@@ -88,7 +88,7 @@ preplace inst soc_system.ARM_A9_HPS.sdmmc -pg 1
 preplace inst soc_system.sys_pll.sys_pll -pg 1
 preplace inst soc_system.ARM_A9_HPS.clk_0 -pg 1
 preplace inst soc_system.alt_vip_cl_mixer_0.tpg -pg 1
-preplace inst soc_system.videocard_new_0 -pg 1 -lvl 7 -y 360
+preplace inst soc_system.videocard_new_0 -pg 1 -lvl 7 -y 340
 preplace inst soc_system.alt_vip_cl_tpg_1.core_0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.gpio0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.gpio1 -pg 1
@@ -97,22 +97,23 @@ preplace inst soc_system.alt_vip_cl_cvo_0.cvo_core -pg 1
 preplace inst soc_system.ARM_A9_HPS.rstmgr -pg 1
 preplace inst soc_system.ARM_A9_HPS -pg 1 -lvl 4 -y 50
 preplace inst soc_system.ARM_A9_HPS.gpio2 -pg 1
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)alt_vip_cl_tpg_0.dout,(SLAVE)alt_vip_cl_mixer_0.din0) 1 5 1 N
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)videocard_new_0.clock,(MASTER)pll_0.outclk2) 1 3 4 1000 370 NJ 370 NJ 370 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_tpg_0.main_clock,(SLAVE)alt_vip_cl_tpg_1.main_clock,(SLAVE)alt_vip_cl_cvo_0.main_clock,(SLAVE)ARM_A9_HPS.h2f_axi_clock,(SLAVE)ARM_A9_HPS.f2h_sdram0_clock,(SLAVE)video_dma.clk,(SLAVE)ARM_A9_HPS.f2h_sdram1_clock,(SLAVE)ARM_A9_HPS.f2h_axi_clock,(SLAVE)alt_vip_cl_mixer_0.main_clock,(MASTER)pll_0.outclk0) 1 3 4 920 470 1370 150 1630 190 1940
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_cvo_0.clocked_video,(SLAVE)soc_system.alt_vip_cl_cvo_0_clocked_video) 1 0 7 NJ 330 NJ 330 NJ 330 NJ 330 NJ 250 NJ 250 NJ
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)videocard_new_0.clock,(MASTER)pll_0.outclk2) 1 3 4 NJ 510 NJ 510 NJ 510 1960
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_cvo_0.din,(MASTER)alt_vip_cl_mixer_0.dout) 1 6 1 1880
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)ARM_A9_HPS.h2f_lw_axi_master,(SLAVE)mm_bridge_0.s0) 1 1 4 490 490 NJ 430 NJ 430 1310
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)ARM_A9_HPS.memory,(SLAVE)soc_system.memory) 1 0 4 NJ 240 NJ 240 NJ 240 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)mm_bridge_0.s0,(MASTER)ARM_A9_HPS.h2f_lw_axi_master) 1 1 4 490 330 NJ 330 NJ 410 1310
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.alt_vip_cl_cvo_0_clocked_video,(SLAVE)alt_vip_cl_cvo_0.clocked_video) 1 0 7 NJ 290 NJ 290 NJ 290 NJ 290 NJ 250 NJ 250 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.control,(SLAVE)video_dma.avalon_control_slave,(MASTER)mm_bridge_0.m0,(SLAVE)videocard_new_0.memory_control,(SLAVE)dma_0.control_port_slave) 1 2 5 650 350 NJ 430 NJ 430 1590 230 1900
-preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)pll_0.outclk1,(MASTER)soc_system.clk_hdmi) 1 3 5 NJ 490 NJ 490 NJ 490 NJ 490 NJ
-preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_tpg_0.main_reset,(SLAVE)mm_bridge_0.reset,(SLAVE)alt_vip_cl_cvo_0.main_reset,(SLAVE)videocard_new_0.reset_sink,(MASTER)sys_pll.reset_source,(SLAVE)video_dma.reset,(SLAVE)pll_0.reset,(SLAVE)dma_0.reset,(MASTER)ARM_A9_HPS.h2f_reset,(SLAVE)alt_vip_cl_mixer_0.main_reset,(SLAVE)alt_vip_cl_tpg_1.main_reset) 1 1 6 470 390 610 450 NJ 450 1390 170 1650 210 1920
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)pll_0.outclk3,(SLAVE)videocard_new_0.clock_rom) 1 3 4 NJ 530 NJ 530 NJ 530 1980
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)sys_pll.ref_reset,(SLAVE)soc_system.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_hps_io,(SLAVE)ARM_A9_HPS.hps_io) 1 0 4 NJ 180 NJ 180 NJ 180 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.din1,(MASTER)alt_vip_cl_tpg_1.dout) 1 5 1 1610
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(MASTER)pll_0.outclk0,(SLAVE)ARM_A9_HPS.f2h_sdram0_clock,(SLAVE)alt_vip_cl_tpg_1.main_clock,(SLAVE)ARM_A9_HPS.f2h_axi_clock,(SLAVE)alt_vip_cl_tpg_0.main_clock,(SLAVE)alt_vip_cl_mixer_0.main_clock,(SLAVE)video_dma.clk,(SLAVE)ARM_A9_HPS.h2f_axi_clock,(SLAVE)ARM_A9_HPS.f2h_sdram1_clock,(SLAVE)alt_vip_cl_cvo_0.main_clock) 1 3 4 920 290 1410 150 1650 210 1980
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.din1,(MASTER)alt_vip_cl_tpg_1.dout) 1 5 1 1630
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)dma_0.control_port_slave,(SLAVE)videocard_new_0.memory_control,(MASTER)mm_bridge_0.m0,(SLAVE)video_dma.avalon_control_slave,(SLAVE)alt_vip_cl_mixer_0.control) 1 2 5 630 410 NJ 410 NJ 450 1610 190 1940
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)sys_pll.ref_clk,(SLAVE)soc_system.clk) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)ARM_A9_HPS.f2h_axi_slave,(MASTER)dma_0.read_master) 1 3 1 940
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)videocard_new_0.clock_hps,(SLAVE)dma_0.clk,(SLAVE)pll_0.refclk,(SLAVE)ARM_A9_HPS.h2f_lw_axi_clock,(SLAVE)mm_bridge_0.clk,(MASTER)sys_pll.sys_clk) 1 1 6 450 370 630 370 980 390 NJ 390 NJ 390 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)ARM_A9_HPS.h2f_axi_master,(SLAVE)videocard_new_0.memory_main) 1 4 3 1350 410 NJ 410 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)alt_vip_cl_mixer_0.dout,(SLAVE)alt_vip_cl_cvo_0.din) 1 6 1 1860
-levelinfo -pg 1 0 200 2430
-levelinfo -hier soc_system 210 290 520 680 1120 1480 1740 2040 2350
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)mm_bridge_0.clk,(SLAVE)pll_0.refclk,(MASTER)sys_pll.sys_clk,(SLAVE)ARM_A9_HPS.h2f_lw_axi_clock,(SLAVE)videocard_new_0.clock_hps,(SLAVE)dma_0.clk) 1 1 6 470 530 670 450 940 370 NJ 370 NJ 370 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)ARM_A9_HPS.hps_io,(SLAVE)soc_system.hps_0_hps_io) 1 0 4 NJ 180 NJ 180 NJ 180 NJ
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)dma_0.read_master,(SLAVE)ARM_A9_HPS.f2h_axi_slave) 1 3 1 960
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.din0,(MASTER)alt_vip_cl_tpg_0.dout) 1 5 1 N
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)videocard_new_0.memory_main,(MASTER)ARM_A9_HPS.h2f_axi_master) 1 4 3 1350 430 NJ 430 NJ
+preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)video_dma.reset,(SLAVE)alt_vip_cl_tpg_0.main_reset,(SLAVE)dma_0.reset,(SLAVE)alt_vip_cl_mixer_0.main_reset,(SLAVE)alt_vip_cl_cvo_0.main_reset,(SLAVE)mm_bridge_0.reset,(MASTER)sys_pll.reset_source,(SLAVE)alt_vip_cl_tpg_1.main_reset,(MASTER)ARM_A9_HPS.h2f_reset,(SLAVE)pll_0.reset,(SLAVE)videocard_new_0.reset_sink) 1 1 6 450 510 610 310 NJ 310 1390 170 1670 230 1920
+preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)soc_system.clk_hdmi,(MASTER)pll_0.outclk1) 1 3 5 NJ 490 NJ 490 NJ 490 NJ 490 NJ
+levelinfo -pg 1 0 200 2490
+levelinfo -hier soc_system 210 290 520 700 1120 1500 1760 2100 2410

@@ -43,8 +43,8 @@ module soc_system_mm_interconnect_0 (
 		output wire         ARM_A9_HPS_h2f_axi_master_rlast,                                       //                                                                .rlast
 		output wire         ARM_A9_HPS_h2f_axi_master_rvalid,                                      //                                                                .rvalid
 		input  wire         ARM_A9_HPS_h2f_axi_master_rready,                                      //                                                                .rready
-		input  wire         pll_0_outclk0_clk,                                                     //                                                   pll_0_outclk0.clk
-		input  wire         pll_0_outclk2_clk,                                                     //                                                   pll_0_outclk2.clk
+		input  wire         pll_0_outclk1_clk,                                                     //                                                   pll_0_outclk1.clk
+		input  wire         sys_pll_sys_clk_clk,                                                   //                                                 sys_pll_sys_clk.clk
 		input  wire         ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		input  wire         videocard_new_0_reset_sink_reset_bridge_in_reset_reset,                //                videocard_new_0_reset_sink_reset_bridge_in_reset.reset
 		output wire [16:0]  videocard_new_0_memory_main_address,                                   //                                     videocard_new_0_memory_main.address
@@ -231,7 +231,7 @@ module soc_system_mm_interconnect_0 (
 		.AV_SETUP_WAIT_CYCLES           (0),
 		.AV_DATA_HOLD_CYCLES            (0)
 	) videocard_new_0_memory_main_translator (
-		.clk                    (pll_0_outclk2_clk),                                      //                      clk.clk
+		.clk                    (pll_0_outclk1_clk),                                      //                      clk.clk
 		.reset                  (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), //                    reset.reset
 		.uav_address            (videocard_new_0_memory_main_agent_m0_address),           // avalon_universal_slave_0.address
 		.uav_burstcount         (videocard_new_0_memory_main_agent_m0_burstcount),        //                         .burstcount
@@ -325,7 +325,7 @@ module soc_system_mm_interconnect_0 (
 		.ST_CHANNEL_W              (2),
 		.ID                        (0)
 	) arm_a9_hps_h2f_axi_master_agent (
-		.aclk                   (pll_0_outclk0_clk),                                                      //              clk.clk
+		.aclk                   (sys_pll_sys_clk_clk),                                                    //              clk.clk
 		.aresetn                (~ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //        clk_reset.reset_n
 		.write_cp_valid         (arm_a9_hps_h2f_axi_master_agent_write_cp_valid),                         //         write_cp.valid
 		.write_cp_data          (arm_a9_hps_h2f_axi_master_agent_write_cp_data),                          //                 .data
@@ -435,7 +435,7 @@ module soc_system_mm_interconnect_0 (
 		.USE_WRITERESPONSE         (0),
 		.ECC_ENABLE                (0)
 	) videocard_new_0_memory_main_agent (
-		.clk                     (pll_0_outclk2_clk),                                               //             clk.clk
+		.clk                     (pll_0_outclk1_clk),                                               //             clk.clk
 		.reset                   (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          //       clk_reset.reset
 		.m0_address              (videocard_new_0_memory_main_agent_m0_address),                    //              m0.address
 		.m0_burstcount           (videocard_new_0_memory_main_agent_m0_burstcount),                 //                .burstcount
@@ -494,7 +494,7 @@ module soc_system_mm_interconnect_0 (
 		.USE_ALMOST_FULL_IF  (0),
 		.USE_ALMOST_EMPTY_IF (0)
 	) videocard_new_0_memory_main_agent_rsp_fifo (
-		.clk               (pll_0_outclk2_clk),                                            //       clk.clk
+		.clk               (pll_0_outclk1_clk),                                            //       clk.clk
 		.reset             (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),       // clk_reset.reset
 		.in_data           (videocard_new_0_memory_main_agent_rf_source_data),             //        in.data
 		.in_valid          (videocard_new_0_memory_main_agent_rf_source_valid),            //          .valid
@@ -535,7 +535,7 @@ module soc_system_mm_interconnect_0 (
 		.USE_ALMOST_FULL_IF  (0),
 		.USE_ALMOST_EMPTY_IF (0)
 	) videocard_new_0_memory_main_agent_rdata_fifo (
-		.clk               (pll_0_outclk2_clk),                                      //       clk.clk
+		.clk               (pll_0_outclk1_clk),                                      //       clk.clk
 		.reset             (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
 		.in_data           (videocard_new_0_memory_main_agent_rdata_fifo_src_data),  //        in.data
 		.in_valid          (videocard_new_0_memory_main_agent_rdata_fifo_src_valid), //          .valid
@@ -568,7 +568,7 @@ module soc_system_mm_interconnect_0 (
 		.sink_data          (arm_a9_hps_h2f_axi_master_agent_write_cp_data),                         //          .data
 		.sink_startofpacket (arm_a9_hps_h2f_axi_master_agent_write_cp_startofpacket),                //          .startofpacket
 		.sink_endofpacket   (arm_a9_hps_h2f_axi_master_agent_write_cp_endofpacket),                  //          .endofpacket
-		.clk                (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready          (router_src_ready),                                                      //       src.ready
 		.src_valid          (router_src_valid),                                                      //          .valid
@@ -584,7 +584,7 @@ module soc_system_mm_interconnect_0 (
 		.sink_data          (arm_a9_hps_h2f_axi_master_agent_read_cp_data),                          //          .data
 		.sink_startofpacket (arm_a9_hps_h2f_axi_master_agent_read_cp_startofpacket),                 //          .startofpacket
 		.sink_endofpacket   (arm_a9_hps_h2f_axi_master_agent_read_cp_endofpacket),                   //          .endofpacket
-		.clk                (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready          (router_001_src_ready),                                                  //       src.ready
 		.src_valid          (router_001_src_valid),                                                  //          .valid
@@ -600,7 +600,7 @@ module soc_system_mm_interconnect_0 (
 		.sink_data          (videocard_new_0_memory_main_agent_rp_data),              //          .data
 		.sink_startofpacket (videocard_new_0_memory_main_agent_rp_startofpacket),     //          .startofpacket
 		.sink_endofpacket   (videocard_new_0_memory_main_agent_rp_endofpacket),       //          .endofpacket
-		.clk                (pll_0_outclk2_clk),                                      //       clk.clk
+		.clk                (pll_0_outclk1_clk),                                      //       clk.clk
 		.reset              (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready          (router_002_src_ready),                                   //       src.ready
 		.src_valid          (router_002_src_valid),                                   //          .valid
@@ -644,7 +644,7 @@ module soc_system_mm_interconnect_0 (
 		.BURSTWRAP_CONST_VALUE     (0),
 		.ADAPTER_VERSION           ("13.1")
 	) videocard_new_0_memory_main_burst_adapter (
-		.clk                   (pll_0_outclk2_clk),                                               //       cr0.clk
+		.clk                   (pll_0_outclk1_clk),                                               //       cr0.clk
 		.reset                 (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // cr0_reset.reset
 		.sink0_valid           (videocard_new_0_memory_main_cmd_width_adapter_src_valid),         //     sink0.valid
 		.sink0_data            (videocard_new_0_memory_main_cmd_width_adapter_src_data),          //          .data
@@ -661,7 +661,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_cmd_demux cmd_demux (
-		.clk                (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.sink_ready         (router_src_ready),                                                      //      sink.ready
 		.sink_channel       (router_src_channel),                                                    //          .channel
@@ -678,7 +678,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_cmd_demux cmd_demux_001 (
-		.clk                (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.sink_ready         (router_001_src_ready),                                                  //      sink.ready
 		.sink_channel       (router_001_src_channel),                                                //          .channel
@@ -695,7 +695,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_cmd_mux cmd_mux (
-		.clk                 (pll_0_outclk2_clk),                                      //       clk.clk
+		.clk                 (pll_0_outclk1_clk),                                      //       clk.clk
 		.reset               (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready           (cmd_mux_src_ready),                                      //       src.ready
 		.src_valid           (cmd_mux_src_valid),                                      //          .valid
@@ -718,7 +718,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_rsp_demux rsp_demux (
-		.clk                (pll_0_outclk2_clk),                                               //       clk.clk
+		.clk                (pll_0_outclk1_clk),                                               //       clk.clk
 		.reset              (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
 		.sink_ready         (videocard_new_0_memory_main_rsp_width_adapter_src_ready),         //      sink.ready
 		.sink_channel       (videocard_new_0_memory_main_rsp_width_adapter_src_channel),       //          .channel
@@ -741,7 +741,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_rsp_mux rsp_mux (
-		.clk                 (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                 (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset               (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready           (rsp_mux_src_ready),                                                     //       src.ready
 		.src_valid           (rsp_mux_src_valid),                                                     //          .valid
@@ -758,7 +758,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	soc_system_mm_interconnect_0_rsp_mux rsp_mux_001 (
-		.clk                 (pll_0_outclk0_clk),                                                     //       clk.clk
+		.clk                 (sys_pll_sys_clk_clk),                                                   //       clk.clk
 		.reset               (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready           (rsp_mux_001_src_ready),                                                 //       src.ready
 		.src_valid           (rsp_mux_001_src_valid),                                                 //          .valid
@@ -823,7 +823,7 @@ module soc_system_mm_interconnect_0 (
 		.PACKING                       (1),
 		.ENABLE_ADDRESS_ALIGNMENT      (1)
 	) videocard_new_0_memory_main_rsp_width_adapter (
-		.clk                  (pll_0_outclk2_clk),                                               //       clk.clk
+		.clk                  (pll_0_outclk1_clk),                                               //       clk.clk
 		.reset                (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
 		.in_valid             (router_002_src_valid),                                            //      sink.valid
 		.in_channel           (router_002_src_channel),                                          //          .channel
@@ -889,7 +889,7 @@ module soc_system_mm_interconnect_0 (
 		.PACKING                       (0),
 		.ENABLE_ADDRESS_ALIGNMENT      (1)
 	) videocard_new_0_memory_main_cmd_width_adapter (
-		.clk                  (pll_0_outclk2_clk),                                               //       clk.clk
+		.clk                  (pll_0_outclk1_clk),                                               //       clk.clk
 		.reset                (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
 		.in_valid             (cmd_mux_src_valid),                                               //      sink.valid
 		.in_channel           (cmd_mux_src_channel),                                             //          .channel
@@ -918,9 +918,9 @@ module soc_system_mm_interconnect_0 (
 		.READY_SYNC_DEPTH    (2),
 		.USE_OUTPUT_PIPELINE (0)
 	) crosser (
-		.in_clk            (pll_0_outclk0_clk),                                                     //        in_clk.clk
+		.in_clk            (sys_pll_sys_clk_clk),                                                   //        in_clk.clk
 		.in_reset          (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk2_clk),                                                     //       out_clk.clk
+		.out_clk           (pll_0_outclk1_clk),                                                     //       out_clk.clk
 		.out_reset         (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                // out_clk_reset.reset
 		.in_ready          (cmd_demux_src0_ready),                                                  //            in.ready
 		.in_valid          (cmd_demux_src0_valid),                                                  //              .valid
@@ -952,9 +952,9 @@ module soc_system_mm_interconnect_0 (
 		.READY_SYNC_DEPTH    (2),
 		.USE_OUTPUT_PIPELINE (0)
 	) crosser_001 (
-		.in_clk            (pll_0_outclk0_clk),                                                     //        in_clk.clk
+		.in_clk            (sys_pll_sys_clk_clk),                                                   //        in_clk.clk
 		.in_reset          (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk2_clk),                                                     //       out_clk.clk
+		.out_clk           (pll_0_outclk1_clk),                                                     //       out_clk.clk
 		.out_reset         (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                // out_clk_reset.reset
 		.in_ready          (cmd_demux_001_src0_ready),                                              //            in.ready
 		.in_valid          (cmd_demux_001_src0_valid),                                              //              .valid
@@ -986,9 +986,9 @@ module soc_system_mm_interconnect_0 (
 		.READY_SYNC_DEPTH    (2),
 		.USE_OUTPUT_PIPELINE (0)
 	) crosser_002 (
-		.in_clk            (pll_0_outclk2_clk),                                                     //        in_clk.clk
+		.in_clk            (pll_0_outclk1_clk),                                                     //        in_clk.clk
 		.in_reset          (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk0_clk),                                                     //       out_clk.clk
+		.out_clk           (sys_pll_sys_clk_clk),                                                   //       out_clk.clk
 		.out_reset         (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // out_clk_reset.reset
 		.in_ready          (rsp_demux_src0_ready),                                                  //            in.ready
 		.in_valid          (rsp_demux_src0_valid),                                                  //              .valid
@@ -1020,9 +1020,9 @@ module soc_system_mm_interconnect_0 (
 		.READY_SYNC_DEPTH    (2),
 		.USE_OUTPUT_PIPELINE (0)
 	) crosser_003 (
-		.in_clk            (pll_0_outclk2_clk),                                                     //        in_clk.clk
+		.in_clk            (pll_0_outclk1_clk),                                                     //        in_clk.clk
 		.in_reset          (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk0_clk),                                                     //       out_clk.clk
+		.out_clk           (sys_pll_sys_clk_clk),                                                   //       out_clk.clk
 		.out_reset         (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // out_clk_reset.reset
 		.in_ready          (rsp_demux_src1_ready),                                                  //            in.ready
 		.in_valid          (rsp_demux_src1_valid),                                                  //              .valid
@@ -1060,7 +1060,7 @@ module soc_system_mm_interconnect_0 (
 		.outUseReady     (1),
 		.outReadyLatency (0)
 	) avalon_st_adapter (
-		.in_clk_0_clk   (pll_0_outclk2_clk),                                      // in_clk_0.clk
+		.in_clk_0_clk   (pll_0_outclk1_clk),                                      // in_clk_0.clk
 		.in_rst_0_reset (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // in_rst_0.reset
 		.in_0_data      (videocard_new_0_memory_main_agent_rdata_fifo_out_data),  //     in_0.data
 		.in_0_valid     (videocard_new_0_memory_main_agent_rdata_fifo_out_valid), //         .valid

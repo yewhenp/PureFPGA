@@ -13,25 +13,22 @@ module  soc_system_pll_0(
 	// interface 'outclk1'
 	output wire outclk_1,
 
-	// interface 'outclk2'
-	output wire outclk_2,
-
 	// interface 'locked'
 	output wire locked
 );
 
 	altera_pll #(
 		.fractional_vco_multiplier("false"),
-		.reference_clock_frequency("50.0 MHz"),
+		.reference_clock_frequency("100.0 MHz"),
 		.operation_mode("direct"),
-		.number_of_clocks(3),
-		.output_clock_frequency0("100.000000 MHz"),
+		.number_of_clocks(2),
+		.output_clock_frequency0("10.000000 MHz"),
 		.phase_shift0("0 ps"),
 		.duty_cycle0(50),
-		.output_clock_frequency1("65.000000 MHz"),
+		.output_clock_frequency1("5.000000 MHz"),
 		.phase_shift1("0 ps"),
 		.duty_cycle1(50),
-		.output_clock_frequency2("5.000000 MHz"),
+		.output_clock_frequency2("0 MHz"),
 		.phase_shift2("0 ps"),
 		.duty_cycle2(50),
 		.output_clock_frequency3("0 MHz"),
@@ -83,7 +80,7 @@ module  soc_system_pll_0(
 		.pll_subtype("General")
 	) altera_pll_i (
 		.rst	(rst),
-		.outclk	({outclk_2, outclk_1, outclk_0}),
+		.outclk	({outclk_1, outclk_0}),
 		.locked	(locked),
 		.fboutclk	( ),
 		.fbclk	(1'b0),

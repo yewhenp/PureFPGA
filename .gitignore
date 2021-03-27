@@ -1,7 +1,8 @@
 .idea
 python_simulation/venv
-*/__pycache__
+assembler/src/__pycache__/
 venv
+venv2
 
 Verilog_Components
 MCCP/db/

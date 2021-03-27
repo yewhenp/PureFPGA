@@ -1,16 +1,6 @@
 
 module soc_system (
-	alt_vip_cl_cvo_0_clocked_video_vid_clk,
-	alt_vip_cl_cvo_0_clocked_video_vid_data,
-	alt_vip_cl_cvo_0_clocked_video_underflow,
-	alt_vip_cl_cvo_0_clocked_video_vid_datavalid,
-	alt_vip_cl_cvo_0_clocked_video_vid_v_sync,
-	alt_vip_cl_cvo_0_clocked_video_vid_h_sync,
-	alt_vip_cl_cvo_0_clocked_video_vid_f,
-	alt_vip_cl_cvo_0_clocked_video_vid_h,
-	alt_vip_cl_cvo_0_clocked_video_vid_v,
 	clk_clk,
-	clk_hdmi_clk,
 	hps_0_hps_io_hps_io_emac1_inst_TX_CLK,
 	hps_0_hps_io_hps_io_emac1_inst_TXD0,
 	hps_0_hps_io_hps_io_emac1_inst_TXD1,
@@ -77,17 +67,7 @@ module soc_system (
 	memory_oct_rzqin,
 	reset_reset);	
 
-	input		alt_vip_cl_cvo_0_clocked_video_vid_clk;
-	output	[23:0]	alt_vip_cl_cvo_0_clocked_video_vid_data;
-	output		alt_vip_cl_cvo_0_clocked_video_underflow;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_datavalid;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_v_sync;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_h_sync;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_f;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_h;
-	output		alt_vip_cl_cvo_0_clocked_video_vid_v;
 	input		clk_clk;
-	output		clk_hdmi_clk;
 	output		hps_0_hps_io_hps_io_emac1_inst_TX_CLK;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD0;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD1;

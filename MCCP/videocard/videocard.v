@@ -14,7 +14,8 @@ output 					interrupt_finish,
 input						clk_rom,
 input [WIDTH/2-1: 0]	address_rom,
 input	[WIDTH-1: 0]	data_in_rom,
-input						wren_rom
+input						wren_rom,
+input						clk_hps
 );
 
 
@@ -70,6 +71,7 @@ four_way_rom rom
 	.address_rom(address_rom),
 	.data_in_rom(data_in_rom),
 	.wren_rom(wren_rom),
+	.clk_hps(clk_hps),
 	.clk_rom(clk_rom)
 );
 

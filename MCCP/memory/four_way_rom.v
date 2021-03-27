@@ -15,13 +15,14 @@ output [WIDTH-1: 0] 	data_core3,
 input [WIDTH/2-1: 0]	address_rom,
 input	[WIDTH-1: 0]	data_in_rom,
 input						wren_rom,
+input						clk_hps,
 input						clk_rom
 );
 
 ROM_RAM rom0 (
 .address_a(address_rom),
 .address_b(address_core0),
-.clock_a(clk_rom),
+.clock_a(clk_hps),
 .clock_b(clk_rom),
 .data_a(data_in_rom),
 .data_b(32'b0),
@@ -34,7 +35,7 @@ ROM_RAM rom0 (
 ROM_RAM rom1 (
 .address_a(address_rom),
 .address_b(address_core1),
-.clock_a(clk_rom),
+.clock_a(clk_hps),
 .clock_b(clk_rom),
 .data_a(data_in_rom),
 .data_b(32'b0),
@@ -47,7 +48,7 @@ ROM_RAM rom1 (
 ROM_RAM rom2 (
 .address_a(address_rom),
 .address_b(address_core2),
-.clock_a(clk_rom),
+.clock_a(clk_hps),
 .clock_b(clk_rom),
 .data_a(data_in_rom),
 .data_b(32'b0),
@@ -60,7 +61,7 @@ ROM_RAM rom2 (
 ROM_RAM rom3 (
 .address_a(address_rom),
 .address_b(address_core3),
-.clock_a(clk_rom),
+.clock_a(clk_hps),
 .clock_b(clk_rom),
 .data_a(data_in_rom),
 .data_b(32'b0),

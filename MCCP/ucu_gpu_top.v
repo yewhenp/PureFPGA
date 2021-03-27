@@ -222,17 +222,17 @@ soc_system u0(
                .hps_0_hps_io_hps_io_gpio_inst_GPIO54(HPS_KEY),              //                               .hps_io_gpio_inst_GPIO54
                .hps_0_hps_io_hps_io_gpio_inst_GPIO61(HPS_GSENSOR_INT),      //                               .hps_io_gpio_inst_GPIO61
 
-				  .alt_vip_cl_cvo_0_clocked_video_vid_clk       (HDMI_CLK),     // alt_vip_cl_cvo_0_clocked_video.vid_clk
-				  .alt_vip_cl_cvo_0_clocked_video_vid_data      ({HDMI_TX_D[23:16],HDMI_TX_D[15:8],HDMI_TX_D[7:0]}), //.vid_data
-				  .alt_vip_cl_cvo_0_clocked_video_underflow     (),     			 //                               .underflow
-				  .alt_vip_cl_cvo_0_clocked_video_vid_datavalid (HDMI_TX_DE),   //                               .vid_datavalid
-				  .alt_vip_cl_cvo_0_clocked_video_vid_v_sync    (HDMI_TX_VS),   //                               .vid_v_sync
-				  .alt_vip_cl_cvo_0_clocked_video_vid_h_sync    (HDMI_TX_HS),   //                               .vid_h_sync
-				  .alt_vip_cl_cvo_0_clocked_video_vid_f         (),             //                               .vid_f
-				  .alt_vip_cl_cvo_0_clocked_video_vid_h         (),             //                               .vid_h
-				  .alt_vip_cl_cvo_0_clocked_video_vid_v         (),              //                               .vid_v
-
-				  .clk_hdmi_clk(HDMI_CLK),
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_clk       (HDMI_CLK),     // alt_vip_cl_cvo_0_clocked_video.vid_clk
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_data      ({HDMI_TX_D[23:16],HDMI_TX_D[15:8],HDMI_TX_D[7:0]}), //.vid_data
+//				  .alt_vip_cl_cvo_0_clocked_video_underflow     (),     			 //                               .underflow
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_datavalid (HDMI_TX_DE),   //                               .vid_datavalid
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_v_sync    (HDMI_TX_VS),   //                               .vid_v_sync
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_h_sync    (HDMI_TX_HS),   //                               .vid_h_sync
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_f         (),             //                               .vid_f
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_h         (),             //                               .vid_h
+//				  .alt_vip_cl_cvo_0_clocked_video_vid_v         (),              //                               .vid_v
+//
+//				  .clk_hdmi_clk(HDMI_CLK),
 //			     .mm_bridge_0_m0_waitrequest                   (),             //                               .mm_bridge_0_m0.waitrequest
 //				  .mm_bridge_0_m0_readdata                      (mm_bridge_readdata),//                          .readdata
 //				  .mm_bridge_0_m0_readdatavalid                 (),             //                               .readdatavalid

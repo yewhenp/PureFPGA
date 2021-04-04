@@ -49,7 +49,13 @@ commands = {
         'jmp': '01111',
 
         'coreidx': '10000',
-        'int'    : '10001'
+        'int'    : '10001',
+
+
+        'msb'   : '10010',     # my-stack-begin
+        'mse'   : '10011',     # my-stack-end
+        'sb'    : '10100',     # stack-begin
+        'excl'  : '10101'      # exception-address-load
 
         # 'chmod': '11110',
         # 'chbuf': '11111',
@@ -84,6 +90,7 @@ registers = {
     'reg5': '101',
     'reg6': '110',
     'reg7': '111',
+    'bp': "100",
     "sp": "110",
     "ip": "111"
 }
@@ -111,6 +118,11 @@ mem_jump_commmands = [
 
 not_suffix_commands = [
     'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp', 'movf' # , "chbuf", "chmod"
+]
+
+# isntruction[suffix] reg[i]
+suffix_reg_commands = [
+    "coreidx", "msb", "mse", "sb", "excl"
 ]
 
 coreidx = [

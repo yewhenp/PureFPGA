@@ -4,6 +4,7 @@ from .lists_and_dicts import *
 
 class Assembler:
     NOP = "addnv reg0 reg0"
+    RAM_SIZE = 65535
 
     def __init__(self, source_file=None, prep_file=None, dest_file=None):
         self.source_file = source_file
@@ -75,6 +76,13 @@ class Assembler:
                     instr_counter += 1
                     continue
 
+                if line[0] == "stack_size":
+                    result, deltaInstr = self.__set_stacks_size(line)
+                    for instr in result:
+                        prep_file.write(instr)
+                    instr_counter += deltaInstr
+                    continue
+
                 result = []
 
                 # insert NOP before movl / movh if instruction's number is odd
@@ -102,16 +110,21 @@ class Assembler:
                         raise ValueError("Unknown label: " + str(line[2]))
 
                 # substitute label to load / store
-                if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers:
+                if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers or line[1] not in registers:
                     if line[2] in labels:
-                        if instr_counter % 2:
-                            result.append(self.NOP + "\n")
-                            instr_counter += 1
-                        result += self.__num_to_reg(LABEL_REGISTER, labels[line[2]])
-                        instr_counter += 4
-                        line[2] = LABEL_REGISTER
+                        idx = 2
+                    elif line[1] in labels:
+                        idx = 1
                     else:
-                        raise ValueError("Unknown label: " + str(line[2]))
+                        raise ValueError("Unknown label somewhere here: " + str(line))
+
+                    # insert nop if needed before movl/movh
+                    if instr_counter % 2:
+                        result.append(self.NOP + "\n")
+                        instr_counter += 1
+                    result += self.__num_to_reg(LABEL_REGISTER, labels[line[idx]])
+                    instr_counter += 4
+                    line[idx] = LABEL_REGISTER
 
                 # substituting label to jump
                 if line[0] in mem_jump_commmands and line[1] not in registers:
@@ -212,7 +225,10 @@ class Assembler:
                 result += "0" * 6
 
             # coreidx
-            elif command_clear in coreidx:
+            elif command_clear in suffix_reg_commands:
+                print "--------------------------------"
+                print command_list
+                print suffix
                 result += suffixes[suffix]
                 result += registers[command_list[1]]
                 result += "0" * 2
@@ -234,7 +250,8 @@ class Assembler:
     def __num_to_reg(reg, number):
         binary = bin(number)[2:]
         binary = "0" * (32 - len(binary)) + binary
-        return ["movlal " + reg + " " + str(int(binary[16:], 2)) + "\n", "movhal " + reg + " " + str(int(binary[:16], 2)) + "\n"]
+        return ["movlal " + reg + " " + str(int(binary[16:], 2)) + "\n",
+                "movhal " + reg + " " + str(int(binary[:16], 2)) + "\n"]
 
     @staticmethod
     def __find_labels(file, verbose):
@@ -345,3 +362,51 @@ class Assembler:
         # add 'al' if needed
         if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
             line[0] += "al"
+
+    def __set_stacks_size(self, line):
+        result = []
+        sizes = []
+        for i in range(1, len(line)):
+            sizes.append(int(line[i]))
+
+        # basic idea behind code below - using suffixes, load different number to stack registers
+        # coreidx reg6; xor reg3 reg3 - clear register
+        # movl reg3 i
+        # cmp reg6 reg3
+        # mov[l/h]eq reg5 address
+        # msb reg5, ... mse reg5, ... sb reg5, ...
+        stack_begin = self.RAM_SIZE - sum(sizes)
+        binary_stack_begin = bin(stack_begin)[2:]
+        binary_stack_begin = "0" * (32 - len(binary_stack_begin)) + binary_stack_begin
+
+        my_stack_begin = stack_begin
+        for i, size in enumerate(sizes):
+            my_stack_end = my_stack_begin + size
+            # convert to binary
+            binary_my_stack_begin = bin(my_stack_begin)[2:]
+            binary_my_stack_begin = "0" * (32 - len(binary_my_stack_begin)) + binary_my_stack_begin
+
+            binary_my_stack_end = bin(my_stack_end)[2:]
+            binary_my_stack_end = "0" * (32 - len(binary_my_stack_end)) + binary_my_stack_end
+
+            result.append("coreidxal reg6\n")
+            result.append("xoral reg3 reg3\n")
+            result.append("movlal reg4 " + str(i) + "\n")
+            result.append("cmpal reg6 reg3\n")
+            # write number to LABEL_REGISTER (reg5) if this is core with index {i}
+            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_my_stack_begin[16:], 2)) + "\n")
+            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_my_stack_begin[:16], 2)) + "\n")
+            result.append("msbeq " + LABEL_REGISTER+ "\n")
+            result.append(self.NOP + "\n")
+            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_my_stack_end[16:], 2)) + "\n")
+            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_my_stack_end[:16], 2)) + "\n")
+            result.append("mseeq " + LABEL_REGISTER+ "\n")
+            result.append(self.NOP + "\n")
+            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_stack_begin[16:], 2)) + "\n")
+            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_stack_begin[:16], 2)) + "\n")
+            result.append("sbeq " + LABEL_REGISTER+ "\n")
+            result.append(self.NOP + "\n")
+
+            my_stack_begin = my_stack_end
+
+        return result, 16 * len(sizes)

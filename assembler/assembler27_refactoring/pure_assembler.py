@@ -13,7 +13,7 @@ if __name__ == '__main__':
                         default=False, required=False)
     parser.add_argument('-p', help='Preprocess source', action='store_const', const=True,
                         default=False, required=False)
-    parser.add_argument('-v', help='Vebose', action='store_const', const=True,
+    parser.add_argument('-v', help='Verbose', action='store_const', const=True,
                         default=False, required=False)
 
     args = parser.parse_args()
@@ -40,36 +40,3 @@ if __name__ == '__main__':
         assembler.assemble_preprocessed(ASSEMBLE_VERBOSE)
     else:
         raise AttributeError("Specify -ap or -a or -p")
-
-
-    # if len(sys.argv) == 2:
-    #     source = sys.argv[1]
-    #     prep = "a.prep"
-    #     dest = "a.out"
-    #     assembler = Assembler(source_file=source, prep_file=prep, dest_file=dest)
-    #     assembler.preprocess_source(PREPROCESS_VERBOSE)
-    #     assembler.assemble_preprocessed(ASSEMBLE_VERBOSE)
-    # elif len(sys.argv) == 4:
-    #     # assemblng
-    #     if sys.argv[2] == "a":
-    #         prep = sys.argv[1]
-    #         dest = sys.argv[3]
-    #         assembler = Assembler(source_file="", prep_file=prep, dest_file=dest)
-    #         assembler.assemble_preprocessed(ASSEMBLE_VERBOSE)
-    #     # preprocessing
-    #     elif sys.argv[2] == "p":
-    #         source = sys.argv[1]
-    #         prep = sys.argv[3]
-    #         assembler = Assembler(source_file=source,prep_file=prep, dest_file="")
-    #         assembler.preprocess_source(PREPROCESS_VERBOSE)
-    #     elif sys.argv[2] == "ap":
-    #         source = sys.argv[1]
-    #         prep = "a.prep"
-    #         dest = sys.argv[3]
-    #         assembler = Assembler(source_file=source, prep_file=prep, dest_file=dest)
-    #         assembler.preprocess_source(PREPROCESS_VERBOSE)
-    #         assembler.assemble_preprocessed(ASSEMBLE_VERBOSE)
-    #     else:
-    #         raise AttributeError("Bad options!")
-    # else:
-    #     raise AttributeError("Bad options!")

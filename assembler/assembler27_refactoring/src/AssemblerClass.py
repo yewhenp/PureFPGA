@@ -1,9 +1,11 @@
 import re
 from .lists_and_dicts import *
+from pprint import pprint
 
 
 class Assembler:
     NOP = "addnv reg0 reg0"
+    NOP_ = ["addnv", "reg0", "reg0"]
     RAM_SIZE = 65535
 
     def __init__(self, source_file=None, prep_file=None, dest_file=None):
@@ -39,133 +41,6 @@ class Assembler:
                         counter += 1
                         temp = ""
             dest_file.write(result)
-
-    def preprocess_source(self, verbose=False):
-        with open(self.prep_file, "w") as prep_file:
-            instr_counter = 0
-
-            # find all labels
-            labels = self.__find_labels(self.source_file, verbose)
-
-            for line in open(self.source_file, "r"):
-                line = line.strip()
-                # skip comments and empty lines
-                if line.startswith("//") or line == "":
-                    continue
-                line = re.sub("//(.)*", "", line)  # delete comments at the same line
-                line = line.lower()
-
-                # skip value labels
-                if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
-                    continue
-
-                # insert nop before jump label if it's instruction is not even
-                if re.match(r"\s*\w+\s*(:)\s*", line):
-                    if instr_counter % 2:
-                        prep_file.write(self.NOP + "\n")
-                        instr_counter += 1
-                    continue
-
-                line = line.split()
-
-                if verbose:
-                    print "Preprocessing " + str(line)
-
-                # nop
-                if line[0] == "nop":
-                    prep_file.write(self.NOP + "\n")
-                    instr_counter += 1
-                    continue
-
-                if line[0] == "stack_size":
-                    result, deltaInstr = self.__set_stacks_size(line)
-                    for instr in result:
-                        prep_file.write(instr)
-                    instr_counter += deltaInstr
-                    continue
-
-                result = []
-
-                # insert NOP before movl / movh if instruction's number is odd
-                if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
-                    result.append(self.NOP + "\n")
-                    instr_counter += 1
-
-                # ######################################## LABELS ###################################################
-                # change CORE_NUM to 4 for movl/movh
-                if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
-                    line[2] = CORE_NUM
-
-                # mov regi label = movl regi label[16:] + movl regi label[:16]
-                if line[0] == "mov" and line[2] not in registers:
-                    if line[2] in labels:
-                        if instr_counter % 2:
-                            result.append(self.NOP + "\n")
-                            instr_counter += 1
-                        result += self.__num_to_reg(line[1], labels[line[2]])
-                        instr_counter += 4
-                        for instr in result:
-                            prep_file.write(instr)
-                        continue
-                    else:
-                        raise ValueError("Unknown label: " + str(line[2]))
-
-                # substitute label to load / store / mov
-                if line[0] in mem_suffix_commands_unprocessed and \
-                        (line[2] not in registers or line[1] not in registers):
-                    if line[1] in labels:
-                        idx = 1
-                    elif line[2] in labels:
-                        idx = 2
-                    else:
-                        raise ValueError("Unknown label here: " + str(line))
-
-                    # insert nop if needed before movl/movh
-                    if instr_counter % 2:
-                        result.append(self.NOP + "\n")
-                        instr_counter += 1
-                    result += self.__num_to_reg(LABEL_REGISTER, labels[line[idx]])
-                    instr_counter += 4
-                    line[idx] = LABEL_REGISTER
-
-                # substituting label to jump
-                if line[0] in mem_jump_commmands and line[1] not in registers:
-                    if line[1] in labels:
-                        if instr_counter % 2:
-                            result.append(self.NOP + "\n")
-                            instr_counter += 1
-                        result += self.__num_to_reg(LABEL_REGISTER,
-                                                    labels[line[1]])  # write label address to reg5
-                        instr_counter += 4
-                        line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
-                    else:
-                        raise ValueError("Unknown label: " + str(line[1]))
-
-                # movl/movh is basically two instructions
-                if line[0] in mem_only_num_command_unprocessed:
-                    instr_counter += 1
-
-                # mov0/1; load0/1; store0/1; 'al'
-                self.__coding_related_prep(line)
-                result.append(" ".join(line) + "\n")
-
-                # insert NOP after jump if jump's ip is even number.
-                if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
-                    result.append(self.NOP + "\n")
-                    instr_counter += 1
-
-                if verbose:
-                    print "Preprocess res: " + str([result, instr_counter])
-
-                for instr in result:
-                    prep_file.write(instr)
-                instr_counter += 1
-
-            if instr_counter % 2 == 1:
-                prep_file.write(self.NOP + "\n")  # number of instructions should be even, else undefined behaviour
-                instr_counter += 1
-            if verbose:
-                print "Number of instructions: " + str(instr_counter)
 
     def __encode_command(self, parsed_command):
         result = ""
@@ -255,29 +130,11 @@ class Assembler:
         return result
 
     @staticmethod
-    def __num_to_reg(reg, number):
-        binary = bin(number)[2:]
-        binary = "0" * (32 - len(binary)) + binary
-        return ["movlal " + reg + " " + str(int(binary[16:], 2)) + "\n",
-                "movhal " + reg + " " + str(int(binary[:16], 2)) + "\n"]
-
-    @staticmethod
-    def __find_labels(file_, verbose):
+    def __find_labels_and_strip(file_, verbose):
         instr_counter = 0
+        stripped_program = []
         labels = {}
-
-        label_names = set()
-        # just find label names
-        for line in open(file_, "r"):
-            if line.strip().startswith("//") or line.strip() == "":
-                continue
-            line = re.sub("//(.)*", "", line).strip().lower()
-            if re.match(r"\s*\w+\s*(:)\s*", line):
-                label_names.add(re.findall(r"[a-zA-Z_]+", line)[0])
-                continue
-            if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
-                label_names.add(re.findall(r"[a-zA-Z_]+", line)[0])
-                continue
+        jump_labels = {}
 
         # now find values of labels
         for line in open(file_, "r"):
@@ -285,92 +142,227 @@ class Assembler:
                 continue
             line = re.sub("//(.)*", "", line).strip().lower()
 
-            # jump label preprocessing
+            # jump label
             if re.match(r"\s*\w+\s*(:)\s*", line):
-                # nop before label if odd number of instructions
-                if instr_counter % 2:
-                    instr_counter += 1
-                name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[name] = instr_counter // 2   # take only text part; /2 bacause there are 2 instructions in one memory cell
-                # instr_counter += 1
+                label_name = re.findall(r"[a-zA-Z_]+", line)[0]
+                labels[label_name] = instr_counter
+                jump_labels[label_name] = instr_counter
                 if verbose:
-                    print "Found new jump label: " + name + "=" + str(labels[name])
-                continue
+                    print "Found new jump label: " + str(label_name) + "=" + str(instr_counter)
+                    continue
 
-            # value label preprocessing
+            # value label
             if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
-                # take only text part and save number after '='
-                name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[name] = int(re.findall(r"\d+", line)[0])
+                label_name = re.findall(r"[a-zA-Z_]+", line)[0]
+                labels[label_name] = instr_counter
                 if verbose:
-                    print "Found new value label: " + name + "=" + str(labels[name])
-                continue
+                    print "Found new value label: " + str(label_name) + "=" + str(instr_counter)
+                    continue
 
             line = line.split()
+            stripped_program.append(line)
 
-            # nop
-            if line[0] == "nop":
-                instr_counter += 1
-                continue
+            instr_counter += 1
 
-            # insert NOP before movl / movh if instruction's number is odd
-            if line[0] in mem_only_num_command_unprocessed and instr_counter % 2:
+        return labels, jump_labels, stripped_program
+
+    def preprocess_source(self, verbose=False):
+        with open(self.prep_file, "w") as prep_file:
+
+            # detect labels and remove comments
+            labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
+
+            # replace core_num and insert movl and movh for labels where needed
+            program = self.__extract_labels(stripped_program, labels=labels, jump_labels=jump_labels)
+
+            # insert everywhere where needed nops, and handle stack
+            program = self.__nop_inserter(program, labels, jump_labels)
+
+            # add 'al' suffix where needed and handle '0'-'1' memory hell
+            program = self.__coding_related_prep(program)
+
+            # replace labels with corresponding numbers
+            program = self.__insert_labels(program, labels)
+
+            if len(program) % 2:
+                program.append(self.NOP_)
+
+            if verbose:
+                print("Preprocessed:")
+                pprint(program)
+
+            for line in program:
+                prep_file.write(" ".join(line) + "\n")
+
+    @staticmethod
+    def __coding_related_prep(program):
+        for line in program:
+            # mov - mov0-1 store - store0-1 load - load0-1 conversion
+            if line[0][:-2] in mem_suffix_commands_unprocessed and \
+                    line[0][-2:] in suffixes:  # there is a suffix
+                if line[0][-2:] in suffixes_0:
+                    line[0] = line[0][0:-2] + "0" + line[0][-2:]
+                elif line[0][-2:] in suffixes:
+                    line[0] = line[0][0:-2] + "1" + line[0][-2:]
+                else:
+                    raise ValueError("Bad suffix: " + str(line[0][-2:]))
+            elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
+                line[0] += "1"
+
+            # add 'al' if needed
+            if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
+                line[0] += "al"
+        return program
+
+    def __extract_labels(self, program, labels, jump_labels):
+        processed_program = []
+        instr_counter = 0
+
+        # update jump labels
+        for line in program:
+            # mov regi label = movl regi label[16:] + movl regi label[:16]
+            if line[0] == "mov" and line[2] not in registers:
+                if line[2] in labels:
+                    for label in jump_labels:
+                        if jump_labels[label] > instr_counter:
+                            jump_labels[label] += 1
+                            labels[label] += 1
+                    instr_counter += 2
+                else:
+                    raise ValueError("Unknown label: " + str(line[2]))
+
+            # load / store label
+            elif line[0] in mem_suffix_commands_unprocessed and \
+                    (line[2] not in registers or line[1] not in registers):
+                # detect if label is first or second operand
+                if line[1] in labels or line[2] in labels:
+                    for label in jump_labels:
+                        if jump_labels[label] > instr_counter:
+                            jump_labels[label] += 2
+                            labels[label] += 2
+                    instr_counter += 3
+                else:
+                    raise ValueError("Unknown label here: " + str(line))
+
+            # jump label
+            elif line[0] in mem_jump_commmands and line[1] not in registers:
+                if line[1] in labels:
+                    for label in jump_labels:
+                        if jump_labels[label] > instr_counter:
+                            jump_labels[label] += 2
+                            labels[label] += 2
+                    instr_counter += 3
+                else:
+                    raise ValueError("Unknown label: " + str(line[1]))
+            else:
                 instr_counter += 1
+
+        # now insert labels
+        for line in program:
+            # change CORE_NUM to 4 for movl/movh
+            if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
+                line[2] = CORE_NUM
+                processed_program.append(line)
 
             # mov regi label = movl regi label[16:] + movl regi label[:16]
-            if line[0] == "mov" and line[2] not in registers and line[2] in label_names:
-                if instr_counter % 2:
-                    instr_counter += 1
-                instr_counter += 4
-                continue
+            elif line[0] == "mov" and line[2] not in registers:
+                processed_program += self.__label_to_reg(line[1], line[2])
 
             # substitute label to load / store
-            if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers and line[2] in label_names:
-                if instr_counter % 2:
-                    instr_counter += 1
-                instr_counter += 4
+            # load regi label / store regi label
+            # load label regi / store label regi
+            elif line[0] in mem_suffix_commands_unprocessed and \
+                    (line[2] not in registers or line[1] not in registers):
+                # detect if label is first or second operand
+                if line[1] in labels:
+                    idx = 1
+                elif line[2] in labels:
+                    idx = 2
+
+                processed_program += self.__label_to_reg(LABEL_REGISTER, line[idx])
+
+                line[idx] = LABEL_REGISTER
+                processed_program.append(line)
 
             # substituting label to jump
-            if line[0] in mem_jump_commmands and line[1] not in registers and line[1] in label_names:
-                if instr_counter % 2:
-                    instr_counter += 1
-                instr_counter += 4
+            elif line[0] in mem_jump_commmands and line[1] not in registers:
+                processed_program += self.__label_to_reg(LABEL_REGISTER,
+                                                         line[1])  # write label address to reg5
+                line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
+                processed_program.append(line)
+            else:
+                processed_program.append(line)
 
-            # movl/movh is basically two instructions
-            if line[0] in mem_only_num_command_unprocessed:
+        return processed_program
+
+    @staticmethod
+    def __label_to_reg(reg, label):
+        return ["movl", reg, label], \
+               ["movh", reg, label]
+
+    def __nop_inserter(self, program, labels, jump_labels):
+        # update labels
+        processed_program = []
+        instr_counter = 0
+
+        for line in program:
+
+            # regular nop
+            if line[0] == "nop":
+                processed_program.append(self.NOP_)
                 instr_counter += 1
+                continue
+
+            # current instruction is one of the jumps label
+            cur_label = list(filter(lambda x: x[1] == instr_counter, list(jump_labels.items())))
+            if len(cur_label) > 0:
+                # insert nop before jump label if its odd
+                if instr_counter % 2:
+                    processed_program.append(self.NOP_)
+
+                    # update all labels below current and current
+                    for label in jump_labels:
+                        if jump_labels[label] >= instr_counter:
+                            jump_labels[label] += 1
+                            labels[label] += 1
+                    instr_counter += 1  # because of NOP
+
+            # insert NOP before movl / movh if instruction's number is odd
+            if line[0] in mem_only_num_command_unprocessed:
+                delta = 0
+                if instr_counter % 2:
+                    processed_program.append(self.NOP_)
+                    delta += 1
+
+                delta += 1  # movl/movh is 32 bit
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += delta
+                        labels[label] += delta
+                instr_counter += delta
 
             # insert NOP after jump if jump's ip is even number.
             if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+                processed_program.append(self.NOP_)
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += 1
+                        labels[label] += 1
                 instr_counter += 1
 
-            print(line, instr_counter)
+            if line[0] == "stack_size":
+                result, deltaInstr = self.__set_stacks_size(line)
+                processed_program += result
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += deltaInstr
+                        labels[label] += deltaInstr
+                instr_counter += deltaInstr
+                continue
 
+            processed_program.append(line)
             instr_counter += 1
-
-        if instr_counter % 2 == 1:
-            instr_counter += 1
-        if verbose:
-            print(instr_counter)
-        return labels
-
-    @staticmethod
-    def __coding_related_prep(line):
-        # mov - mov0-1 store - store0-1 load - load0-1 conversion
-        if line[0][:-2] in mem_suffix_commands_unprocessed and \
-                line[0][-2:] in suffixes:  # there is a suffix
-            if line[0][-2:] in suffixes_0:
-                line[0] = line[0][0:-2] + "0" + line[0][-2:]
-            elif line[0][-2:] in suffixes:
-                line[0] = line[0][0:-2] + "1" + line[0][-2:]
-            else:
-                raise ValueError("Bad suffix: " + str(line[0][-2:]))
-        elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
-            line[0] += "1"
-
-        # add 'al' if needed
-        if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
-            line[0] += "al"
+        return processed_program
 
     def __set_stacks_size(self, line):
         result = []
@@ -398,24 +390,43 @@ class Assembler:
             binary_my_stack_end = bin(my_stack_end)[2:]
             binary_my_stack_end = "0" * (32 - len(binary_my_stack_end)) + binary_my_stack_end
 
-            result.append("coreidxal reg6\n")
-            result.append("xoral reg3 reg3\n")
-            result.append("movlal reg4 " + str(i) + "\n")
-            result.append("cmpal reg6 reg3\n")
+            result.append(["coreidxal", "reg6"])
+            result.append(["xoral", "reg3", "reg3"])
+            result.append(["movlal", "reg4", str(i)])
+            result.append(["cmpal", "reg6", "reg3"])
             # write number to LABEL_REGISTER (reg5) if this is core with index {i}
-            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_my_stack_begin[16:], 2)) + "\n")
-            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_my_stack_begin[:16], 2)) + "\n")
-            result.append("msbeq " + LABEL_REGISTER+ "\n")
-            result.append(self.NOP + "\n")
-            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_my_stack_end[16:], 2)) + "\n")
-            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_my_stack_end[:16], 2)) + "\n")
-            result.append("mseeq " + LABEL_REGISTER+ "\n")
-            result.append(self.NOP + "\n")
-            result.append("movleq " + LABEL_REGISTER + " " + str(int(binary_stack_begin[16:], 2)) + "\n")
-            result.append("movheq " + LABEL_REGISTER + " " + str(int(binary_stack_begin[:16], 2)) + "\n")
-            result.append("sbeq " + LABEL_REGISTER+ "\n")
-            result.append(self.NOP + "\n")
+            result.append(["movleq ", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
+            result.append(["movheq ", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])
+            result.append(["msbeq ", LABEL_REGISTER])
+            result.append(self.NOP_)
+            result.append(["movleq ", LABEL_REGISTER, str(int(binary_my_stack_end[16:], 2))])
+            result.append(["movheq ", LABEL_REGISTER, str(int(binary_my_stack_end[:16], 2))])
+            result.append(["mseeq ", LABEL_REGISTER])
+            result.append(self.NOP_)
+            result.append(["movleq ", LABEL_REGISTER, str(int(binary_stack_begin[16:], 2))])
+            result.append(["movheq ", LABEL_REGISTER, str(int(binary_stack_begin[:16], 2))])
+            result.append(["sbeq ", LABEL_REGISTER])
+            result.append(self.NOP_)
 
             my_stack_begin = my_stack_end
 
-        return result, 16 * len(sizes)
+        return result, 23 * len(sizes)
+
+    @staticmethod
+    def __insert_labels(program, labels):
+        for label in labels:
+            labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
+
+        def to_bin(number):
+            binary = bin(number)[2:]
+            binary = "0" * (32 - len(binary)) + binary
+            return str(int(binary[16:], 2)), str(int(binary[:16], 2))
+
+        for idx, line in enumerate(program):
+            if line[-1] in labels or line[-2] in labels:
+                i = -1 if line[-1] in labels else -2
+                first_half, second_half = to_bin(labels[line[i]])
+                line[i] = first_half
+                program[idx+1][i] = second_half
+        return program
+

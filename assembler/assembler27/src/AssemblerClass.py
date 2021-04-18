@@ -109,14 +109,15 @@ class Assembler:
                     else:
                         raise ValueError("Unknown label: " + str(line[2]))
 
-                # substitute label to load / store
-                if line[0] in mem_suffix_commands_unprocessed and line[2] not in registers or line[1] not in registers:
-                    if line[2] in labels:
-                        idx = 2
-                    elif line[1] in labels:
+                # substitute label to load / store / mov
+                if line[0] in mem_suffix_commands_unprocessed and \
+                        (line[2] not in registers or line[1] not in registers):
+                    if line[1] in labels:
                         idx = 1
+                    elif line[2] in labels:
+                        idx = 2
                     else:
-                        raise ValueError("Unknown label somewhere here: " + str(line))
+                        raise ValueError("Unknown label here: " + str(line))
 
                     # insert nop if needed before movl/movh
                     if instr_counter % 2:

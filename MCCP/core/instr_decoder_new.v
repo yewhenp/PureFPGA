@@ -144,7 +144,7 @@ always @(negedge clk) begin
 						 end else begin
 						 
 
-							 // others
+							// others
 							case (short_instr[13:9])
                                 // movf
                                 5'b01000: begin op1 <= short_instr[8:6]; mov_type <= 3'b011; move_en <= 1; end   // movf
@@ -171,7 +171,6 @@ always @(negedge clk) begin
                                                 stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
                                 5'b10100: begin write_stack_params <= 1; stack_param_coding <= 2; 
                                                 stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
-
                                 // excl
                                 5'b10101: begin write_stack_params <= 1; stack_param_coding <= 3; 
                                                 stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end

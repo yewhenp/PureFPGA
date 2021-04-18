@@ -86,6 +86,9 @@ assign writedata = writedata_reg;
 assign instr_addr = ip;
 assign request = wait_memory;
 
+// dump core counter for moving registers to stack
+reg [3:0] dump_core_counter = 0;
+
 instr_decoder instr_decoder_main (
 	.clk(clk),
 	.en(decode),
@@ -163,19 +166,38 @@ always @(posedge clk) begin
 			if (wait_memory) begin
 				// got response, read data and unlock core
 				if (response) begin
-					wait_memory <= 0;
 
-					if (wren==0) begin 
-						case (operand1_code)
-							3'b000 : reg0 <= readdata;
-							3'b001 : reg1 <= readdata;
-							3'b010 : reg2 <= readdata;
-							3'b011 : reg3 <= readdata;
-							3'b100 : reg4 <= readdata;
-							3'b101 : reg5 <= readdata;
-							3'b110 : sp <= readdata;
-							3'b111 : ip = readdata;
+					// continue loading registers to the stack
+					if (dump_core_counter > 0) begin
+						dump_core_counter = dump_core_counter - 1;
+						sp = sp + 1;
+						address_reg = sp;
+						case (dump_core_counter) 
+							3'b0000 : begin ip <= stack_exc_addr; state <= 0; instr_choose <= 0; end // load exception handling instruction address
+							3'b0001 : writedata_reg <= reg0;
+							3'b0010 : writedata_reg <= reg1;
+							3'b0011 : writedata_reg <= reg2;
+							3'b0100 : writedata_reg <= reg3;
+							3'b0101 : writedata_reg <= reg4;
+							3'b0110 : writedata_reg <= reg5;
+							3'b0111 : writedata_reg <= sp;
+							3'b1000 : writedata_reg <= ip;
 						endcase
+					end else begin
+						wait_memory <= 0;
+
+						if (wren==0) begin 
+							case (operand1_code)
+								3'b000 : reg0 <= readdata;
+								3'b001 : reg1 <= readdata;
+								3'b010 : reg2 <= readdata;
+								3'b011 : reg3 <= readdata;
+								3'b100 : reg4 <= readdata;
+								3'b101 : reg5 <= readdata;
+								3'b110 : sp <= readdata;
+								3'b111 : ip = readdata;
+							endcase
+						end
 					end
 
 				end else begin
@@ -300,16 +322,39 @@ always @(posedge clk) begin
 					if (mem_en) begin
 					
 						// set address
-						address_reg <= operand2;
+						address_reg = operand2;
 
 						// read from memory to reg
 						// lock core
 						wait_memory <= 1'b1;
-						
-						// write to memory
-						if (wren) begin
-							writedata_reg <= operand1;
-						end 
+
+						// check if you're writing in other's core stack
+						if (address_reg >= stack_begin) begin
+							if (! (address_reg >= my_stack_begin && address_reg < my_stack_end) ) begin
+								// dump core
+								dump_core_counter = 8; // 8 - number of registers
+							end
+						end
+
+						if (dump_core_counter > 0) begin
+							address_reg = sp;
+							wren = 1; // TODO: check if  compiles
+							case (dump_core_counter)
+								3'b0001 : writedata_reg <= reg0;
+								3'b0010 : writedata_reg <= reg1;
+								3'b0011 : writedata_reg <= reg2;
+								3'b0100 : writedata_reg <= reg3;
+								3'b0101 : writedata_reg <= reg4;
+								3'b0110 : writedata_reg <= reg5;
+								3'b0111 : writedata_reg <= sp;
+								3'b1000 : writedata_reg <= ip;
+							endcase
+						end else begin
+							// write to memory
+							if (wren) begin
+								writedata_reg <= operand1;
+							end 
+						end
 						// else begin
 						// 	// read from memory to reg
 						// 	// lock core
@@ -321,16 +366,19 @@ always @(posedge clk) begin
 					// load stack parameters
 					if (write_stack_params && suffix) begin
 						case (stack_param_coding)
-							2'b00:  case (stack_param_reg) 
-										3'b000 : my_stack_begin <= reg0;
-										3'b001 : my_stack_begin <= reg1;
-										3'b010 : my_stack_begin <= reg2;
-										3'b011 : my_stack_begin <= reg3;
-										3'b100 : my_stack_begin <= reg4;
-										3'b101 : my_stack_begin <= reg5;
-										3'b110 : my_stack_begin <= sp;
-										3'b111 : my_stack_begin <= ip;
+							2'b00: begin
+								 	case (stack_param_reg) 
+										3'b000 : my_stack_begin = reg0;
+										3'b001 : my_stack_begin = reg1;
+										3'b010 : my_stack_begin = reg2;
+										3'b011 : my_stack_begin = reg3;
+										3'b100 : my_stack_begin = reg4;
+										3'b101 : my_stack_begin = reg5;
+										3'b110 : my_stack_begin = sp;
+										3'b111 : my_stack_begin = ip;
 									endcase
+									sp = my_stack_begin;
+							end
 							2'b01:  case (stack_param_reg) 
 										3'b000 : my_stack_end <= reg0;
 										3'b001 : my_stack_end <= reg1;

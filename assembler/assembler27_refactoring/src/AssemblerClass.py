@@ -133,16 +133,19 @@ class Assembler:
         with open(self.prep_file, "w") as prep_file:
 
             # detect labels and remove comments
-            labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
+            val_labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
 
             # replace core_num and insert movl and movh for labels where needed
-            program = self.__extract_labels(stripped_program, labels=labels, jump_labels=jump_labels)
+            program = self.__extract_labels(stripped_program, jump_labels=jump_labels)
 
             # insert everywhere where needed nops, and handle stack
-            program = self.__nop_inserter(program, labels, jump_labels)
+            program = self.__nop_inserter(program, jump_labels)
 
             # add 'al' suffix where needed and handle '0'-'1' memory hell
             program = self.__coding_related_prep(program)
+
+            labels = val_labels
+            labels.update(jump_labels)
 
             # replace labels with corresponding numbers
             program = self.__insert_labels(program, labels)
@@ -161,7 +164,7 @@ class Assembler:
     def __find_labels_and_strip(file_, verbose):
         instr_counter = 0
         stripped_program = []
-        labels = {}
+        val_labels = {}
         jump_labels = {}
 
         # now find values of labels
@@ -173,7 +176,7 @@ class Assembler:
             # jump label
             if re.match(r"\s*\w+\s*(:)\s*", line):
                 label_name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[label_name] = instr_counter
+                # labels[label_name] = instr_counter
                 jump_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new jump label: " + str(label_name) + "=" + str(instr_counter)
@@ -182,7 +185,7 @@ class Assembler:
             # value label
             if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
                 label_name = re.findall(r"[a-zA-Z_]+", line)[0]
-                labels[label_name] = instr_counter
+                val_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new value label: " + str(label_name) + "=" + str(instr_counter)
                     continue
@@ -192,7 +195,7 @@ class Assembler:
 
             instr_counter += 1
 
-        return labels, jump_labels, stripped_program
+        return val_labels, jump_labels, stripped_program
 
     @staticmethod
     def __coding_related_prep(program):
@@ -214,7 +217,7 @@ class Assembler:
                 line[0] += "al"
         return program
 
-    def __extract_labels(self, program, labels, jump_labels):
+    def __extract_labels(self, program, jump_labels):
         processed_program = []
         instr_counter = 0
 
@@ -228,11 +231,10 @@ class Assembler:
 
             # mov regi label = movl regi label[16:] + movl regi label[:16]
             elif line[0] == "mov" and line[2] not in registers:
-                if line[2] in labels:
+                if line[2] in jump_labels:
                     for label in jump_labels:
                         if jump_labels[label] > instr_counter:
                             jump_labels[label] += 1
-                            labels[label] += 1
                     instr_counter += 2
                 else:
                     raise ValueError("Unknown label: " + str(line[2]))
@@ -244,16 +246,15 @@ class Assembler:
             elif line[0] in mem_suffix_commands_unprocessed and \
                     (line[2] not in registers or line[1] not in registers):
                 # detect if label is first or second operand
-                if line[1] in labels:
+                if line[1] in jump_labels:
                     idx = 1
-                elif line[2] in labels:
+                elif line[2] in jump_labels:
                     idx = 2
                 else:
                     raise ValueError("Unknown label here: " + str(line))
                 for label in jump_labels:
                     if jump_labels[label] > instr_counter:
                         jump_labels[label] += 2
-                        labels[label] += 2
                 instr_counter += 3
 
                 processed_program += self.__label_to_reg(LABEL_REGISTER, line[idx])
@@ -263,11 +264,10 @@ class Assembler:
 
             # substituting label to jump
             elif line[0] in mem_jump_commmands and line[1] not in registers:
-                if line[1] in labels:
+                if line[1] in jump_labels:
                     for label in jump_labels:
                         if jump_labels[label] > instr_counter:
                             jump_labels[label] += 2
-                            labels[label] += 2
                     instr_counter += 3
                 else:
                     raise ValueError("Unknown label: " + str(line[1]))
@@ -286,7 +286,7 @@ class Assembler:
         return ["movl", reg, label], \
                ["movh", reg, label]
 
-    def __nop_inserter(self, program, labels, jump_labels):
+    def __nop_inserter(self, program, jump_labels):
         # update labels
         processed_program = []
         instr_counter = 0
@@ -310,7 +310,6 @@ class Assembler:
                     for label in jump_labels:
                         if jump_labels[label] >= instr_counter:
                             jump_labels[label] += 1
-                            labels[label] += 1
                     instr_counter += 1  # because of NOP
 
             # insert NOP before movl / movh if instruction's number is odd
@@ -324,7 +323,6 @@ class Assembler:
                 for label in jump_labels:
                     if jump_labels[label] > instr_counter:
                         jump_labels[label] += delta
-                        labels[label] += delta
                 instr_counter += delta
 
             # insert NOP after jump if jump's ip is even number.
@@ -333,7 +331,6 @@ class Assembler:
                 for label in jump_labels:
                     if jump_labels[label] > instr_counter:
                         jump_labels[label] += 1
-                        labels[label] += 1
                 instr_counter += 1
 
             if line[0] == "stack_size":
@@ -342,7 +339,6 @@ class Assembler:
                 for label in jump_labels:
                     if jump_labels[label] > instr_counter:
                         jump_labels[label] += deltaInstr
-                        labels[label] += deltaInstr
                 instr_counter += deltaInstr
                 continue
 

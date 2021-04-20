@@ -197,26 +197,6 @@ class Assembler:
 
         return val_labels, jump_labels, stripped_program
 
-    @staticmethod
-    def __coding_related_prep(program):
-        for line in program:
-            # mov - mov0-1 store - store0-1 load - load0-1 conversion
-            if line[0][:-2] in mem_suffix_commands_unprocessed and \
-                    line[0][-2:] in suffixes:  # there is a suffix
-                if line[0][-2:] in suffixes_0:
-                    line[0] = line[0][0:-2] + "0" + line[0][-2:]
-                elif line[0][-2:] in suffixes:
-                    line[0] = line[0][0:-2] + "1" + line[0][-2:]
-                else:
-                    raise ValueError("Bad suffix: " + str(line[0][-2:]))
-            elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
-                line[0] += "1"
-
-            # add 'al' if needed
-            if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
-                line[0] += "al"
-        return program
-
     def __extract_labels(self, program, jump_labels):
         processed_program = []
         instr_counter = 0
@@ -377,22 +357,23 @@ class Assembler:
             result.append(["movlal", "reg4", str(i)])
             result.append(["cmpal", "reg6", "reg3"])
             # write number to LABEL_REGISTER (reg5) if this is core with index {i}
-            result.append(["movleq ", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
-            result.append(["movheq ", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])
-            result.append(["msbeq ", LABEL_REGISTER])
+            result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
+            result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])
+            result.append(["msbeq", LABEL_REGISTER])
+            result.append(["moveq", "reg6", LABEL_REGISTER])
+
+            result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_end[16:], 2))])
+            result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_end[:16], 2))])
+            result.append(["mseeq", LABEL_REGISTER])
             result.append(self.NOP_)
-            result.append(["movleq ", LABEL_REGISTER, str(int(binary_my_stack_end[16:], 2))])
-            result.append(["movheq ", LABEL_REGISTER, str(int(binary_my_stack_end[:16], 2))])
-            result.append(["mseeq ", LABEL_REGISTER])
-            result.append(self.NOP_)
-            result.append(["movleq ", LABEL_REGISTER, str(int(binary_stack_begin[16:], 2))])
-            result.append(["movheq ", LABEL_REGISTER, str(int(binary_stack_begin[:16], 2))])
-            result.append(["sbeq ", LABEL_REGISTER])
+            result.append(["movleq", LABEL_REGISTER, str(int(binary_stack_begin[16:], 2))])
+            result.append(["movheq", LABEL_REGISTER, str(int(binary_stack_begin[:16], 2))])
+            result.append(["sbeq", LABEL_REGISTER])
             result.append(self.NOP_)
 
             my_stack_begin = my_stack_end
 
-        return result, 23 * len(sizes)
+        return result, 24 * len(sizes)
 
     @staticmethod
     def __insert_labels(program, labels):
@@ -412,3 +393,22 @@ class Assembler:
                 program[idx+1][i] = second_half
         return program
 
+    @staticmethod
+    def __coding_related_prep(program):
+        for line in program:
+            # mov - mov0-1 store - store0-1 load - load0-1 conversion
+            if line[0][:-2] in mem_suffix_commands_unprocessed and \
+                    line[0][-2:] in suffixes:  # there is a suffix
+                if line[0][-2:] in suffixes_0:
+                    line[0] = line[0][0:-2] + "0" + line[0][-2:]
+                elif line[0][-2:] in suffixes:
+                    line[0] = line[0][0:-2] + "1" + line[0][-2:]
+                else:
+                    raise ValueError("Bad suffix: " + str(line[0][-2:]))
+            elif line[0] in mem_suffix_commands_unprocessed:  # no suffix
+                line[0] += "1"
+
+            # add 'al' if needed
+            if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
+                line[0] += "al"
+        return program

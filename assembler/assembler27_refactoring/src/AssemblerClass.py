@@ -129,6 +129,34 @@ class Assembler:
             raise ValueError("Unknow command: " + command_list)
         return result
 
+    def preprocess_source(self, verbose=False):
+        with open(self.prep_file, "w") as prep_file:
+
+            # detect labels and remove comments
+            labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
+
+            # replace core_num and insert movl and movh for labels where needed
+            program = self.__extract_labels(stripped_program, labels=labels, jump_labels=jump_labels)
+
+            # insert everywhere where needed nops, and handle stack
+            program = self.__nop_inserter(program, labels, jump_labels)
+
+            # add 'al' suffix where needed and handle '0'-'1' memory hell
+            program = self.__coding_related_prep(program)
+
+            # replace labels with corresponding numbers
+            program = self.__insert_labels(program, labels)
+
+            if len(program) % 2:
+                program.append(self.NOP_)
+
+            if verbose:
+                print("Preprocessed:")
+                pprint(program)
+
+            for line in program:
+                prep_file.write(" ".join(line) + "\n")
+
     @staticmethod
     def __find_labels_and_strip(file_, verbose):
         instr_counter = 0
@@ -166,34 +194,6 @@ class Assembler:
 
         return labels, jump_labels, stripped_program
 
-    def preprocess_source(self, verbose=False):
-        with open(self.prep_file, "w") as prep_file:
-
-            # detect labels and remove comments
-            labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
-
-            # replace core_num and insert movl and movh for labels where needed
-            program = self.__extract_labels(stripped_program, labels=labels, jump_labels=jump_labels)
-
-            # insert everywhere where needed nops, and handle stack
-            program = self.__nop_inserter(program, labels, jump_labels)
-
-            # add 'al' suffix where needed and handle '0'-'1' memory hell
-            program = self.__coding_related_prep(program)
-
-            # replace labels with corresponding numbers
-            program = self.__insert_labels(program, labels)
-
-            if len(program) % 2:
-                program.append(self.NOP_)
-
-            if verbose:
-                print("Preprocessed:")
-                pprint(program)
-
-            for line in program:
-                prep_file.write(" ".join(line) + "\n")
-
     @staticmethod
     def __coding_related_prep(program):
         for line in program:
@@ -218,10 +218,16 @@ class Assembler:
         processed_program = []
         instr_counter = 0
 
-        # update jump labels
+        # now insert labels
         for line in program:
+            # change CORE_NUM to 4 for movl/movh
+            if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
+                line[2] = CORE_NUM
+                processed_program.append(line)
+                instr_counter += 1
+
             # mov regi label = movl regi label[16:] + movl regi label[:16]
-            if line[0] == "mov" and line[2] not in registers:
+            elif line[0] == "mov" and line[2] not in registers:
                 if line[2] in labels:
                     for label in jump_labels:
                         if jump_labels[label] > instr_counter:
@@ -230,42 +236,6 @@ class Assembler:
                     instr_counter += 2
                 else:
                     raise ValueError("Unknown label: " + str(line[2]))
-
-            # load / store label
-            elif line[0] in mem_suffix_commands_unprocessed and \
-                    (line[2] not in registers or line[1] not in registers):
-                # detect if label is first or second operand
-                if line[1] in labels or line[2] in labels:
-                    for label in jump_labels:
-                        if jump_labels[label] > instr_counter:
-                            jump_labels[label] += 2
-                            labels[label] += 2
-                    instr_counter += 3
-                else:
-                    raise ValueError("Unknown label here: " + str(line))
-
-            # jump label
-            elif line[0] in mem_jump_commmands and line[1] not in registers:
-                if line[1] in labels:
-                    for label in jump_labels:
-                        if jump_labels[label] > instr_counter:
-                            jump_labels[label] += 2
-                            labels[label] += 2
-                    instr_counter += 3
-                else:
-                    raise ValueError("Unknown label: " + str(line[1]))
-            else:
-                instr_counter += 1
-
-        # now insert labels
-        for line in program:
-            # change CORE_NUM to 4 for movl/movh
-            if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
-                line[2] = CORE_NUM
-                processed_program.append(line)
-
-            # mov regi label = movl regi label[16:] + movl regi label[:16]
-            elif line[0] == "mov" and line[2] not in registers:
                 processed_program += self.__label_to_reg(line[1], line[2])
 
             # substitute label to load / store
@@ -278,6 +248,13 @@ class Assembler:
                     idx = 1
                 elif line[2] in labels:
                     idx = 2
+                else:
+                    raise ValueError("Unknown label here: " + str(line))
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += 2
+                        labels[label] += 2
+                instr_counter += 3
 
                 processed_program += self.__label_to_reg(LABEL_REGISTER, line[idx])
 
@@ -286,12 +263,21 @@ class Assembler:
 
             # substituting label to jump
             elif line[0] in mem_jump_commmands and line[1] not in registers:
+                if line[1] in labels:
+                    for label in jump_labels:
+                        if jump_labels[label] > instr_counter:
+                            jump_labels[label] += 2
+                            labels[label] += 2
+                    instr_counter += 3
+                else:
+                    raise ValueError("Unknown label: " + str(line[1]))
                 processed_program += self.__label_to_reg(LABEL_REGISTER,
                                                          line[1])  # write label address to reg5
                 line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
                 processed_program.append(line)
             else:
                 processed_program.append(line)
+                instr_counter += 1
 
         return processed_program
 

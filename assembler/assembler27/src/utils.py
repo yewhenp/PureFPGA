@@ -92,9 +92,9 @@ def set_stacks_size_macro(self, line):
         binary_my_stack_end = "0" * (32 - len(binary_my_stack_end)) + binary_my_stack_end
 
         result.append(["coreidxal", "reg6"])
-        result.append(["xoral", "reg3", "reg3"])
+        result.append(["xoral", "reg4", "reg4"])
         result.append(["movlal", "reg4", str(i)])
-        result.append(["cmpal", "reg6", "reg3"])
+        result.append(["cmpal", "reg6", "reg4"])
         # write number to LABEL_REGISTER (reg5) if this is core with index {i}
         result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
         result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])
@@ -113,8 +113,34 @@ def set_stacks_size_macro(self, line):
     return result, 21 * len(sizes)
 
 
+def set_excl_macro(self, line):
+    result = []
+    for i in range(len(line) - 1):
+        address = line[i + 1]
+        result.append(["coreidx", "reg6"])
+        result.append(["xoral", "reg4", "reg4"])
+        result.append(["movlal", "reg4", str(i)])
+        result.append(["cmpal", "reg6", "reg4"])
+
+        # number
+        try:
+            binary_addr = bin(int(address))[2:]
+            binary_addr = "0" * (32 - len(binary_addr)) + binary_addr
+            result.append(["movleq", LABEL_REGISTER, str(int(binary_addr[16:], 2))])
+            result.append(["movheq", LABEL_REGISTER, str(int(binary_addr[:16], 2))])
+        # label
+        except ValueError:
+            result.append(["movleq", LABEL_REGISTER, address])
+            result.append(["movheq", LABEL_REGISTER, address])
+
+        result.append(["excl", LABEL_REGISTER])
+
+    return result, 10 * (len(line) - 1)
+
+
 MACROSES = {
     "push": push_macros,
     "pop": pop_macro,
-    "stack_size": set_stacks_size_macro
+    "stack_size": set_stacks_size_macro,
+    "exception_addresses": set_excl_macro
 }

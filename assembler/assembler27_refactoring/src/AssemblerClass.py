@@ -1,6 +1,6 @@
 import re
-from .lists_and_dicts import *
 from pprint import pprint
+from .utils import *
 
 
 class Assembler:
@@ -136,7 +136,8 @@ class Assembler:
             val_labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
 
             # replace core_num and insert movl and movh for labels where needed
-            program = self.__extract_labels(stripped_program, jump_labels=jump_labels)
+            program = self.__extract_labels_macroses(stripped_program, jump_labels=jump_labels)
+            pprint(program)
 
             # insert everywhere where needed nops, and handle stack
             program = self.__nop_inserter(program, jump_labels)
@@ -197,14 +198,22 @@ class Assembler:
 
         return val_labels, jump_labels, stripped_program
 
-    def __extract_labels(self, program, jump_labels):
+    def __extract_labels_macroses(self, program, jump_labels):
         processed_program = []
         instr_counter = 0
 
         # now insert labels
         for line in program:
+            if line[0] in MACROSES:
+                exctracted = MACROSES[line[0]](self, line)
+                processed_program += exctracted[0]
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += exctracted[1] - 1
+                instr_counter += exctracted[1]
+
             # change CORE_NUM to 4 for movl/movh
-            if line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
+            elif line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
                 line[2] = CORE_NUM
                 processed_program.append(line)
                 instr_counter += 1
@@ -218,7 +227,7 @@ class Assembler:
                     instr_counter += 2
                 else:
                     raise ValueError("Unknown label: " + str(line[2]))
-                processed_program += self.__label_to_reg(line[1], line[2])
+                processed_program += label_to_reg(line[1], line[2])
 
             # substitute label to load / store
             # load regi label / store regi label
@@ -237,7 +246,7 @@ class Assembler:
                         jump_labels[label] += 2
                 instr_counter += 3
 
-                processed_program += self.__label_to_reg(LABEL_REGISTER, line[idx])
+                processed_program += label_to_reg(LABEL_REGISTER, line[idx])
 
                 line[idx] = LABEL_REGISTER
                 processed_program.append(line)
@@ -251,7 +260,7 @@ class Assembler:
                     instr_counter += 3
                 else:
                     raise ValueError("Unknown label: " + str(line[1]))
-                processed_program += self.__label_to_reg(LABEL_REGISTER,
+                processed_program += label_to_reg(LABEL_REGISTER,
                                                          line[1])  # write label address to reg5
                 line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
                 processed_program.append(line)
@@ -260,11 +269,6 @@ class Assembler:
                 instr_counter += 1
 
         return processed_program
-
-    @staticmethod
-    def __label_to_reg(reg, label):
-        return ["movl", reg, label], \
-               ["movh", reg, label]
 
     def __nop_inserter(self, program, jump_labels):
         # update labels
@@ -293,7 +297,8 @@ class Assembler:
                     instr_counter += 1  # because of NOP
 
             # insert NOP before movl / movh if instruction's number is odd
-            if line[0] in mem_only_num_command_unprocessed:
+            if line[0] in mem_only_num_command_unprocessed or \
+                    line[0][:-2] in mem_only_num_command_unprocessed:
                 delta = 0
                 if instr_counter % 2:
                     processed_program.append(self.NOP_)
@@ -313,67 +318,9 @@ class Assembler:
                         jump_labels[label] += 1
                 instr_counter += 1
 
-            if line[0] == "stack_size":
-                result, deltaInstr = self.__set_stacks_size(line)
-                processed_program += result
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += deltaInstr
-                instr_counter += deltaInstr
-                continue
-
             processed_program.append(line)
             instr_counter += 1
         return processed_program
-
-    def __set_stacks_size(self, line):
-        result = []
-        sizes = []
-        for i in range(1, len(line)):
-            sizes.append(int(line[i]))
-
-        # basic idea behind code below - using suffixes, load different number to stack registers
-        # coreidx reg6; xor reg3 reg3 - clear register
-        # movl reg3 i
-        # cmp reg6 reg3
-        # mov[l/h]eq reg5 address
-        # msb reg5, ... mse reg5, ... sb reg5, ...
-        stack_begin = self.RAM_SIZE - sum(sizes)
-        binary_stack_begin = bin(stack_begin)[2:]
-        binary_stack_begin = "0" * (32 - len(binary_stack_begin)) + binary_stack_begin
-
-        my_stack_begin = stack_begin
-        for i, size in enumerate(sizes):
-            my_stack_end = my_stack_begin + size
-            # convert to binary
-            binary_my_stack_begin = bin(my_stack_begin)[2:]
-            binary_my_stack_begin = "0" * (32 - len(binary_my_stack_begin)) + binary_my_stack_begin
-
-            binary_my_stack_end = bin(my_stack_end)[2:]
-            binary_my_stack_end = "0" * (32 - len(binary_my_stack_end)) + binary_my_stack_end
-
-            result.append(["coreidxal", "reg6"])
-            result.append(["xoral", "reg3", "reg3"])
-            result.append(["movlal", "reg4", str(i)])
-            result.append(["cmpal", "reg6", "reg3"])
-            # write number to LABEL_REGISTER (reg5) if this is core with index {i}
-            result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
-            result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])
-            result.append(["msbeq", LABEL_REGISTER])
-            result.append(["moveq", "reg6", LABEL_REGISTER])
-
-            result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_end[16:], 2))])
-            result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_end[:16], 2))])
-            result.append(["mseeq", LABEL_REGISTER])
-            result.append(self.NOP_)
-            result.append(["movleq", LABEL_REGISTER, str(int(binary_stack_begin[16:], 2))])
-            result.append(["movheq", LABEL_REGISTER, str(int(binary_stack_begin[:16], 2))])
-            result.append(["sbeq", LABEL_REGISTER])
-            result.append(self.NOP_)
-
-            my_stack_begin = my_stack_end
-
-        return result, 24 * len(sizes)
 
     @staticmethod
     def __insert_labels(program, labels):

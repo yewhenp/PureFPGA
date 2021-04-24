@@ -120,7 +120,6 @@ not_suffix_commands = [
     'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp', 'movf' # , "chbuf", "chmod"
 ]
 
-# isntruction[suffix] reg[i]
 suffix_reg_commands = [
     "coreidx", "msb", "mse", "sb", "excl"
 ]

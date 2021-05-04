@@ -137,10 +137,17 @@ class Assembler:
 
             # replace core_num and insert movl and movh for labels where needed
             program = self.__extract_labels_macroses(stripped_program, jump_labels=jump_labels)
-            pprint(program)
+            if verbose:
+                print("After labels and macros extraction:")
+                print("Jump labels: " + str(jump_labels))
+                pprint(program)
 
             # insert everywhere where needed nops, and handle stack
             program = self.__nop_inserter(program, jump_labels)
+            if verbose:
+                print("After nop_inserter:")
+                print("Jump labels: " + str(jump_labels))
+                pprint(program)
 
             # add 'al' suffix where needed and handle '0'-'1' memory hell
             program = self.__coding_related_prep(program)
@@ -150,6 +157,10 @@ class Assembler:
 
             # replace labels with corresponding numbers
             program = self.__insert_labels(program, labels)
+            if verbose:
+                print("After labels insertion:")
+                print("Jump labels: " + str(jump_labels))
+                pprint(program)
 
             if len(program) % 2:
                 program.append(self.NOP_)
@@ -167,6 +178,7 @@ class Assembler:
         stripped_program = []
         val_labels = {}
         jump_labels = {}
+        return_from_call_counter = 0
 
         # now find values of labels
         for line in open(file_, "r"):
@@ -181,7 +193,7 @@ class Assembler:
                 jump_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new jump label: " + str(label_name) + "=" + str(instr_counter)
-                    continue
+                continue
 
             # value label
             if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
@@ -189,9 +201,17 @@ class Assembler:
                 val_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new value label: " + str(label_name) + "=" + str(instr_counter)
-                    continue
+                continue
 
             line = line.split()
+
+            if line[0] == "call":
+                label_name = "__return_" + str(return_from_call_counter)
+                line.append(label_name)
+                jump_labels[label_name] = instr_counter + 1
+                if verbose:
+                    print("Add new return label: " + label_name + "=" + str(jump_labels[label_name]))
+
             stripped_program.append(line)
 
             instr_counter += 1
@@ -204,22 +224,25 @@ class Assembler:
 
         # now insert labels
         for line in program:
+            pure_instr = line[0] if not line[0][-2:] in suffixes else line[0][:-2]
+            suffix = line[0][-2:] if line[0][-2:] in suffixes else ""
             if line[0] in MACROSES:
                 exctracted = MACROSES[line[0]](self, line)
-                processed_program += exctracted[0]
+                processed_program += exctracted
+                delta = len(exctracted) - 1
                 for label in jump_labels:
                     if jump_labels[label] > instr_counter:
-                        jump_labels[label] += exctracted[1] - 1
-                instr_counter += exctracted[1]
+                        jump_labels[label] += delta
+                instr_counter += delta + 1
 
             # change CORE_NUM to 4 for movl/movh
-            elif line[0] in mem_only_num_command_unprocessed and line[2] == "core_num":
+            elif pure_instr in mem_only_num_command_unprocessed and line[2] == "core_num":
                 line[2] = CORE_NUM
                 processed_program.append(line)
                 instr_counter += 1
 
             # mov regi label = movl regi label[16:] + movl regi label[:16]
-            elif line[0] == "mov" and line[2] not in registers:
+            elif pure_instr == "mov" and line[2] not in registers:
                 if line[2] in jump_labels:
                     for label in jump_labels:
                         if jump_labels[label] > instr_counter:
@@ -227,12 +250,12 @@ class Assembler:
                     instr_counter += 2
                 else:
                     raise ValueError("Unknown label: " + str(line[2]))
-                processed_program += label_to_reg(line[1], line[2])
+                processed_program += label_to_reg(line[1], line[2], suffix)
 
             # substitute label to load / store
             # load regi label / store regi label
             # load label regi / store label regi
-            elif line[0] in mem_suffix_commands_unprocessed and \
+            elif pure_instr in load_store and \
                     (line[2] not in registers or line[1] not in registers):
                 # detect if label is first or second operand
                 if line[1] in jump_labels:
@@ -246,7 +269,7 @@ class Assembler:
                         jump_labels[label] += 2
                 instr_counter += 3
 
-                processed_program += label_to_reg(LABEL_REGISTER, line[idx])
+                processed_program += label_to_reg(LABEL_REGISTER, line[idx], suffix)
 
                 line[idx] = LABEL_REGISTER
                 processed_program.append(line)
@@ -261,7 +284,7 @@ class Assembler:
                 else:
                     raise ValueError("Unknown label: " + str(line[1]))
                 processed_program += label_to_reg(LABEL_REGISTER,
-                                                         line[1])  # write label address to reg5
+                                                  line[1])  # write label address to reg5
                 line[1] = LABEL_REGISTER  # programmer has to save content of reg5 before jumping to label
                 processed_program.append(line)
             else:
@@ -327,13 +350,8 @@ class Assembler:
         for label in labels:
             labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
 
-        def to_bin(number):
-            binary = bin(number)[2:]
-            binary = "0" * (32 - len(binary)) + binary
-            return str(int(binary[16:], 2)), str(int(binary[:16], 2))
-
         for idx, line in enumerate(program):
-            if line[-1] in labels or line[-2] in labels:
+            if len(line) >= 2 and (line[-1] in labels or line[-2] in labels):
                 i = -1 if line[-1] in labels else -2
                 first_half, second_half = to_bin(labels[line[i]])
                 line[i] = first_half

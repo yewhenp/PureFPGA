@@ -30,7 +30,7 @@ if __name__ == '__main__':
     elif args.p:
         source = args.s
         output = "a.prep" if args.o is None else args.o
-        assembler = Assembler(source_file=source, prep_file=output, dest_file="")
+        assembler = Assembler(source_file=source, prep_file=output, dest_file="undefined")
         assembler.preprocess_source(PREPROCESS_VERBOSE)
 
     elif args.a:

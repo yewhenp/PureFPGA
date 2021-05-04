@@ -1,0 +1,33 @@
+stack_size 1000 1000 1000 1000
+
+
+MAIN:
+    // reg0 = 12 + coreidx
+    movl reg0 12
+    coreidx reg1
+    add reg0 reg1
+
+    // push reg0 to the stack
+    push reg0
+    call DOUBLE_PLUS_ONE
+
+    // move result to reg1
+    mov reg1 reg0
+
+    // pop input value back to reg0
+    pop reg0 sp
+    int 1
+
+DOUBLE_PLUS_ONE:
+    // retrieve number from the stack (reg0 = RAM[sp-2])
+    mov reg5 sp
+    movl reg4 2
+    movh reg4 0
+    sub reg5 reg4
+    load reg0 reg5
+
+    // reg0 = reg0*2+1
+    mul reg0 reg4
+    movl reg4 1
+    add reg0 reg4
+    ret

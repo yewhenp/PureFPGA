@@ -103,15 +103,6 @@ mem_suffix_commands = [
     "mov0", "mov1", "load0", "load1", "store0", "store1",
 ]
 
-# mem_number_commands = [
-#     'movh0', 'movh1', 'movh2', 'movh3', 'movh4', 'movh5',
-#     'movl0', 'movl1', 'movl2', 'movl3', 'movl4', 'movl5'
-# ]
-
-# mem_movf_commands = [
-#     "movf0", "movf1", "movf2", "movf3", "movf4", "movf5"
-# ]
-
 mem_jump_commmands = [
     'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp'
 ]
@@ -131,9 +122,6 @@ coreidx = [
 LABEL_REGISTER = "reg5"
 CORE_NUM = "4"
 
-##################################################################
-# DICTS AND LISTS FOR PREPROCESSING
-##################################################################
 mem_suffix_commands_unprocessed = [
     "mov", "load", "store"
 ]
@@ -150,3 +138,7 @@ suffixes_0 = {
     'eq', 'ne', 'gt', 'lt',
     'ge', 'le', 'cs', 'cc'
 }
+
+load_store = [
+    "load", "store"
+]

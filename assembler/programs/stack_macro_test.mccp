@@ -20,11 +20,9 @@ MAIN:
 
 DOUBLE_PLUS_ONE:
     // retrieve number from the stack (reg0 = RAM[sp-2])
-    mov reg5 sp
-    movl reg4 2
-    movh reg4 0
-    sub reg5 reg4
-    load reg0 reg5
+    mov reg4 sp
+    sub reg4 2
+    load reg0 reg4
 
     // reg0 = reg0*2+1
     mul reg0 reg4

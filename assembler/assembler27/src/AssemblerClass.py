@@ -235,6 +235,15 @@ class Assembler:
                         jump_labels[label] += delta
                 instr_counter += delta + 1
 
+            # arithmetics + immediate
+            elif pure_instr in commands["alu"] and pure_instr not in alu_one_dest_commands \
+                    and line[-1].isdigit():
+                processed_program += arith_macro(self, line)
+                for label in jump_labels:
+                    if jump_labels[label] > instr_counter:
+                        jump_labels[label] += 2
+                instr_counter += 3
+
             # change CORE_NUM to 4 for movl/movh
             elif pure_instr in mem_only_num_command_unprocessed and line[2] == "core_num":
                 line[2] = CORE_NUM

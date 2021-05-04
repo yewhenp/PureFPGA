@@ -1,10 +1,18 @@
 from .lists_and_dicts import *
 
+############################
+# Useful functions
+############################
+
 
 def label_to_reg(reg, label, suffix=""):
     return ["movl" + suffix, reg, label], \
            ["movh" + suffix, reg, label]
 
+
+############################
+# Macroses
+############################
 
 # returns first 16 bits of number, second 16 bits of number
 def to_bin(number):
@@ -120,16 +128,6 @@ def ret_macro(self, line):
     ]
 
 
-# # add reg num
-# def arith_macro(self, line, suffix=""):
-#     first, second = to_bin(int(line[2]))
-#     return [
-#         ["movl" + suffix, LABEL_REGISTER, first],
-#         ["movh" + suffix, LABEL_REGISTER, second],
-#         [line[0], line[1], LABEL_REGISTER]
-#     ]
-
-
 MACROSES = {
     "push": push_macro,
     "pop": pop_macro,
@@ -138,3 +136,19 @@ MACROSES = {
     "call": call_macro,
     "ret": ret_macro
 }
+
+############################
+# SPECIAL MACROSES
+############################
+
+
+# arith[suffix] reg num
+def arith_macro(self, line):
+    first, second = to_bin(int(line[2]))
+    suffix = line[0][-2:] if line[0][-2:] in suffixes else ""
+
+    return [
+        ["movl" + suffix, LABEL_REGISTER, first],
+        ["movh" + suffix, LABEL_REGISTER, second],
+        [line[0], line[1], LABEL_REGISTER]
+    ]

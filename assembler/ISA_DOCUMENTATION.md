@@ -116,8 +116,14 @@ stack_size size0 size1 size2 size3
 ```
 push reg[i]
 pop reg[i]
-call reg[i] // or:
 call FUNCTION_LABEL
+ret
+```
+Note, that due to some assembler and architecture details that you shouldn't care about, it's illegal to use labels that start with '\_\_return\_'
+
+- Configure exception addresses:
+```
+exception_addresses addr0 addr1 addr2 addr3 // can use labels (obviously every adequate programmer would)
 ```
 
 

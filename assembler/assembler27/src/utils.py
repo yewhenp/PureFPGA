@@ -10,15 +10,15 @@ def label_to_reg(reg, label, suffix=""):
            ["movh" + suffix, reg, label]
 
 
-############################
-# Macroses
-############################
-
 # returns first 16 bits of number, second 16 bits of number
 def to_bin(number):
     binary = bin(number)[2:]
     binary = "0" * (32 - len(binary)) + binary
     return str(int(binary[16:], 2)), str(int(binary[:16], 2))
+
+############################
+# Macroses
+############################
 
 
 # push regi

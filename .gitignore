@@ -10,3 +10,9 @@ MCCP/incremental_db/
 *.bak
 MCCP/simulation
 MCCP/output_files
+
+MCCPVideoStream/db/
+MCCPVideoStream/incremental_db/
+MCCPVideoStream/simulation
+MCCPVideoStream/output_files
+

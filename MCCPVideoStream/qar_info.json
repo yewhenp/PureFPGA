@@ -1,0 +1,7 @@
+{
+	"common_dir" : "/home/dmakara/fpga/ucu_gpu_v1.01/",
+	"acds_version" : "Version 20.1.1",
+	"platform" : "linux",
+	"os" : "Ubuntu 20.04.2",
+	"qpf" : "ucu_gpu.qpf"
+}

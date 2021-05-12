@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="271" />
+   <irq preferredWidth="47" />
+  </columns>
+ </systemtable>
+ <library
+   expandedCategories="Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Basic Functions/Bridges and Adaptors,Library,Project,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Basic Functions" />
+ <window width="1920" height="1048" x="0" y="32" />
+</preferences>

@@ -119,7 +119,7 @@ pop reg[i]
 call FUNCTION_LABEL
 ret
 ```
-Note, that due to some assembler and architecture details that you shouldn't care about, it's illegal to use labels that start with '\_\_return\_'
+Note, that assembler reserces labels that start with '\_\_return\_', and it's damgerous to name labels as the assembler keywords
 
 - Configure exception addresses:
 ```

@@ -1,6 +1,12 @@
 ##################################################################
 # DICTS AND LISTS FOR ASSEMBLING
 ##################################################################
+
+LABEL_REGISTER = "reg5"
+CORE_NUM = "4"
+
+##################################################################
+# OPCODES
 command_types = {
     "core_alu": "11",
     "core_memory": "10",
@@ -95,6 +101,9 @@ registers = {
     "ip": "111"
 }
 
+##################################################################
+# different useful lists for instructions identification for assembler
+
 alu_one_dest_commands = [
     "not", "inc", "dec",
 ]
@@ -118,9 +127,6 @@ suffix_reg_commands = [
 coreidx = [
     "coreidx"
 ]
-
-LABEL_REGISTER = "reg5"
-CORE_NUM = "4"
 
 mem_suffix_commands_unprocessed = [
     "mov", "load", "store"

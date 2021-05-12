@@ -4,7 +4,6 @@ from .utils import *
 
 
 class Assembler:
-    NOP = "addnv reg0 reg0"
     NOP_ = ["addnv", "reg0", "reg0"]
     RAM_SIZE = 65535
 
@@ -14,7 +13,6 @@ class Assembler:
         self.dest_file = dest_file
         self.COMMAND_TYPE_ENCODE = {"alu": self.__alu_encode, "mem": self.__mem_encode}
 
-    # There are two mods - ascii and binary
     def assemble_preprocessed(self, verbose=False):
         with open(self.dest_file, "w") as dest_file:
             result = ""
@@ -42,11 +40,17 @@ class Assembler:
                         temp = ""
             dest_file.write(result)
 
-    def __encode_command(self, parsed_command):
+    def __encode_command(self, parsed_instruction):
+        """
+        Encodes one preprocessed instruction.
+        :param parsed_instruction: string, one strippeed line of prep file
+            For example: 'movleq reg0 12'
+        :return: string, 16/32 zeros and ones
+        """
         result = ""
-        command_list = parsed_command.split()
+        command_list = parsed_instruction.split()
 
-        # suffixes and clear command fromo it
+        # extract suffixes and clear command from parsed instruction
         if command_list[0][-2:] in suffixes and command_list[0] not in not_suffix_commands:
             command_clear = command_list[0][:-2]
             suffix = command_list[0][-2:]
@@ -54,7 +58,7 @@ class Assembler:
             command_clear = command_list[0]
             suffix = ""
 
-        # two command typesopcode of
+        # two instruction types opcode
         if command_clear in commands['alu']:
             command_type = "alu"
         elif command_clear in commands['memory']:
@@ -74,64 +78,91 @@ class Assembler:
         return result
 
     @staticmethod
-    def __alu_encode(command_clear, suffix, command_list):
-        result = ""
-        result += commands["alu"][command_clear]         # 4 bits - opcode
-        result += suffixes[suffix]                       # 4 bits - suffix
-        result += registers[command_list[1]]             # 3 bits - dest reg
-        if command_clear not in alu_one_dest_commands:   # if not inc/dec/not
-            result += registers[command_list[2]]         # 3 bits - second operand
+    def __alu_encode(instruction_clear, suffix, instruction_list):
+        """
+        Encodes one alu instruction
+        :param instruction_clear: string, instruction without suffix
+        :param suffix: string, suffix of the command if no suffix, then empty string
+        :param instruction_list: list, whole splitted instruction by space
+        :return: string, 14 0/1s encoding this instruction
+        """
+        result = commands["alu"][instruction_clear]         # 4 bits - opcode
+        result += suffixes[suffix]                          # 4 bits - suffix
+        result += registers[instruction_list[1]]            # 3 bits - dest reg
+        if instruction_clear not in alu_one_dest_commands:  # if not inc/dec/not (1 operand instructions)
+            result += registers[instruction_list[2]]        # 3 bits - second operand
         else:
-            result += "0" * 3                            # unused bits
+            result += "0" * 3                               # unused bits
         return result
 
     @staticmethod
-    def __mem_encode(command_clear, suffix, command_list):
-        result = ""
-        result += commands["memory"][command_clear]     # 5 bits - opcode
+    def __mem_encode(instruction_clear, suffix, instruction_list):
+        """
+        Encodes one memory instruction
+        :param instruction_clear: string, instruction without suffix
+        :param suffix: string, suffix of the command if no suffix, then empty string
+        :param instruction_list: list, whole splitted instruction by space
+        :return: string, 14/30 0/1s encoding this instruction
+        """
+        result = commands["memory"][instruction_clear]     # 5 bits - opcode
 
         # load / store / mov
-        if command_clear in mem_suffix_commands:
-            result += suffixes[suffix][1:]              # 3 bits - suffix
-            result += registers[command_list[1]]        # 3 bits - first reg
-            result += registers[command_list[2]]        # 3 bits - second reg
+        if instruction_clear in mem_suffix_commands:
+            result += suffixes[suffix][1:]                  # 3 bits - suffix
+            result += registers[instruction_list[1]]        # 3 bits - first reg
+            result += registers[instruction_list[2]]        # 3 bits - second reg
 
         # movl/movh
-        elif command_clear in mem_only_num_command_unprocessed:
-            result += suffixes[suffix]                  # 4 bits - suffix
-            result += registers[command_list[1]]        # 3 bits - register
-            bin_num = bin(int(command_list[-1]))[2:]
+        elif instruction_clear in mem_only_num_command_unprocessed:
+            result += suffixes[suffix]                      # 4 bits - suffix
+            result += registers[instruction_list[1]]        # 3 bits - register
+            bin_num = bin(int(instruction_list[-1]))[2:]
             if len(bin_num) > 16:
-                raise ValueError("Can't move number to register: " + str(command_list[-1]))
+                raise ValueError("Can't move number to register: " + str(instruction_list[-1]))
             bin_num = "0" * (16 - len(bin_num)) + bin_num
             result += "0" * 2                           # unused bits
             result += bin_num                           # 16 bit number
 
         # jumps / movf
-        elif command_clear in not_suffix_commands:
-            result += registers[command_list[1]]        # 3 bits - first reg
-            result += "0" * 6                           # 6 bits unused
+        elif instruction_clear in not_suffix_commands:
+            result += registers[instruction_list[1]]        # 3 bits - first reg
+            result += "0" * 6                               # 6 bits unused
 
         # coreidx / stack commands
-        elif command_clear in suffix_reg_commands:
+        elif instruction_clear in suffix_reg_commands:
             result += suffixes[suffix]                  # 4 bits - suffix
-            result += registers[command_list[1]]        # 3 bites - register
+            result += registers[instruction_list[1]]    # 3 bites - register
             result += "0" * 2                           # 2 bits - unused
 
         # int
-        elif command_clear == "int":
+        elif instruction_clear == "int":
             result += suffixes[suffix]                  # 4 bits suffix
-            bin_num = bin(int(command_list[-1]))[2:]
+            bin_num = bin(int(instruction_list[-1]))[2:]
             bin_num = "0" * (3 - len(bin_num)) + bin_num
             result += bin_num                           # 3 bits interrupt number
             result += "0" * 2                           # 2 bits 0 unused
         else:
-            raise ValueError("Unknow command: " + command_list)
+            raise ValueError("Unknow command: " + str(instruction_list))
         return result
 
-    def preprocess_source(self, verbose=False):
-        with open(self.prep_file, "w") as prep_file:
+    ##################################
+    # PREPROCESSING RELATED METHODS
+    ##################################
 
+    def preprocess_source(self, verbose=False):
+        """
+        Preprocessed source file, and saves result to self.prep_file
+        What is preprocessing:
+            - find value/jump labels and trace their values during preprocessing (that increases number of isntructions)
+            - expand macroses
+            - insert nopes, where needed (due to isa implementation details)
+            - replace some instructions with actual (add suffixes, mov/load/store -> mov0/1 / load0/1 / store0/1
+            - inser labels
+
+        :param verbose:
+        :return: None
+        """
+        with open(self.prep_file, "w") as prep_file:
             # detect labels and remove comments
             val_labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
 
@@ -142,26 +173,28 @@ class Assembler:
                 print("Jump labels: " + str(jump_labels))
                 pprint(program)
 
-            # insert everywhere where needed nops, and handle stack
+            # insert everywhere where needed nops
             program = self.__nop_inserter(program, jump_labels)
             if verbose:
                 print("After nop_inserter:")
                 print("Jump labels: " + str(jump_labels))
                 pprint(program)
 
-            # add 'al' suffix where needed and handle '0'-'1' memory hell
+            # add 'al' suffix where needed and handle '0'-'1' memory opcode hell
             program = self.__coding_related_prep(program)
 
+            # merge labels
             labels = val_labels
             labels.update(jump_labels)
 
-            # replace labels with corresponding numbers
+            # replace all labels with corresponding numbers
             program = self.__insert_labels(program, labels)
             if verbose:
                 print("After labels insertion:")
                 print("Jump labels: " + str(jump_labels))
                 pprint(program)
 
+            # program should be alligned on 32 bits
             if len(program) % 2:
                 program.append(self.NOP_)
 
@@ -173,7 +206,15 @@ class Assembler:
                 prep_file.write(" ".join(line) + "\n")
 
     @staticmethod
-    def __find_labels_and_strip(file_, verbose):
+    def __find_labels_and_strip(source_filename, verbose):
+        """
+        Initial preprocessing of source file.
+            - 'maps' program in file to list of lists, that other parts of preprocessing works with
+            - detects all labels and setups initial values
+        :param source_filename: name of source file
+        :param verbose: 
+        :return: list[list], dict, dict - program, jump labels, value labels
+        """
         instr_counter = 0
         stripped_program = []
         val_labels = {}
@@ -181,7 +222,8 @@ class Assembler:
         return_from_call_counter = 0
 
         # now find values of labels
-        for line in open(file_, "r"):
+        for line in open(source_filename, "r"):
+            # comments and empty lines
             if line.strip().startswith("//") or line.strip() == "":
                 continue
             line = re.sub("//(.)*", "", line).strip().lower()
@@ -189,7 +231,6 @@ class Assembler:
             # jump label
             if re.match(r"\s*\w+\s*(:)\s*", line):
                 label_name = re.findall(r"[a-zA-Z_]+", line)[0]
-                # labels[label_name] = instr_counter
                 jump_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new jump label: " + str(label_name) + "=" + str(instr_counter)
@@ -205,6 +246,7 @@ class Assembler:
 
             line = line.split()
 
+            # insert label below funtion call to return from it
             if line[0] == "call":
                 label_name = "__return_" + str(return_from_call_counter)
                 line.append(label_name)
@@ -213,35 +255,43 @@ class Assembler:
                     print("Add new return label: " + label_name + "=" + str(jump_labels[label_name]))
 
             stripped_program.append(line)
-
             instr_counter += 1
 
         return val_labels, jump_labels, stripped_program
 
     def __extract_labels_macroses(self, program, jump_labels):
+        """
+        Extracts macroses, and expanda  atomic usage of labels
+        :param program: list[list]
+        :param jump_labels: dict
+        :return: list[list], updated program
+        """
+
         processed_program = []
         instr_counter = 0
 
-        # now insert labels
         for line in program:
             pure_instr = line[0] if not line[0][-2:] in suffixes else line[0][:-2]
             suffix = line[0][-2:] if line[0][-2:] in suffixes else ""
+
+            # macros extraction
             if line[0] in MACROSES:
                 exctracted = MACROSES[line[0]](self, line)
                 processed_program += exctracted
                 delta = len(exctracted) - 1
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += delta
+                # update all jump labels below, since now there are more instructions above them
+                self.__update_jump_labels(jump_labels, delta=delta, instr_counter=instr_counter)
+                # for label in jump_labels:
+                #     if jump_labels[label] > instr_counter:
+                #         jump_labels[label] += delta
                 instr_counter += delta + 1
 
             # arithmetics + immediate
             elif pure_instr in commands["alu"] and pure_instr not in alu_one_dest_commands \
                     and line[-1].isdigit():
                 processed_program += arith_macro(self, line)
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += 2
+                # update all jump labels below, since now there are more instructions above them
+                self.__update_jump_labels(jump_labels, delta=2, instr_counter=instr_counter)
                 instr_counter += 3
 
             # change CORE_NUM to 4 for movl/movh
@@ -250,12 +300,10 @@ class Assembler:
                 processed_program.append(line)
                 instr_counter += 1
 
-            # mov regi label = movl regi label[16:] + movl regi label[:16]
+            # mov regi label = movl regi label[16:] + movh regi label[:16]
             elif pure_instr == "mov" and line[2] not in registers:
                 if line[2] in jump_labels:
-                    for label in jump_labels:
-                        if jump_labels[label] > instr_counter:
-                            jump_labels[label] += 1
+                    self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
                     instr_counter += 2
                 else:
                     raise ValueError("Unknown label: " + str(line[2]))
@@ -273,9 +321,7 @@ class Assembler:
                     idx = 2
                 else:
                     raise ValueError("Unknown label here: " + str(line))
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += 2
+                self.__update_jump_labels(jump_labels, delta=2, instr_counter=instr_counter)
                 instr_counter += 3
 
                 processed_program += label_to_reg(LABEL_REGISTER, line[idx], suffix)
@@ -286,9 +332,7 @@ class Assembler:
             # substituting label to jump
             elif line[0] in mem_jump_commmands and line[1] not in registers:
                 if line[1] in jump_labels:
-                    for label in jump_labels:
-                        if jump_labels[label] > instr_counter:
-                            jump_labels[label] += 2
+                    self.__update_jump_labels(jump_labels, delta=2, instr_counter=instr_counter)
                     instr_counter += 3
                 else:
                     raise ValueError("Unknown label: " + str(line[1]))
@@ -303,12 +347,17 @@ class Assembler:
         return processed_program
 
     def __nop_inserter(self, program, jump_labels):
+        """
+        Inserts NOP, everywhere, where needed, also updates jump labels
+        :param program: list[list]
+        :param jump_labels: dict
+        :return: list[list], updated program
+        """
         # update labels
         processed_program = []
         instr_counter = 0
 
         for line in program:
-
             # regular nop
             if line[0] == "nop":
                 processed_program.append(self.NOP_)
@@ -318,14 +367,11 @@ class Assembler:
             # current instruction is one of the jumps label
             cur_label = list(filter(lambda x: x[1] == instr_counter, list(jump_labels.items())))
             if len(cur_label) > 0:
-                # insert nop before jump label if its odd
+                # insert nop before jump label if ip is odd
                 if instr_counter % 2:
                     processed_program.append(self.NOP_)
-
                     # update all labels below current and current
-                    for label in jump_labels:
-                        if jump_labels[label] >= instr_counter:
-                            jump_labels[label] += 1
+                    self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
                     instr_counter += 1  # because of NOP
 
             # insert NOP before movl / movh if instruction's number is odd
@@ -337,17 +383,13 @@ class Assembler:
                     delta += 1
 
                 delta += 1  # movl/movh is 32 bit
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += delta
+                self.__update_jump_labels(jump_labels, delta=delta, instr_counter=instr_counter)
                 instr_counter += delta
 
-            # insert NOP after jump if jump's ip is even number.
+            # insert NOP before jump if jump's ip is even number.
             if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
                 processed_program.append(self.NOP_)
-                for label in jump_labels:
-                    if jump_labels[label] > instr_counter:
-                        jump_labels[label] += 1
+                self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
                 instr_counter += 1
 
             processed_program.append(line)
@@ -356,6 +398,12 @@ class Assembler:
 
     @staticmethod
     def __insert_labels(program, labels):
+        """
+        Goes through program, and fills labels, where needed
+        :param program: list[list]
+        :param labels: dict
+        :return: updated program
+        """
         for label in labels:
             labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
 
@@ -369,6 +417,13 @@ class Assembler:
 
     @staticmethod
     def __coding_related_prep(program):
+        """
+        replaces preprocessed instructions with actual instructions
+            - adds 'al' suffix, if no suffix provided
+            - replaces mov/load/store with mov0/1 / load0/1 / store0/1
+        :param program:
+        :return:
+        """
         for line in program:
             # mov - mov0-1 store - store0-1 load - load0-1 conversion
             if line[0][:-2] in mem_suffix_commands_unprocessed and \
@@ -386,3 +441,9 @@ class Assembler:
             if line[0] not in not_suffix_commands and line[0][-2:] not in suffixes:
                 line[0] += "al"
         return program
+
+    @staticmethod
+    def __update_jump_labels(labels, delta, instr_counter):
+        for label in labels:
+            if labels[label] > instr_counter:
+                labels[label] += delta

@@ -22,7 +22,7 @@ MAIN:
 DOUBLE_PLUS_ONE:
     // retrieve number from the stack (reg0 = RAM[sp-2])
     mov reg4 sp
-    sub reg4 2
+    sub reg4 $TWO
     load reg0 reg4
     mov reg4 TWO
 

@@ -262,6 +262,15 @@ class Assembler:
             stripped_program.append(line)
             instr_counter += 1
 
+        # early substitute to label, after $ sign
+        for line in stripped_program:
+            for k in (1, 2):
+                if len(line) > k:
+                    if '$' in line[k]:
+                        label_name = line[k][line[k].index('$')+1:]
+                        line[k] = line[k][:line[k].index('$')]
+                        line[k] += str(val_labels[label_name])
+
         return val_labels, jump_labels, stripped_program
 
     def __extract_labels_macroses(self, program, jump_labels, value_labels):

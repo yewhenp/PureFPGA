@@ -101,6 +101,13 @@ load MY_VAL reg2 // or:
 store MY_VAL reg2 // or:
 // cannot use two labels in one expression!
 ```
+- early substitute
+
+Also there is such thing as 'early substitute'. Assembling pipeline is such that all labels are substituted at the very end of the pipeline. They are usually processed a lot before, since there are many macrosses and architecture details, most instruction expand into more smaller, so jump  labels should be updated many times, and value labels propose unsupported instructions (for ex. mov reg imm), so they are also processed. But if you want to substitute value label at the very beginning of the pipeline, you can put '$' sign before value label usage. Example:
+```
+NUM=12
+add reg2 $NUM // --> add reg2 12 --> movl reg5 12; movh reg5 0; add reg2 reg5
+```
 - core number value
 ```
 movl reg2 core_num

@@ -13,12 +13,12 @@ module instr_decoder #(
     INT_NUM=3
 )
 (
-    input 				     clk,
-    input 				  	 en,
-    input [WIDTH-1: 0] 		 long_instr,
-    input                    instr_choose,
-    input [FLAGS-1: 0]       flags,
-    input [CORE_NUMBER-1:0]    core_index,
+    input 				        clk,
+    input 				  	    en,
+    input [WIDTH-1: 0] 		    long_instr,
+    input                       instr_choose,
+    input [FLAGS-1: 0]          flags,
+    input [CORE_NUMBER-1:0]     core_index,
     //alu
     output reg                    alu_en = 1'b0,
     output reg [OPCODE-1 :0]      alu_opcode = 4'b0,
@@ -36,24 +36,33 @@ module instr_decoder #(
     output reg                    suffix = 1'b0,
 
     output reg                      interrupt = 1'b0,
-    output reg [INT_NUM-1:0]        int_num = 3'b0
+    output reg [INT_NUM-1:0]        int_num = 3'b0,
+
+    output reg                      write_stack_params,
+    output reg [1:0]                stack_param_coding, // msb / mse / sb / excl = 00/01/10/11
+    output reg [REGS_CODING-1:0]    stack_param_reg     // register from where to get value
 
 );
 
 reg [WIDTH/2-1: 0] short_instr = 16'b0;
+reg suffix2_mem = 0;
 
 always @(negedge clk) begin
     if (en) begin
         alu_en <=  0;
         mem_en <=  0;
         move_en <= 0;
+
 		wren <= 0;
         interrupt <= 0;
         int_num <= 0;
 
-        // long 32bit instruction - movl / movh
+        write_stack_params <= 0;
+
+        // long 32bit instruction - movl / movh / msb / mse / excl
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH/2-1: 0];
+
             move_en <= 1;
 
             // register coding
@@ -108,6 +117,29 @@ always @(negedge clk) begin
                 default: suffix <= 1;
             endcase
 
+            // suffix stack
+            case (short_instr[8:5])
+                4'b0000: suffix2_mem = flags[ZERO] == 1;
+                4'b0001: suffix2_mem = flags[ZERO] == 0;
+                4'b0010: suffix2_mem = flags[ZERO] == 0 && flags[SIGN] == flags[OVERFLOW];
+                4'b0011: suffix2_mem = flags[SIGN] != flags[OVERFLOW];
+                4'b0100: suffix2_mem = flags[SIGN] == flags[OVERFLOW];
+                4'b0101: suffix2_mem = flags[ZERO] == 1 || flags[SIGN] != OVERFLOW;
+                4'b0110: suffix2_mem = flags[CARRY] == 1;
+                4'b0111: suffix2_mem = flags[CARRY] == 0;
+                4'b1000: suffix2_mem = flags[SIGN] == 1;
+                4'b1001: suffix2_mem = flags[SIGN] == 0;
+                4'b1010: suffix2_mem = 1;    // AL
+                4'b1011: suffix2_mem = 0;    // NV
+                4'b1100: suffix2_mem = flags[OVERFLOW] == 1;
+                4'b1101: suffix2_mem = flags[OVERFLOW] == 0;
+                4'b1110: suffix2_mem = flags[CARRY] == 1 && flags[ZERO] == 0;
+                4'b1111: suffix2_mem = flags[CARRY] == 0 || flags[ZERO] == 0;
+                default: suffix2_mem = 1;
+            endcase
+            $display("suffix1: ", suffix, " suffix2: ", suffix2_mem, " suffix1 opcode: ", short_instr[9:6], " suffix2 opcode: ", short_instr[8:5], " instruction: ", long_instr, " flags: ", flags );
+
+
             // ALU instruction
             if (short_instr[WIDTH/2-2] == 1) begin
                 alu_en <=  1;
@@ -126,42 +158,52 @@ always @(negedge clk) begin
                     wren <= short_instr[10];
                 end else begin
 
-						 // mov reg reg
-						 if (short_instr[13:10] == 4'b0010) begin
-							  move_en <= 1;
-							  op1 <= short_instr[5:3];
-							  op2 <= short_instr[2:0];
-							  mov_type <= 3'b000; 
-						 end else begin
-						 
+                    // mov reg reg
+                    if (short_instr[13:10] == 4'b0010) begin
+                        move_en <= 1;
+                        op1 <= short_instr[5:3];
+                        op2 <= short_instr[2:0];
+                        mov_type <= 3'b000; 
+                    end else begin
+                    
 
-							 // others
-							case (short_instr[13:9])
-                                // movf
-                                5'b01000: begin op1 <= short_instr[8:6]; mov_type <= 3'b011; move_en <= 1; end   // movf
-								  
-                                // jumps
-								5'b01001: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1; mov_type <= 3'b111; move_en <= 1; end
-								5'b01010: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0; mov_type <= 3'b111; move_en <= 1; end
-								5'b01011: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
-								5'b01100: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
-								5'b01101: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
-								5'b01110: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1 || (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
-                                5'b01111: begin op1 <= short_instr[8:6]; suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
+                    // others
+                    case (short_instr[13:9])
+                        // movf
+                        5'b01000: begin op1 <= short_instr[8:6]; mov_type <= 3'b011; move_en <= 1; end   // movf
+                            
+                        // jumps
+                        5'b01001: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1; mov_type <= 3'b111; move_en <= 1; end
+                        5'b01010: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0; mov_type <= 3'b111; move_en <= 1; end
+                        5'b01011: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 0 && (flags[OVERFLOW] == flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+                        5'b01100: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] == flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
+                        5'b01101: begin op1 <= short_instr[8:6]; suffix <= flags[OVERFLOW] != flags[SIGN]; mov_type <= 3'b111; move_en <= 1; end
+                        5'b01110: begin op1 <= short_instr[8:6]; suffix <= flags[ZERO] == 1 || (flags[OVERFLOW] != flags[SIGN]); mov_type <= 3'b111; move_en <= 1; end
+                        5'b01111: begin op1 <= short_instr[8:6]; suffix <= 1; mov_type <= 3'b111; move_en <= 1; end
 
-                                // coreidx
-                                5'b10000: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; immediate[15:2] <= 14'b0; immediate[1:0] <= core_index; end 
+                        // coreidx
+                        5'b10000: begin op1 <= short_instr[4:2]; mov_type <= 3'b001; move_en <= 1; immediate[15:2] <= 14'b0; immediate[1:0] <= core_index; suffix <= suffix2_mem; end 
 
-                                // int
-                                5'b10001: begin op1 <= short_instr[4:2]; interrupt <= 1; int_num <= short_instr[4:2]; end
+                        // int
+                        5'b10001: begin op1 <= short_instr[4:2]; interrupt <= 1; int_num <= short_instr[4:2]; suffix <= suffix2_mem; end
 
-								default: op1 <= op1;
-                            endcase
-                            // op1 <= short_instr[5:3];
-                            // op2 <= short_instr[2:0];
-						 end
-					 
-					 end
+                        // msb / mse / sb 
+                        5'b10010: begin write_stack_params <= 1; stack_param_coding <= 0; 
+                                        stack_param_reg <= short_instr[4:2]; suffix <= suffix2_mem; end
+                        5'b10011: begin write_stack_params <= 1; stack_param_coding <= 1; 
+                                        stack_param_reg <= short_instr[4:2]; suffix <= suffix2_mem; end
+                        5'b10100: begin write_stack_params <= 1; stack_param_coding <= 2; 
+                                        stack_param_reg <= short_instr[4:2]; suffix <= suffix2_mem; end
+                        // excl
+                        5'b10101: begin write_stack_params <= 1; stack_param_coding <= 3; 
+                                        stack_param_reg <= short_instr[4:2]; suffix <= suffix2_mem; end
+                        default: op1 <= op1;
+                    endcase
+                    // op1 <= short_instr[5:3];
+                    // op2 <= short_instr[2:0];
+                    end
+                
+                end
 
             end
 

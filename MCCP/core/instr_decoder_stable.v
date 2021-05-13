@@ -36,11 +36,7 @@ module instr_decoder #(
     output reg                    suffix = 1'b0,
 
     output reg                      interrupt = 1'b0,
-    output reg [INT_NUM-1:0]        int_num = 3'b0,
-
-    output reg                      write_stack_params,
-    output reg [1:0]                stack_param_coding,
-    output reg [REGS_CODING-1:0]    stack_param_reg
+    output reg [INT_NUM-1:0]        int_num = 3'b0
 
 );
 
@@ -51,18 +47,13 @@ always @(negedge clk) begin
         alu_en <=  0;
         mem_en <=  0;
         move_en <= 0;
-
 		wren <= 0;
         interrupt <= 0;
         int_num <= 0;
 
-        stack_exception <= 0;
-        write_stack_params <= 0;
-
-        // long 32bit instruction - movl / movh / msb / mse / excl
+        // long 32bit instruction - movl / movh
         if(long_instr[WIDTH-1] == 1) begin
             immediate = long_instr[WIDTH/2-1: 0];
-
             move_en <= 1;
 
             // register coding
@@ -144,7 +135,7 @@ always @(negedge clk) begin
 						 end else begin
 						 
 
-							// others
+							 // others
 							case (short_instr[13:9])
                                 // movf
                                 5'b01000: begin op1 <= short_instr[8:6]; mov_type <= 3'b011; move_en <= 1; end   // movf
@@ -164,16 +155,6 @@ always @(negedge clk) begin
                                 // int
                                 5'b10001: begin op1 <= short_instr[4:2]; interrupt <= 1; int_num <= short_instr[4:2]; end
 
-                                // msb / mse / sb 
-                                5'b10010: begin write_stack_params <= 1; stack_param_coding <= 0; 
-                                                stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
-                                5'b10011: begin write_stack_params <= 1; stack_param_coding <= 1; 
-                                                stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
-                                5'b10100: begin write_stack_params <= 1; stack_param_coding <= 2; 
-                                                stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
-                                // excl
-                                5'b10101: begin write_stack_params <= 1; stack_param_coding <= 3; 
-                                                stack_param_reg <= short_instr[4:2]; suffix <= short_instr[8:5] end
 								default: op1 <= op1;
                             endcase
                             // op1 <= short_instr[5:3];

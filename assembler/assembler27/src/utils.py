@@ -58,10 +58,10 @@ def set_stacks_size_macro(self, line):
         binary_my_stack_end = bin(my_stack_end)[2:]
         binary_my_stack_end = "0" * (32 - len(binary_my_stack_end)) + binary_my_stack_end
 
-        result.append(["coreidxal", "reg6"])
+        result.append(["coreidxal", "reg3"])
         result.append(["xoral", "reg4", "reg4"])
         result.append(["movlal", "reg4", str(i)])
-        result.append(["cmpal", "reg6", "reg4"])
+        result.append(["cmpal", "reg3", "reg4"])
         # write number to LABEL_REGISTER (reg5) if this is core with index {i}
         result.append(["movleq", LABEL_REGISTER, str(int(binary_my_stack_begin[16:], 2))])
         result.append(["movheq", LABEL_REGISTER, str(int(binary_my_stack_begin[:16], 2))])

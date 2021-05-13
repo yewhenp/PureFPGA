@@ -1,5 +1,6 @@
 stack_size 1000 1000 1000 1000
 
+TWO=2
 
 MAIN:
     // reg0 = 12 + coreidx
@@ -23,6 +24,7 @@ DOUBLE_PLUS_ONE:
     mov reg4 sp
     sub reg4 2
     load reg0 reg4
+    mov reg4 TWO
 
     // reg0 = reg0*2+1
     mul reg0 reg4

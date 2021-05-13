@@ -167,7 +167,7 @@ class Assembler:
             val_labels, jump_labels, stripped_program = self.__find_labels_and_strip(self.source_file, verbose=verbose)
 
             # replace core_num and insert movl and movh for labels where needed
-            program = self.__extract_labels_macroses(stripped_program, jump_labels=jump_labels)
+            program = self.__extract_labels_macroses(stripped_program, jump_labels=jump_labels, value_labels=val_labels)
             if verbose:
                 print("After labels and macros extraction:")
                 print("Jump labels: " + str(jump_labels))
@@ -182,6 +182,9 @@ class Assembler:
 
             # add 'al' suffix where needed and handle '0'-'1' memory opcode hell
             program = self.__coding_related_prep(program)
+
+            for label in jump_labels:
+                jump_labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
 
             # merge labels
             labels = val_labels
@@ -239,9 +242,11 @@ class Assembler:
             # value label
             if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
                 label_name = re.findall(r"[a-zA-Z_]+", line)[0]
-                val_labels[label_name] = instr_counter
+                value = re.findall(r"(=\d+)", line)[0]
+                value = int(value.replace("=", ""))
+                val_labels[label_name] = value
                 if verbose:
-                    print "Found new value label: " + str(label_name) + "=" + str(instr_counter)
+                    print "Found new value label: " + str(label_name) + "=" + str(value)
                 continue
 
             line = line.split()
@@ -259,7 +264,7 @@ class Assembler:
 
         return val_labels, jump_labels, stripped_program
 
-    def __extract_labels_macroses(self, program, jump_labels):
+    def __extract_labels_macroses(self, program, jump_labels, value_labels):
         """
         Extracts macroses, and expanda  atomic usage of labels
         :param program: list[list]
@@ -281,9 +286,6 @@ class Assembler:
                 delta = len(exctracted) - 1
                 # update all jump labels below, since now there are more instructions above them
                 self.__update_jump_labels(jump_labels, delta=delta, instr_counter=instr_counter)
-                # for label in jump_labels:
-                #     if jump_labels[label] > instr_counter:
-                #         jump_labels[label] += delta
                 instr_counter += delta + 1
 
             # arithmetics + immediate
@@ -302,7 +304,7 @@ class Assembler:
 
             # mov regi label = movl regi label[16:] + movh regi label[:16]
             elif pure_instr == "mov" and line[2] not in registers:
-                if line[2] in jump_labels:
+                if line[2] in value_labels or line[2] in jump_labels:
                     self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
                     instr_counter += 2
                 else:
@@ -315,9 +317,9 @@ class Assembler:
             elif pure_instr in load_store and \
                     (line[2] not in registers or line[1] not in registers):
                 # detect if label is first or second operand
-                if line[1] in jump_labels:
+                if line[1] in jump_labels or line[1] in value_labels:
                     idx = 1
-                elif line[2] in jump_labels:
+                elif line[2] in jump_labels or line[1] in value_labels:
                     idx = 2
                 else:
                     raise ValueError("Unknown label here: " + str(line))
@@ -331,7 +333,7 @@ class Assembler:
 
             # substituting label to jump
             elif line[0] in mem_jump_commmands and line[1] not in registers:
-                if line[1] in jump_labels:
+                if line[1] in jump_labels or line[1] in value_labels:
                     self.__update_jump_labels(jump_labels, delta=2, instr_counter=instr_counter)
                     instr_counter += 3
                 else:
@@ -404,8 +406,8 @@ class Assembler:
         :param labels: dict
         :return: updated program
         """
-        for label in labels:
-            labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
+        # for label in labels:
+        #     labels[label] //= 2  # remeber that instructions are 16 bit when mem 32
 
         for idx, line in enumerate(program):
             if len(line) >= 2 and (line[-1] in labels or line[-2] in labels):

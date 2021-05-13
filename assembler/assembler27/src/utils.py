@@ -10,7 +10,7 @@ def label_to_reg(reg, label, suffix=""):
            ["movh" + suffix, reg, label]
 
 
-# returns first 16 bits of number, second 16 bits of number
+# returns lower 16 bits of number, higher 16 bits of number
 def to_bin(number):
     binary = bin(number)[2:]
     binary = "0" * (32 - len(binary)) + binary
@@ -121,6 +121,7 @@ def call_macro(self, line):
         [suffix_jump_correspondance[suffix], LABEL_REGISTER]
     ]                # jump there
 
+
 # load to regi from stack based on reg4 and shift
 def load_macro(self, line):
     op1 = "sub" if line[2].startswith("-") else "add"
@@ -132,6 +133,7 @@ def load_macro(self, line):
         [op1, line[1], LABEL_REGISTER],
         ["load", line[1], line[1]]
     ]
+
 
 # store to regi from stack based on reg4 and shift
 def store_macro(self, line):
@@ -153,6 +155,14 @@ def ret_macro(self, line):
     ]
 
 
+# movimm reg immediate
+def movimm_macro(self, line):
+    suffix = line[0][-2:] if line[0][-2:] in suffixes else "al"
+    first, second = to_bin(int(line[2]))
+    return ["movl" + suffix, line[1], first], \
+           ["movh" + suffix, line[1], second]
+
+
 MACROSES = {
     "push": push_macro,
     "pop": pop_macro,
@@ -161,7 +171,8 @@ MACROSES = {
     "call": call_macro,
     "ret": ret_macro,
     "load_macro": load_macro,
-    "store_macro": store_macro
+    "store_macro": store_macro,
+    "movimm": movimm_macro
 }
 
 ############################

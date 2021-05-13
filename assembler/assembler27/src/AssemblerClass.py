@@ -252,7 +252,7 @@ class Assembler:
             line = line.split()
 
             # insert label below funtion call to return from it
-            if line[0] == "call":
+            if "call" in line[0]:
                 label_name = "__return_" + str(return_from_call_counter)
                 line.append(label_name)
                 jump_labels[label_name] = instr_counter + 1
@@ -289,8 +289,12 @@ class Assembler:
             suffix = line[0][-2:] if line[0][-2:] in suffixes else ""
 
             # macros extraction
-            if line[0] in MACROSES:
-                exctracted = MACROSES[line[0]](self, line)
+            if line[0] in MACROSES or pure_instr in MACROSES:
+                if line[0] in MACROSES:
+                    exctracted = MACROSES[line[0]](self, line)
+                else:
+                    exctracted = MACROSES[pure_instr](self, line)
+
                 processed_program += exctracted
                 delta = len(exctracted) - 1
                 # update all jump labels below, since now there are more instructions above them

@@ -108,14 +108,17 @@ def set_excl_macro(self, line):
 
 # call function_label return_label
 def call_macro(self, line):
+    suffix = "al" if line[0] == "call" else line[0][-2:]
+    if suffix not in suffix_jump_correspondance:
+        raise ValueError("Suffix " + str(suffix) + " is not supported for call")
     return [
-        ["movlal", LABEL_REGISTER, line[2]],    # move return address to reg5
-        ["movhal", LABEL_REGISTER, line[2]],
-        ["store", LABEL_REGISTER, "sp"],        # store it
-        ["inc", "sp"],
-        ["movlal", LABEL_REGISTER, line[1]],    # move functin address to reg5
-        ["movhal", LABEL_REGISTER, line[1]],
-        ["jmp", LABEL_REGISTER]
+        ["movl" + suffix, LABEL_REGISTER, line[2]],    # move return address to reg5
+        ["movh" + suffix, LABEL_REGISTER, line[2]],
+        ["store" + suffix, LABEL_REGISTER, "sp"],        # store it
+        ["inc" + suffix, "sp"],
+        ["movl" + suffix, LABEL_REGISTER, line[1]],    # move functin address to reg5
+        ["movh" + suffix, LABEL_REGISTER, line[1]],
+        [suffix_jump_correspondance[suffix], LABEL_REGISTER]
     ]                # jump there
 
 # load to regi from stack based on reg4 and shift

@@ -148,3 +148,13 @@ suffixes_0 = {
 load_store = [
     "load", "store"
 ]
+
+suffix_jump_correspondance = {
+    'eq': 'je',
+    'ne': 'jne',
+    'gt': 'jgt',
+    'ge': 'jge',
+    'lt': 'jlt',
+    'le': 'jle',
+    'al': 'jmp'
+}

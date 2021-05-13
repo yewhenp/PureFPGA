@@ -118,6 +118,28 @@ def call_macro(self, line):
         ["jmp", LABEL_REGISTER]
     ]                # jump there
 
+# load to regi from stack based on reg4 and shift
+def load_macro(self, line):
+    op1 = "sub" if line[2].startswith("-") else "add"
+    first, second = to_bin(int(line[2].strip("-")))
+    return [
+        ["movl", LABEL_REGISTER, first],
+        ["movh", LABEL_REGISTER, second],
+        ["mov", line[1], "reg4"],
+        [op1, line[1], LABEL_REGISTER],
+        ["load", line[1], line[1]]
+    ]
+
+# store to regi from stack based on reg4 and shift
+def store_macro(self, line):
+    first, second = to_bin(int(line[2].strip("-")))
+    return [
+        ["movl", LABEL_REGISTER, first],
+        ["movh", LABEL_REGISTER, second],
+        ["add", LABEL_REGISTER, "reg4"],
+        ["store", line[1], LABEL_REGISTER]
+    ]
+
 
 # ret
 def ret_macro(self, line):
@@ -134,7 +156,9 @@ MACROSES = {
     "stack_size": set_stacks_size_macro,
     "exception_addresses": set_excl_macro,
     "call": call_macro,
-    "ret": ret_macro
+    "ret": ret_macro,
+    "load_macro": load_macro,
+    "store_macro": store_macro
 }
 
 ############################

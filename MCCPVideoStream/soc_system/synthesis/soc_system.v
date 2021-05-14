@@ -134,7 +134,7 @@ module soc_system (
 	wire         arm_a9_hps_h2f_axi_master_rvalid;                  // mm_interconnect_0:ARM_A9_HPS_h2f_axi_master_rvalid -> ARM_A9_HPS:h2f_RVALID
 	wire         mm_interconnect_0_onchip_memory2_0_s1_chipselect;  // mm_interconnect_0:onchip_memory2_0_s1_chipselect -> onchip_memory2_0:chipselect
 	wire  [31:0] mm_interconnect_0_onchip_memory2_0_s1_readdata;    // onchip_memory2_0:readdata -> mm_interconnect_0:onchip_memory2_0_s1_readdata
-	wire   [9:0] mm_interconnect_0_onchip_memory2_0_s1_address;     // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
+	wire  [12:0] mm_interconnect_0_onchip_memory2_0_s1_address;     // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
 	wire   [3:0] mm_interconnect_0_onchip_memory2_0_s1_byteenable;  // mm_interconnect_0:onchip_memory2_0_s1_byteenable -> onchip_memory2_0:byteenable
 	wire         mm_interconnect_0_onchip_memory2_0_s1_write;       // mm_interconnect_0:onchip_memory2_0_s1_write -> onchip_memory2_0:write
 	wire  [31:0] mm_interconnect_0_onchip_memory2_0_s1_writedata;   // mm_interconnect_0:onchip_memory2_0_s1_writedata -> onchip_memory2_0:writedata
@@ -202,7 +202,7 @@ module soc_system (
 	wire         mm_bridge_2_m0_waitrequest;                        // mm_interconnect_3:mm_bridge_2_m0_waitrequest -> mm_bridge_2:m0_waitrequest
 	wire  [31:0] mm_bridge_2_m0_readdata;                           // mm_interconnect_3:mm_bridge_2_m0_readdata -> mm_bridge_2:m0_readdata
 	wire         mm_bridge_2_m0_debugaccess;                        // mm_bridge_2:m0_debugaccess -> mm_interconnect_3:mm_bridge_2_m0_debugaccess
-	wire   [9:0] mm_bridge_2_m0_address;                            // mm_bridge_2:m0_address -> mm_interconnect_3:mm_bridge_2_m0_address
+	wire  [12:0] mm_bridge_2_m0_address;                            // mm_bridge_2:m0_address -> mm_interconnect_3:mm_bridge_2_m0_address
 	wire         mm_bridge_2_m0_read;                               // mm_bridge_2:m0_read -> mm_interconnect_3:mm_bridge_2_m0_read
 	wire   [3:0] mm_bridge_2_m0_byteenable;                         // mm_bridge_2:m0_byteenable -> mm_interconnect_3:mm_bridge_2_m0_byteenable
 	wire         mm_bridge_2_m0_readdatavalid;                      // mm_interconnect_3:mm_bridge_2_m0_readdatavalid -> mm_bridge_2:m0_readdatavalid
@@ -211,7 +211,7 @@ module soc_system (
 	wire   [0:0] mm_bridge_2_m0_burstcount;                         // mm_bridge_2:m0_burstcount -> mm_interconnect_3:mm_bridge_2_m0_burstcount
 	wire         mm_interconnect_3_onchip_memory2_0_s2_chipselect;  // mm_interconnect_3:onchip_memory2_0_s2_chipselect -> onchip_memory2_0:chipselect2
 	wire  [31:0] mm_interconnect_3_onchip_memory2_0_s2_readdata;    // onchip_memory2_0:readdata2 -> mm_interconnect_3:onchip_memory2_0_s2_readdata
-	wire   [9:0] mm_interconnect_3_onchip_memory2_0_s2_address;     // mm_interconnect_3:onchip_memory2_0_s2_address -> onchip_memory2_0:address2
+	wire  [12:0] mm_interconnect_3_onchip_memory2_0_s2_address;     // mm_interconnect_3:onchip_memory2_0_s2_address -> onchip_memory2_0:address2
 	wire   [3:0] mm_interconnect_3_onchip_memory2_0_s2_byteenable;  // mm_interconnect_3:onchip_memory2_0_s2_byteenable -> onchip_memory2_0:byteenable2
 	wire         mm_interconnect_3_onchip_memory2_0_s2_write;       // mm_interconnect_3:onchip_memory2_0_s2_write -> onchip_memory2_0:write2
 	wire  [31:0] mm_interconnect_3_onchip_memory2_0_s2_writedata;   // mm_interconnect_3:onchip_memory2_0_s2_writedata -> onchip_memory2_0:writedata2
@@ -224,7 +224,7 @@ module soc_system (
 	wire  [31:0] mm_interconnect_4_mm_bridge_2_s0_readdata;         // mm_bridge_2:s0_readdata -> mm_interconnect_4:mm_bridge_2_s0_readdata
 	wire         mm_interconnect_4_mm_bridge_2_s0_waitrequest;      // mm_bridge_2:s0_waitrequest -> mm_interconnect_4:mm_bridge_2_s0_waitrequest
 	wire         mm_interconnect_4_mm_bridge_2_s0_debugaccess;      // mm_interconnect_4:mm_bridge_2_s0_debugaccess -> mm_bridge_2:s0_debugaccess
-	wire   [9:0] mm_interconnect_4_mm_bridge_2_s0_address;          // mm_interconnect_4:mm_bridge_2_s0_address -> mm_bridge_2:s0_address
+	wire  [12:0] mm_interconnect_4_mm_bridge_2_s0_address;          // mm_interconnect_4:mm_bridge_2_s0_address -> mm_bridge_2:s0_address
 	wire         mm_interconnect_4_mm_bridge_2_s0_read;             // mm_interconnect_4:mm_bridge_2_s0_read -> mm_bridge_2:s0_read
 	wire   [3:0] mm_interconnect_4_mm_bridge_2_s0_byteenable;       // mm_interconnect_4:mm_bridge_2_s0_byteenable -> mm_bridge_2:s0_byteenable
 	wire         mm_interconnect_4_mm_bridge_2_s0_readdatavalid;    // mm_bridge_2:s0_readdatavalid -> mm_interconnect_4:mm_bridge_2_s0_readdatavalid
@@ -536,7 +536,7 @@ module soc_system (
 	altera_avalon_mm_bridge #(
 		.DATA_WIDTH        (32),
 		.SYMBOL_WIDTH      (8),
-		.HDL_ADDR_WIDTH    (10),
+		.HDL_ADDR_WIDTH    (13),
 		.BURSTCOUNT_WIDTH  (1),
 		.PIPELINE_COMMAND  (0),
 		.PIPELINE_RESPONSE (0)

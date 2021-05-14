@@ -46,7 +46,7 @@ module soc_system_mm_interconnect_0 (
 		input  wire        pll_0_outclk0_clk,                                                     //                                                   pll_0_outclk0.clk
 		input  wire        ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		input  wire        onchip_memory2_0_reset1_reset_bridge_in_reset_reset,                   //                   onchip_memory2_0_reset1_reset_bridge_in_reset.reset
-		output wire [9:0]  onchip_memory2_0_s1_address,                                           //                                             onchip_memory2_0_s1.address
+		output wire [12:0] onchip_memory2_0_s1_address,                                           //                                             onchip_memory2_0_s1.address
 		output wire        onchip_memory2_0_s1_write,                                             //                                                                .write
 		input  wire [31:0] onchip_memory2_0_s1_readdata,                                          //                                                                .readdata
 		output wire [31:0] onchip_memory2_0_s1_writedata,                                         //                                                                .writedata
@@ -169,7 +169,7 @@ module soc_system_mm_interconnect_0 (
 	wire    [0:0] avalon_st_adapter_out_0_error;                           // avalon_st_adapter:out_0_error -> onchip_memory2_0_s1_agent:rdata_fifo_sink_error
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (10),
+		.AV_ADDRESS_W                   (13),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

@@ -9,7 +9,7 @@
 module soc_system_mm_interconnect_3 (
 		input  wire        pll_0_outclk2_clk,                             //                           pll_0_outclk2.clk
 		input  wire        mm_bridge_2_reset_reset_bridge_in_reset_reset, // mm_bridge_2_reset_reset_bridge_in_reset.reset
-		input  wire [9:0]  mm_bridge_2_m0_address,                        //                          mm_bridge_2_m0.address
+		input  wire [12:0] mm_bridge_2_m0_address,                        //                          mm_bridge_2_m0.address
 		output wire        mm_bridge_2_m0_waitrequest,                    //                                        .waitrequest
 		input  wire [0:0]  mm_bridge_2_m0_burstcount,                     //                                        .burstcount
 		input  wire [3:0]  mm_bridge_2_m0_byteenable,                     //                                        .byteenable
@@ -19,7 +19,7 @@ module soc_system_mm_interconnect_3 (
 		input  wire        mm_bridge_2_m0_write,                          //                                        .write
 		input  wire [31:0] mm_bridge_2_m0_writedata,                      //                                        .writedata
 		input  wire        mm_bridge_2_m0_debugaccess,                    //                                        .debugaccess
-		output wire [9:0]  onchip_memory2_0_s2_address,                   //                     onchip_memory2_0_s2.address
+		output wire [12:0] onchip_memory2_0_s2_address,                   //                     onchip_memory2_0_s2.address
 		output wire        onchip_memory2_0_s2_write,                     //                                        .write
 		input  wire [31:0] onchip_memory2_0_s2_readdata,                  //                                        .readdata
 		output wire [31:0] onchip_memory2_0_s2_writedata,                 //                                        .writedata
@@ -31,7 +31,7 @@ module soc_system_mm_interconnect_3 (
 	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_waitrequest;   // onchip_memory2_0_s2_translator:uav_waitrequest -> mm_bridge_2_m0_translator:uav_waitrequest
 	wire  [31:0] mm_bridge_2_m0_translator_avalon_universal_master_0_readdata;      // onchip_memory2_0_s2_translator:uav_readdata -> mm_bridge_2_m0_translator:uav_readdata
 	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_debugaccess;   // mm_bridge_2_m0_translator:uav_debugaccess -> onchip_memory2_0_s2_translator:uav_debugaccess
-	wire  [11:0] mm_bridge_2_m0_translator_avalon_universal_master_0_address;       // mm_bridge_2_m0_translator:uav_address -> onchip_memory2_0_s2_translator:uav_address
+	wire  [14:0] mm_bridge_2_m0_translator_avalon_universal_master_0_address;       // mm_bridge_2_m0_translator:uav_address -> onchip_memory2_0_s2_translator:uav_address
 	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_read;          // mm_bridge_2_m0_translator:uav_read -> onchip_memory2_0_s2_translator:uav_read
 	wire   [3:0] mm_bridge_2_m0_translator_avalon_universal_master_0_byteenable;    // mm_bridge_2_m0_translator:uav_byteenable -> onchip_memory2_0_s2_translator:uav_byteenable
 	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_readdatavalid; // onchip_memory2_0_s2_translator:uav_readdatavalid -> mm_bridge_2_m0_translator:uav_readdatavalid
@@ -41,11 +41,11 @@ module soc_system_mm_interconnect_3 (
 	wire   [2:0] mm_bridge_2_m0_translator_avalon_universal_master_0_burstcount;    // mm_bridge_2_m0_translator:uav_burstcount -> onchip_memory2_0_s2_translator:uav_burstcount
 
 	altera_merlin_master_translator #(
-		.AV_ADDRESS_W                (10),
+		.AV_ADDRESS_W                (13),
 		.AV_DATA_W                   (32),
 		.AV_BURSTCOUNT_W             (1),
 		.AV_BYTEENABLE_W             (4),
-		.UAV_ADDRESS_W               (12),
+		.UAV_ADDRESS_W               (15),
 		.UAV_BURSTCOUNT_W            (3),
 		.USE_READ                    (1),
 		.USE_WRITE                   (1),
@@ -101,13 +101,13 @@ module soc_system_mm_interconnect_3 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (10),
+		.AV_ADDRESS_W                   (13),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
 		.AV_BYTEENABLE_W                (4),
 		.UAV_BYTEENABLE_W               (4),
-		.UAV_ADDRESS_W                  (12),
+		.UAV_ADDRESS_W                  (15),
 		.UAV_BURSTCOUNT_W               (3),
 		.AV_READLATENCY                 (1),
 		.USE_READDATAVALID              (0),

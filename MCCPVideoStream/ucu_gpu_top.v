@@ -15,7 +15,7 @@ module ucu_gpu_top(
     inout               HDMI_I2C_SDA,
     inout               HDMI_I2S,
     inout               HDMI_LRCLK,
-    inout               HDMI_MCLK,
+    inout               HDMI_MCLK, 
     inout               HDMI_SCLK,
     output              HDMI_TX_CLK,
     output   [23: 0]    HDMI_TX_D,

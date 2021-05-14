@@ -14,7 +14,7 @@ module soc_system_mm_interconnect_4 (
 		input  wire        our_video_dma_0_video_data_reader_read,            //                                            .read
 		output wire [31:0] our_video_dma_0_video_data_reader_readdata,        //                                            .readdata
 		output wire        our_video_dma_0_video_data_reader_readdatavalid,   //                                            .readdatavalid
-		output wire [9:0]  mm_bridge_2_s0_address,                            //                              mm_bridge_2_s0.address
+		output wire [12:0] mm_bridge_2_s0_address,                            //                              mm_bridge_2_s0.address
 		output wire        mm_bridge_2_s0_write,                              //                                            .write
 		output wire        mm_bridge_2_s0_read,                               //                                            .read
 		input  wire [31:0] mm_bridge_2_s0_readdata,                           //                                            .readdata
@@ -99,7 +99,7 @@ module soc_system_mm_interconnect_4 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (10),
+		.AV_ADDRESS_W                   (13),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

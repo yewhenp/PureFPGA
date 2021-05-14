@@ -69,6 +69,7 @@ parameter VIDEO_H	= 768;
 //parameter START_ADDRESS	= 16711680;
 reg [31:0] START_ADDRESS = 32'b0;
 reg main_status = 1'b0;
+reg [31:0] kostyl_offset = 1;
 //`define VIDEO_PIX_NUM	(VIDEO_W * VIDEO_H)
 
 ////////////////////////////////////////////////
@@ -88,6 +89,8 @@ wire pixclk;
 //reg [3:0] pix_clk_cnt = 0; 
 reg pix_clk_cnt = 0; 
 reg change_status = 0; 
+
+
 //reg ssstttaaatttuuusss = 1'b1;
 
 //assign pixclk = (pix_clk_cnt & 2)?1:0;
@@ -133,6 +136,9 @@ reg [11:0] RGB_X;
 reg [11:0] RGB_Y;
 reg [31:0] main_address = 0;
 
+wire keep_frame;
+assign keep_frame = (main_address < 6144)?1:0;
+
 assign address = main_address;
 
 assign RGB_R = readdata[7:0];
@@ -168,7 +174,12 @@ begin
 					RGB_X = RGB_X + 1;	
 //					change_status = ~change_status;
 //					if (change_status) begin
-						main_address = main_address - 1;
+//						main_address = main_address - kostyl_offset;
+						main_address = main_address + 1;
+						kostyl_offset= kostyl_offset + 1;
+						if (kostyl_offset >= 7) begin
+							kostyl_offset= 1;
+						end
 //					end
 				end
 			end
@@ -213,7 +224,11 @@ begin
 			begin
 //				change_status = ~change_status;
 //				if (change_status) begin
-				fifo_w_data <= {sop,eop, RGB_B, RGB_G, RGB_R};
+//				if (keep_frame) begin
+					fifo_w_data <= {sop,eop, RGB_B, RGB_G, RGB_R};
+//				end else begin
+//					fifo_w_data <= {sop,eop, 8'b0, 8'b0, 8'b0};
+//				end
 				fifo_w_write <= 1'b1;
 //				end else begin
 //					fifo_w_write <= 1'b0;

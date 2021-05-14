@@ -1,6 +1,7 @@
 import re
 from pprint import pprint
 from .utils import *
+import sys
 
 
 class Assembler:
@@ -20,7 +21,12 @@ class Assembler:
             counter = 0
             for line_n, line in enumerate(open(self.prep_file, "r")):
                 line = line.strip()
-                encoded = self.__encode_command(line)
+                try:
+                    encoded = self.__encode_command(line)
+                except Exception:
+                    print(str(line))
+                    print("Error occured during assembling in line {}".format(str(line)))
+                    sys.exit(1)
 
                 if len(encoded) == 32:
                     if verbose:
@@ -220,7 +226,7 @@ class Assembler:
         """
         instr_counter = 0
         stripped_program = []
-        val_labels = {'core_num': 4}
+        val_labels = {}
         jump_labels = {}
         return_from_call_counter = 0
 
@@ -264,12 +270,15 @@ class Assembler:
 
         # early substitute to label, after $ sign
         for line in stripped_program:
-            for k in (1, 2):
-                if len(line) > k:
-                    if '$' in line[k]:
-                        label_name = line[k][line[k].index('$')+1:]
-                        line[k] = line[k][:line[k].index('$')]
-                        line[k] += str(val_labels[label_name])
+            if len(line) > 2 and "core_num" in line[2]:
+                line[2] = CORE_NUM
+            else:
+                for k in (1, 2):
+                    if len(line) > k:
+                        if '$' in line[k]:
+                            label_name = line[k][line[k].index('$')+1:]
+                            line[k] = line[k][:line[k].index('$')]
+                            line[k] += str(val_labels[label_name])
 
         return val_labels, jump_labels, stripped_program
 

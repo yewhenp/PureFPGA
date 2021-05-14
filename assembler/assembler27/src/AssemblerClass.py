@@ -220,7 +220,7 @@ class Assembler:
         """
         instr_counter = 0
         stripped_program = []
-        val_labels = {}
+        val_labels = {'core_num': 4}
         jump_labels = {}
         return_from_call_counter = 0
 
@@ -310,10 +310,10 @@ class Assembler:
                 instr_counter += 3
 
             # change CORE_NUM to 4 for movl/movh
-            elif pure_instr in mem_only_num_command_unprocessed and line[2] == "core_num":
-                line[2] = CORE_NUM
-                processed_program.append(line)
-                instr_counter += 1
+            # elif pure_instr in mem_only_num_command_unprocessed and line[2] == "core_num":
+            #     line[2] = CORE_NUM
+            #     processed_program.append(line)
+            #     instr_counter += 1
 
             # mov regi label = movl regi label[16:] + movh regi label[:16]
             elif pure_instr == "mov" and line[2] not in registers:

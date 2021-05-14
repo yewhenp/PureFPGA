@@ -2,69 +2,53 @@
 # 
 preplace inst soc_system.ARM_A9_HPS.sysmgr -pg 1
 preplace inst soc_system.ARM_A9_HPS.gmac0 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.vib_cmd0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.gmac1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer -pg 1
 preplace inst soc_system.alt_vip_cl_cvo_0.video_in.vid_front -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.scheduler -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.vib_cmd1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.f2s_sdram_ref_clk -pg 1
 preplace inst soc_system.ARM_A9_HPS.arm_gic_0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.axi_sdram -pg 1
-preplace inst soc_system.pll_0 -pg 1 -lvl 62 -y 360
-preplace inst soc_system.alt_vip_cl_mixer_0.alpha_merge0 -pg 1
+preplace inst soc_system.pll_0 -pg 1 -lvl 67 -y 380
+preplace inst soc_system.our_video_dma_0 -pg 1 -lvl 68 -y 190
 preplace inst soc_system.ARM_A9_HPS.spim0 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.alpha_merge1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.spim1 -pg 1
 preplace inst soc_system -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst soc_system.alt_vip_cl_cvo_0.video_in.reset_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.hps_io.border -pg 1
+preplace inst soc_system.clock_bridge_0 -pg 1 -lvl 68 -y 110
 preplace inst soc_system.ARM_A9_HPS.bridges -pg 1
 preplace inst soc_system.ARM_A9_HPS.nand0 -pg 1
-preplace inst soc_system.alt_vip_cl_tpg_0.core_0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.dcan0 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.av_st_reset_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer2 -pg 1
 preplace inst soc_system.ARM_A9_HPS.dcan1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.timer3 -pg 1
 preplace inst soc_system.ARM_A9_HPS.qspi -pg 1
 preplace inst soc_system.ARM_A9_HPS.hps_io -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.vib_resp0 -pg 1
-preplace inst soc_system.onchip_memory2_0 -pg 1 -lvl 63 -y 200
-preplace inst soc_system.alt_vip_cl_tpg_0 -pg 1 -lvl 45 -y 190
-preplace inst soc_system.alt_vip_cl_mixer_0.vib_resp1 -pg 1
+preplace inst soc_system.onchip_memory2_0 -pg 1 -lvl 70 -y 220
 preplace inst soc_system.ARM_A9_HPS.clkmgr -pg 1
-preplace inst soc_system.alt_vip_cl_tpg_0.video_out -pg 1
 preplace inst soc_system.ARM_A9_HPS.fpga_interfaces -pg 1
-preplace inst soc_system.alt_vip_cl_cvo_0 -pg 1 -lvl 62 -y 120
-preplace inst soc_system.alt_vip_cl_mixer_0.mixer_core -pg 1
+preplace inst soc_system.alt_vip_cl_cvo_0 -pg 1 -lvl 67 -y 140
 preplace inst soc_system.ARM_A9_HPS.sdrctl -pg 1
 preplace inst soc_system.ARM_A9_HPS.L2 -pg 1
 preplace inst soc_system.ARM_A9_HPS.scu -pg 1
 preplace inst soc_system.ARM_A9_HPS.wd_timer0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.wd_timer1 -pg 1
-preplace inst soc_system.alt_vip_cl_tpg_0.av_st_reset_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.eosc1 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.vob -pg 1
 preplace inst soc_system.ARM_A9_HPS.eosc2 -pg 1
 preplace inst soc_system.alt_vip_cl_cvo_0.is_reset_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.dma -pg 1
-preplace inst soc_system.alt_vip_cl_tpg_0.av_st_clk_bridge -pg 1
 preplace inst soc_system.alt_vip_cl_cvo_0.video_in.vid_back -pg 1
 preplace inst soc_system.ARM_A9_HPS.l3regs -pg 1
 preplace inst soc_system.alt_vip_cl_cvo_0.video_in -pg 1
-preplace inst soc_system.mm_bridge_0 -pg 1 -lvl 2 -y 480
 preplace inst soc_system.ARM_A9_HPS.arm_a9_0 -pg 1
-preplace inst soc_system.alt_vip_cl_tpg_0.scheduler -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.cmd_mux_term -pg 1
+preplace inst soc_system.mm_bridge_0 -pg 1 -lvl 2 -y 500
 preplace inst soc_system.ARM_A9_HPS.arm_a9_1 -pg 1
+preplace inst soc_system.mm_bridge_2 -pg 1 -lvl 69 -y 150
 preplace inst soc_system.ARM_A9_HPS.i2c0 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.av_st_clk_bridge -pg 1
 preplace inst soc_system.ARM_A9_HPS.i2c1 -pg 1
 preplace inst soc_system.alt_vip_cl_cvo_0.video_in.clk_bridge -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0 -pg 1 -lvl 61 -y 110
 preplace inst soc_system.ARM_A9_HPS.uart0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.axi_ocram -pg 1
 preplace inst soc_system.ARM_A9_HPS.f2s_periph_ref_clk -pg 1
@@ -81,30 +65,30 @@ preplace inst soc_system.ARM_A9_HPS.usb1 -pg 1
 preplace inst soc_system.ARM_A9_HPS.sdmmc -pg 1
 preplace inst soc_system.sys_pll.sys_pll -pg 1
 preplace inst soc_system.ARM_A9_HPS.clk_0 -pg 1
-preplace inst soc_system.alt_vip_cl_mixer_0.tpg -pg 1
 preplace inst soc_system.ARM_A9_HPS.gpio0 -pg 1
 preplace inst soc_system.ARM_A9_HPS.gpio1 -pg 1
-preplace inst soc_system.sys_pll -pg 1 -lvl 1 -y 440
+preplace inst soc_system.sys_pll -pg 1 -lvl 1 -y 460
 preplace inst soc_system.alt_vip_cl_cvo_0.cvo_core -pg 1
 preplace inst soc_system.ARM_A9_HPS.rstmgr -pg 1
-preplace inst soc_system.ARM_A9_HPS -pg 1 -lvl 44 -y 70
+preplace inst soc_system.ARM_A9_HPS -pg 1 -lvl 44 -y 100
 preplace inst soc_system.ARM_A9_HPS.gpio2 -pg 1
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.din0,(SLAVE)soc_system.alt_vip_cl_mixer_0_din1) 1 0 61 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 270 NJ 130 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(MASTER)sys_pll.sys_clk,(SLAVE)ARM_A9_HPS.h2f_lw_axi_clock,(SLAVE)pll_0.refclk,(SLAVE)mm_bridge_0.clk) 1 1 61 470 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 8370 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ
-preplace netloc INTERCONNECT<net_container>soc_system</net_container>(MASTER)ARM_A9_HPS.h2f_reset,(SLAVE)alt_vip_cl_tpg_0.main_reset,(SLAVE)onchip_memory2_0.reset2,(MASTER)sys_pll.reset_source,(SLAVE)pll_0.reset,(SLAVE)alt_vip_cl_mixer_0.main_reset,(SLAVE)mm_bridge_0.reset,(SLAVE)alt_vip_cl_cvo_0.main_reset,(SLAVE)onchip_memory2_0.reset1) 1 1 62 450 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 8850 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 9530 250 9800 350 10050
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)ARM_A9_HPS.h2f_lw_axi_master,(SLAVE)mm_bridge_0.s0) 1 1 44 490 470 NJ 470 NJ 470 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 8790
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(MASTER)pll_0.outclk0,(SLAVE)ARM_A9_HPS.f2h_axi_clock,(SLAVE)ARM_A9_HPS.f2h_sdram0_clock,(SLAVE)alt_vip_cl_tpg_0.main_clock,(SLAVE)onchip_memory2_0.clk1,(SLAVE)alt_vip_cl_cvo_0.main_clock,(SLAVE)onchip_memory2_0.clk2,(SLAVE)ARM_A9_HPS.h2f_axi_clock,(SLAVE)alt_vip_cl_mixer_0.main_clock) 1 43 20 8390 290 8890 150 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 9490 50 9780 330 10030
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.alt_vip_cl_cvo_0_clocked_video,(SLAVE)alt_vip_cl_cvo_0.clocked_video) 1 0 62 NJ 90 NJ 90 NJ 90 NJ 80 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 90 NJ 100 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 50 NJ 120 NJ 120 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ 30 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)pll_0.outclk1,(MASTER)soc_system.clk_hdmi) 1 62 2 NJ 390 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.onchip_memory2_0_s2,(SLAVE)onchip_memory2_0.s2) 1 0 63 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 310 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 70 NJ 310 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_hps_io,(SLAVE)ARM_A9_HPS.hps_io) 1 0 44 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.din1,(MASTER)alt_vip_cl_tpg_0.dout) 1 45 16 9110 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)alt_vip_cl_mixer_0.control,(MASTER)mm_bridge_0.m0) 1 2 59 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 NJ 510 9510
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.memory,(SLAVE)ARM_A9_HPS.memory) 1 0 44 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)pll_0.outclk2,(MASTER)soc_system.clk_100m) 1 62 2 NJ 410 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)alt_vip_cl_mixer_0.dout,(SLAVE)alt_vip_cl_cvo_0.din) 1 61 1 9740
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.reset,(SLAVE)sys_pll.ref_reset) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)onchip_memory2_0.s1,(MASTER)ARM_A9_HPS.h2f_axi_master) 1 44 19 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 290 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.clk,(SLAVE)sys_pll.ref_clk) 1 0 1 NJ
-levelinfo -pg 1 0 200 10290
-levelinfo -hier soc_system 210 290 520 700 1140 1540 1710 1960 2120 2620 2960 3120 3380 3720 3910 4210 4510 4670 5130 5450 5610 5930 6250 6470 6790 7170 7300 7320 7340 7360 7380 7400 7420 7440 7460 7480 7500 7520 7540 7560 7580 7750 8050 8290 8600 8980 9170 9190 9210 9230 9250 9270 9290 9310 9330 9350 9370 9390 9410 9430 9450 9620 9900 10100 10210
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)mm_bridge_0.m0,(SLAVE)our_video_dma_0.ctrl) 1 2 66 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 NJ 530 11680
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)ARM_A9_HPS.h2f_lw_axi_master,(SLAVE)mm_bridge_0.s0) 1 1 44 490 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 8790
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)mm_bridge_2.s0,(MASTER)our_video_dma_0.video_data_reader) 1 68 1 N
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.alt_vip_cl_cvo_0_clocked_video,(SLAVE)alt_vip_cl_cvo_0.clocked_video) 1 0 67 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ 110 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)our_video_dma_0.video_data_streaming_source,(MASTER)soc_system.our_video_dma_0_video_data_streaming_source) 1 68 3 NJ 370 NJ 370 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)pll_0.outclk1,(MASTER)soc_system.clk_hdmi) 1 67 4 NJ 410 NJ 410 NJ 410 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)sys_pll.ref_reset,(SLAVE)soc_system.reset) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>soc_system</net_container>(MASTER)sys_pll.reset_source,(SLAVE)onchip_memory2_0.reset2,(SLAVE)alt_vip_cl_cvo_0.main_reset,(SLAVE)mm_bridge_0.reset,(SLAVE)mm_bridge_2.reset,(SLAVE)pll_0.reset,(SLAVE)onchip_memory2_0.reset1,(MASTER)ARM_A9_HPS.h2f_reset,(SLAVE)our_video_dma_0.reset) 1 1 69 450 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 8830 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 NJ 430 11100 320 11660 280 11960 320 12100
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_hps_io,(SLAVE)ARM_A9_HPS.hps_io) 1 0 44 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)onchip_memory2_0.clk2,(MASTER)pll_0.outclk0,(SLAVE)clock_bridge_0.in_clk,(SLAVE)ARM_A9_HPS.f2h_sdram0_clock,(SLAVE)mm_bridge_2.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)ARM_A9_HPS.h2f_axi_clock,(SLAVE)alt_vip_cl_cvo_0.main_clock,(SLAVE)ARM_A9_HPS.f2h_axi_clock,(SLAVE)our_video_dma_0.clock) 1 43 27 8330 300 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 11080 260 11640 160 11960 140 12140
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)sys_pll.ref_clk,(SLAVE)soc_system.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.memory,(SLAVE)ARM_A9_HPS.memory) 1 0 44 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(MASTER)sys_pll.sys_clk,(SLAVE)pll_0.refclk,(SLAVE)mm_bridge_0.clk,(SLAVE)ARM_A9_HPS.h2f_lw_axi_clock) 1 1 66 470 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 8310 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ 410 NJ
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)onchip_memory2_0.s2,(MASTER)mm_bridge_2.m0) 1 69 1 12120
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)onchip_memory2_0.s1,(MASTER)ARM_A9_HPS.h2f_axi_master) 1 44 26 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 NJ 300 12080
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.alt_vip_cl_cvo_0_din,(SLAVE)alt_vip_cl_cvo_0.din) 1 0 67 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ 170 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)soc_system.clk_100m_a,(MASTER)pll_0.outclk2) 1 67 4 NJ 430 NJ 430 NJ 430 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)soc_system.clk_100m,(MASTER)clock_bridge_0.out_clk) 1 68 3 NJ 120 NJ 120 NJ
+levelinfo -pg 1 0 200 12520
+levelinfo -hier soc_system 210 290 520 700 1140 1540 1710 1960 2120 2620 2960 3120 3380 3720 3910 4210 4510 4670 5130 5450 5610 5930 6250 6470 6790 7170 7300 7320 7340 7360 7380 7400 7420 7440 7460 7480 7500 7520 7540 7560 7580 7750 8050 8290 8600 8980 9170 9190 9210 9230 9250 9270 9290 9310 9330 9350 9370 9390 9410 9430 9450 9660 9960 10160 10600 10900 11060 11510 11710 11990 12190 12300

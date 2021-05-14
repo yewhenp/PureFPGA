@@ -89,11 +89,11 @@ module rgb_fifo (
 				.wrusedw ());
 	defparam
 		dcfifo_component.intended_device_family = "Stratix V",
-		dcfifo_component.lpm_numwords = 4096,
+		dcfifo_component.lpm_numwords = 16384,
 		dcfifo_component.lpm_showahead = "ON",
 		dcfifo_component.lpm_type = "dcfifo",
 		dcfifo_component.lpm_width = 26,
-		dcfifo_component.lpm_widthu = 12,
+		dcfifo_component.lpm_widthu = 14,
 		dcfifo_component.overflow_checking = "ON",
 		dcfifo_component.rdsync_delaypipe = 5,
 		dcfifo_component.read_aclr_synch = "OFF",

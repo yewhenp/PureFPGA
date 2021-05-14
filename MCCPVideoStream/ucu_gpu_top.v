@@ -23,7 +23,7 @@ module ucu_gpu_top(
     output              HDMI_TX_HS,
     input               HDMI_TX_INT,
     output              HDMI_TX_VS,
-
+	 
     //////////// HPS //////////
     inout               HPS_CONV_USB_N,
     output   [14: 0]    HPS_DDR3_ADDR,
@@ -156,22 +156,22 @@ wire [31:0] address_wire;
 wire readdatavalid_wire;
 wire waitrequest_wire;
 
-gpu_interface gpu_interface_unit(
-	clk_100m,
-	reset_n,
-	
-	// streaming source interface
-	st_data,
-	st_valid,
-	st_sop,
-	st_eop,
-	st_ready,
-	
-	address_wire,
-	readdata_wire,
-	readdatavalid_wire,
-	waitrequest_wire
-);
+//gpu_interface gpu_interface_unit(
+//	clk_100m,
+//	reset_n,
+//	
+//	// streaming source interface
+//	st_data,
+//	st_valid,
+//	st_sop,
+//	st_eop,
+//	st_ready,
+//	
+//	address_wire,
+//	readdata_wire,
+//	readdatavalid_wire,
+//	waitrequest_wire
+//);
 
 soc_system u0(
                //Clock&Reset
@@ -261,11 +261,22 @@ soc_system u0(
 				  .alt_vip_cl_cvo_0_clocked_video_vid_h         (),             //                               .vid_h
 				  .alt_vip_cl_cvo_0_clocked_video_vid_v         (),             //                               .vid_v
 			  
-				  .alt_vip_cl_mixer_0_din1_data                 (st_data),      //        alt_vip_cl_mixer_0_din1.data
-				  .alt_vip_cl_mixer_0_din1_valid                (st_valid),     //                               .valid
-				  .alt_vip_cl_mixer_0_din1_startofpacket        (st_sop),       //                               .startofpacket
-				  .alt_vip_cl_mixer_0_din1_endofpacket          (st_eop),       //                               .endofpacket
-				  .alt_vip_cl_mixer_0_din1_ready                (st_ready),     //                               .ready
+//				  .alt_vip_cl_mixer_0_din0_data                 (st_data),      //        alt_vip_cl_mixer_0_din1.data
+//				  .alt_vip_cl_mixer_0_din0_valid                (st_valid),     //                               .valid
+//				  .alt_vip_cl_mixer_0_din0_startofpacket        (st_sop),       //                               .startofpacket
+//				  .alt_vip_cl_mixer_0_din0_endofpacket          (st_eop),       //                               .endofpacket
+//				  .alt_vip_cl_mixer_0_din0_ready                (st_ready),     //                               .ready
+					.alt_vip_cl_cvo_0_din_data(st_data),                                 //                        alt_vip_cl_cvo_0_din.data
+					.alt_vip_cl_cvo_0_din_valid(st_valid),                                //                                            .valid
+					.alt_vip_cl_cvo_0_din_startofpacket(st_sop),                        //                                            .startofpacket
+					.alt_vip_cl_cvo_0_din_endofpacket(st_eop),                          //                                            .endofpacket
+					.alt_vip_cl_cvo_0_din_ready(st_ready),                                //                                            .ready
+									  
+					.our_video_dma_0_video_data_streaming_source_data(st_data),          // our_video_dma_0_video_data_streaming_source.data
+					.our_video_dma_0_video_data_streaming_source_endofpacket(st_eop),   //                                            .endofpacket
+					.our_video_dma_0_video_data_streaming_source_ready(st_ready),         //                                            .ready
+					.our_video_dma_0_video_data_streaming_source_startofpacket(st_sop), //                                            .startofpacket
+					.our_video_dma_0_video_data_streaming_source_valid(st_valid),        //                                            .valid
 				  
 				  .clk_100m_clk                                 (clk_100m),     //                               .clk_100m.clk
 				  .clk_hdmi_clk(HDMI_CLK),
@@ -286,16 +297,16 @@ soc_system u0(
 //					.onchip_memory2_0_s2_readdata(readdata_wire),                 //                               .readdata
 //					.onchip_memory2_0_s2_writedata(),                //                               .writedata
 //					.onchip_memory2_0_s2_byteenable(4'b1111)               //                               .byteenable
-					.mm_bridge_1_s0_waitrequest(waitrequest_wire),                   //                 mm_bridge_1_s0.waitrequest
-					.mm_bridge_1_s0_readdata(readdata_wire),                      //                               .readdata
-					.mm_bridge_1_s0_readdatavalid(readdatavalid_wire),                 //                               .readdatavalid
-//					.mm_bridge_1_s0_burstcount(),                    //                               .burstcount
-					.mm_bridge_1_s0_writedata(1'b0),                     //                               .writedata
-					.mm_bridge_1_s0_address(address_wire),                       //                               .address
-					.mm_bridge_1_s0_write(1'b0),                         //                               .write
-					.mm_bridge_1_s0_read(1'b1),                          //                               .read
-					.mm_bridge_1_s0_byteenable(4'b1111),                    //                               .byteenable
-					.mm_bridge_1_s0_debugaccess()                   //                               .debugaccess
+//					.mm_bridge_1_s0_waitrequest(waitrequest_wire),                   //                 mm_bridge_1_s0.waitrequest
+//					.mm_bridge_1_s0_readdata(readdata_wire),                      //                               .readdata
+//					.mm_bridge_1_s0_readdatavalid(readdatavalid_wire),                 //                               .readdatavalid
+////					.mm_bridge_1_s0_burstcount(),                    //                               .burstcount
+//					.mm_bridge_1_s0_writedata(1'b0),                     //                               .writedata
+//					.mm_bridge_1_s0_address(address_wire),                       //                               .address
+//					.mm_bridge_1_s0_write(1'b0),                         //                               .write
+//					.mm_bridge_1_s0_read(1'b1),                          //                               .read
+//					.mm_bridge_1_s0_byteenable(4'b1111),                    //                               .byteenable
+//					.mm_bridge_1_s0_debugaccess()                   //                               .debugaccess
 				  );
 
 

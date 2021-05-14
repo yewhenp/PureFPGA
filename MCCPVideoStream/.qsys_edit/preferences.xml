@@ -7,7 +7,6 @@
    <irq preferredWidth="47" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Basic Functions/Bridges and Adaptors,Library,Project,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Basic Functions" />
+ <library expandedCategories="Library,Project" />
  <window width="1920" height="1048" x="0" y="32" />
 </preferences>

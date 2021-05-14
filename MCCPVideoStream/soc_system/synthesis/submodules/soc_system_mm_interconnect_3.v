@@ -7,19 +7,19 @@
 
 `timescale 1 ps / 1 ps
 module soc_system_mm_interconnect_3 (
-		input  wire        pll_0_outclk0_clk,                             //                           pll_0_outclk0.clk
-		input  wire        mm_bridge_1_reset_reset_bridge_in_reset_reset, // mm_bridge_1_reset_reset_bridge_in_reset.reset
-		input  wire [31:0] mm_bridge_1_m0_address,                        //                          mm_bridge_1_m0.address
-		output wire        mm_bridge_1_m0_waitrequest,                    //                                        .waitrequest
-		input  wire [0:0]  mm_bridge_1_m0_burstcount,                     //                                        .burstcount
-		input  wire [3:0]  mm_bridge_1_m0_byteenable,                     //                                        .byteenable
-		input  wire        mm_bridge_1_m0_read,                           //                                        .read
-		output wire [31:0] mm_bridge_1_m0_readdata,                       //                                        .readdata
-		output wire        mm_bridge_1_m0_readdatavalid,                  //                                        .readdatavalid
-		input  wire        mm_bridge_1_m0_write,                          //                                        .write
-		input  wire [31:0] mm_bridge_1_m0_writedata,                      //                                        .writedata
-		input  wire        mm_bridge_1_m0_debugaccess,                    //                                        .debugaccess
-		output wire [2:0]  onchip_memory2_0_s2_address,                   //                     onchip_memory2_0_s2.address
+		input  wire        pll_0_outclk2_clk,                             //                           pll_0_outclk2.clk
+		input  wire        mm_bridge_2_reset_reset_bridge_in_reset_reset, // mm_bridge_2_reset_reset_bridge_in_reset.reset
+		input  wire [9:0]  mm_bridge_2_m0_address,                        //                          mm_bridge_2_m0.address
+		output wire        mm_bridge_2_m0_waitrequest,                    //                                        .waitrequest
+		input  wire [0:0]  mm_bridge_2_m0_burstcount,                     //                                        .burstcount
+		input  wire [3:0]  mm_bridge_2_m0_byteenable,                     //                                        .byteenable
+		input  wire        mm_bridge_2_m0_read,                           //                                        .read
+		output wire [31:0] mm_bridge_2_m0_readdata,                       //                                        .readdata
+		output wire        mm_bridge_2_m0_readdatavalid,                  //                                        .readdatavalid
+		input  wire        mm_bridge_2_m0_write,                          //                                        .write
+		input  wire [31:0] mm_bridge_2_m0_writedata,                      //                                        .writedata
+		input  wire        mm_bridge_2_m0_debugaccess,                    //                                        .debugaccess
+		output wire [9:0]  onchip_memory2_0_s2_address,                   //                     onchip_memory2_0_s2.address
 		output wire        onchip_memory2_0_s2_write,                     //                                        .write
 		input  wire [31:0] onchip_memory2_0_s2_readdata,                  //                                        .readdata
 		output wire [31:0] onchip_memory2_0_s2_writedata,                 //                                        .writedata
@@ -28,24 +28,24 @@ module soc_system_mm_interconnect_3 (
 		output wire        onchip_memory2_0_s2_clken                      //                                        .clken
 	);
 
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_waitrequest;   // onchip_memory2_0_s2_translator:uav_waitrequest -> mm_bridge_1_m0_translator:uav_waitrequest
-	wire  [31:0] mm_bridge_1_m0_translator_avalon_universal_master_0_readdata;      // onchip_memory2_0_s2_translator:uav_readdata -> mm_bridge_1_m0_translator:uav_readdata
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_debugaccess;   // mm_bridge_1_m0_translator:uav_debugaccess -> onchip_memory2_0_s2_translator:uav_debugaccess
-	wire  [31:0] mm_bridge_1_m0_translator_avalon_universal_master_0_address;       // mm_bridge_1_m0_translator:uav_address -> onchip_memory2_0_s2_translator:uav_address
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_read;          // mm_bridge_1_m0_translator:uav_read -> onchip_memory2_0_s2_translator:uav_read
-	wire   [3:0] mm_bridge_1_m0_translator_avalon_universal_master_0_byteenable;    // mm_bridge_1_m0_translator:uav_byteenable -> onchip_memory2_0_s2_translator:uav_byteenable
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_readdatavalid; // onchip_memory2_0_s2_translator:uav_readdatavalid -> mm_bridge_1_m0_translator:uav_readdatavalid
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_lock;          // mm_bridge_1_m0_translator:uav_lock -> onchip_memory2_0_s2_translator:uav_lock
-	wire         mm_bridge_1_m0_translator_avalon_universal_master_0_write;         // mm_bridge_1_m0_translator:uav_write -> onchip_memory2_0_s2_translator:uav_write
-	wire  [31:0] mm_bridge_1_m0_translator_avalon_universal_master_0_writedata;     // mm_bridge_1_m0_translator:uav_writedata -> onchip_memory2_0_s2_translator:uav_writedata
-	wire   [2:0] mm_bridge_1_m0_translator_avalon_universal_master_0_burstcount;    // mm_bridge_1_m0_translator:uav_burstcount -> onchip_memory2_0_s2_translator:uav_burstcount
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_waitrequest;   // onchip_memory2_0_s2_translator:uav_waitrequest -> mm_bridge_2_m0_translator:uav_waitrequest
+	wire  [31:0] mm_bridge_2_m0_translator_avalon_universal_master_0_readdata;      // onchip_memory2_0_s2_translator:uav_readdata -> mm_bridge_2_m0_translator:uav_readdata
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_debugaccess;   // mm_bridge_2_m0_translator:uav_debugaccess -> onchip_memory2_0_s2_translator:uav_debugaccess
+	wire  [11:0] mm_bridge_2_m0_translator_avalon_universal_master_0_address;       // mm_bridge_2_m0_translator:uav_address -> onchip_memory2_0_s2_translator:uav_address
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_read;          // mm_bridge_2_m0_translator:uav_read -> onchip_memory2_0_s2_translator:uav_read
+	wire   [3:0] mm_bridge_2_m0_translator_avalon_universal_master_0_byteenable;    // mm_bridge_2_m0_translator:uav_byteenable -> onchip_memory2_0_s2_translator:uav_byteenable
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_readdatavalid; // onchip_memory2_0_s2_translator:uav_readdatavalid -> mm_bridge_2_m0_translator:uav_readdatavalid
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_lock;          // mm_bridge_2_m0_translator:uav_lock -> onchip_memory2_0_s2_translator:uav_lock
+	wire         mm_bridge_2_m0_translator_avalon_universal_master_0_write;         // mm_bridge_2_m0_translator:uav_write -> onchip_memory2_0_s2_translator:uav_write
+	wire  [31:0] mm_bridge_2_m0_translator_avalon_universal_master_0_writedata;     // mm_bridge_2_m0_translator:uav_writedata -> onchip_memory2_0_s2_translator:uav_writedata
+	wire   [2:0] mm_bridge_2_m0_translator_avalon_universal_master_0_burstcount;    // mm_bridge_2_m0_translator:uav_burstcount -> onchip_memory2_0_s2_translator:uav_burstcount
 
 	altera_merlin_master_translator #(
-		.AV_ADDRESS_W                (32),
+		.AV_ADDRESS_W                (10),
 		.AV_DATA_W                   (32),
 		.AV_BURSTCOUNT_W             (1),
 		.AV_BYTEENABLE_W             (4),
-		.UAV_ADDRESS_W               (32),
+		.UAV_ADDRESS_W               (12),
 		.UAV_BURSTCOUNT_W            (3),
 		.USE_READ                    (1),
 		.USE_WRITE                   (1),
@@ -58,36 +58,36 @@ module soc_system_mm_interconnect_3 (
 		.USE_READRESPONSE            (0),
 		.USE_WRITERESPONSE           (0),
 		.AV_SYMBOLS_PER_WORD         (4),
-		.AV_ADDRESS_SYMBOLS          (1),
+		.AV_ADDRESS_SYMBOLS          (0),
 		.AV_BURSTCOUNT_SYMBOLS       (0),
 		.AV_CONSTANT_BURST_BEHAVIOR  (0),
 		.UAV_CONSTANT_BURST_BEHAVIOR (0),
 		.AV_LINEWRAPBURSTS           (0),
 		.AV_REGISTERINCOMINGSIGNALS  (0)
-	) mm_bridge_1_m0_translator (
-		.clk                    (pll_0_outclk0_clk),                                                 //                       clk.clk
-		.reset                  (mm_bridge_1_reset_reset_bridge_in_reset_reset),                     //                     reset.reset
-		.uav_address            (mm_bridge_1_m0_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
-		.uav_burstcount         (mm_bridge_1_m0_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
-		.uav_read               (mm_bridge_1_m0_translator_avalon_universal_master_0_read),          //                          .read
-		.uav_write              (mm_bridge_1_m0_translator_avalon_universal_master_0_write),         //                          .write
-		.uav_waitrequest        (mm_bridge_1_m0_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
-		.uav_readdatavalid      (mm_bridge_1_m0_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
-		.uav_byteenable         (mm_bridge_1_m0_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
-		.uav_readdata           (mm_bridge_1_m0_translator_avalon_universal_master_0_readdata),      //                          .readdata
-		.uav_writedata          (mm_bridge_1_m0_translator_avalon_universal_master_0_writedata),     //                          .writedata
-		.uav_lock               (mm_bridge_1_m0_translator_avalon_universal_master_0_lock),          //                          .lock
-		.uav_debugaccess        (mm_bridge_1_m0_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
-		.av_address             (mm_bridge_1_m0_address),                                            //      avalon_anti_master_0.address
-		.av_waitrequest         (mm_bridge_1_m0_waitrequest),                                        //                          .waitrequest
-		.av_burstcount          (mm_bridge_1_m0_burstcount),                                         //                          .burstcount
-		.av_byteenable          (mm_bridge_1_m0_byteenable),                                         //                          .byteenable
-		.av_read                (mm_bridge_1_m0_read),                                               //                          .read
-		.av_readdata            (mm_bridge_1_m0_readdata),                                           //                          .readdata
-		.av_readdatavalid       (mm_bridge_1_m0_readdatavalid),                                      //                          .readdatavalid
-		.av_write               (mm_bridge_1_m0_write),                                              //                          .write
-		.av_writedata           (mm_bridge_1_m0_writedata),                                          //                          .writedata
-		.av_debugaccess         (mm_bridge_1_m0_debugaccess),                                        //                          .debugaccess
+	) mm_bridge_2_m0_translator (
+		.clk                    (pll_0_outclk2_clk),                                                 //                       clk.clk
+		.reset                  (mm_bridge_2_reset_reset_bridge_in_reset_reset),                     //                     reset.reset
+		.uav_address            (mm_bridge_2_m0_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
+		.uav_burstcount         (mm_bridge_2_m0_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
+		.uav_read               (mm_bridge_2_m0_translator_avalon_universal_master_0_read),          //                          .read
+		.uav_write              (mm_bridge_2_m0_translator_avalon_universal_master_0_write),         //                          .write
+		.uav_waitrequest        (mm_bridge_2_m0_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
+		.uav_readdatavalid      (mm_bridge_2_m0_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
+		.uav_byteenable         (mm_bridge_2_m0_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
+		.uav_readdata           (mm_bridge_2_m0_translator_avalon_universal_master_0_readdata),      //                          .readdata
+		.uav_writedata          (mm_bridge_2_m0_translator_avalon_universal_master_0_writedata),     //                          .writedata
+		.uav_lock               (mm_bridge_2_m0_translator_avalon_universal_master_0_lock),          //                          .lock
+		.uav_debugaccess        (mm_bridge_2_m0_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
+		.av_address             (mm_bridge_2_m0_address),                                            //      avalon_anti_master_0.address
+		.av_waitrequest         (mm_bridge_2_m0_waitrequest),                                        //                          .waitrequest
+		.av_burstcount          (mm_bridge_2_m0_burstcount),                                         //                          .burstcount
+		.av_byteenable          (mm_bridge_2_m0_byteenable),                                         //                          .byteenable
+		.av_read                (mm_bridge_2_m0_read),                                               //                          .read
+		.av_readdata            (mm_bridge_2_m0_readdata),                                           //                          .readdata
+		.av_readdatavalid       (mm_bridge_2_m0_readdatavalid),                                      //                          .readdatavalid
+		.av_write               (mm_bridge_2_m0_write),                                              //                          .write
+		.av_writedata           (mm_bridge_2_m0_writedata),                                          //                          .writedata
+		.av_debugaccess         (mm_bridge_2_m0_debugaccess),                                        //                          .debugaccess
 		.av_beginbursttransfer  (1'b0),                                                              //               (terminated)
 		.av_begintransfer       (1'b0),                                                              //               (terminated)
 		.av_chipselect          (1'b0),                                                              //               (terminated)
@@ -101,13 +101,13 @@ module soc_system_mm_interconnect_3 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (3),
+		.AV_ADDRESS_W                   (10),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
 		.AV_BYTEENABLE_W                (4),
 		.UAV_BYTEENABLE_W               (4),
-		.UAV_ADDRESS_W                  (32),
+		.UAV_ADDRESS_W                  (12),
 		.UAV_BURSTCOUNT_W               (3),
 		.AV_READLATENCY                 (1),
 		.USE_READDATAVALID              (0),
@@ -127,19 +127,19 @@ module soc_system_mm_interconnect_3 (
 		.AV_SETUP_WAIT_CYCLES           (0),
 		.AV_DATA_HOLD_CYCLES            (0)
 	) onchip_memory2_0_s2_translator (
-		.clk                    (pll_0_outclk0_clk),                                                 //                      clk.clk
-		.reset                  (mm_bridge_1_reset_reset_bridge_in_reset_reset),                     //                    reset.reset
-		.uav_address            (mm_bridge_1_m0_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
-		.uav_burstcount         (mm_bridge_1_m0_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
-		.uav_read               (mm_bridge_1_m0_translator_avalon_universal_master_0_read),          //                         .read
-		.uav_write              (mm_bridge_1_m0_translator_avalon_universal_master_0_write),         //                         .write
-		.uav_waitrequest        (mm_bridge_1_m0_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
-		.uav_readdatavalid      (mm_bridge_1_m0_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
-		.uav_byteenable         (mm_bridge_1_m0_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
-		.uav_readdata           (mm_bridge_1_m0_translator_avalon_universal_master_0_readdata),      //                         .readdata
-		.uav_writedata          (mm_bridge_1_m0_translator_avalon_universal_master_0_writedata),     //                         .writedata
-		.uav_lock               (mm_bridge_1_m0_translator_avalon_universal_master_0_lock),          //                         .lock
-		.uav_debugaccess        (mm_bridge_1_m0_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
+		.clk                    (pll_0_outclk2_clk),                                                 //                      clk.clk
+		.reset                  (mm_bridge_2_reset_reset_bridge_in_reset_reset),                     //                    reset.reset
+		.uav_address            (mm_bridge_2_m0_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
+		.uav_burstcount         (mm_bridge_2_m0_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
+		.uav_read               (mm_bridge_2_m0_translator_avalon_universal_master_0_read),          //                         .read
+		.uav_write              (mm_bridge_2_m0_translator_avalon_universal_master_0_write),         //                         .write
+		.uav_waitrequest        (mm_bridge_2_m0_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
+		.uav_readdatavalid      (mm_bridge_2_m0_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
+		.uav_byteenable         (mm_bridge_2_m0_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
+		.uav_readdata           (mm_bridge_2_m0_translator_avalon_universal_master_0_readdata),      //                         .readdata
+		.uav_writedata          (mm_bridge_2_m0_translator_avalon_universal_master_0_writedata),     //                         .writedata
+		.uav_lock               (mm_bridge_2_m0_translator_avalon_universal_master_0_lock),          //                         .lock
+		.uav_debugaccess        (mm_bridge_2_m0_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
 		.av_address             (onchip_memory2_0_s2_address),                                       //      avalon_anti_slave_0.address
 		.av_write               (onchip_memory2_0_s2_write),                                         //                         .write
 		.av_readdata            (onchip_memory2_0_s2_readdata),                                      //                         .readdata

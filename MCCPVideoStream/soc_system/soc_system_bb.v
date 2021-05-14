@@ -9,13 +9,13 @@ module soc_system (
 	alt_vip_cl_cvo_0_clocked_video_vid_f,
 	alt_vip_cl_cvo_0_clocked_video_vid_h,
 	alt_vip_cl_cvo_0_clocked_video_vid_v,
-	alt_vip_cl_mixer_0_din1_data,
-	alt_vip_cl_mixer_0_din1_valid,
-	alt_vip_cl_mixer_0_din1_startofpacket,
-	alt_vip_cl_mixer_0_din1_endofpacket,
-	alt_vip_cl_mixer_0_din1_ready,
+	alt_vip_cl_cvo_0_din_data,
+	alt_vip_cl_cvo_0_din_valid,
+	alt_vip_cl_cvo_0_din_startofpacket,
+	alt_vip_cl_cvo_0_din_endofpacket,
+	alt_vip_cl_cvo_0_din_ready,
 	clk_clk,
-	clk_100m_a_clk,
+	clk_100m_clk,
 	clk_hdmi_clk,
 	hps_0_hps_io_hps_io_emac1_inst_TX_CLK,
 	hps_0_hps_io_hps_io_emac1_inst_TXD0,
@@ -81,18 +81,12 @@ module soc_system (
 	memory_mem_odt,
 	memory_mem_dm,
 	memory_oct_rzqin,
-	mm_bridge_1_s0_waitrequest,
-	mm_bridge_1_s0_readdata,
-	mm_bridge_1_s0_readdatavalid,
-	mm_bridge_1_s0_burstcount,
-	mm_bridge_1_s0_writedata,
-	mm_bridge_1_s0_address,
-	mm_bridge_1_s0_write,
-	mm_bridge_1_s0_read,
-	mm_bridge_1_s0_byteenable,
-	mm_bridge_1_s0_debugaccess,
-	reset_reset,
-	clk_100m_clk);	
+	our_video_dma_0_video_data_streaming_source_data,
+	our_video_dma_0_video_data_streaming_source_endofpacket,
+	our_video_dma_0_video_data_streaming_source_ready,
+	our_video_dma_0_video_data_streaming_source_startofpacket,
+	our_video_dma_0_video_data_streaming_source_valid,
+	reset_reset);	
 
 	input		alt_vip_cl_cvo_0_clocked_video_vid_clk;
 	output	[23:0]	alt_vip_cl_cvo_0_clocked_video_vid_data;
@@ -103,13 +97,13 @@ module soc_system (
 	output		alt_vip_cl_cvo_0_clocked_video_vid_f;
 	output		alt_vip_cl_cvo_0_clocked_video_vid_h;
 	output		alt_vip_cl_cvo_0_clocked_video_vid_v;
-	input	[23:0]	alt_vip_cl_mixer_0_din1_data;
-	input		alt_vip_cl_mixer_0_din1_valid;
-	input		alt_vip_cl_mixer_0_din1_startofpacket;
-	input		alt_vip_cl_mixer_0_din1_endofpacket;
-	output		alt_vip_cl_mixer_0_din1_ready;
+	input	[23:0]	alt_vip_cl_cvo_0_din_data;
+	input		alt_vip_cl_cvo_0_din_valid;
+	input		alt_vip_cl_cvo_0_din_startofpacket;
+	input		alt_vip_cl_cvo_0_din_endofpacket;
+	output		alt_vip_cl_cvo_0_din_ready;
 	input		clk_clk;
-	output		clk_100m_a_clk;
+	output		clk_100m_clk;
 	output		clk_hdmi_clk;
 	output		hps_0_hps_io_hps_io_emac1_inst_TX_CLK;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD0;
@@ -175,16 +169,10 @@ module soc_system (
 	output		memory_mem_odt;
 	output	[3:0]	memory_mem_dm;
 	input		memory_oct_rzqin;
-	output		mm_bridge_1_s0_waitrequest;
-	output	[31:0]	mm_bridge_1_s0_readdata;
-	output		mm_bridge_1_s0_readdatavalid;
-	input	[0:0]	mm_bridge_1_s0_burstcount;
-	input	[31:0]	mm_bridge_1_s0_writedata;
-	input	[31:0]	mm_bridge_1_s0_address;
-	input		mm_bridge_1_s0_write;
-	input		mm_bridge_1_s0_read;
-	input	[3:0]	mm_bridge_1_s0_byteenable;
-	input		mm_bridge_1_s0_debugaccess;
+	output	[23:0]	our_video_dma_0_video_data_streaming_source_data;
+	output		our_video_dma_0_video_data_streaming_source_endofpacket;
+	input		our_video_dma_0_video_data_streaming_source_ready;
+	output		our_video_dma_0_video_data_streaming_source_startofpacket;
+	output		our_video_dma_0_video_data_streaming_source_valid;
 	input		reset_reset;
-	output		clk_100m_clk;
 endmodule

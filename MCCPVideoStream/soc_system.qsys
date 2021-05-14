@@ -50,7 +50,7 @@
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "17";
          type = "int";
       }
    }
@@ -58,7 +58,7 @@
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "15";
          type = "int";
       }
    }
@@ -74,7 +74,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "12";
          type = "int";
       }
    }
@@ -82,7 +82,7 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "14";
          type = "int";
       }
    }
@@ -90,7 +90,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "16";
          type = "int";
       }
    }
@@ -106,7 +106,7 @@
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "9";
          type = "int";
       }
    }
@@ -138,7 +138,15 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "13";
+         type = "int";
+      }
+   }
+   element mm_bridge_2
+   {
+      datum _sortIndex
+      {
+         value = "6";
          type = "int";
       }
    }
@@ -147,6 +155,14 @@
       datum _sortIndex
       {
          value = "4";
+         type = "int";
+      }
+   }
+   element our_video_dma_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
          type = "int";
       }
    }
@@ -162,7 +178,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "10";
          type = "int";
       }
    }
@@ -346,7 +362,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "11";
          type = "int";
       }
    }
@@ -356,6 +372,14 @@
       {
          value = "0";
          type = "String";
+      }
+   }
+   element video_pixel_buffer_dma_0
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
       }
    }
 }
@@ -385,17 +409,17 @@
    type="conduit"
    dir="end" />
  <interface
-   name="alt_vip_cl_mixer_0_din1"
-   internal="alt_vip_cl_mixer_0.din0"
+   name="alt_vip_cl_cvo_0_din"
+   internal="alt_vip_cl_cvo_0.din"
    type="avalon_streaming"
    dir="end" />
+ <interface name="alt_vip_cl_mixer_0_din0" internal="alt_vip_cl_mixer_0.din0" />
  <interface name="clk" internal="sys_pll.ref_clk" type="clock" dir="end" />
  <interface
    name="clk_100m"
    internal="clock_bridge_0.out_clk"
    type="clock"
    dir="start" />
- <interface name="clk_100m_a" internal="pll_0.outclk2" type="clock" dir="start" />
  <interface name="clk_hdmi" internal="pll_0.outclk1" type="clock" dir="start" />
  <interface
    name="hps_0_f2h_cold_reset_req"
@@ -415,11 +439,12 @@
    type="conduit"
    dir="end" />
  <interface name="memory" internal="ARM_A9_HPS.memory" type="conduit" dir="end" />
+ <interface name="mm_bridge_1_s0" internal="mm_bridge_1.s0" />
  <interface
-   name="mm_bridge_1_s0"
-   internal="mm_bridge_1.s0"
-   type="avalon"
-   dir="end" />
+   name="our_video_dma_0_video_data_streaming_source"
+   internal="our_video_dma_0.video_data_streaming_source"
+   type="avalon_streaming"
+   dir="start" />
  <interface name="ram_fpga_s2" internal="ram_fpga.s2" />
  <interface name="reset" internal="sys_pll.ref_reset" type="reset" dir="end" />
  <module name="ARM_A9_HPS" kind="altera_hps" version="20.1" enabled="1">
@@ -518,8 +543,8 @@
   <parameter name="ENABLE_USER_ECC" value="false" />
   <parameter name="EXPORT_AFI_HALF_CLK" value="false" />
   <parameter name="EXTRA_SETTINGS" value="" />
-  <parameter name="F2H_AXI_CLOCK_FREQ" value="100000000" />
-  <parameter name="F2H_SDRAM0_CLOCK_FREQ" value="100000000" />
+  <parameter name="F2H_AXI_CLOCK_FREQ" value="130000000" />
+  <parameter name="F2H_SDRAM0_CLOCK_FREQ" value="130000000" />
   <parameter name="F2H_SDRAM1_CLOCK_FREQ" value="100" />
   <parameter name="F2H_SDRAM2_CLOCK_FREQ" value="100" />
   <parameter name="F2H_SDRAM3_CLOCK_FREQ" value="100" />
@@ -573,7 +598,7 @@
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM1_SCLK_OUT" value="100" />
   <parameter name="GPIO_Enable">No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No</parameter>
   <parameter name="GP_Enable" value="false" />
-  <parameter name="H2F_AXI_CLOCK_FREQ" value="100000000" />
+  <parameter name="H2F_AXI_CLOCK_FREQ" value="130000000" />
   <parameter name="H2F_CTI_CLOCK_FREQ" value="100" />
   <parameter name="H2F_DEBUG_APB_CLOCK_FREQ" value="100" />
   <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="50000000" />
@@ -1007,7 +1032,7 @@
    name="alt_vip_cl_mixer_0"
    kind="alt_vip_cl_mixer"
    version="20.1"
-   enabled="1">
+   enabled="0">
   <parameter name="ALPHA_ENABLE" value="0" />
   <parameter name="ALPHA_STREAM_ENABLE0" value="0" />
   <parameter name="ALPHA_STREAM_ENABLE1" value="0" />
@@ -1057,7 +1082,7 @@
    name="alt_vip_cl_tpg_0"
    kind="alt_vip_cl_tpg"
    version="20.1"
-   enabled="1">
+   enabled="0">
   <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <parameter name="BITS_PER_SYMBOL" value="8" />
@@ -1184,7 +1209,7 @@
    kind="altera_clock_bridge"
    version="20.1"
    enabled="1">
-  <parameter name="DERIVED_CLOCK_RATE" value="100000000" />
+  <parameter name="DERIVED_CLOCK_RATE" value="130000000" />
   <parameter name="EXPLICIT_CLOCK_RATE" value="0" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
@@ -1223,7 +1248,7 @@
   <parameter name="PIPELINE_COMMAND" value="1" />
   <parameter name="PIPELINE_RESPONSE" value="1" />
   <parameter name="SYMBOL_WIDTH" value="8" />
-  <parameter name="SYSINFO_ADDR_WIDTH" value="20" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="3" />
   <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
   <parameter name="USE_RESPONSE" value="0" />
  </module>
@@ -1231,7 +1256,7 @@
    name="mm_bridge_1"
    kind="altera_avalon_mm_bridge"
    version="20.1"
-   enabled="1">
+   enabled="0">
   <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
   <parameter name="ADDRESS_WIDTH" value="32" />
   <parameter name="DATA_WIDTH" value="32" />
@@ -1241,8 +1266,26 @@
   <parameter name="PIPELINE_COMMAND" value="1" />
   <parameter name="PIPELINE_RESPONSE" value="1" />
   <parameter name="SYMBOL_WIDTH" value="8" />
-  <parameter name="SYSINFO_ADDR_WIDTH" value="5" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="12" />
   <parameter name="USE_AUTO_ADDRESS_WIDTH" value="0" />
+  <parameter name="USE_RESPONSE" value="0" />
+ </module>
+ <module
+   name="mm_bridge_2"
+   kind="altera_avalon_mm_bridge"
+   version="20.1"
+   enabled="1">
+  <parameter name="ADDRESS_UNITS" value="WORDS" />
+  <parameter name="ADDRESS_WIDTH" value="32" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="LINEWRAPBURSTS" value="0" />
+  <parameter name="MAX_BURST_SIZE" value="1" />
+  <parameter name="MAX_PENDING_RESPONSES" value="1" />
+  <parameter name="PIPELINE_COMMAND" value="0" />
+  <parameter name="PIPELINE_RESPONSE" value="0" />
+  <parameter name="SYMBOL_WIDTH" value="8" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="12" />
+  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
   <parameter name="USE_RESPONSE" value="0" />
  </module>
  <module
@@ -1265,7 +1308,7 @@
   <parameter name="initMemContent" value="true" />
   <parameter name="initializationFileName" value="onchip_mem.hex" />
   <parameter name="instanceID" value="NONE" />
-  <parameter name="memorySize" value="32" />
+  <parameter name="memorySize" value="4096" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
   <parameter name="resetrequest_enabled" value="true" />
   <parameter name="simAllowMRAMContentsFile" value="false" />
@@ -1277,6 +1320,10 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="our_video_dma_0" kind="our_video_dma" version="1.0" enabled="1">
+  <parameter name="VIDEO_H" value="768" />
+  <parameter name="VIDEO_W" value="1025" />
+ </module>
  <module name="pll_0" kind="altera_pll" version="20.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
@@ -1284,7 +1331,7 @@
   <parameter name="device_family" value="Cyclone V" />
   <parameter name="gui_active_clk" value="false" />
   <parameter name="gui_actual_output_clock_frequency0" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency1" value="0 MHz" />
+  <parameter name="gui_actual_output_clock_frequency1" value="107.692307 MHz" />
   <parameter name="gui_actual_output_clock_frequency10" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency11" value="0 MHz" />
   <parameter name="gui_actual_output_clock_frequency12" value="0 MHz" />
@@ -1396,7 +1443,7 @@
   <parameter name="gui_multiply_factor" value="1" />
   <parameter name="gui_number_of_clocks" value="3" />
   <parameter name="gui_operation_mode" value="direct" />
-  <parameter name="gui_output_clock_frequency0" value="100.0" />
+  <parameter name="gui_output_clock_frequency0" value="130.0" />
   <parameter name="gui_output_clock_frequency1" value="65.0" />
   <parameter name="gui_output_clock_frequency10" value="100.0" />
   <parameter name="gui_output_clock_frequency11" value="100.0" />
@@ -1406,8 +1453,8 @@
   <parameter name="gui_output_clock_frequency15" value="100.0" />
   <parameter name="gui_output_clock_frequency16" value="100.0" />
   <parameter name="gui_output_clock_frequency17" value="100.0" />
-  <parameter name="gui_output_clock_frequency2" value="100.0" />
-  <parameter name="gui_output_clock_frequency3" value="100.0" />
+  <parameter name="gui_output_clock_frequency2" value="65.0" />
+  <parameter name="gui_output_clock_frequency3" value="260.0" />
   <parameter name="gui_output_clock_frequency4" value="100.0" />
   <parameter name="gui_output_clock_frequency5" value="100.0" />
   <parameter name="gui_output_clock_frequency6" value="100.0" />
@@ -1533,6 +1580,29 @@
    kind="uku_mac_component"
    version="1.0"
    enabled="0" />
+ <module
+   name="video_pixel_buffer_dma_0"
+   kind="altera_up_avalon_video_pixel_buffer_dma"
+   version="18.0"
+   enabled="0">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="130000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="addr_mode" value="Consecutive" />
+  <parameter name="back_start_address" value="0" />
+  <parameter name="color_space" value="24-bit RGB" />
+  <parameter name="image_height" value="768" />
+  <parameter name="image_width" value="1024" />
+  <parameter name="start_address" value="0" />
+ </module>
+ <connection
+   kind="avalon"
+   version="20.1"
+   start="video_pixel_buffer_dma_0.avalon_pixel_dma_master"
+   end="onchip_memory2_0.s2">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="avalon"
    version="20.1"
@@ -1564,6 +1634,15 @@
    kind="avalon"
    version="20.1"
    start="mm_bridge_0.m0"
+   end="video_pixel_buffer_dma_0.avalon_control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="20.1"
+   start="mm_bridge_0.m0"
    end="uku_mac_component_0.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
@@ -1587,6 +1666,15 @@
   <parameter name="baseAddress" value="0x00080200" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="20.1"
+   start="mm_bridge_0.m0"
+   end="our_video_dma_0.ctrl">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="avalon" version="20.1" start="mm_bridge_1.m0" end="ram_fpga.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
@@ -1595,7 +1683,7 @@
  <connection
    kind="avalon"
    version="20.1"
-   start="mm_bridge_1.m0"
+   start="mm_bridge_2.m0"
    end="onchip_memory2_0.s2">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
@@ -1631,17 +1719,21 @@
  <connection
    kind="avalon"
    version="20.1"
+   start="our_video_dma_0.video_data_reader"
+   end="mm_bridge_2.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="20.1"
    start="dma_0.write_master"
    end="ram_fpga.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection
-   kind="avalon_streaming"
-   version="20.1"
-   start="alt_vip_cl_mixer_0.dout"
-   end="alt_vip_cl_cvo_0.din" />
  <connection
    kind="avalon_streaming"
    version="20.1"
@@ -1652,6 +1744,11 @@
    version="20.1"
    start="pll_0.outclk0"
    end="mm_bridge_1.clk" />
+ <connection
+   kind="clock"
+   version="20.1"
+   start="pll_0.outclk0"
+   end="video_pixel_buffer_dma_0.clk" />
  <connection kind="clock" version="20.1" start="pll_0.outclk0" end="ram_fpga.clk1" />
  <connection
    kind="clock"
@@ -1663,12 +1760,12 @@
    kind="clock"
    version="20.1"
    start="pll_0.outclk0"
-   end="onchip_memory2_0.clk2" />
+   end="uku_mac_component_0.clock" />
  <connection
    kind="clock"
    version="20.1"
    start="pll_0.outclk0"
-   end="uku_mac_component_0.clock" />
+   end="our_video_dma_0.clock" />
  <connection
    kind="clock"
    version="20.1"
@@ -1722,9 +1819,24 @@
  <connection
    kind="clock"
    version="20.1"
+   start="pll_0.outclk2"
+   end="mm_bridge_2.clk" />
+ <connection
+   kind="clock"
+   version="20.1"
+   start="pll_0.outclk2"
+   end="onchip_memory2_0.clk2" />
+ <connection
+   kind="clock"
+   version="20.1"
+   start="pll_0.outclk2"
+   end="our_video_dma_0.pixclock" />
+ <connection kind="clock" version="20.1" start="sys_pll.sys_clk" end="dma_0.clk" />
+ <connection
+   kind="clock"
+   version="20.1"
    start="sys_pll.sys_clk"
    end="mm_bridge_0.clk" />
- <connection kind="clock" version="20.1" start="sys_pll.sys_clk" end="dma_0.clk" />
  <connection
    kind="clock"
    version="20.1"
@@ -1769,11 +1881,6 @@
    kind="reset"
    version="20.1"
    start="ARM_A9_HPS.h2f_reset"
-   end="mm_bridge_0.reset" />
- <connection
-   kind="reset"
-   version="20.1"
-   start="ARM_A9_HPS.h2f_reset"
    end="uku_mac_component_0.reset" />
  <connection
    kind="reset"
@@ -1785,6 +1892,26 @@
    version="20.1"
    start="ARM_A9_HPS.h2f_reset"
    end="mm_bridge_1.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="ARM_A9_HPS.h2f_reset"
+   end="video_pixel_buffer_dma_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="ARM_A9_HPS.h2f_reset"
+   end="mm_bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="ARM_A9_HPS.h2f_reset"
+   end="our_video_dma_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="ARM_A9_HPS.h2f_reset"
+   end="mm_bridge_2.reset" />
  <connection
    kind="reset"
    version="20.1"
@@ -1844,11 +1971,6 @@
    kind="reset"
    version="20.1"
    start="sys_pll.reset_source"
-   end="mm_bridge_0.reset" />
- <connection
-   kind="reset"
-   version="20.1"
-   start="sys_pll.reset_source"
    end="uku_mac_component_0.reset" />
  <connection
    kind="reset"
@@ -1860,6 +1982,26 @@
    version="20.1"
    start="sys_pll.reset_source"
    end="mm_bridge_1.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="sys_pll.reset_source"
+   end="video_pixel_buffer_dma_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="sys_pll.reset_source"
+   end="mm_bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="sys_pll.reset_source"
+   end="our_video_dma_0.reset" />
+ <connection
+   kind="reset"
+   version="20.1"
+   start="sys_pll.reset_source"
+   end="mm_bridge_2.reset" />
  <connection
    kind="reset"
    version="20.1"

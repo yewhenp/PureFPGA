@@ -7,49 +7,51 @@
 
 `timescale 1 ps / 1 ps
 module soc_system_mm_interconnect_4 (
-		input  wire        sys_pll_sys_clk_clk,                     //                   sys_pll_sys_clk.clk
-		input  wire        dma_0_reset_reset_bridge_in_reset_reset, // dma_0_reset_reset_bridge_in_reset.reset
-		input  wire [16:0] dma_0_write_master_address,              //                dma_0_write_master.address
-		output wire        dma_0_write_master_waitrequest,          //                                  .waitrequest
-		input  wire [3:0]  dma_0_write_master_byteenable,           //                                  .byteenable
-		input  wire        dma_0_write_master_chipselect,           //                                  .chipselect
-		input  wire        dma_0_write_master_write,                //                                  .write
-		input  wire [31:0] dma_0_write_master_writedata,            //                                  .writedata
-		output wire [14:0] ram_fpga_s1_address,                     //                       ram_fpga_s1.address
-		output wire        ram_fpga_s1_write,                       //                                  .write
-		input  wire [31:0] ram_fpga_s1_readdata,                    //                                  .readdata
-		output wire [31:0] ram_fpga_s1_writedata,                   //                                  .writedata
-		output wire [3:0]  ram_fpga_s1_byteenable,                  //                                  .byteenable
-		output wire        ram_fpga_s1_chipselect,                  //                                  .chipselect
-		output wire        ram_fpga_s1_clken                        //                                  .clken
+		input  wire        pll_0_outclk2_clk,                                 //                               pll_0_outclk2.clk
+		input  wire        our_video_dma_0_reset_reset_bridge_in_reset_reset, // our_video_dma_0_reset_reset_bridge_in_reset.reset
+		input  wire [31:0] our_video_dma_0_video_data_reader_address,         //           our_video_dma_0_video_data_reader.address
+		output wire        our_video_dma_0_video_data_reader_waitrequest,     //                                            .waitrequest
+		input  wire        our_video_dma_0_video_data_reader_read,            //                                            .read
+		output wire [31:0] our_video_dma_0_video_data_reader_readdata,        //                                            .readdata
+		output wire        our_video_dma_0_video_data_reader_readdatavalid,   //                                            .readdatavalid
+		output wire [9:0]  mm_bridge_2_s0_address,                            //                              mm_bridge_2_s0.address
+		output wire        mm_bridge_2_s0_write,                              //                                            .write
+		output wire        mm_bridge_2_s0_read,                               //                                            .read
+		input  wire [31:0] mm_bridge_2_s0_readdata,                           //                                            .readdata
+		output wire [31:0] mm_bridge_2_s0_writedata,                          //                                            .writedata
+		output wire [0:0]  mm_bridge_2_s0_burstcount,                         //                                            .burstcount
+		output wire [3:0]  mm_bridge_2_s0_byteenable,                         //                                            .byteenable
+		input  wire        mm_bridge_2_s0_readdatavalid,                      //                                            .readdatavalid
+		input  wire        mm_bridge_2_s0_waitrequest,                        //                                            .waitrequest
+		output wire        mm_bridge_2_s0_debugaccess                         //                                            .debugaccess
 	);
 
-	wire         dma_0_write_master_translator_avalon_universal_master_0_waitrequest;   // ram_fpga_s1_translator:uav_waitrequest -> dma_0_write_master_translator:uav_waitrequest
-	wire  [31:0] dma_0_write_master_translator_avalon_universal_master_0_readdata;      // ram_fpga_s1_translator:uav_readdata -> dma_0_write_master_translator:uav_readdata
-	wire         dma_0_write_master_translator_avalon_universal_master_0_debugaccess;   // dma_0_write_master_translator:uav_debugaccess -> ram_fpga_s1_translator:uav_debugaccess
-	wire  [16:0] dma_0_write_master_translator_avalon_universal_master_0_address;       // dma_0_write_master_translator:uav_address -> ram_fpga_s1_translator:uav_address
-	wire         dma_0_write_master_translator_avalon_universal_master_0_read;          // dma_0_write_master_translator:uav_read -> ram_fpga_s1_translator:uav_read
-	wire   [3:0] dma_0_write_master_translator_avalon_universal_master_0_byteenable;    // dma_0_write_master_translator:uav_byteenable -> ram_fpga_s1_translator:uav_byteenable
-	wire         dma_0_write_master_translator_avalon_universal_master_0_readdatavalid; // ram_fpga_s1_translator:uav_readdatavalid -> dma_0_write_master_translator:uav_readdatavalid
-	wire         dma_0_write_master_translator_avalon_universal_master_0_lock;          // dma_0_write_master_translator:uav_lock -> ram_fpga_s1_translator:uav_lock
-	wire         dma_0_write_master_translator_avalon_universal_master_0_write;         // dma_0_write_master_translator:uav_write -> ram_fpga_s1_translator:uav_write
-	wire  [31:0] dma_0_write_master_translator_avalon_universal_master_0_writedata;     // dma_0_write_master_translator:uav_writedata -> ram_fpga_s1_translator:uav_writedata
-	wire   [2:0] dma_0_write_master_translator_avalon_universal_master_0_burstcount;    // dma_0_write_master_translator:uav_burstcount -> ram_fpga_s1_translator:uav_burstcount
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_waitrequest;   // mm_bridge_2_s0_translator:uav_waitrequest -> our_video_dma_0_video_data_reader_translator:uav_waitrequest
+	wire  [31:0] our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdata;      // mm_bridge_2_s0_translator:uav_readdata -> our_video_dma_0_video_data_reader_translator:uav_readdata
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_debugaccess;   // our_video_dma_0_video_data_reader_translator:uav_debugaccess -> mm_bridge_2_s0_translator:uav_debugaccess
+	wire  [31:0] our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_address;       // our_video_dma_0_video_data_reader_translator:uav_address -> mm_bridge_2_s0_translator:uav_address
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_read;          // our_video_dma_0_video_data_reader_translator:uav_read -> mm_bridge_2_s0_translator:uav_read
+	wire   [3:0] our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_byteenable;    // our_video_dma_0_video_data_reader_translator:uav_byteenable -> mm_bridge_2_s0_translator:uav_byteenable
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdatavalid; // mm_bridge_2_s0_translator:uav_readdatavalid -> our_video_dma_0_video_data_reader_translator:uav_readdatavalid
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_lock;          // our_video_dma_0_video_data_reader_translator:uav_lock -> mm_bridge_2_s0_translator:uav_lock
+	wire         our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_write;         // our_video_dma_0_video_data_reader_translator:uav_write -> mm_bridge_2_s0_translator:uav_write
+	wire  [31:0] our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_writedata;     // our_video_dma_0_video_data_reader_translator:uav_writedata -> mm_bridge_2_s0_translator:uav_writedata
+	wire   [2:0] our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_burstcount;    // our_video_dma_0_video_data_reader_translator:uav_burstcount -> mm_bridge_2_s0_translator:uav_burstcount
 
 	altera_merlin_master_translator #(
-		.AV_ADDRESS_W                (17),
+		.AV_ADDRESS_W                (32),
 		.AV_DATA_W                   (32),
 		.AV_BURSTCOUNT_W             (1),
 		.AV_BYTEENABLE_W             (4),
-		.UAV_ADDRESS_W               (17),
+		.UAV_ADDRESS_W               (32),
 		.UAV_BURSTCOUNT_W            (3),
-		.USE_READ                    (0),
-		.USE_WRITE                   (1),
+		.USE_READ                    (1),
+		.USE_WRITE                   (0),
 		.USE_BEGINBURSTTRANSFER      (0),
 		.USE_BEGINTRANSFER           (0),
-		.USE_CHIPSELECT              (1),
+		.USE_CHIPSELECT              (0),
 		.USE_BURSTCOUNT              (0),
-		.USE_READDATAVALID           (0),
+		.USE_READDATAVALID           (1),
 		.USE_WAITREQUEST             (1),
 		.USE_READRESPONSE            (0),
 		.USE_WRITERESPONSE           (0),
@@ -60,54 +62,54 @@ module soc_system_mm_interconnect_4 (
 		.UAV_CONSTANT_BURST_BEHAVIOR (0),
 		.AV_LINEWRAPBURSTS           (0),
 		.AV_REGISTERINCOMINGSIGNALS  (0)
-	) dma_0_write_master_translator (
-		.clk                    (sys_pll_sys_clk_clk),                                                   //                       clk.clk
-		.reset                  (dma_0_reset_reset_bridge_in_reset_reset),                               //                     reset.reset
-		.uav_address            (dma_0_write_master_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
-		.uav_burstcount         (dma_0_write_master_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
-		.uav_read               (dma_0_write_master_translator_avalon_universal_master_0_read),          //                          .read
-		.uav_write              (dma_0_write_master_translator_avalon_universal_master_0_write),         //                          .write
-		.uav_waitrequest        (dma_0_write_master_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
-		.uav_readdatavalid      (dma_0_write_master_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
-		.uav_byteenable         (dma_0_write_master_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
-		.uav_readdata           (dma_0_write_master_translator_avalon_universal_master_0_readdata),      //                          .readdata
-		.uav_writedata          (dma_0_write_master_translator_avalon_universal_master_0_writedata),     //                          .writedata
-		.uav_lock               (dma_0_write_master_translator_avalon_universal_master_0_lock),          //                          .lock
-		.uav_debugaccess        (dma_0_write_master_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
-		.av_address             (dma_0_write_master_address),                                            //      avalon_anti_master_0.address
-		.av_waitrequest         (dma_0_write_master_waitrequest),                                        //                          .waitrequest
-		.av_byteenable          (dma_0_write_master_byteenable),                                         //                          .byteenable
-		.av_chipselect          (dma_0_write_master_chipselect),                                         //                          .chipselect
-		.av_write               (dma_0_write_master_write),                                              //                          .write
-		.av_writedata           (dma_0_write_master_writedata),                                          //                          .writedata
-		.av_burstcount          (1'b1),                                                                  //               (terminated)
-		.av_beginbursttransfer  (1'b0),                                                                  //               (terminated)
-		.av_begintransfer       (1'b0),                                                                  //               (terminated)
-		.av_read                (1'b0),                                                                  //               (terminated)
-		.av_readdata            (),                                                                      //               (terminated)
-		.av_readdatavalid       (),                                                                      //               (terminated)
-		.av_lock                (1'b0),                                                                  //               (terminated)
-		.av_debugaccess         (1'b0),                                                                  //               (terminated)
-		.uav_clken              (),                                                                      //               (terminated)
-		.av_clken               (1'b1),                                                                  //               (terminated)
-		.uav_response           (2'b00),                                                                 //               (terminated)
-		.av_response            (),                                                                      //               (terminated)
-		.uav_writeresponsevalid (1'b0),                                                                  //               (terminated)
-		.av_writeresponsevalid  ()                                                                       //               (terminated)
+	) our_video_dma_0_video_data_reader_translator (
+		.clk                    (pll_0_outclk2_clk),                                                                    //                       clk.clk
+		.reset                  (our_video_dma_0_reset_reset_bridge_in_reset_reset),                                    //                     reset.reset
+		.uav_address            (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
+		.uav_burstcount         (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
+		.uav_read               (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_read),          //                          .read
+		.uav_write              (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_write),         //                          .write
+		.uav_waitrequest        (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
+		.uav_readdatavalid      (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
+		.uav_byteenable         (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
+		.uav_readdata           (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdata),      //                          .readdata
+		.uav_writedata          (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_writedata),     //                          .writedata
+		.uav_lock               (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_lock),          //                          .lock
+		.uav_debugaccess        (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
+		.av_address             (our_video_dma_0_video_data_reader_address),                                            //      avalon_anti_master_0.address
+		.av_waitrequest         (our_video_dma_0_video_data_reader_waitrequest),                                        //                          .waitrequest
+		.av_read                (our_video_dma_0_video_data_reader_read),                                               //                          .read
+		.av_readdata            (our_video_dma_0_video_data_reader_readdata),                                           //                          .readdata
+		.av_readdatavalid       (our_video_dma_0_video_data_reader_readdatavalid),                                      //                          .readdatavalid
+		.av_burstcount          (1'b1),                                                                                 //               (terminated)
+		.av_byteenable          (4'b1111),                                                                              //               (terminated)
+		.av_beginbursttransfer  (1'b0),                                                                                 //               (terminated)
+		.av_begintransfer       (1'b0),                                                                                 //               (terminated)
+		.av_chipselect          (1'b0),                                                                                 //               (terminated)
+		.av_write               (1'b0),                                                                                 //               (terminated)
+		.av_writedata           (32'b00000000000000000000000000000000),                                                 //               (terminated)
+		.av_lock                (1'b0),                                                                                 //               (terminated)
+		.av_debugaccess         (1'b0),                                                                                 //               (terminated)
+		.uav_clken              (),                                                                                     //               (terminated)
+		.av_clken               (1'b1),                                                                                 //               (terminated)
+		.uav_response           (2'b00),                                                                                //               (terminated)
+		.av_response            (),                                                                                     //               (terminated)
+		.uav_writeresponsevalid (1'b0),                                                                                 //               (terminated)
+		.av_writeresponsevalid  ()                                                                                      //               (terminated)
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (15),
+		.AV_ADDRESS_W                   (10),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
 		.AV_BYTEENABLE_W                (4),
 		.UAV_BYTEENABLE_W               (4),
-		.UAV_ADDRESS_W                  (17),
+		.UAV_ADDRESS_W                  (32),
 		.UAV_BURSTCOUNT_W               (3),
-		.AV_READLATENCY                 (1),
-		.USE_READDATAVALID              (0),
-		.USE_WAITREQUEST                (0),
+		.AV_READLATENCY                 (0),
+		.USE_READDATAVALID              (1),
+		.USE_WAITREQUEST                (1),
 		.USE_UAV_CLKEN                  (0),
 		.USE_READRESPONSE               (0),
 		.USE_WRITERESPONSE              (0),
@@ -122,42 +124,42 @@ module soc_system_mm_interconnect_4 (
 		.AV_WRITE_WAIT_CYCLES           (0),
 		.AV_SETUP_WAIT_CYCLES           (0),
 		.AV_DATA_HOLD_CYCLES            (0)
-	) ram_fpga_s1_translator (
-		.clk                    (sys_pll_sys_clk_clk),                                                   //                      clk.clk
-		.reset                  (dma_0_reset_reset_bridge_in_reset_reset),                               //                    reset.reset
-		.uav_address            (dma_0_write_master_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
-		.uav_burstcount         (dma_0_write_master_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
-		.uav_read               (dma_0_write_master_translator_avalon_universal_master_0_read),          //                         .read
-		.uav_write              (dma_0_write_master_translator_avalon_universal_master_0_write),         //                         .write
-		.uav_waitrequest        (dma_0_write_master_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
-		.uav_readdatavalid      (dma_0_write_master_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
-		.uav_byteenable         (dma_0_write_master_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
-		.uav_readdata           (dma_0_write_master_translator_avalon_universal_master_0_readdata),      //                         .readdata
-		.uav_writedata          (dma_0_write_master_translator_avalon_universal_master_0_writedata),     //                         .writedata
-		.uav_lock               (dma_0_write_master_translator_avalon_universal_master_0_lock),          //                         .lock
-		.uav_debugaccess        (dma_0_write_master_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
-		.av_address             (ram_fpga_s1_address),                                                   //      avalon_anti_slave_0.address
-		.av_write               (ram_fpga_s1_write),                                                     //                         .write
-		.av_readdata            (ram_fpga_s1_readdata),                                                  //                         .readdata
-		.av_writedata           (ram_fpga_s1_writedata),                                                 //                         .writedata
-		.av_byteenable          (ram_fpga_s1_byteenable),                                                //                         .byteenable
-		.av_chipselect          (ram_fpga_s1_chipselect),                                                //                         .chipselect
-		.av_clken               (ram_fpga_s1_clken),                                                     //                         .clken
-		.av_read                (),                                                                      //              (terminated)
-		.av_begintransfer       (),                                                                      //              (terminated)
-		.av_beginbursttransfer  (),                                                                      //              (terminated)
-		.av_burstcount          (),                                                                      //              (terminated)
-		.av_readdatavalid       (1'b0),                                                                  //              (terminated)
-		.av_waitrequest         (1'b0),                                                                  //              (terminated)
-		.av_writebyteenable     (),                                                                      //              (terminated)
-		.av_lock                (),                                                                      //              (terminated)
-		.uav_clken              (1'b0),                                                                  //              (terminated)
-		.av_debugaccess         (),                                                                      //              (terminated)
-		.av_outputenable        (),                                                                      //              (terminated)
-		.uav_response           (),                                                                      //              (terminated)
-		.av_response            (2'b00),                                                                 //              (terminated)
-		.uav_writeresponsevalid (),                                                                      //              (terminated)
-		.av_writeresponsevalid  (1'b0)                                                                   //              (terminated)
+	) mm_bridge_2_s0_translator (
+		.clk                    (pll_0_outclk2_clk),                                                                    //                      clk.clk
+		.reset                  (our_video_dma_0_reset_reset_bridge_in_reset_reset),                                    //                    reset.reset
+		.uav_address            (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
+		.uav_burstcount         (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
+		.uav_read               (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_read),          //                         .read
+		.uav_write              (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_write),         //                         .write
+		.uav_waitrequest        (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
+		.uav_readdatavalid      (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
+		.uav_byteenable         (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
+		.uav_readdata           (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_readdata),      //                         .readdata
+		.uav_writedata          (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_writedata),     //                         .writedata
+		.uav_lock               (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_lock),          //                         .lock
+		.uav_debugaccess        (our_video_dma_0_video_data_reader_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
+		.av_address             (mm_bridge_2_s0_address),                                                               //      avalon_anti_slave_0.address
+		.av_write               (mm_bridge_2_s0_write),                                                                 //                         .write
+		.av_read                (mm_bridge_2_s0_read),                                                                  //                         .read
+		.av_readdata            (mm_bridge_2_s0_readdata),                                                              //                         .readdata
+		.av_writedata           (mm_bridge_2_s0_writedata),                                                             //                         .writedata
+		.av_burstcount          (mm_bridge_2_s0_burstcount),                                                            //                         .burstcount
+		.av_byteenable          (mm_bridge_2_s0_byteenable),                                                            //                         .byteenable
+		.av_readdatavalid       (mm_bridge_2_s0_readdatavalid),                                                         //                         .readdatavalid
+		.av_waitrequest         (mm_bridge_2_s0_waitrequest),                                                           //                         .waitrequest
+		.av_debugaccess         (mm_bridge_2_s0_debugaccess),                                                           //                         .debugaccess
+		.av_begintransfer       (),                                                                                     //              (terminated)
+		.av_beginbursttransfer  (),                                                                                     //              (terminated)
+		.av_writebyteenable     (),                                                                                     //              (terminated)
+		.av_lock                (),                                                                                     //              (terminated)
+		.av_chipselect          (),                                                                                     //              (terminated)
+		.av_clken               (),                                                                                     //              (terminated)
+		.uav_clken              (1'b0),                                                                                 //              (terminated)
+		.av_outputenable        (),                                                                                     //              (terminated)
+		.uav_response           (),                                                                                     //              (terminated)
+		.av_response            (2'b00),                                                                                //              (terminated)
+		.uav_writeresponsevalid (),                                                                                     //              (terminated)
+		.av_writeresponsevalid  (1'b0)                                                                                  //              (terminated)
 	);
 
 endmodule

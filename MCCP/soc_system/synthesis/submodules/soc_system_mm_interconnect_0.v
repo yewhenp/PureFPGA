@@ -7,1068 +7,159 @@
 
 `timescale 1 ps / 1 ps
 module soc_system_mm_interconnect_0 (
-		input  wire [11:0]  ARM_A9_HPS_h2f_axi_master_awid,                                        //                                       ARM_A9_HPS_h2f_axi_master.awid
-		input  wire [29:0]  ARM_A9_HPS_h2f_axi_master_awaddr,                                      //                                                                .awaddr
-		input  wire [3:0]   ARM_A9_HPS_h2f_axi_master_awlen,                                       //                                                                .awlen
-		input  wire [2:0]   ARM_A9_HPS_h2f_axi_master_awsize,                                      //                                                                .awsize
-		input  wire [1:0]   ARM_A9_HPS_h2f_axi_master_awburst,                                     //                                                                .awburst
-		input  wire [1:0]   ARM_A9_HPS_h2f_axi_master_awlock,                                      //                                                                .awlock
-		input  wire [3:0]   ARM_A9_HPS_h2f_axi_master_awcache,                                     //                                                                .awcache
-		input  wire [2:0]   ARM_A9_HPS_h2f_axi_master_awprot,                                      //                                                                .awprot
-		input  wire         ARM_A9_HPS_h2f_axi_master_awvalid,                                     //                                                                .awvalid
-		output wire         ARM_A9_HPS_h2f_axi_master_awready,                                     //                                                                .awready
-		input  wire [11:0]  ARM_A9_HPS_h2f_axi_master_wid,                                         //                                                                .wid
-		input  wire [127:0] ARM_A9_HPS_h2f_axi_master_wdata,                                       //                                                                .wdata
-		input  wire [15:0]  ARM_A9_HPS_h2f_axi_master_wstrb,                                       //                                                                .wstrb
-		input  wire         ARM_A9_HPS_h2f_axi_master_wlast,                                       //                                                                .wlast
-		input  wire         ARM_A9_HPS_h2f_axi_master_wvalid,                                      //                                                                .wvalid
-		output wire         ARM_A9_HPS_h2f_axi_master_wready,                                      //                                                                .wready
-		output wire [11:0]  ARM_A9_HPS_h2f_axi_master_bid,                                         //                                                                .bid
-		output wire [1:0]   ARM_A9_HPS_h2f_axi_master_bresp,                                       //                                                                .bresp
-		output wire         ARM_A9_HPS_h2f_axi_master_bvalid,                                      //                                                                .bvalid
-		input  wire         ARM_A9_HPS_h2f_axi_master_bready,                                      //                                                                .bready
-		input  wire [11:0]  ARM_A9_HPS_h2f_axi_master_arid,                                        //                                                                .arid
-		input  wire [29:0]  ARM_A9_HPS_h2f_axi_master_araddr,                                      //                                                                .araddr
-		input  wire [3:0]   ARM_A9_HPS_h2f_axi_master_arlen,                                       //                                                                .arlen
-		input  wire [2:0]   ARM_A9_HPS_h2f_axi_master_arsize,                                      //                                                                .arsize
-		input  wire [1:0]   ARM_A9_HPS_h2f_axi_master_arburst,                                     //                                                                .arburst
-		input  wire [1:0]   ARM_A9_HPS_h2f_axi_master_arlock,                                      //                                                                .arlock
-		input  wire [3:0]   ARM_A9_HPS_h2f_axi_master_arcache,                                     //                                                                .arcache
-		input  wire [2:0]   ARM_A9_HPS_h2f_axi_master_arprot,                                      //                                                                .arprot
-		input  wire         ARM_A9_HPS_h2f_axi_master_arvalid,                                     //                                                                .arvalid
-		output wire         ARM_A9_HPS_h2f_axi_master_arready,                                     //                                                                .arready
-		output wire [11:0]  ARM_A9_HPS_h2f_axi_master_rid,                                         //                                                                .rid
-		output wire [127:0] ARM_A9_HPS_h2f_axi_master_rdata,                                       //                                                                .rdata
-		output wire [1:0]   ARM_A9_HPS_h2f_axi_master_rresp,                                       //                                                                .rresp
-		output wire         ARM_A9_HPS_h2f_axi_master_rlast,                                       //                                                                .rlast
-		output wire         ARM_A9_HPS_h2f_axi_master_rvalid,                                      //                                                                .rvalid
-		input  wire         ARM_A9_HPS_h2f_axi_master_rready,                                      //                                                                .rready
-		input  wire         pll_0_outclk1_clk,                                                     //                                                   pll_0_outclk1.clk
-		input  wire         sys_pll_sys_clk_clk,                                                   //                                                 sys_pll_sys_clk.clk
-		input  wire         ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
-		input  wire         videocard_new_0_reset_sink_reset_bridge_in_reset_reset,                //                videocard_new_0_reset_sink_reset_bridge_in_reset.reset
-		output wire [16:0]  videocard_new_0_memory_main_address,                                   //                                     videocard_new_0_memory_main.address
-		output wire         videocard_new_0_memory_main_write,                                     //                                                                .write
-		output wire         videocard_new_0_memory_main_read,                                      //                                                                .read
-		input  wire [31:0]  videocard_new_0_memory_main_readdata,                                  //                                                                .readdata
-		output wire [31:0]  videocard_new_0_memory_main_writedata,                                 //                                                                .writedata
-		output wire [3:0]   videocard_new_0_memory_main_byteenable                                 //                                                                .byteenable
+		input  wire        pll_0_outclk4_clk,                             //                           pll_0_outclk4.clk
+		input  wire        video_dma_0_reset_reset_bridge_in_reset_reset, // video_dma_0_reset_reset_bridge_in_reset.reset
+		input  wire [31:0] video_dma_0_avalon_master_address,             //               video_dma_0_avalon_master.address
+		output wire        video_dma_0_avalon_master_waitrequest,         //                                        .waitrequest
+		input  wire        video_dma_0_avalon_master_read,                //                                        .read
+		output wire [31:0] video_dma_0_avalon_master_readdata,            //                                        .readdata
+		output wire        video_dma_0_avalon_master_readdatavalid,       //                                        .readdatavalid
+		output wire [14:0] on_chip_to_dma_bridge_s0_address,              //                on_chip_to_dma_bridge_s0.address
+		output wire        on_chip_to_dma_bridge_s0_write,                //                                        .write
+		output wire        on_chip_to_dma_bridge_s0_read,                 //                                        .read
+		input  wire [31:0] on_chip_to_dma_bridge_s0_readdata,             //                                        .readdata
+		output wire [31:0] on_chip_to_dma_bridge_s0_writedata,            //                                        .writedata
+		output wire [0:0]  on_chip_to_dma_bridge_s0_burstcount,           //                                        .burstcount
+		output wire [3:0]  on_chip_to_dma_bridge_s0_byteenable,           //                                        .byteenable
+		input  wire        on_chip_to_dma_bridge_s0_readdatavalid,        //                                        .readdatavalid
+		input  wire        on_chip_to_dma_bridge_s0_waitrequest,          //                                        .waitrequest
+		output wire        on_chip_to_dma_bridge_s0_debugaccess           //                                        .debugaccess
 	);
 
-	wire          rsp_mux_src_valid;                                               // rsp_mux:src_valid -> ARM_A9_HPS_h2f_axi_master_agent:write_rp_valid
-	wire  [232:0] rsp_mux_src_data;                                                // rsp_mux:src_data -> ARM_A9_HPS_h2f_axi_master_agent:write_rp_data
-	wire          rsp_mux_src_ready;                                               // ARM_A9_HPS_h2f_axi_master_agent:write_rp_ready -> rsp_mux:src_ready
-	wire    [1:0] rsp_mux_src_channel;                                             // rsp_mux:src_channel -> ARM_A9_HPS_h2f_axi_master_agent:write_rp_channel
-	wire          rsp_mux_src_startofpacket;                                       // rsp_mux:src_startofpacket -> ARM_A9_HPS_h2f_axi_master_agent:write_rp_startofpacket
-	wire          rsp_mux_src_endofpacket;                                         // rsp_mux:src_endofpacket -> ARM_A9_HPS_h2f_axi_master_agent:write_rp_endofpacket
-	wire          rsp_mux_001_src_valid;                                           // rsp_mux_001:src_valid -> ARM_A9_HPS_h2f_axi_master_agent:read_rp_valid
-	wire  [232:0] rsp_mux_001_src_data;                                            // rsp_mux_001:src_data -> ARM_A9_HPS_h2f_axi_master_agent:read_rp_data
-	wire          rsp_mux_001_src_ready;                                           // ARM_A9_HPS_h2f_axi_master_agent:read_rp_ready -> rsp_mux_001:src_ready
-	wire    [1:0] rsp_mux_001_src_channel;                                         // rsp_mux_001:src_channel -> ARM_A9_HPS_h2f_axi_master_agent:read_rp_channel
-	wire          rsp_mux_001_src_startofpacket;                                   // rsp_mux_001:src_startofpacket -> ARM_A9_HPS_h2f_axi_master_agent:read_rp_startofpacket
-	wire          rsp_mux_001_src_endofpacket;                                     // rsp_mux_001:src_endofpacket -> ARM_A9_HPS_h2f_axi_master_agent:read_rp_endofpacket
-	wire   [31:0] videocard_new_0_memory_main_agent_m0_readdata;                   // videocard_new_0_memory_main_translator:uav_readdata -> videocard_new_0_memory_main_agent:m0_readdata
-	wire          videocard_new_0_memory_main_agent_m0_waitrequest;                // videocard_new_0_memory_main_translator:uav_waitrequest -> videocard_new_0_memory_main_agent:m0_waitrequest
-	wire          videocard_new_0_memory_main_agent_m0_debugaccess;                // videocard_new_0_memory_main_agent:m0_debugaccess -> videocard_new_0_memory_main_translator:uav_debugaccess
-	wire   [29:0] videocard_new_0_memory_main_agent_m0_address;                    // videocard_new_0_memory_main_agent:m0_address -> videocard_new_0_memory_main_translator:uav_address
-	wire    [3:0] videocard_new_0_memory_main_agent_m0_byteenable;                 // videocard_new_0_memory_main_agent:m0_byteenable -> videocard_new_0_memory_main_translator:uav_byteenable
-	wire          videocard_new_0_memory_main_agent_m0_read;                       // videocard_new_0_memory_main_agent:m0_read -> videocard_new_0_memory_main_translator:uav_read
-	wire          videocard_new_0_memory_main_agent_m0_readdatavalid;              // videocard_new_0_memory_main_translator:uav_readdatavalid -> videocard_new_0_memory_main_agent:m0_readdatavalid
-	wire          videocard_new_0_memory_main_agent_m0_lock;                       // videocard_new_0_memory_main_agent:m0_lock -> videocard_new_0_memory_main_translator:uav_lock
-	wire   [31:0] videocard_new_0_memory_main_agent_m0_writedata;                  // videocard_new_0_memory_main_agent:m0_writedata -> videocard_new_0_memory_main_translator:uav_writedata
-	wire          videocard_new_0_memory_main_agent_m0_write;                      // videocard_new_0_memory_main_agent:m0_write -> videocard_new_0_memory_main_translator:uav_write
-	wire    [2:0] videocard_new_0_memory_main_agent_m0_burstcount;                 // videocard_new_0_memory_main_agent:m0_burstcount -> videocard_new_0_memory_main_translator:uav_burstcount
-	wire          videocard_new_0_memory_main_agent_rf_source_valid;               // videocard_new_0_memory_main_agent:rf_source_valid -> videocard_new_0_memory_main_agent_rsp_fifo:in_valid
-	wire  [125:0] videocard_new_0_memory_main_agent_rf_source_data;                // videocard_new_0_memory_main_agent:rf_source_data -> videocard_new_0_memory_main_agent_rsp_fifo:in_data
-	wire          videocard_new_0_memory_main_agent_rf_source_ready;               // videocard_new_0_memory_main_agent_rsp_fifo:in_ready -> videocard_new_0_memory_main_agent:rf_source_ready
-	wire          videocard_new_0_memory_main_agent_rf_source_startofpacket;       // videocard_new_0_memory_main_agent:rf_source_startofpacket -> videocard_new_0_memory_main_agent_rsp_fifo:in_startofpacket
-	wire          videocard_new_0_memory_main_agent_rf_source_endofpacket;         // videocard_new_0_memory_main_agent:rf_source_endofpacket -> videocard_new_0_memory_main_agent_rsp_fifo:in_endofpacket
-	wire          videocard_new_0_memory_main_agent_rsp_fifo_out_valid;            // videocard_new_0_memory_main_agent_rsp_fifo:out_valid -> videocard_new_0_memory_main_agent:rf_sink_valid
-	wire  [125:0] videocard_new_0_memory_main_agent_rsp_fifo_out_data;             // videocard_new_0_memory_main_agent_rsp_fifo:out_data -> videocard_new_0_memory_main_agent:rf_sink_data
-	wire          videocard_new_0_memory_main_agent_rsp_fifo_out_ready;            // videocard_new_0_memory_main_agent:rf_sink_ready -> videocard_new_0_memory_main_agent_rsp_fifo:out_ready
-	wire          videocard_new_0_memory_main_agent_rsp_fifo_out_startofpacket;    // videocard_new_0_memory_main_agent_rsp_fifo:out_startofpacket -> videocard_new_0_memory_main_agent:rf_sink_startofpacket
-	wire          videocard_new_0_memory_main_agent_rsp_fifo_out_endofpacket;      // videocard_new_0_memory_main_agent_rsp_fifo:out_endofpacket -> videocard_new_0_memory_main_agent:rf_sink_endofpacket
-	wire          videocard_new_0_memory_main_agent_rdata_fifo_src_valid;          // videocard_new_0_memory_main_agent:rdata_fifo_src_valid -> videocard_new_0_memory_main_agent_rdata_fifo:in_valid
-	wire   [33:0] videocard_new_0_memory_main_agent_rdata_fifo_src_data;           // videocard_new_0_memory_main_agent:rdata_fifo_src_data -> videocard_new_0_memory_main_agent_rdata_fifo:in_data
-	wire          videocard_new_0_memory_main_agent_rdata_fifo_src_ready;          // videocard_new_0_memory_main_agent_rdata_fifo:in_ready -> videocard_new_0_memory_main_agent:rdata_fifo_src_ready
-	wire          arm_a9_hps_h2f_axi_master_agent_write_cp_valid;                  // ARM_A9_HPS_h2f_axi_master_agent:write_cp_valid -> router:sink_valid
-	wire  [232:0] arm_a9_hps_h2f_axi_master_agent_write_cp_data;                   // ARM_A9_HPS_h2f_axi_master_agent:write_cp_data -> router:sink_data
-	wire          arm_a9_hps_h2f_axi_master_agent_write_cp_ready;                  // router:sink_ready -> ARM_A9_HPS_h2f_axi_master_agent:write_cp_ready
-	wire          arm_a9_hps_h2f_axi_master_agent_write_cp_startofpacket;          // ARM_A9_HPS_h2f_axi_master_agent:write_cp_startofpacket -> router:sink_startofpacket
-	wire          arm_a9_hps_h2f_axi_master_agent_write_cp_endofpacket;            // ARM_A9_HPS_h2f_axi_master_agent:write_cp_endofpacket -> router:sink_endofpacket
-	wire          router_src_valid;                                                // router:src_valid -> cmd_demux:sink_valid
-	wire  [232:0] router_src_data;                                                 // router:src_data -> cmd_demux:sink_data
-	wire          router_src_ready;                                                // cmd_demux:sink_ready -> router:src_ready
-	wire    [1:0] router_src_channel;                                              // router:src_channel -> cmd_demux:sink_channel
-	wire          router_src_startofpacket;                                        // router:src_startofpacket -> cmd_demux:sink_startofpacket
-	wire          router_src_endofpacket;                                          // router:src_endofpacket -> cmd_demux:sink_endofpacket
-	wire          arm_a9_hps_h2f_axi_master_agent_read_cp_valid;                   // ARM_A9_HPS_h2f_axi_master_agent:read_cp_valid -> router_001:sink_valid
-	wire  [232:0] arm_a9_hps_h2f_axi_master_agent_read_cp_data;                    // ARM_A9_HPS_h2f_axi_master_agent:read_cp_data -> router_001:sink_data
-	wire          arm_a9_hps_h2f_axi_master_agent_read_cp_ready;                   // router_001:sink_ready -> ARM_A9_HPS_h2f_axi_master_agent:read_cp_ready
-	wire          arm_a9_hps_h2f_axi_master_agent_read_cp_startofpacket;           // ARM_A9_HPS_h2f_axi_master_agent:read_cp_startofpacket -> router_001:sink_startofpacket
-	wire          arm_a9_hps_h2f_axi_master_agent_read_cp_endofpacket;             // ARM_A9_HPS_h2f_axi_master_agent:read_cp_endofpacket -> router_001:sink_endofpacket
-	wire          router_001_src_valid;                                            // router_001:src_valid -> cmd_demux_001:sink_valid
-	wire  [232:0] router_001_src_data;                                             // router_001:src_data -> cmd_demux_001:sink_data
-	wire          router_001_src_ready;                                            // cmd_demux_001:sink_ready -> router_001:src_ready
-	wire    [1:0] router_001_src_channel;                                          // router_001:src_channel -> cmd_demux_001:sink_channel
-	wire          router_001_src_startofpacket;                                    // router_001:src_startofpacket -> cmd_demux_001:sink_startofpacket
-	wire          router_001_src_endofpacket;                                      // router_001:src_endofpacket -> cmd_demux_001:sink_endofpacket
-	wire          videocard_new_0_memory_main_agent_rp_valid;                      // videocard_new_0_memory_main_agent:rp_valid -> router_002:sink_valid
-	wire  [124:0] videocard_new_0_memory_main_agent_rp_data;                       // videocard_new_0_memory_main_agent:rp_data -> router_002:sink_data
-	wire          videocard_new_0_memory_main_agent_rp_ready;                      // router_002:sink_ready -> videocard_new_0_memory_main_agent:rp_ready
-	wire          videocard_new_0_memory_main_agent_rp_startofpacket;              // videocard_new_0_memory_main_agent:rp_startofpacket -> router_002:sink_startofpacket
-	wire          videocard_new_0_memory_main_agent_rp_endofpacket;                // videocard_new_0_memory_main_agent:rp_endofpacket -> router_002:sink_endofpacket
-	wire          videocard_new_0_memory_main_burst_adapter_source0_valid;         // videocard_new_0_memory_main_burst_adapter:source0_valid -> videocard_new_0_memory_main_agent:cp_valid
-	wire  [124:0] videocard_new_0_memory_main_burst_adapter_source0_data;          // videocard_new_0_memory_main_burst_adapter:source0_data -> videocard_new_0_memory_main_agent:cp_data
-	wire          videocard_new_0_memory_main_burst_adapter_source0_ready;         // videocard_new_0_memory_main_agent:cp_ready -> videocard_new_0_memory_main_burst_adapter:source0_ready
-	wire    [1:0] videocard_new_0_memory_main_burst_adapter_source0_channel;       // videocard_new_0_memory_main_burst_adapter:source0_channel -> videocard_new_0_memory_main_agent:cp_channel
-	wire          videocard_new_0_memory_main_burst_adapter_source0_startofpacket; // videocard_new_0_memory_main_burst_adapter:source0_startofpacket -> videocard_new_0_memory_main_agent:cp_startofpacket
-	wire          videocard_new_0_memory_main_burst_adapter_source0_endofpacket;   // videocard_new_0_memory_main_burst_adapter:source0_endofpacket -> videocard_new_0_memory_main_agent:cp_endofpacket
-	wire          router_002_src_valid;                                            // router_002:src_valid -> videocard_new_0_memory_main_rsp_width_adapter:in_valid
-	wire  [124:0] router_002_src_data;                                             // router_002:src_data -> videocard_new_0_memory_main_rsp_width_adapter:in_data
-	wire          router_002_src_ready;                                            // videocard_new_0_memory_main_rsp_width_adapter:in_ready -> router_002:src_ready
-	wire    [1:0] router_002_src_channel;                                          // router_002:src_channel -> videocard_new_0_memory_main_rsp_width_adapter:in_channel
-	wire          router_002_src_startofpacket;                                    // router_002:src_startofpacket -> videocard_new_0_memory_main_rsp_width_adapter:in_startofpacket
-	wire          router_002_src_endofpacket;                                      // router_002:src_endofpacket -> videocard_new_0_memory_main_rsp_width_adapter:in_endofpacket
-	wire          videocard_new_0_memory_main_rsp_width_adapter_src_valid;         // videocard_new_0_memory_main_rsp_width_adapter:out_valid -> rsp_demux:sink_valid
-	wire  [232:0] videocard_new_0_memory_main_rsp_width_adapter_src_data;          // videocard_new_0_memory_main_rsp_width_adapter:out_data -> rsp_demux:sink_data
-	wire          videocard_new_0_memory_main_rsp_width_adapter_src_ready;         // rsp_demux:sink_ready -> videocard_new_0_memory_main_rsp_width_adapter:out_ready
-	wire    [1:0] videocard_new_0_memory_main_rsp_width_adapter_src_channel;       // videocard_new_0_memory_main_rsp_width_adapter:out_channel -> rsp_demux:sink_channel
-	wire          videocard_new_0_memory_main_rsp_width_adapter_src_startofpacket; // videocard_new_0_memory_main_rsp_width_adapter:out_startofpacket -> rsp_demux:sink_startofpacket
-	wire          videocard_new_0_memory_main_rsp_width_adapter_src_endofpacket;   // videocard_new_0_memory_main_rsp_width_adapter:out_endofpacket -> rsp_demux:sink_endofpacket
-	wire          cmd_mux_src_valid;                                               // cmd_mux:src_valid -> videocard_new_0_memory_main_cmd_width_adapter:in_valid
-	wire  [232:0] cmd_mux_src_data;                                                // cmd_mux:src_data -> videocard_new_0_memory_main_cmd_width_adapter:in_data
-	wire          cmd_mux_src_ready;                                               // videocard_new_0_memory_main_cmd_width_adapter:in_ready -> cmd_mux:src_ready
-	wire    [1:0] cmd_mux_src_channel;                                             // cmd_mux:src_channel -> videocard_new_0_memory_main_cmd_width_adapter:in_channel
-	wire          cmd_mux_src_startofpacket;                                       // cmd_mux:src_startofpacket -> videocard_new_0_memory_main_cmd_width_adapter:in_startofpacket
-	wire          cmd_mux_src_endofpacket;                                         // cmd_mux:src_endofpacket -> videocard_new_0_memory_main_cmd_width_adapter:in_endofpacket
-	wire          videocard_new_0_memory_main_cmd_width_adapter_src_valid;         // videocard_new_0_memory_main_cmd_width_adapter:out_valid -> videocard_new_0_memory_main_burst_adapter:sink0_valid
-	wire  [124:0] videocard_new_0_memory_main_cmd_width_adapter_src_data;          // videocard_new_0_memory_main_cmd_width_adapter:out_data -> videocard_new_0_memory_main_burst_adapter:sink0_data
-	wire          videocard_new_0_memory_main_cmd_width_adapter_src_ready;         // videocard_new_0_memory_main_burst_adapter:sink0_ready -> videocard_new_0_memory_main_cmd_width_adapter:out_ready
-	wire    [1:0] videocard_new_0_memory_main_cmd_width_adapter_src_channel;       // videocard_new_0_memory_main_cmd_width_adapter:out_channel -> videocard_new_0_memory_main_burst_adapter:sink0_channel
-	wire          videocard_new_0_memory_main_cmd_width_adapter_src_startofpacket; // videocard_new_0_memory_main_cmd_width_adapter:out_startofpacket -> videocard_new_0_memory_main_burst_adapter:sink0_startofpacket
-	wire          videocard_new_0_memory_main_cmd_width_adapter_src_endofpacket;   // videocard_new_0_memory_main_cmd_width_adapter:out_endofpacket -> videocard_new_0_memory_main_burst_adapter:sink0_endofpacket
-	wire          cmd_demux_src0_valid;                                            // cmd_demux:src0_valid -> crosser:in_valid
-	wire  [232:0] cmd_demux_src0_data;                                             // cmd_demux:src0_data -> crosser:in_data
-	wire          cmd_demux_src0_ready;                                            // crosser:in_ready -> cmd_demux:src0_ready
-	wire    [1:0] cmd_demux_src0_channel;                                          // cmd_demux:src0_channel -> crosser:in_channel
-	wire          cmd_demux_src0_startofpacket;                                    // cmd_demux:src0_startofpacket -> crosser:in_startofpacket
-	wire          cmd_demux_src0_endofpacket;                                      // cmd_demux:src0_endofpacket -> crosser:in_endofpacket
-	wire          crosser_out_valid;                                               // crosser:out_valid -> cmd_mux:sink0_valid
-	wire  [232:0] crosser_out_data;                                                // crosser:out_data -> cmd_mux:sink0_data
-	wire          crosser_out_ready;                                               // cmd_mux:sink0_ready -> crosser:out_ready
-	wire    [1:0] crosser_out_channel;                                             // crosser:out_channel -> cmd_mux:sink0_channel
-	wire          crosser_out_startofpacket;                                       // crosser:out_startofpacket -> cmd_mux:sink0_startofpacket
-	wire          crosser_out_endofpacket;                                         // crosser:out_endofpacket -> cmd_mux:sink0_endofpacket
-	wire          cmd_demux_001_src0_valid;                                        // cmd_demux_001:src0_valid -> crosser_001:in_valid
-	wire  [232:0] cmd_demux_001_src0_data;                                         // cmd_demux_001:src0_data -> crosser_001:in_data
-	wire          cmd_demux_001_src0_ready;                                        // crosser_001:in_ready -> cmd_demux_001:src0_ready
-	wire    [1:0] cmd_demux_001_src0_channel;                                      // cmd_demux_001:src0_channel -> crosser_001:in_channel
-	wire          cmd_demux_001_src0_startofpacket;                                // cmd_demux_001:src0_startofpacket -> crosser_001:in_startofpacket
-	wire          cmd_demux_001_src0_endofpacket;                                  // cmd_demux_001:src0_endofpacket -> crosser_001:in_endofpacket
-	wire          crosser_001_out_valid;                                           // crosser_001:out_valid -> cmd_mux:sink1_valid
-	wire  [232:0] crosser_001_out_data;                                            // crosser_001:out_data -> cmd_mux:sink1_data
-	wire          crosser_001_out_ready;                                           // cmd_mux:sink1_ready -> crosser_001:out_ready
-	wire    [1:0] crosser_001_out_channel;                                         // crosser_001:out_channel -> cmd_mux:sink1_channel
-	wire          crosser_001_out_startofpacket;                                   // crosser_001:out_startofpacket -> cmd_mux:sink1_startofpacket
-	wire          crosser_001_out_endofpacket;                                     // crosser_001:out_endofpacket -> cmd_mux:sink1_endofpacket
-	wire          rsp_demux_src0_valid;                                            // rsp_demux:src0_valid -> crosser_002:in_valid
-	wire  [232:0] rsp_demux_src0_data;                                             // rsp_demux:src0_data -> crosser_002:in_data
-	wire          rsp_demux_src0_ready;                                            // crosser_002:in_ready -> rsp_demux:src0_ready
-	wire    [1:0] rsp_demux_src0_channel;                                          // rsp_demux:src0_channel -> crosser_002:in_channel
-	wire          rsp_demux_src0_startofpacket;                                    // rsp_demux:src0_startofpacket -> crosser_002:in_startofpacket
-	wire          rsp_demux_src0_endofpacket;                                      // rsp_demux:src0_endofpacket -> crosser_002:in_endofpacket
-	wire          crosser_002_out_valid;                                           // crosser_002:out_valid -> rsp_mux:sink0_valid
-	wire  [232:0] crosser_002_out_data;                                            // crosser_002:out_data -> rsp_mux:sink0_data
-	wire          crosser_002_out_ready;                                           // rsp_mux:sink0_ready -> crosser_002:out_ready
-	wire    [1:0] crosser_002_out_channel;                                         // crosser_002:out_channel -> rsp_mux:sink0_channel
-	wire          crosser_002_out_startofpacket;                                   // crosser_002:out_startofpacket -> rsp_mux:sink0_startofpacket
-	wire          crosser_002_out_endofpacket;                                     // crosser_002:out_endofpacket -> rsp_mux:sink0_endofpacket
-	wire          rsp_demux_src1_valid;                                            // rsp_demux:src1_valid -> crosser_003:in_valid
-	wire  [232:0] rsp_demux_src1_data;                                             // rsp_demux:src1_data -> crosser_003:in_data
-	wire          rsp_demux_src1_ready;                                            // crosser_003:in_ready -> rsp_demux:src1_ready
-	wire    [1:0] rsp_demux_src1_channel;                                          // rsp_demux:src1_channel -> crosser_003:in_channel
-	wire          rsp_demux_src1_startofpacket;                                    // rsp_demux:src1_startofpacket -> crosser_003:in_startofpacket
-	wire          rsp_demux_src1_endofpacket;                                      // rsp_demux:src1_endofpacket -> crosser_003:in_endofpacket
-	wire          crosser_003_out_valid;                                           // crosser_003:out_valid -> rsp_mux_001:sink0_valid
-	wire  [232:0] crosser_003_out_data;                                            // crosser_003:out_data -> rsp_mux_001:sink0_data
-	wire          crosser_003_out_ready;                                           // rsp_mux_001:sink0_ready -> crosser_003:out_ready
-	wire    [1:0] crosser_003_out_channel;                                         // crosser_003:out_channel -> rsp_mux_001:sink0_channel
-	wire          crosser_003_out_startofpacket;                                   // crosser_003:out_startofpacket -> rsp_mux_001:sink0_startofpacket
-	wire          crosser_003_out_endofpacket;                                     // crosser_003:out_endofpacket -> rsp_mux_001:sink0_endofpacket
-	wire          videocard_new_0_memory_main_agent_rdata_fifo_out_valid;          // videocard_new_0_memory_main_agent_rdata_fifo:out_valid -> avalon_st_adapter:in_0_valid
-	wire   [33:0] videocard_new_0_memory_main_agent_rdata_fifo_out_data;           // videocard_new_0_memory_main_agent_rdata_fifo:out_data -> avalon_st_adapter:in_0_data
-	wire          videocard_new_0_memory_main_agent_rdata_fifo_out_ready;          // avalon_st_adapter:in_0_ready -> videocard_new_0_memory_main_agent_rdata_fifo:out_ready
-	wire          avalon_st_adapter_out_0_valid;                                   // avalon_st_adapter:out_0_valid -> videocard_new_0_memory_main_agent:rdata_fifo_sink_valid
-	wire   [33:0] avalon_st_adapter_out_0_data;                                    // avalon_st_adapter:out_0_data -> videocard_new_0_memory_main_agent:rdata_fifo_sink_data
-	wire          avalon_st_adapter_out_0_ready;                                   // videocard_new_0_memory_main_agent:rdata_fifo_sink_ready -> avalon_st_adapter:out_0_ready
-	wire    [0:0] avalon_st_adapter_out_0_error;                                   // avalon_st_adapter:out_0_error -> videocard_new_0_memory_main_agent:rdata_fifo_sink_error
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_waitrequest;   // on_chip_to_dma_bridge_s0_translator:uav_waitrequest -> video_dma_0_avalon_master_translator:uav_waitrequest
+	wire  [31:0] video_dma_0_avalon_master_translator_avalon_universal_master_0_readdata;      // on_chip_to_dma_bridge_s0_translator:uav_readdata -> video_dma_0_avalon_master_translator:uav_readdata
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_debugaccess;   // video_dma_0_avalon_master_translator:uav_debugaccess -> on_chip_to_dma_bridge_s0_translator:uav_debugaccess
+	wire  [31:0] video_dma_0_avalon_master_translator_avalon_universal_master_0_address;       // video_dma_0_avalon_master_translator:uav_address -> on_chip_to_dma_bridge_s0_translator:uav_address
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_read;          // video_dma_0_avalon_master_translator:uav_read -> on_chip_to_dma_bridge_s0_translator:uav_read
+	wire   [3:0] video_dma_0_avalon_master_translator_avalon_universal_master_0_byteenable;    // video_dma_0_avalon_master_translator:uav_byteenable -> on_chip_to_dma_bridge_s0_translator:uav_byteenable
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_readdatavalid; // on_chip_to_dma_bridge_s0_translator:uav_readdatavalid -> video_dma_0_avalon_master_translator:uav_readdatavalid
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_lock;          // video_dma_0_avalon_master_translator:uav_lock -> on_chip_to_dma_bridge_s0_translator:uav_lock
+	wire         video_dma_0_avalon_master_translator_avalon_universal_master_0_write;         // video_dma_0_avalon_master_translator:uav_write -> on_chip_to_dma_bridge_s0_translator:uav_write
+	wire  [31:0] video_dma_0_avalon_master_translator_avalon_universal_master_0_writedata;     // video_dma_0_avalon_master_translator:uav_writedata -> on_chip_to_dma_bridge_s0_translator:uav_writedata
+	wire   [2:0] video_dma_0_avalon_master_translator_avalon_universal_master_0_burstcount;    // video_dma_0_avalon_master_translator:uav_burstcount -> on_chip_to_dma_bridge_s0_translator:uav_burstcount
+
+	altera_merlin_master_translator #(
+		.AV_ADDRESS_W                (32),
+		.AV_DATA_W                   (32),
+		.AV_BURSTCOUNT_W             (1),
+		.AV_BYTEENABLE_W             (4),
+		.UAV_ADDRESS_W               (32),
+		.UAV_BURSTCOUNT_W            (3),
+		.USE_READ                    (1),
+		.USE_WRITE                   (0),
+		.USE_BEGINBURSTTRANSFER      (0),
+		.USE_BEGINTRANSFER           (0),
+		.USE_CHIPSELECT              (0),
+		.USE_BURSTCOUNT              (0),
+		.USE_READDATAVALID           (1),
+		.USE_WAITREQUEST             (1),
+		.USE_READRESPONSE            (0),
+		.USE_WRITERESPONSE           (0),
+		.AV_SYMBOLS_PER_WORD         (4),
+		.AV_ADDRESS_SYMBOLS          (1),
+		.AV_BURSTCOUNT_SYMBOLS       (0),
+		.AV_CONSTANT_BURST_BEHAVIOR  (0),
+		.UAV_CONSTANT_BURST_BEHAVIOR (0),
+		.AV_LINEWRAPBURSTS           (0),
+		.AV_REGISTERINCOMINGSIGNALS  (0)
+	) video_dma_0_avalon_master_translator (
+		.clk                    (pll_0_outclk4_clk),                                                            //                       clk.clk
+		.reset                  (video_dma_0_reset_reset_bridge_in_reset_reset),                                //                     reset.reset
+		.uav_address            (video_dma_0_avalon_master_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
+		.uav_burstcount         (video_dma_0_avalon_master_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
+		.uav_read               (video_dma_0_avalon_master_translator_avalon_universal_master_0_read),          //                          .read
+		.uav_write              (video_dma_0_avalon_master_translator_avalon_universal_master_0_write),         //                          .write
+		.uav_waitrequest        (video_dma_0_avalon_master_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
+		.uav_readdatavalid      (video_dma_0_avalon_master_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
+		.uav_byteenable         (video_dma_0_avalon_master_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
+		.uav_readdata           (video_dma_0_avalon_master_translator_avalon_universal_master_0_readdata),      //                          .readdata
+		.uav_writedata          (video_dma_0_avalon_master_translator_avalon_universal_master_0_writedata),     //                          .writedata
+		.uav_lock               (video_dma_0_avalon_master_translator_avalon_universal_master_0_lock),          //                          .lock
+		.uav_debugaccess        (video_dma_0_avalon_master_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
+		.av_address             (video_dma_0_avalon_master_address),                                            //      avalon_anti_master_0.address
+		.av_waitrequest         (video_dma_0_avalon_master_waitrequest),                                        //                          .waitrequest
+		.av_read                (video_dma_0_avalon_master_read),                                               //                          .read
+		.av_readdata            (video_dma_0_avalon_master_readdata),                                           //                          .readdata
+		.av_readdatavalid       (video_dma_0_avalon_master_readdatavalid),                                      //                          .readdatavalid
+		.av_burstcount          (1'b1),                                                                         //               (terminated)
+		.av_byteenable          (4'b1111),                                                                      //               (terminated)
+		.av_beginbursttransfer  (1'b0),                                                                         //               (terminated)
+		.av_begintransfer       (1'b0),                                                                         //               (terminated)
+		.av_chipselect          (1'b0),                                                                         //               (terminated)
+		.av_write               (1'b0),                                                                         //               (terminated)
+		.av_writedata           (32'b00000000000000000000000000000000),                                         //               (terminated)
+		.av_lock                (1'b0),                                                                         //               (terminated)
+		.av_debugaccess         (1'b0),                                                                         //               (terminated)
+		.uav_clken              (),                                                                             //               (terminated)
+		.av_clken               (1'b1),                                                                         //               (terminated)
+		.uav_response           (2'b00),                                                                        //               (terminated)
+		.av_response            (),                                                                             //               (terminated)
+		.uav_writeresponsevalid (1'b0),                                                                         //               (terminated)
+		.av_writeresponsevalid  ()                                                                              //               (terminated)
+	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (17),
+		.AV_ADDRESS_W                   (15),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
 		.AV_BYTEENABLE_W                (4),
 		.UAV_BYTEENABLE_W               (4),
-		.UAV_ADDRESS_W                  (30),
+		.UAV_ADDRESS_W                  (32),
 		.UAV_BURSTCOUNT_W               (3),
 		.AV_READLATENCY                 (0),
-		.USE_READDATAVALID              (0),
-		.USE_WAITREQUEST                (0),
+		.USE_READDATAVALID              (1),
+		.USE_WAITREQUEST                (1),
 		.USE_UAV_CLKEN                  (0),
 		.USE_READRESPONSE               (0),
 		.USE_WRITERESPONSE              (0),
 		.AV_SYMBOLS_PER_WORD            (4),
-		.AV_ADDRESS_SYMBOLS             (0),
+		.AV_ADDRESS_SYMBOLS             (1),
 		.AV_BURSTCOUNT_SYMBOLS          (0),
 		.AV_CONSTANT_BURST_BEHAVIOR     (0),
 		.UAV_CONSTANT_BURST_BEHAVIOR    (0),
 		.AV_REQUIRE_UNALIGNED_ADDRESSES (0),
 		.CHIPSELECT_THROUGH_READLATENCY (0),
-		.AV_READ_WAIT_CYCLES            (1),
+		.AV_READ_WAIT_CYCLES            (0),
 		.AV_WRITE_WAIT_CYCLES           (0),
 		.AV_SETUP_WAIT_CYCLES           (0),
 		.AV_DATA_HOLD_CYCLES            (0)
-	) videocard_new_0_memory_main_translator (
-		.clk                    (pll_0_outclk1_clk),                                      //                      clk.clk
-		.reset                  (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), //                    reset.reset
-		.uav_address            (videocard_new_0_memory_main_agent_m0_address),           // avalon_universal_slave_0.address
-		.uav_burstcount         (videocard_new_0_memory_main_agent_m0_burstcount),        //                         .burstcount
-		.uav_read               (videocard_new_0_memory_main_agent_m0_read),              //                         .read
-		.uav_write              (videocard_new_0_memory_main_agent_m0_write),             //                         .write
-		.uav_waitrequest        (videocard_new_0_memory_main_agent_m0_waitrequest),       //                         .waitrequest
-		.uav_readdatavalid      (videocard_new_0_memory_main_agent_m0_readdatavalid),     //                         .readdatavalid
-		.uav_byteenable         (videocard_new_0_memory_main_agent_m0_byteenable),        //                         .byteenable
-		.uav_readdata           (videocard_new_0_memory_main_agent_m0_readdata),          //                         .readdata
-		.uav_writedata          (videocard_new_0_memory_main_agent_m0_writedata),         //                         .writedata
-		.uav_lock               (videocard_new_0_memory_main_agent_m0_lock),              //                         .lock
-		.uav_debugaccess        (videocard_new_0_memory_main_agent_m0_debugaccess),       //                         .debugaccess
-		.av_address             (videocard_new_0_memory_main_address),                    //      avalon_anti_slave_0.address
-		.av_write               (videocard_new_0_memory_main_write),                      //                         .write
-		.av_read                (videocard_new_0_memory_main_read),                       //                         .read
-		.av_readdata            (videocard_new_0_memory_main_readdata),                   //                         .readdata
-		.av_writedata           (videocard_new_0_memory_main_writedata),                  //                         .writedata
-		.av_byteenable          (videocard_new_0_memory_main_byteenable),                 //                         .byteenable
-		.av_begintransfer       (),                                                       //              (terminated)
-		.av_beginbursttransfer  (),                                                       //              (terminated)
-		.av_burstcount          (),                                                       //              (terminated)
-		.av_readdatavalid       (1'b0),                                                   //              (terminated)
-		.av_waitrequest         (1'b0),                                                   //              (terminated)
-		.av_writebyteenable     (),                                                       //              (terminated)
-		.av_lock                (),                                                       //              (terminated)
-		.av_chipselect          (),                                                       //              (terminated)
-		.av_clken               (),                                                       //              (terminated)
-		.uav_clken              (1'b0),                                                   //              (terminated)
-		.av_debugaccess         (),                                                       //              (terminated)
-		.av_outputenable        (),                                                       //              (terminated)
-		.uav_response           (),                                                       //              (terminated)
-		.av_response            (2'b00),                                                  //              (terminated)
-		.uav_writeresponsevalid (),                                                       //              (terminated)
-		.av_writeresponsevalid  (1'b0)                                                    //              (terminated)
-	);
-
-	altera_merlin_axi_master_ni #(
-		.ID_WIDTH                  (12),
-		.ADDR_WIDTH                (30),
-		.RDATA_WIDTH               (128),
-		.WDATA_WIDTH               (128),
-		.ADDR_USER_WIDTH           (1),
-		.DATA_USER_WIDTH           (1),
-		.AXI_BURST_LENGTH_WIDTH    (4),
-		.AXI_LOCK_WIDTH            (2),
-		.AXI_VERSION               ("AXI3"),
-		.WRITE_ISSUING_CAPABILITY  (8),
-		.READ_ISSUING_CAPABILITY   (8),
-		.PKT_BEGIN_BURST           (205),
-		.PKT_CACHE_H               (227),
-		.PKT_CACHE_L               (224),
-		.PKT_ADDR_SIDEBAND_H       (203),
-		.PKT_ADDR_SIDEBAND_L       (203),
-		.PKT_PROTECTION_H          (223),
-		.PKT_PROTECTION_L          (221),
-		.PKT_BURST_SIZE_H          (200),
-		.PKT_BURST_SIZE_L          (198),
-		.PKT_BURST_TYPE_H          (202),
-		.PKT_BURST_TYPE_L          (201),
-		.PKT_RESPONSE_STATUS_L     (228),
-		.PKT_RESPONSE_STATUS_H     (229),
-		.PKT_BURSTWRAP_H           (197),
-		.PKT_BURSTWRAP_L           (189),
-		.PKT_BYTE_CNT_H            (188),
-		.PKT_BYTE_CNT_L            (180),
-		.PKT_ADDR_H                (173),
-		.PKT_ADDR_L                (144),
-		.PKT_TRANS_EXCLUSIVE       (179),
-		.PKT_TRANS_LOCK            (178),
-		.PKT_TRANS_COMPRESSED_READ (174),
-		.PKT_TRANS_POSTED          (175),
-		.PKT_TRANS_WRITE           (176),
-		.PKT_TRANS_READ            (177),
-		.PKT_DATA_H                (127),
-		.PKT_DATA_L                (0),
-		.PKT_BYTEEN_H              (143),
-		.PKT_BYTEEN_L              (128),
-		.PKT_SRC_ID_H              (207),
-		.PKT_SRC_ID_L              (207),
-		.PKT_DEST_ID_H             (208),
-		.PKT_DEST_ID_L             (208),
-		.PKT_THREAD_ID_H           (220),
-		.PKT_THREAD_ID_L           (209),
-		.PKT_QOS_L                 (206),
-		.PKT_QOS_H                 (206),
-		.PKT_ORI_BURST_SIZE_L      (230),
-		.PKT_ORI_BURST_SIZE_H      (232),
-		.PKT_DATA_SIDEBAND_H       (204),
-		.PKT_DATA_SIDEBAND_L       (204),
-		.ST_DATA_W                 (233),
-		.ST_CHANNEL_W              (2),
-		.ID                        (0)
-	) arm_a9_hps_h2f_axi_master_agent (
-		.aclk                   (sys_pll_sys_clk_clk),                                                    //              clk.clk
-		.aresetn                (~ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //        clk_reset.reset_n
-		.write_cp_valid         (arm_a9_hps_h2f_axi_master_agent_write_cp_valid),                         //         write_cp.valid
-		.write_cp_data          (arm_a9_hps_h2f_axi_master_agent_write_cp_data),                          //                 .data
-		.write_cp_startofpacket (arm_a9_hps_h2f_axi_master_agent_write_cp_startofpacket),                 //                 .startofpacket
-		.write_cp_endofpacket   (arm_a9_hps_h2f_axi_master_agent_write_cp_endofpacket),                   //                 .endofpacket
-		.write_cp_ready         (arm_a9_hps_h2f_axi_master_agent_write_cp_ready),                         //                 .ready
-		.write_rp_valid         (rsp_mux_src_valid),                                                      //         write_rp.valid
-		.write_rp_data          (rsp_mux_src_data),                                                       //                 .data
-		.write_rp_channel       (rsp_mux_src_channel),                                                    //                 .channel
-		.write_rp_startofpacket (rsp_mux_src_startofpacket),                                              //                 .startofpacket
-		.write_rp_endofpacket   (rsp_mux_src_endofpacket),                                                //                 .endofpacket
-		.write_rp_ready         (rsp_mux_src_ready),                                                      //                 .ready
-		.read_cp_valid          (arm_a9_hps_h2f_axi_master_agent_read_cp_valid),                          //          read_cp.valid
-		.read_cp_data           (arm_a9_hps_h2f_axi_master_agent_read_cp_data),                           //                 .data
-		.read_cp_startofpacket  (arm_a9_hps_h2f_axi_master_agent_read_cp_startofpacket),                  //                 .startofpacket
-		.read_cp_endofpacket    (arm_a9_hps_h2f_axi_master_agent_read_cp_endofpacket),                    //                 .endofpacket
-		.read_cp_ready          (arm_a9_hps_h2f_axi_master_agent_read_cp_ready),                          //                 .ready
-		.read_rp_valid          (rsp_mux_001_src_valid),                                                  //          read_rp.valid
-		.read_rp_data           (rsp_mux_001_src_data),                                                   //                 .data
-		.read_rp_channel        (rsp_mux_001_src_channel),                                                //                 .channel
-		.read_rp_startofpacket  (rsp_mux_001_src_startofpacket),                                          //                 .startofpacket
-		.read_rp_endofpacket    (rsp_mux_001_src_endofpacket),                                            //                 .endofpacket
-		.read_rp_ready          (rsp_mux_001_src_ready),                                                  //                 .ready
-		.awid                   (ARM_A9_HPS_h2f_axi_master_awid),                                         // altera_axi_slave.awid
-		.awaddr                 (ARM_A9_HPS_h2f_axi_master_awaddr),                                       //                 .awaddr
-		.awlen                  (ARM_A9_HPS_h2f_axi_master_awlen),                                        //                 .awlen
-		.awsize                 (ARM_A9_HPS_h2f_axi_master_awsize),                                       //                 .awsize
-		.awburst                (ARM_A9_HPS_h2f_axi_master_awburst),                                      //                 .awburst
-		.awlock                 (ARM_A9_HPS_h2f_axi_master_awlock),                                       //                 .awlock
-		.awcache                (ARM_A9_HPS_h2f_axi_master_awcache),                                      //                 .awcache
-		.awprot                 (ARM_A9_HPS_h2f_axi_master_awprot),                                       //                 .awprot
-		.awvalid                (ARM_A9_HPS_h2f_axi_master_awvalid),                                      //                 .awvalid
-		.awready                (ARM_A9_HPS_h2f_axi_master_awready),                                      //                 .awready
-		.wid                    (ARM_A9_HPS_h2f_axi_master_wid),                                          //                 .wid
-		.wdata                  (ARM_A9_HPS_h2f_axi_master_wdata),                                        //                 .wdata
-		.wstrb                  (ARM_A9_HPS_h2f_axi_master_wstrb),                                        //                 .wstrb
-		.wlast                  (ARM_A9_HPS_h2f_axi_master_wlast),                                        //                 .wlast
-		.wvalid                 (ARM_A9_HPS_h2f_axi_master_wvalid),                                       //                 .wvalid
-		.wready                 (ARM_A9_HPS_h2f_axi_master_wready),                                       //                 .wready
-		.bid                    (ARM_A9_HPS_h2f_axi_master_bid),                                          //                 .bid
-		.bresp                  (ARM_A9_HPS_h2f_axi_master_bresp),                                        //                 .bresp
-		.bvalid                 (ARM_A9_HPS_h2f_axi_master_bvalid),                                       //                 .bvalid
-		.bready                 (ARM_A9_HPS_h2f_axi_master_bready),                                       //                 .bready
-		.arid                   (ARM_A9_HPS_h2f_axi_master_arid),                                         //                 .arid
-		.araddr                 (ARM_A9_HPS_h2f_axi_master_araddr),                                       //                 .araddr
-		.arlen                  (ARM_A9_HPS_h2f_axi_master_arlen),                                        //                 .arlen
-		.arsize                 (ARM_A9_HPS_h2f_axi_master_arsize),                                       //                 .arsize
-		.arburst                (ARM_A9_HPS_h2f_axi_master_arburst),                                      //                 .arburst
-		.arlock                 (ARM_A9_HPS_h2f_axi_master_arlock),                                       //                 .arlock
-		.arcache                (ARM_A9_HPS_h2f_axi_master_arcache),                                      //                 .arcache
-		.arprot                 (ARM_A9_HPS_h2f_axi_master_arprot),                                       //                 .arprot
-		.arvalid                (ARM_A9_HPS_h2f_axi_master_arvalid),                                      //                 .arvalid
-		.arready                (ARM_A9_HPS_h2f_axi_master_arready),                                      //                 .arready
-		.rid                    (ARM_A9_HPS_h2f_axi_master_rid),                                          //                 .rid
-		.rdata                  (ARM_A9_HPS_h2f_axi_master_rdata),                                        //                 .rdata
-		.rresp                  (ARM_A9_HPS_h2f_axi_master_rresp),                                        //                 .rresp
-		.rlast                  (ARM_A9_HPS_h2f_axi_master_rlast),                                        //                 .rlast
-		.rvalid                 (ARM_A9_HPS_h2f_axi_master_rvalid),                                       //                 .rvalid
-		.rready                 (ARM_A9_HPS_h2f_axi_master_rready),                                       //                 .rready
-		.awuser                 (1'b0),                                                                   //      (terminated)
-		.aruser                 (1'b0),                                                                   //      (terminated)
-		.awqos                  (4'b0000),                                                                //      (terminated)
-		.arqos                  (4'b0000),                                                                //      (terminated)
-		.awregion               (4'b0000),                                                                //      (terminated)
-		.arregion               (4'b0000),                                                                //      (terminated)
-		.wuser                  (1'b0),                                                                   //      (terminated)
-		.ruser                  (),                                                                       //      (terminated)
-		.buser                  ()                                                                        //      (terminated)
-	);
-
-	altera_merlin_slave_agent #(
-		.PKT_ORI_BURST_SIZE_H      (124),
-		.PKT_ORI_BURST_SIZE_L      (122),
-		.PKT_RESPONSE_STATUS_H     (121),
-		.PKT_RESPONSE_STATUS_L     (120),
-		.PKT_BURST_SIZE_H          (92),
-		.PKT_BURST_SIZE_L          (90),
-		.PKT_TRANS_LOCK            (70),
-		.PKT_BEGIN_BURST           (97),
-		.PKT_PROTECTION_H          (115),
-		.PKT_PROTECTION_L          (113),
-		.PKT_BURSTWRAP_H           (89),
-		.PKT_BURSTWRAP_L           (81),
-		.PKT_BYTE_CNT_H            (80),
-		.PKT_BYTE_CNT_L            (72),
-		.PKT_ADDR_H                (65),
-		.PKT_ADDR_L                (36),
-		.PKT_TRANS_COMPRESSED_READ (66),
-		.PKT_TRANS_POSTED          (67),
-		.PKT_TRANS_WRITE           (68),
-		.PKT_TRANS_READ            (69),
-		.PKT_DATA_H                (31),
-		.PKT_DATA_L                (0),
-		.PKT_BYTEEN_H              (35),
-		.PKT_BYTEEN_L              (32),
-		.PKT_SRC_ID_H              (99),
-		.PKT_SRC_ID_L              (99),
-		.PKT_DEST_ID_H             (100),
-		.PKT_DEST_ID_L             (100),
-		.PKT_SYMBOL_W              (8),
-		.ST_CHANNEL_W              (2),
-		.ST_DATA_W                 (125),
-		.AVS_BURSTCOUNT_W          (3),
-		.SUPPRESS_0_BYTEEN_CMD     (1),
-		.PREVENT_FIFO_OVERFLOW     (1),
-		.USE_READRESPONSE          (0),
-		.USE_WRITERESPONSE         (0),
-		.ECC_ENABLE                (0)
-	) videocard_new_0_memory_main_agent (
-		.clk                     (pll_0_outclk1_clk),                                               //             clk.clk
-		.reset                   (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          //       clk_reset.reset
-		.m0_address              (videocard_new_0_memory_main_agent_m0_address),                    //              m0.address
-		.m0_burstcount           (videocard_new_0_memory_main_agent_m0_burstcount),                 //                .burstcount
-		.m0_byteenable           (videocard_new_0_memory_main_agent_m0_byteenable),                 //                .byteenable
-		.m0_debugaccess          (videocard_new_0_memory_main_agent_m0_debugaccess),                //                .debugaccess
-		.m0_lock                 (videocard_new_0_memory_main_agent_m0_lock),                       //                .lock
-		.m0_readdata             (videocard_new_0_memory_main_agent_m0_readdata),                   //                .readdata
-		.m0_readdatavalid        (videocard_new_0_memory_main_agent_m0_readdatavalid),              //                .readdatavalid
-		.m0_read                 (videocard_new_0_memory_main_agent_m0_read),                       //                .read
-		.m0_waitrequest          (videocard_new_0_memory_main_agent_m0_waitrequest),                //                .waitrequest
-		.m0_writedata            (videocard_new_0_memory_main_agent_m0_writedata),                  //                .writedata
-		.m0_write                (videocard_new_0_memory_main_agent_m0_write),                      //                .write
-		.rp_endofpacket          (videocard_new_0_memory_main_agent_rp_endofpacket),                //              rp.endofpacket
-		.rp_ready                (videocard_new_0_memory_main_agent_rp_ready),                      //                .ready
-		.rp_valid                (videocard_new_0_memory_main_agent_rp_valid),                      //                .valid
-		.rp_data                 (videocard_new_0_memory_main_agent_rp_data),                       //                .data
-		.rp_startofpacket        (videocard_new_0_memory_main_agent_rp_startofpacket),              //                .startofpacket
-		.cp_ready                (videocard_new_0_memory_main_burst_adapter_source0_ready),         //              cp.ready
-		.cp_valid                (videocard_new_0_memory_main_burst_adapter_source0_valid),         //                .valid
-		.cp_data                 (videocard_new_0_memory_main_burst_adapter_source0_data),          //                .data
-		.cp_startofpacket        (videocard_new_0_memory_main_burst_adapter_source0_startofpacket), //                .startofpacket
-		.cp_endofpacket          (videocard_new_0_memory_main_burst_adapter_source0_endofpacket),   //                .endofpacket
-		.cp_channel              (videocard_new_0_memory_main_burst_adapter_source0_channel),       //                .channel
-		.rf_sink_ready           (videocard_new_0_memory_main_agent_rsp_fifo_out_ready),            //         rf_sink.ready
-		.rf_sink_valid           (videocard_new_0_memory_main_agent_rsp_fifo_out_valid),            //                .valid
-		.rf_sink_startofpacket   (videocard_new_0_memory_main_agent_rsp_fifo_out_startofpacket),    //                .startofpacket
-		.rf_sink_endofpacket     (videocard_new_0_memory_main_agent_rsp_fifo_out_endofpacket),      //                .endofpacket
-		.rf_sink_data            (videocard_new_0_memory_main_agent_rsp_fifo_out_data),             //                .data
-		.rf_source_ready         (videocard_new_0_memory_main_agent_rf_source_ready),               //       rf_source.ready
-		.rf_source_valid         (videocard_new_0_memory_main_agent_rf_source_valid),               //                .valid
-		.rf_source_startofpacket (videocard_new_0_memory_main_agent_rf_source_startofpacket),       //                .startofpacket
-		.rf_source_endofpacket   (videocard_new_0_memory_main_agent_rf_source_endofpacket),         //                .endofpacket
-		.rf_source_data          (videocard_new_0_memory_main_agent_rf_source_data),                //                .data
-		.rdata_fifo_sink_ready   (avalon_st_adapter_out_0_ready),                                   // rdata_fifo_sink.ready
-		.rdata_fifo_sink_valid   (avalon_st_adapter_out_0_valid),                                   //                .valid
-		.rdata_fifo_sink_data    (avalon_st_adapter_out_0_data),                                    //                .data
-		.rdata_fifo_sink_error   (avalon_st_adapter_out_0_error),                                   //                .error
-		.rdata_fifo_src_ready    (videocard_new_0_memory_main_agent_rdata_fifo_src_ready),          //  rdata_fifo_src.ready
-		.rdata_fifo_src_valid    (videocard_new_0_memory_main_agent_rdata_fifo_src_valid),          //                .valid
-		.rdata_fifo_src_data     (videocard_new_0_memory_main_agent_rdata_fifo_src_data),           //                .data
-		.m0_response             (2'b00),                                                           //     (terminated)
-		.m0_writeresponsevalid   (1'b0)                                                             //     (terminated)
-	);
-
-	altera_avalon_sc_fifo #(
-		.SYMBOLS_PER_BEAT    (1),
-		.BITS_PER_SYMBOL     (126),
-		.FIFO_DEPTH          (2),
-		.CHANNEL_WIDTH       (0),
-		.ERROR_WIDTH         (0),
-		.USE_PACKETS         (1),
-		.USE_FILL_LEVEL      (0),
-		.EMPTY_LATENCY       (1),
-		.USE_MEMORY_BLOCKS   (0),
-		.USE_STORE_FORWARD   (0),
-		.USE_ALMOST_FULL_IF  (0),
-		.USE_ALMOST_EMPTY_IF (0)
-	) videocard_new_0_memory_main_agent_rsp_fifo (
-		.clk               (pll_0_outclk1_clk),                                            //       clk.clk
-		.reset             (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),       // clk_reset.reset
-		.in_data           (videocard_new_0_memory_main_agent_rf_source_data),             //        in.data
-		.in_valid          (videocard_new_0_memory_main_agent_rf_source_valid),            //          .valid
-		.in_ready          (videocard_new_0_memory_main_agent_rf_source_ready),            //          .ready
-		.in_startofpacket  (videocard_new_0_memory_main_agent_rf_source_startofpacket),    //          .startofpacket
-		.in_endofpacket    (videocard_new_0_memory_main_agent_rf_source_endofpacket),      //          .endofpacket
-		.out_data          (videocard_new_0_memory_main_agent_rsp_fifo_out_data),          //       out.data
-		.out_valid         (videocard_new_0_memory_main_agent_rsp_fifo_out_valid),         //          .valid
-		.out_ready         (videocard_new_0_memory_main_agent_rsp_fifo_out_ready),         //          .ready
-		.out_startofpacket (videocard_new_0_memory_main_agent_rsp_fifo_out_startofpacket), //          .startofpacket
-		.out_endofpacket   (videocard_new_0_memory_main_agent_rsp_fifo_out_endofpacket),   //          .endofpacket
-		.csr_address       (2'b00),                                                        // (terminated)
-		.csr_read          (1'b0),                                                         // (terminated)
-		.csr_write         (1'b0),                                                         // (terminated)
-		.csr_readdata      (),                                                             // (terminated)
-		.csr_writedata     (32'b00000000000000000000000000000000),                         // (terminated)
-		.almost_full_data  (),                                                             // (terminated)
-		.almost_empty_data (),                                                             // (terminated)
-		.in_empty          (1'b0),                                                         // (terminated)
-		.out_empty         (),                                                             // (terminated)
-		.in_error          (1'b0),                                                         // (terminated)
-		.out_error         (),                                                             // (terminated)
-		.in_channel        (1'b0),                                                         // (terminated)
-		.out_channel       ()                                                              // (terminated)
-	);
-
-	altera_avalon_sc_fifo #(
-		.SYMBOLS_PER_BEAT    (1),
-		.BITS_PER_SYMBOL     (34),
-		.FIFO_DEPTH          (2),
-		.CHANNEL_WIDTH       (0),
-		.ERROR_WIDTH         (0),
-		.USE_PACKETS         (0),
-		.USE_FILL_LEVEL      (0),
-		.EMPTY_LATENCY       (0),
-		.USE_MEMORY_BLOCKS   (0),
-		.USE_STORE_FORWARD   (0),
-		.USE_ALMOST_FULL_IF  (0),
-		.USE_ALMOST_EMPTY_IF (0)
-	) videocard_new_0_memory_main_agent_rdata_fifo (
-		.clk               (pll_0_outclk1_clk),                                      //       clk.clk
-		.reset             (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
-		.in_data           (videocard_new_0_memory_main_agent_rdata_fifo_src_data),  //        in.data
-		.in_valid          (videocard_new_0_memory_main_agent_rdata_fifo_src_valid), //          .valid
-		.in_ready          (videocard_new_0_memory_main_agent_rdata_fifo_src_ready), //          .ready
-		.out_data          (videocard_new_0_memory_main_agent_rdata_fifo_out_data),  //       out.data
-		.out_valid         (videocard_new_0_memory_main_agent_rdata_fifo_out_valid), //          .valid
-		.out_ready         (videocard_new_0_memory_main_agent_rdata_fifo_out_ready), //          .ready
-		.csr_address       (2'b00),                                                  // (terminated)
-		.csr_read          (1'b0),                                                   // (terminated)
-		.csr_write         (1'b0),                                                   // (terminated)
-		.csr_readdata      (),                                                       // (terminated)
-		.csr_writedata     (32'b00000000000000000000000000000000),                   // (terminated)
-		.almost_full_data  (),                                                       // (terminated)
-		.almost_empty_data (),                                                       // (terminated)
-		.in_startofpacket  (1'b0),                                                   // (terminated)
-		.in_endofpacket    (1'b0),                                                   // (terminated)
-		.out_startofpacket (),                                                       // (terminated)
-		.out_endofpacket   (),                                                       // (terminated)
-		.in_empty          (1'b0),                                                   // (terminated)
-		.out_empty         (),                                                       // (terminated)
-		.in_error          (1'b0),                                                   // (terminated)
-		.out_error         (),                                                       // (terminated)
-		.in_channel        (1'b0),                                                   // (terminated)
-		.out_channel       ()                                                        // (terminated)
-	);
-
-	soc_system_mm_interconnect_0_router router (
-		.sink_ready         (arm_a9_hps_h2f_axi_master_agent_write_cp_ready),                        //      sink.ready
-		.sink_valid         (arm_a9_hps_h2f_axi_master_agent_write_cp_valid),                        //          .valid
-		.sink_data          (arm_a9_hps_h2f_axi_master_agent_write_cp_data),                         //          .data
-		.sink_startofpacket (arm_a9_hps_h2f_axi_master_agent_write_cp_startofpacket),                //          .startofpacket
-		.sink_endofpacket   (arm_a9_hps_h2f_axi_master_agent_write_cp_endofpacket),                  //          .endofpacket
-		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready          (router_src_ready),                                                      //       src.ready
-		.src_valid          (router_src_valid),                                                      //          .valid
-		.src_data           (router_src_data),                                                       //          .data
-		.src_channel        (router_src_channel),                                                    //          .channel
-		.src_startofpacket  (router_src_startofpacket),                                              //          .startofpacket
-		.src_endofpacket    (router_src_endofpacket)                                                 //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_router router_001 (
-		.sink_ready         (arm_a9_hps_h2f_axi_master_agent_read_cp_ready),                         //      sink.ready
-		.sink_valid         (arm_a9_hps_h2f_axi_master_agent_read_cp_valid),                         //          .valid
-		.sink_data          (arm_a9_hps_h2f_axi_master_agent_read_cp_data),                          //          .data
-		.sink_startofpacket (arm_a9_hps_h2f_axi_master_agent_read_cp_startofpacket),                 //          .startofpacket
-		.sink_endofpacket   (arm_a9_hps_h2f_axi_master_agent_read_cp_endofpacket),                   //          .endofpacket
-		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready          (router_001_src_ready),                                                  //       src.ready
-		.src_valid          (router_001_src_valid),                                                  //          .valid
-		.src_data           (router_001_src_data),                                                   //          .data
-		.src_channel        (router_001_src_channel),                                                //          .channel
-		.src_startofpacket  (router_001_src_startofpacket),                                          //          .startofpacket
-		.src_endofpacket    (router_001_src_endofpacket)                                             //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_router_002 router_002 (
-		.sink_ready         (videocard_new_0_memory_main_agent_rp_ready),             //      sink.ready
-		.sink_valid         (videocard_new_0_memory_main_agent_rp_valid),             //          .valid
-		.sink_data          (videocard_new_0_memory_main_agent_rp_data),              //          .data
-		.sink_startofpacket (videocard_new_0_memory_main_agent_rp_startofpacket),     //          .startofpacket
-		.sink_endofpacket   (videocard_new_0_memory_main_agent_rp_endofpacket),       //          .endofpacket
-		.clk                (pll_0_outclk1_clk),                                      //       clk.clk
-		.reset              (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready          (router_002_src_ready),                                   //       src.ready
-		.src_valid          (router_002_src_valid),                                   //          .valid
-		.src_data           (router_002_src_data),                                    //          .data
-		.src_channel        (router_002_src_channel),                                 //          .channel
-		.src_startofpacket  (router_002_src_startofpacket),                           //          .startofpacket
-		.src_endofpacket    (router_002_src_endofpacket)                              //          .endofpacket
-	);
-
-	altera_merlin_burst_adapter #(
-		.PKT_ADDR_H                (65),
-		.PKT_ADDR_L                (36),
-		.PKT_BEGIN_BURST           (97),
-		.PKT_BYTE_CNT_H            (80),
-		.PKT_BYTE_CNT_L            (72),
-		.PKT_BYTEEN_H              (35),
-		.PKT_BYTEEN_L              (32),
-		.PKT_BURST_SIZE_H          (92),
-		.PKT_BURST_SIZE_L          (90),
-		.PKT_BURST_TYPE_H          (94),
-		.PKT_BURST_TYPE_L          (93),
-		.PKT_BURSTWRAP_H           (89),
-		.PKT_BURSTWRAP_L           (81),
-		.PKT_TRANS_COMPRESSED_READ (66),
-		.PKT_TRANS_WRITE           (68),
-		.PKT_TRANS_READ            (69),
-		.OUT_NARROW_SIZE           (0),
-		.IN_NARROW_SIZE            (1),
-		.OUT_FIXED                 (0),
-		.OUT_COMPLETE_WRAP         (0),
-		.ST_DATA_W                 (125),
-		.ST_CHANNEL_W              (2),
-		.OUT_BYTE_CNT_H            (74),
-		.OUT_BURSTWRAP_H           (89),
-		.COMPRESSED_READ_SUPPORT   (1),
-		.BYTEENABLE_SYNTHESIS      (1),
-		.PIPE_INPUTS               (0),
-		.NO_WRAP_SUPPORT           (0),
-		.INCOMPLETE_WRAP_SUPPORT   (0),
-		.BURSTWRAP_CONST_MASK      (0),
-		.BURSTWRAP_CONST_VALUE     (0),
-		.ADAPTER_VERSION           ("13.1")
-	) videocard_new_0_memory_main_burst_adapter (
-		.clk                   (pll_0_outclk1_clk),                                               //       cr0.clk
-		.reset                 (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // cr0_reset.reset
-		.sink0_valid           (videocard_new_0_memory_main_cmd_width_adapter_src_valid),         //     sink0.valid
-		.sink0_data            (videocard_new_0_memory_main_cmd_width_adapter_src_data),          //          .data
-		.sink0_channel         (videocard_new_0_memory_main_cmd_width_adapter_src_channel),       //          .channel
-		.sink0_startofpacket   (videocard_new_0_memory_main_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.sink0_endofpacket     (videocard_new_0_memory_main_cmd_width_adapter_src_endofpacket),   //          .endofpacket
-		.sink0_ready           (videocard_new_0_memory_main_cmd_width_adapter_src_ready),         //          .ready
-		.source0_valid         (videocard_new_0_memory_main_burst_adapter_source0_valid),         //   source0.valid
-		.source0_data          (videocard_new_0_memory_main_burst_adapter_source0_data),          //          .data
-		.source0_channel       (videocard_new_0_memory_main_burst_adapter_source0_channel),       //          .channel
-		.source0_startofpacket (videocard_new_0_memory_main_burst_adapter_source0_startofpacket), //          .startofpacket
-		.source0_endofpacket   (videocard_new_0_memory_main_burst_adapter_source0_endofpacket),   //          .endofpacket
-		.source0_ready         (videocard_new_0_memory_main_burst_adapter_source0_ready)          //          .ready
-	);
-
-	soc_system_mm_interconnect_0_cmd_demux cmd_demux (
-		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_src_ready),                                                      //      sink.ready
-		.sink_channel       (router_src_channel),                                                    //          .channel
-		.sink_data          (router_src_data),                                                       //          .data
-		.sink_startofpacket (router_src_startofpacket),                                              //          .startofpacket
-		.sink_endofpacket   (router_src_endofpacket),                                                //          .endofpacket
-		.sink_valid         (router_src_valid),                                                      //          .valid
-		.src0_ready         (cmd_demux_src0_ready),                                                  //      src0.ready
-		.src0_valid         (cmd_demux_src0_valid),                                                  //          .valid
-		.src0_data          (cmd_demux_src0_data),                                                   //          .data
-		.src0_channel       (cmd_demux_src0_channel),                                                //          .channel
-		.src0_startofpacket (cmd_demux_src0_startofpacket),                                          //          .startofpacket
-		.src0_endofpacket   (cmd_demux_src0_endofpacket)                                             //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_cmd_demux cmd_demux_001 (
-		.clk                (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset              (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_001_src_ready),                                                  //      sink.ready
-		.sink_channel       (router_001_src_channel),                                                //          .channel
-		.sink_data          (router_001_src_data),                                                   //          .data
-		.sink_startofpacket (router_001_src_startofpacket),                                          //          .startofpacket
-		.sink_endofpacket   (router_001_src_endofpacket),                                            //          .endofpacket
-		.sink_valid         (router_001_src_valid),                                                  //          .valid
-		.src0_ready         (cmd_demux_001_src0_ready),                                              //      src0.ready
-		.src0_valid         (cmd_demux_001_src0_valid),                                              //          .valid
-		.src0_data          (cmd_demux_001_src0_data),                                               //          .data
-		.src0_channel       (cmd_demux_001_src0_channel),                                            //          .channel
-		.src0_startofpacket (cmd_demux_001_src0_startofpacket),                                      //          .startofpacket
-		.src0_endofpacket   (cmd_demux_001_src0_endofpacket)                                         //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_cmd_mux cmd_mux (
-		.clk                 (pll_0_outclk1_clk),                                      //       clk.clk
-		.reset               (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready           (cmd_mux_src_ready),                                      //       src.ready
-		.src_valid           (cmd_mux_src_valid),                                      //          .valid
-		.src_data            (cmd_mux_src_data),                                       //          .data
-		.src_channel         (cmd_mux_src_channel),                                    //          .channel
-		.src_startofpacket   (cmd_mux_src_startofpacket),                              //          .startofpacket
-		.src_endofpacket     (cmd_mux_src_endofpacket),                                //          .endofpacket
-		.sink0_ready         (crosser_out_ready),                                      //     sink0.ready
-		.sink0_valid         (crosser_out_valid),                                      //          .valid
-		.sink0_channel       (crosser_out_channel),                                    //          .channel
-		.sink0_data          (crosser_out_data),                                       //          .data
-		.sink0_startofpacket (crosser_out_startofpacket),                              //          .startofpacket
-		.sink0_endofpacket   (crosser_out_endofpacket),                                //          .endofpacket
-		.sink1_ready         (crosser_001_out_ready),                                  //     sink1.ready
-		.sink1_valid         (crosser_001_out_valid),                                  //          .valid
-		.sink1_channel       (crosser_001_out_channel),                                //          .channel
-		.sink1_data          (crosser_001_out_data),                                   //          .data
-		.sink1_startofpacket (crosser_001_out_startofpacket),                          //          .startofpacket
-		.sink1_endofpacket   (crosser_001_out_endofpacket)                             //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_rsp_demux rsp_demux (
-		.clk                (pll_0_outclk1_clk),                                               //       clk.clk
-		.reset              (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
-		.sink_ready         (videocard_new_0_memory_main_rsp_width_adapter_src_ready),         //      sink.ready
-		.sink_channel       (videocard_new_0_memory_main_rsp_width_adapter_src_channel),       //          .channel
-		.sink_data          (videocard_new_0_memory_main_rsp_width_adapter_src_data),          //          .data
-		.sink_startofpacket (videocard_new_0_memory_main_rsp_width_adapter_src_startofpacket), //          .startofpacket
-		.sink_endofpacket   (videocard_new_0_memory_main_rsp_width_adapter_src_endofpacket),   //          .endofpacket
-		.sink_valid         (videocard_new_0_memory_main_rsp_width_adapter_src_valid),         //          .valid
-		.src0_ready         (rsp_demux_src0_ready),                                            //      src0.ready
-		.src0_valid         (rsp_demux_src0_valid),                                            //          .valid
-		.src0_data          (rsp_demux_src0_data),                                             //          .data
-		.src0_channel       (rsp_demux_src0_channel),                                          //          .channel
-		.src0_startofpacket (rsp_demux_src0_startofpacket),                                    //          .startofpacket
-		.src0_endofpacket   (rsp_demux_src0_endofpacket),                                      //          .endofpacket
-		.src1_ready         (rsp_demux_src1_ready),                                            //      src1.ready
-		.src1_valid         (rsp_demux_src1_valid),                                            //          .valid
-		.src1_data          (rsp_demux_src1_data),                                             //          .data
-		.src1_channel       (rsp_demux_src1_channel),                                          //          .channel
-		.src1_startofpacket (rsp_demux_src1_startofpacket),                                    //          .startofpacket
-		.src1_endofpacket   (rsp_demux_src1_endofpacket)                                       //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_rsp_mux rsp_mux (
-		.clk                 (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset               (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready           (rsp_mux_src_ready),                                                     //       src.ready
-		.src_valid           (rsp_mux_src_valid),                                                     //          .valid
-		.src_data            (rsp_mux_src_data),                                                      //          .data
-		.src_channel         (rsp_mux_src_channel),                                                   //          .channel
-		.src_startofpacket   (rsp_mux_src_startofpacket),                                             //          .startofpacket
-		.src_endofpacket     (rsp_mux_src_endofpacket),                                               //          .endofpacket
-		.sink0_ready         (crosser_002_out_ready),                                                 //     sink0.ready
-		.sink0_valid         (crosser_002_out_valid),                                                 //          .valid
-		.sink0_channel       (crosser_002_out_channel),                                               //          .channel
-		.sink0_data          (crosser_002_out_data),                                                  //          .data
-		.sink0_startofpacket (crosser_002_out_startofpacket),                                         //          .startofpacket
-		.sink0_endofpacket   (crosser_002_out_endofpacket)                                            //          .endofpacket
-	);
-
-	soc_system_mm_interconnect_0_rsp_mux rsp_mux_001 (
-		.clk                 (sys_pll_sys_clk_clk),                                                   //       clk.clk
-		.reset               (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready           (rsp_mux_001_src_ready),                                                 //       src.ready
-		.src_valid           (rsp_mux_001_src_valid),                                                 //          .valid
-		.src_data            (rsp_mux_001_src_data),                                                  //          .data
-		.src_channel         (rsp_mux_001_src_channel),                                               //          .channel
-		.src_startofpacket   (rsp_mux_001_src_startofpacket),                                         //          .startofpacket
-		.src_endofpacket     (rsp_mux_001_src_endofpacket),                                           //          .endofpacket
-		.sink0_ready         (crosser_003_out_ready),                                                 //     sink0.ready
-		.sink0_valid         (crosser_003_out_valid),                                                 //          .valid
-		.sink0_channel       (crosser_003_out_channel),                                               //          .channel
-		.sink0_data          (crosser_003_out_data),                                                  //          .data
-		.sink0_startofpacket (crosser_003_out_startofpacket),                                         //          .startofpacket
-		.sink0_endofpacket   (crosser_003_out_endofpacket)                                            //          .endofpacket
-	);
-
-	altera_merlin_width_adapter #(
-		.IN_PKT_ADDR_H                 (65),
-		.IN_PKT_ADDR_L                 (36),
-		.IN_PKT_DATA_H                 (31),
-		.IN_PKT_DATA_L                 (0),
-		.IN_PKT_BYTEEN_H               (35),
-		.IN_PKT_BYTEEN_L               (32),
-		.IN_PKT_BYTE_CNT_H             (80),
-		.IN_PKT_BYTE_CNT_L             (72),
-		.IN_PKT_TRANS_COMPRESSED_READ  (66),
-		.IN_PKT_TRANS_WRITE            (68),
-		.IN_PKT_BURSTWRAP_H            (89),
-		.IN_PKT_BURSTWRAP_L            (81),
-		.IN_PKT_BURST_SIZE_H           (92),
-		.IN_PKT_BURST_SIZE_L           (90),
-		.IN_PKT_RESPONSE_STATUS_H      (121),
-		.IN_PKT_RESPONSE_STATUS_L      (120),
-		.IN_PKT_TRANS_EXCLUSIVE        (71),
-		.IN_PKT_BURST_TYPE_H           (94),
-		.IN_PKT_BURST_TYPE_L           (93),
-		.IN_PKT_ORI_BURST_SIZE_L       (122),
-		.IN_PKT_ORI_BURST_SIZE_H       (124),
-		.IN_ST_DATA_W                  (125),
-		.OUT_PKT_ADDR_H                (173),
-		.OUT_PKT_ADDR_L                (144),
-		.OUT_PKT_DATA_H                (127),
-		.OUT_PKT_DATA_L                (0),
-		.OUT_PKT_BYTEEN_H              (143),
-		.OUT_PKT_BYTEEN_L              (128),
-		.OUT_PKT_BYTE_CNT_H            (188),
-		.OUT_PKT_BYTE_CNT_L            (180),
-		.OUT_PKT_TRANS_COMPRESSED_READ (174),
-		.OUT_PKT_BURST_SIZE_H          (200),
-		.OUT_PKT_BURST_SIZE_L          (198),
-		.OUT_PKT_RESPONSE_STATUS_H     (229),
-		.OUT_PKT_RESPONSE_STATUS_L     (228),
-		.OUT_PKT_TRANS_EXCLUSIVE       (179),
-		.OUT_PKT_BURST_TYPE_H          (202),
-		.OUT_PKT_BURST_TYPE_L          (201),
-		.OUT_PKT_ORI_BURST_SIZE_L      (230),
-		.OUT_PKT_ORI_BURST_SIZE_H      (232),
-		.OUT_ST_DATA_W                 (233),
-		.ST_CHANNEL_W                  (2),
-		.OPTIMIZE_FOR_RSP              (0),
-		.RESPONSE_PATH                 (1),
-		.CONSTANT_BURST_SIZE           (0),
-		.PACKING                       (1),
-		.ENABLE_ADDRESS_ALIGNMENT      (1)
-	) videocard_new_0_memory_main_rsp_width_adapter (
-		.clk                  (pll_0_outclk1_clk),                                               //       clk.clk
-		.reset                (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
-		.in_valid             (router_002_src_valid),                                            //      sink.valid
-		.in_channel           (router_002_src_channel),                                          //          .channel
-		.in_startofpacket     (router_002_src_startofpacket),                                    //          .startofpacket
-		.in_endofpacket       (router_002_src_endofpacket),                                      //          .endofpacket
-		.in_ready             (router_002_src_ready),                                            //          .ready
-		.in_data              (router_002_src_data),                                             //          .data
-		.out_endofpacket      (videocard_new_0_memory_main_rsp_width_adapter_src_endofpacket),   //       src.endofpacket
-		.out_data             (videocard_new_0_memory_main_rsp_width_adapter_src_data),          //          .data
-		.out_channel          (videocard_new_0_memory_main_rsp_width_adapter_src_channel),       //          .channel
-		.out_valid            (videocard_new_0_memory_main_rsp_width_adapter_src_valid),         //          .valid
-		.out_ready            (videocard_new_0_memory_main_rsp_width_adapter_src_ready),         //          .ready
-		.out_startofpacket    (videocard_new_0_memory_main_rsp_width_adapter_src_startofpacket), //          .startofpacket
-		.in_command_size_data (3'b000)                                                           // (terminated)
-	);
-
-	altera_merlin_width_adapter #(
-		.IN_PKT_ADDR_H                 (173),
-		.IN_PKT_ADDR_L                 (144),
-		.IN_PKT_DATA_H                 (127),
-		.IN_PKT_DATA_L                 (0),
-		.IN_PKT_BYTEEN_H               (143),
-		.IN_PKT_BYTEEN_L               (128),
-		.IN_PKT_BYTE_CNT_H             (188),
-		.IN_PKT_BYTE_CNT_L             (180),
-		.IN_PKT_TRANS_COMPRESSED_READ  (174),
-		.IN_PKT_TRANS_WRITE            (176),
-		.IN_PKT_BURSTWRAP_H            (197),
-		.IN_PKT_BURSTWRAP_L            (189),
-		.IN_PKT_BURST_SIZE_H           (200),
-		.IN_PKT_BURST_SIZE_L           (198),
-		.IN_PKT_RESPONSE_STATUS_H      (229),
-		.IN_PKT_RESPONSE_STATUS_L      (228),
-		.IN_PKT_TRANS_EXCLUSIVE        (179),
-		.IN_PKT_BURST_TYPE_H           (202),
-		.IN_PKT_BURST_TYPE_L           (201),
-		.IN_PKT_ORI_BURST_SIZE_L       (230),
-		.IN_PKT_ORI_BURST_SIZE_H       (232),
-		.IN_ST_DATA_W                  (233),
-		.OUT_PKT_ADDR_H                (65),
-		.OUT_PKT_ADDR_L                (36),
-		.OUT_PKT_DATA_H                (31),
-		.OUT_PKT_DATA_L                (0),
-		.OUT_PKT_BYTEEN_H              (35),
-		.OUT_PKT_BYTEEN_L              (32),
-		.OUT_PKT_BYTE_CNT_H            (80),
-		.OUT_PKT_BYTE_CNT_L            (72),
-		.OUT_PKT_TRANS_COMPRESSED_READ (66),
-		.OUT_PKT_BURST_SIZE_H          (92),
-		.OUT_PKT_BURST_SIZE_L          (90),
-		.OUT_PKT_RESPONSE_STATUS_H     (121),
-		.OUT_PKT_RESPONSE_STATUS_L     (120),
-		.OUT_PKT_TRANS_EXCLUSIVE       (71),
-		.OUT_PKT_BURST_TYPE_H          (94),
-		.OUT_PKT_BURST_TYPE_L          (93),
-		.OUT_PKT_ORI_BURST_SIZE_L      (122),
-		.OUT_PKT_ORI_BURST_SIZE_H      (124),
-		.OUT_ST_DATA_W                 (125),
-		.ST_CHANNEL_W                  (2),
-		.OPTIMIZE_FOR_RSP              (0),
-		.RESPONSE_PATH                 (0),
-		.CONSTANT_BURST_SIZE           (0),
-		.PACKING                       (0),
-		.ENABLE_ADDRESS_ALIGNMENT      (1)
-	) videocard_new_0_memory_main_cmd_width_adapter (
-		.clk                  (pll_0_outclk1_clk),                                               //       clk.clk
-		.reset                (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),          // clk_reset.reset
-		.in_valid             (cmd_mux_src_valid),                                               //      sink.valid
-		.in_channel           (cmd_mux_src_channel),                                             //          .channel
-		.in_startofpacket     (cmd_mux_src_startofpacket),                                       //          .startofpacket
-		.in_endofpacket       (cmd_mux_src_endofpacket),                                         //          .endofpacket
-		.in_ready             (cmd_mux_src_ready),                                               //          .ready
-		.in_data              (cmd_mux_src_data),                                                //          .data
-		.out_endofpacket      (videocard_new_0_memory_main_cmd_width_adapter_src_endofpacket),   //       src.endofpacket
-		.out_data             (videocard_new_0_memory_main_cmd_width_adapter_src_data),          //          .data
-		.out_channel          (videocard_new_0_memory_main_cmd_width_adapter_src_channel),       //          .channel
-		.out_valid            (videocard_new_0_memory_main_cmd_width_adapter_src_valid),         //          .valid
-		.out_ready            (videocard_new_0_memory_main_cmd_width_adapter_src_ready),         //          .ready
-		.out_startofpacket    (videocard_new_0_memory_main_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.in_command_size_data (3'b000)                                                           // (terminated)
-	);
-
-	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (233),
-		.BITS_PER_SYMBOL     (233),
-		.USE_PACKETS         (1),
-		.USE_CHANNEL         (1),
-		.CHANNEL_WIDTH       (2),
-		.USE_ERROR           (0),
-		.ERROR_WIDTH         (1),
-		.VALID_SYNC_DEPTH    (2),
-		.READY_SYNC_DEPTH    (2),
-		.USE_OUTPUT_PIPELINE (0)
-	) crosser (
-		.in_clk            (sys_pll_sys_clk_clk),                                                   //        in_clk.clk
-		.in_reset          (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk1_clk),                                                     //       out_clk.clk
-		.out_reset         (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                // out_clk_reset.reset
-		.in_ready          (cmd_demux_src0_ready),                                                  //            in.ready
-		.in_valid          (cmd_demux_src0_valid),                                                  //              .valid
-		.in_startofpacket  (cmd_demux_src0_startofpacket),                                          //              .startofpacket
-		.in_endofpacket    (cmd_demux_src0_endofpacket),                                            //              .endofpacket
-		.in_channel        (cmd_demux_src0_channel),                                                //              .channel
-		.in_data           (cmd_demux_src0_data),                                                   //              .data
-		.out_ready         (crosser_out_ready),                                                     //           out.ready
-		.out_valid         (crosser_out_valid),                                                     //              .valid
-		.out_startofpacket (crosser_out_startofpacket),                                             //              .startofpacket
-		.out_endofpacket   (crosser_out_endofpacket),                                               //              .endofpacket
-		.out_channel       (crosser_out_channel),                                                   //              .channel
-		.out_data          (crosser_out_data),                                                      //              .data
-		.in_empty          (1'b0),                                                                  //   (terminated)
-		.in_error          (1'b0),                                                                  //   (terminated)
-		.out_empty         (),                                                                      //   (terminated)
-		.out_error         ()                                                                       //   (terminated)
-	);
-
-	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (233),
-		.BITS_PER_SYMBOL     (233),
-		.USE_PACKETS         (1),
-		.USE_CHANNEL         (1),
-		.CHANNEL_WIDTH       (2),
-		.USE_ERROR           (0),
-		.ERROR_WIDTH         (1),
-		.VALID_SYNC_DEPTH    (2),
-		.READY_SYNC_DEPTH    (2),
-		.USE_OUTPUT_PIPELINE (0)
-	) crosser_001 (
-		.in_clk            (sys_pll_sys_clk_clk),                                                   //        in_clk.clk
-		.in_reset          (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), //  in_clk_reset.reset
-		.out_clk           (pll_0_outclk1_clk),                                                     //       out_clk.clk
-		.out_reset         (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                // out_clk_reset.reset
-		.in_ready          (cmd_demux_001_src0_ready),                                              //            in.ready
-		.in_valid          (cmd_demux_001_src0_valid),                                              //              .valid
-		.in_startofpacket  (cmd_demux_001_src0_startofpacket),                                      //              .startofpacket
-		.in_endofpacket    (cmd_demux_001_src0_endofpacket),                                        //              .endofpacket
-		.in_channel        (cmd_demux_001_src0_channel),                                            //              .channel
-		.in_data           (cmd_demux_001_src0_data),                                               //              .data
-		.out_ready         (crosser_001_out_ready),                                                 //           out.ready
-		.out_valid         (crosser_001_out_valid),                                                 //              .valid
-		.out_startofpacket (crosser_001_out_startofpacket),                                         //              .startofpacket
-		.out_endofpacket   (crosser_001_out_endofpacket),                                           //              .endofpacket
-		.out_channel       (crosser_001_out_channel),                                               //              .channel
-		.out_data          (crosser_001_out_data),                                                  //              .data
-		.in_empty          (1'b0),                                                                  //   (terminated)
-		.in_error          (1'b0),                                                                  //   (terminated)
-		.out_empty         (),                                                                      //   (terminated)
-		.out_error         ()                                                                       //   (terminated)
-	);
-
-	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (233),
-		.BITS_PER_SYMBOL     (233),
-		.USE_PACKETS         (1),
-		.USE_CHANNEL         (1),
-		.CHANNEL_WIDTH       (2),
-		.USE_ERROR           (0),
-		.ERROR_WIDTH         (1),
-		.VALID_SYNC_DEPTH    (2),
-		.READY_SYNC_DEPTH    (2),
-		.USE_OUTPUT_PIPELINE (0)
-	) crosser_002 (
-		.in_clk            (pll_0_outclk1_clk),                                                     //        in_clk.clk
-		.in_reset          (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                //  in_clk_reset.reset
-		.out_clk           (sys_pll_sys_clk_clk),                                                   //       out_clk.clk
-		.out_reset         (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // out_clk_reset.reset
-		.in_ready          (rsp_demux_src0_ready),                                                  //            in.ready
-		.in_valid          (rsp_demux_src0_valid),                                                  //              .valid
-		.in_startofpacket  (rsp_demux_src0_startofpacket),                                          //              .startofpacket
-		.in_endofpacket    (rsp_demux_src0_endofpacket),                                            //              .endofpacket
-		.in_channel        (rsp_demux_src0_channel),                                                //              .channel
-		.in_data           (rsp_demux_src0_data),                                                   //              .data
-		.out_ready         (crosser_002_out_ready),                                                 //           out.ready
-		.out_valid         (crosser_002_out_valid),                                                 //              .valid
-		.out_startofpacket (crosser_002_out_startofpacket),                                         //              .startofpacket
-		.out_endofpacket   (crosser_002_out_endofpacket),                                           //              .endofpacket
-		.out_channel       (crosser_002_out_channel),                                               //              .channel
-		.out_data          (crosser_002_out_data),                                                  //              .data
-		.in_empty          (1'b0),                                                                  //   (terminated)
-		.in_error          (1'b0),                                                                  //   (terminated)
-		.out_empty         (),                                                                      //   (terminated)
-		.out_error         ()                                                                       //   (terminated)
-	);
-
-	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (233),
-		.BITS_PER_SYMBOL     (233),
-		.USE_PACKETS         (1),
-		.USE_CHANNEL         (1),
-		.CHANNEL_WIDTH       (2),
-		.USE_ERROR           (0),
-		.ERROR_WIDTH         (1),
-		.VALID_SYNC_DEPTH    (2),
-		.READY_SYNC_DEPTH    (2),
-		.USE_OUTPUT_PIPELINE (0)
-	) crosser_003 (
-		.in_clk            (pll_0_outclk1_clk),                                                     //        in_clk.clk
-		.in_reset          (videocard_new_0_reset_sink_reset_bridge_in_reset_reset),                //  in_clk_reset.reset
-		.out_clk           (sys_pll_sys_clk_clk),                                                   //       out_clk.clk
-		.out_reset         (ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset), // out_clk_reset.reset
-		.in_ready          (rsp_demux_src1_ready),                                                  //            in.ready
-		.in_valid          (rsp_demux_src1_valid),                                                  //              .valid
-		.in_startofpacket  (rsp_demux_src1_startofpacket),                                          //              .startofpacket
-		.in_endofpacket    (rsp_demux_src1_endofpacket),                                            //              .endofpacket
-		.in_channel        (rsp_demux_src1_channel),                                                //              .channel
-		.in_data           (rsp_demux_src1_data),                                                   //              .data
-		.out_ready         (crosser_003_out_ready),                                                 //           out.ready
-		.out_valid         (crosser_003_out_valid),                                                 //              .valid
-		.out_startofpacket (crosser_003_out_startofpacket),                                         //              .startofpacket
-		.out_endofpacket   (crosser_003_out_endofpacket),                                           //              .endofpacket
-		.out_channel       (crosser_003_out_channel),                                               //              .channel
-		.out_data          (crosser_003_out_data),                                                  //              .data
-		.in_empty          (1'b0),                                                                  //   (terminated)
-		.in_error          (1'b0),                                                                  //   (terminated)
-		.out_empty         (),                                                                      //   (terminated)
-		.out_error         ()                                                                       //   (terminated)
-	);
-
-	soc_system_mm_interconnect_0_avalon_st_adapter #(
-		.inBitsPerSymbol (34),
-		.inUsePackets    (0),
-		.inDataWidth     (34),
-		.inChannelWidth  (0),
-		.inErrorWidth    (0),
-		.inUseEmptyPort  (0),
-		.inUseValid      (1),
-		.inUseReady      (1),
-		.inReadyLatency  (0),
-		.outDataWidth    (34),
-		.outChannelWidth (0),
-		.outErrorWidth   (1),
-		.outUseEmptyPort (0),
-		.outUseValid     (1),
-		.outUseReady     (1),
-		.outReadyLatency (0)
-	) avalon_st_adapter (
-		.in_clk_0_clk   (pll_0_outclk1_clk),                                      // in_clk_0.clk
-		.in_rst_0_reset (videocard_new_0_reset_sink_reset_bridge_in_reset_reset), // in_rst_0.reset
-		.in_0_data      (videocard_new_0_memory_main_agent_rdata_fifo_out_data),  //     in_0.data
-		.in_0_valid     (videocard_new_0_memory_main_agent_rdata_fifo_out_valid), //         .valid
-		.in_0_ready     (videocard_new_0_memory_main_agent_rdata_fifo_out_ready), //         .ready
-		.out_0_data     (avalon_st_adapter_out_0_data),                           //    out_0.data
-		.out_0_valid    (avalon_st_adapter_out_0_valid),                          //         .valid
-		.out_0_ready    (avalon_st_adapter_out_0_ready),                          //         .ready
-		.out_0_error    (avalon_st_adapter_out_0_error)                           //         .error
+	) on_chip_to_dma_bridge_s0_translator (
+		.clk                    (pll_0_outclk4_clk),                                                            //                      clk.clk
+		.reset                  (video_dma_0_reset_reset_bridge_in_reset_reset),                                //                    reset.reset
+		.uav_address            (video_dma_0_avalon_master_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
+		.uav_burstcount         (video_dma_0_avalon_master_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
+		.uav_read               (video_dma_0_avalon_master_translator_avalon_universal_master_0_read),          //                         .read
+		.uav_write              (video_dma_0_avalon_master_translator_avalon_universal_master_0_write),         //                         .write
+		.uav_waitrequest        (video_dma_0_avalon_master_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
+		.uav_readdatavalid      (video_dma_0_avalon_master_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
+		.uav_byteenable         (video_dma_0_avalon_master_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
+		.uav_readdata           (video_dma_0_avalon_master_translator_avalon_universal_master_0_readdata),      //                         .readdata
+		.uav_writedata          (video_dma_0_avalon_master_translator_avalon_universal_master_0_writedata),     //                         .writedata
+		.uav_lock               (video_dma_0_avalon_master_translator_avalon_universal_master_0_lock),          //                         .lock
+		.uav_debugaccess        (video_dma_0_avalon_master_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
+		.av_address             (on_chip_to_dma_bridge_s0_address),                                             //      avalon_anti_slave_0.address
+		.av_write               (on_chip_to_dma_bridge_s0_write),                                               //                         .write
+		.av_read                (on_chip_to_dma_bridge_s0_read),                                                //                         .read
+		.av_readdata            (on_chip_to_dma_bridge_s0_readdata),                                            //                         .readdata
+		.av_writedata           (on_chip_to_dma_bridge_s0_writedata),                                           //                         .writedata
+		.av_burstcount          (on_chip_to_dma_bridge_s0_burstcount),                                          //                         .burstcount
+		.av_byteenable          (on_chip_to_dma_bridge_s0_byteenable),                                          //                         .byteenable
+		.av_readdatavalid       (on_chip_to_dma_bridge_s0_readdatavalid),                                       //                         .readdatavalid
+		.av_waitrequest         (on_chip_to_dma_bridge_s0_waitrequest),                                         //                         .waitrequest
+		.av_debugaccess         (on_chip_to_dma_bridge_s0_debugaccess),                                         //                         .debugaccess
+		.av_begintransfer       (),                                                                             //              (terminated)
+		.av_beginbursttransfer  (),                                                                             //              (terminated)
+		.av_writebyteenable     (),                                                                             //              (terminated)
+		.av_lock                (),                                                                             //              (terminated)
+		.av_chipselect          (),                                                                             //              (terminated)
+		.av_clken               (),                                                                             //              (terminated)
+		.uav_clken              (1'b0),                                                                         //              (terminated)
+		.av_outputenable        (),                                                                             //              (terminated)
+		.uav_response           (),                                                                             //              (terminated)
+		.av_response            (2'b00),                                                                        //              (terminated)
+		.uav_writeresponsevalid (),                                                                             //              (terminated)
+		.av_writeresponsevalid  (1'b0)                                                                          //              (terminated)
 	);
 
 endmodule

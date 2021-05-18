@@ -28,7 +28,7 @@
 // ------------------------------------------
 // Generation parameters:
 //   output_name:         soc_system_mm_interconnect_3_rsp_demux
-//   ST_DATA_W:           118
+//   ST_DATA_W:           76
 //   ST_CHANNEL_W:        2
 //   NUM_OUTPUTS:         1
 //   VALID_WIDTH:         1
@@ -46,7 +46,7 @@ module soc_system_mm_interconnect_3_rsp_demux
     // Sink
     // -------------------
     input  [1-1      : 0]   sink_valid,
-    input  [118-1    : 0]   sink_data, // ST_DATA_W=118
+    input  [76-1    : 0]   sink_data, // ST_DATA_W=76
     input  [2-1 : 0]   sink_channel, // ST_CHANNEL_W=2
     input                         sink_startofpacket,
     input                         sink_endofpacket,
@@ -56,7 +56,7 @@ module soc_system_mm_interconnect_3_rsp_demux
     // Sources 
     // -------------------
     output reg                      src0_valid,
-    output reg [118-1    : 0] src0_data, // ST_DATA_W=118
+    output reg [76-1    : 0] src0_data, // ST_DATA_W=76
     output reg [2-1 : 0] src0_channel, // ST_CHANNEL_W=2
     output reg                      src0_startofpacket,
     output reg                      src0_endofpacket,

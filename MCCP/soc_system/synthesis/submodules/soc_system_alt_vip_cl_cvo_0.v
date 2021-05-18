@@ -11,29 +11,29 @@ module soc_system_alt_vip_cl_cvo_0 #(
 		parameter NUMBER_OF_COLOUR_PLANES       = 3,
 		parameter COLOUR_PLANES_ARE_IN_PARALLEL = 1,
 		parameter INTERLACED                    = 0,
-		parameter H_ACTIVE_PIXELS               = 1920,
-		parameter V_ACTIVE_LINES                = 1080,
+		parameter H_ACTIVE_PIXELS               = 1024,
+		parameter V_ACTIVE_LINES                = 768,
 		parameter ACCEPT_COLOURS_IN_SEQ         = 0,
-		parameter FIFO_DEPTH                    = 8000,
+		parameter FIFO_DEPTH                    = 4000,
 		parameter CLOCKS_ARE_SAME               = 0,
 		parameter USE_CONTROL                   = 0,
 		parameter NO_OF_MODES                   = 1,
-		parameter THRESHOLD                     = 7999,
+		parameter THRESHOLD                     = 3999,
 		parameter STD_WIDTH                     = 1,
 		parameter GENERATE_SYNC                 = 0,
 		parameter ACCEPT_SYNC                   = 0,
 		parameter COUNT_STEP_IS_PIP_VALUE       = 0,
-		parameter LOW_LATENCY                   = 1,
+		parameter LOW_LATENCY                   = 0,
 		parameter USE_EMBEDDED_SYNCS            = 0,
 		parameter AP_LINE                       = 0,
 		parameter V_BLANK                       = 0,
 		parameter H_BLANK                       = 0,
-		parameter H_SYNC_LENGTH                 = 44,
-		parameter H_FRONT_PORCH                 = 88,
-		parameter H_BACK_PORCH                  = 148,
-		parameter V_SYNC_LENGTH                 = 5,
-		parameter V_FRONT_PORCH                 = 4,
-		parameter V_BACK_PORCH                  = 36,
+		parameter H_SYNC_LENGTH                 = 136,
+		parameter H_FRONT_PORCH                 = 24,
+		parameter H_BACK_PORCH                  = 160,
+		parameter V_SYNC_LENGTH                 = 6,
+		parameter V_FRONT_PORCH                 = 3,
+		parameter V_BACK_PORCH                  = 29,
 		parameter F_RISING_EDGE                 = 0,
 		parameter F_FALLING_EDGE                = 0,
 		parameter FIELD0_V_RISING_EDGE          = 0,
@@ -145,7 +145,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					interlaced_check ( .error(1'b1) );
 		end
-		if (H_ACTIVE_PIXELS != 1920)
+		if (H_ACTIVE_PIXELS != 1024)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -154,7 +154,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					h_active_pixels_check ( .error(1'b1) );
 		end
-		if (V_ACTIVE_LINES != 1080)
+		if (V_ACTIVE_LINES != 768)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -172,7 +172,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					accept_colours_in_seq_check ( .error(1'b1) );
 		end
-		if (FIFO_DEPTH != 8000)
+		if (FIFO_DEPTH != 4000)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -208,7 +208,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					no_of_modes_check ( .error(1'b1) );
 		end
-		if (THRESHOLD != 7999)
+		if (THRESHOLD != 3999)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -253,7 +253,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					count_step_is_pip_value_check ( .error(1'b1) );
 		end
-		if (LOW_LATENCY != 1)
+		if (LOW_LATENCY != 0)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -298,7 +298,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					h_blank_check ( .error(1'b1) );
 		end
-		if (H_SYNC_LENGTH != 44)
+		if (H_SYNC_LENGTH != 136)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -307,7 +307,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					h_sync_length_check ( .error(1'b1) );
 		end
-		if (H_FRONT_PORCH != 88)
+		if (H_FRONT_PORCH != 24)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -316,7 +316,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					h_front_porch_check ( .error(1'b1) );
 		end
-		if (H_BACK_PORCH != 148)
+		if (H_BACK_PORCH != 160)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -325,7 +325,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					h_back_porch_check ( .error(1'b1) );
 		end
-		if (V_SYNC_LENGTH != 5)
+		if (V_SYNC_LENGTH != 6)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -334,7 +334,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					v_sync_length_check ( .error(1'b1) );
 		end
-		if (V_FRONT_PORCH != 4)
+		if (V_FRONT_PORCH != 3)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -343,7 +343,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 			instantiated_with_wrong_parameters_error_see_comment_above
 					v_front_porch_check ( .error(1'b1) );
 		end
-		if (V_BACK_PORCH != 36)
+		if (V_BACK_PORCH != 29)
 		begin
 			initial begin
 				$display("Generated module instantiated with wrong parameters");
@@ -569,14 +569,14 @@ module soc_system_alt_vip_cl_cvo_0 #(
 		.COLOUR_PLANES_ARE_IN_PARALLEL (1),
 		.BPS                           (8),
 		.INTERLACED                    (0),
-		.H_ACTIVE_PIXELS               (1920),
-		.V_ACTIVE_LINES                (1080),
+		.H_ACTIVE_PIXELS               (1024),
+		.V_ACTIVE_LINES                (768),
 		.ACCEPT_COLOURS_IN_SEQ         (0),
-		.FIFO_DEPTH                    (8000),
+		.FIFO_DEPTH                    (4000),
 		.CLOCKS_ARE_SAME               (0),
 		.USE_CONTROL                   (0),
 		.NO_OF_MODES                   (1),
-		.THRESHOLD                     (7999),
+		.THRESHOLD                     (3999),
 		.STD_WIDTH                     (1),
 		.GENERATE_SYNC                 (0),
 		.ACCEPT_SYNC                   (0),
@@ -585,12 +585,12 @@ module soc_system_alt_vip_cl_cvo_0 #(
 		.AP_LINE                       (0),
 		.V_BLANK                       (0),
 		.H_BLANK                       (0),
-		.H_SYNC_LENGTH                 (44),
-		.H_FRONT_PORCH                 (88),
-		.H_BACK_PORCH                  (148),
-		.V_SYNC_LENGTH                 (5),
-		.V_FRONT_PORCH                 (4),
-		.V_BACK_PORCH                  (36),
+		.H_SYNC_LENGTH                 (136),
+		.H_FRONT_PORCH                 (24),
+		.H_BACK_PORCH                  (160),
+		.V_SYNC_LENGTH                 (6),
+		.V_FRONT_PORCH                 (3),
+		.V_BACK_PORCH                  (29),
 		.F_RISING_EDGE                 (0),
 		.F_FALLING_EDGE                (0),
 		.FIELD0_V_RISING_EDGE          (0),
@@ -602,7 +602,7 @@ module soc_system_alt_vip_cl_cvo_0 #(
 		.FIELD0_ANC_LINE               (0),
 		.PIXELS_IN_PARALLEL            (1),
 		.UHD_MODE                      (1),
-		.LOW_LATENCY                   (1),
+		.LOW_LATENCY                   (0),
 		.SRC_WIDTH                     (8),
 		.DST_WIDTH                     (8),
 		.CONTEXT_WIDTH                 (8),

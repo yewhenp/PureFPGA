@@ -1,0 +1,474 @@
+// draws hello world at the very top of the monitor
+// height of all letters is 6, width is different
+
+// input for letter functions:
+// reg0 - starting address - top left corner of letter.
+// reg1 - color
+// returns in reg0 width of letter
+stack_size 1000 1000 1000 1000
+WIDTH=1024
+COLOR=4294967296 // white
+
+MAIN:
+    // reg3 = column
+    // reg4 = row
+    // reg5 pointer
+    // reg1 color
+    movimm reg3 10
+    movimm reg4 0
+
+    // setup color
+    mov reg1 COLOR
+
+    // set-up pointer address
+    mov reg5 reg4
+    mul reg5 $WIDTH
+    add reg5 reg3
+
+    mov reg0 reg5
+    call DRAW_H
+    add reg5 reg4   // remember, draw functions return width of letter in reg4
+    inc reg5        // one - place between letters
+
+    mov reg0 reg5
+    call DRAW_E
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_L
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_L
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_O
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_COMMA
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_SPACE
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_W
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_O
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_R
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_L
+    add reg5 reg4
+    inc reg5
+
+    mov reg0 reg5
+    call DRAW_D
+    add reg5 reg4
+    inc reg5
+
+    int 1
+
+//      #    <- 1
+//      #    <- 2
+// 3 -> # #  <- 4
+// 5 -> ## # <- 7
+// 8 -> #| # <- 9
+// 10-> #| # <- 11
+//       ^
+//       6
+DRAW_H:
+    push reg0
+    push reg1
+
+    // reg0 - pointer, reg1 - color, reg2, reg3 - tmp value
+
+    // 1
+    store reg1 reg0
+
+    // 2
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    // 3
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    // 4
+    add reg0 2
+    store reg1 reg0
+
+    // 5
+    add reg0 $WIDTH
+    inc reg0
+    sub reg0 2
+    store reg1 reg0
+
+    // 6
+    add reg0 1
+    store reg1 reg0
+
+    // 7
+    add reg0 2
+    store reg1 reg0
+
+    // 9
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    // 8
+    sub reg0 3
+    store reg1 reg0
+
+    // 10
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    // 11
+    add reg0 3
+    store reg1 reg0
+
+    // width
+    movimm reg4 4
+    ret
+
+//  ###
+// #  #
+// ###
+// #
+//  ###
+DRAW_E:
+    add reg0 $WIDTH
+    inc reg0
+
+    // first line
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    // second line
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 3
+    store reg1 reg0
+
+    // third line
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    // fourth line
+    add reg0 $WIDTH
+    inc reg0
+    sub reg0 2
+    store reg1 reg0
+
+    // fifth line
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    // width
+    movimm reg4 4
+    ret
+
+// #
+// #
+// #
+// #
+// #
+// #
+DRAW_L:
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    store reg1 reg0
+    add reg0 $WIDTH
+    inc reg0
+
+    // width
+    movimm reg4 1
+    ret
+
+
+//  ##
+// #  #
+// #  #
+//  ##
+DRAW_O:
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    //
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    sub reg0 2
+    store reg1 reg0
+
+    add reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    // width
+    movimm reg4 4
+    ret
+
+
+//  #
+// #
+DRAW_COMMA:
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 $WIDTH
+    inc reg0
+    sub reg0 1
+    store reg1 reg0
+
+    movimm reg4 2
+    ret
+
+// #   #
+// # # #
+// # # #
+//  ####
+DRAW_W:
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    add reg0 4
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 2
+    store reg1 reg0
+
+    sub reg0 2
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    add reg0 2
+    store reg1 reg0
+
+    add reg0 2
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 1
+    store reg1 reg0
+
+    sub reg0 1
+    store reg1 reg0
+
+    sub reg0 1
+    store reg1 reg0
+
+    movimm reg4 5
+    ret
+
+// ###
+// #  #
+// #
+// #
+DRAW_R:
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 1
+    store reg1 reg0
+
+    sub reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    movimm reg4 4
+    ret
+
+//    #
+//    #
+//  ###
+// #  #
+// #  #
+//  ###
+DRAW_D:
+    add reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 1
+    store reg1 reg0
+
+    sub reg0 1
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    sub reg0 1
+    store reg1 reg0
+
+    add reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    store reg1 reg0
+
+    sub reg0 3
+    store reg1 reg0
+
+    //
+    add reg0 $WIDTH
+    inc reg0
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    add reg0 1
+    store reg1 reg0
+
+    movimm reg4 4
+    ret
+
+DRAW_SPACE:
+    movimm reg4 3
+    ret

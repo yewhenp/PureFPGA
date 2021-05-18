@@ -1,7 +1,9 @@
+stack_size 1000 1000 1000 1000
 // vector_size = RAM[0]
 // vector_address = RAM[1]
+
 // reg1 = address = RAM[1] + coreidx
-movl reg5 1
+movimm reg5 1
 load reg1 reg5
 coreidx reg5
 add reg1 reg5

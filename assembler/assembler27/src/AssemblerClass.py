@@ -300,12 +300,12 @@ class Assembler:
             # macros extraction
             if line[0] in MACROSES or pure_instr in MACROSES:
                 if line[0] in MACROSES:
-                    exctracted = MACROSES[line[0]](self, line)
+                    extracted = MACROSES[line[0]](self, line)
                 else:
-                    exctracted = MACROSES[pure_instr](self, line)
+                    extracted = MACROSES[pure_instr](self, line)
 
-                processed_program += exctracted
-                delta = len(exctracted) - 1
+                processed_program += extracted
+                delta = len(extracted) - 1
                 # update all jump labels below, since now there are more instructions above them
                 self.__update_jump_labels(jump_labels, delta=delta, instr_counter=instr_counter)
                 instr_counter += delta + 1
@@ -317,12 +317,6 @@ class Assembler:
                 # update all jump labels below, since now there are more instructions above them
                 self.__update_jump_labels(jump_labels, delta=2, instr_counter=instr_counter)
                 instr_counter += 3
-
-            # change CORE_NUM to 4 for movl/movh
-            # elif pure_instr in mem_only_num_command_unprocessed and line[2] == "core_num":
-            #     line[2] = CORE_NUM
-            #     processed_program.append(line)
-            #     instr_counter += 1
 
             # mov regi label = movl regi label[16:] + movh regi label[:16]
             elif pure_instr == "mov" and line[2] not in registers:
@@ -395,7 +389,7 @@ class Assembler:
                 if instr_counter % 2:
                     processed_program.append(self.NOP_)
                     # update all labels below current and current
-                    self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
+                    self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter-1) # -1 because this label should also be changed
                     instr_counter += 1  # because of NOP
 
             # insert NOP before movl / movh if instruction's number is odd

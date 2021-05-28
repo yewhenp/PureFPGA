@@ -13,11 +13,11 @@ module ucu_gpu_top(
     //////////// HDMI //////////
     inout               HDMI_I2C_SCL,
     inout               HDMI_I2C_SDA,
-    inout               HDMI_I2S,
-    inout               HDMI_LRCLK,
+    inout               HDMI_I2S, 
+    inout               HDMI_LRCLK, 
     inout               HDMI_MCLK,
     inout               HDMI_SCLK,
-    output              HDMI_TX_CLK,
+    output              HDMI_TX_CLK, 
     output   [23: 0]    HDMI_TX_D,
     output              HDMI_TX_DE,
     output              HDMI_TX_HS,
@@ -112,6 +112,12 @@ assign stm_hw_events = {{15{1'b0}}, SW, fpga_led_internal, fpga_debounced_button
 
 wire HDMI_CLK;
 wire reset_n;
+
+wire [23:0] st_data;
+wire  st_valid;
+wire  st_sop;
+wire  st_eop;
+wire  st_ready;  
 
 //=======================================================
 //  Structural coding
@@ -222,17 +228,17 @@ soc_system u0(
                .hps_0_hps_io_hps_io_gpio_inst_GPIO54(HPS_KEY),              //                               .hps_io_gpio_inst_GPIO54
                .hps_0_hps_io_hps_io_gpio_inst_GPIO61(HPS_GSENSOR_INT),      //                               .hps_io_gpio_inst_GPIO61
 
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_clk       (HDMI_CLK),     // alt_vip_cl_cvo_0_clocked_video.vid_clk
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_data      ({HDMI_TX_D[23:16],HDMI_TX_D[15:8],HDMI_TX_D[7:0]}), //.vid_data
-//				  .alt_vip_cl_cvo_0_clocked_video_underflow     (),     			 //                               .underflow
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_datavalid (HDMI_TX_DE),   //                               .vid_datavalid
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_v_sync    (HDMI_TX_VS),   //                               .vid_v_sync
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_h_sync    (HDMI_TX_HS),   //                               .vid_h_sync
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_f         (),             //                               .vid_f
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_h         (),             //                               .vid_h
-//				  .alt_vip_cl_cvo_0_clocked_video_vid_v         (),              //                               .vid_v
+				  .alt_vip_cl_cvo_0_clocked_video_vid_clk       (HDMI_CLK),     // alt_vip_cl_cvo_0_clocked_video.vid_clk
+				  .alt_vip_cl_cvo_0_clocked_video_vid_data      ({HDMI_TX_D[23:16],HDMI_TX_D[15:8],HDMI_TX_D[7:0]}), //.vid_data
+				  .alt_vip_cl_cvo_0_clocked_video_underflow     (),     			 //                               .underflow
+				  .alt_vip_cl_cvo_0_clocked_video_vid_datavalid (HDMI_TX_DE),   //                               .vid_datavalid
+				  .alt_vip_cl_cvo_0_clocked_video_vid_v_sync    (HDMI_TX_VS),   //                               .vid_v_sync
+				  .alt_vip_cl_cvo_0_clocked_video_vid_h_sync    (HDMI_TX_HS),   //                               .vid_h_sync
+				  .alt_vip_cl_cvo_0_clocked_video_vid_f         (),             //                               .vid_f
+				  .alt_vip_cl_cvo_0_clocked_video_vid_h         (),             //                               .vid_h
+				  .alt_vip_cl_cvo_0_clocked_video_vid_v         (),              //                               .vid_v
 //
-//				  .clk_hdmi_clk(HDMI_CLK),
+				  .clk_hdmi_clk(HDMI_CLK),
 //			     .mm_bridge_0_m0_waitrequest                   (),             //                               .mm_bridge_0_m0.waitrequest
 //				  .mm_bridge_0_m0_readdata                      (mm_bridge_readdata),//                          .readdata
 //				  .mm_bridge_0_m0_readdatavalid                 (),             //                               .readdatavalid
@@ -243,7 +249,17 @@ soc_system u0(
 //				  .mm_bridge_0_m0_read                          (mm_bridge_read),     //                         .read
 //				  .mm_bridge_0_m0_byteenable                    (),                   //                         .byteenable
 //				  .mm_bridge_0_m0_debugaccess                   ()                    //
-				  );
+					.alt_vip_cl_cvo_0_din_data(st_data),                         //                alt_vip_cl_cvo_0_din.data
+					.alt_vip_cl_cvo_0_din_valid(st_valid),                        //                                    .valid
+					.alt_vip_cl_cvo_0_din_startofpacket(st_sop),                //                                    .startofpacket
+					.alt_vip_cl_cvo_0_din_endofpacket(st_eop),                  //                                    .endofpacket
+					.alt_vip_cl_cvo_0_din_ready(st_ready),                        // 
+					.video_dma_0_avalon_streaming_source_data(st_data),          // video_dma_0_avalon_streaming_source.data
+					.video_dma_0_avalon_streaming_source_endofpacket(st_eop),   //                                    .endofpacket
+					.video_dma_0_avalon_streaming_source_ready(st_ready),         //                                    .ready
+					.video_dma_0_avalon_streaming_source_startofpacket(st_sop), //                                    .startofpacket
+					.video_dma_0_avalon_streaming_source_valid(st_valid)          //   
+					);
 
 
 localparam DATA_WIDTH	=8;

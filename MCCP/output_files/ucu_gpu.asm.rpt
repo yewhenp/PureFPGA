@@ -1,5 +1,5 @@
 Assembler report for ucu_gpu
-Sat Mar 27 02:06:05 2021
+Sat May 15 12:42:23 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -11,7 +11,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   3. Assembler Settings
   4. Assembler Encrypted IP Cores Summary
   5. Assembler Generated Files
-  6. Assembler Device Options: ucu_gpu.sof
+  6. Assembler Device Options: ucu_gpu_time_limited.sof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sat Mar 27 02:06:05 2021 ;
+; Assembler Status      ; Successful - Sat May 15 12:42:23 2021 ;
 ; Revision Name         ; ucu_gpu                               ;
 ; Top-level Entity Name ; ucu_gpu_top                           ;
 ; Family                ; Cyclone V                             ;
@@ -54,33 +54,35 @@ https://fpgasoftware.intel.com/eula.
 +--------+---------+---------------+
 
 
-+------------------------------------------------+
-; Assembler Encrypted IP Cores Summary           ;
-+--------+------------------------+--------------+
-; Vendor ; IP Core Name           ; License Type ;
-+--------+------------------------+--------------+
-; Altera ; Signal Tap (6AF7 BCE1) ; Licensed     ;
-; Altera ; Signal Tap (6AF7 BCEC) ; Licensed     ;
-+--------+------------------------+--------------+
++-----------------------------------------------------------------------+
+; Assembler Encrypted IP Cores Summary                                  ;
++--------+----------------------------------------------+---------------+
+; Vendor ; IP Core Name                                 ; License Type  ;
++--------+----------------------------------------------+---------------+
+; Altera ; Video and Image Processing Suite (6AF7 00EE) ; OpenCore Plus ;
+; Altera ; Signal Tap (6AF7 BCE1)                       ; Licensed      ;
+; Altera ; Signal Tap (6AF7 BCEC)                       ; Licensed      ;
+; Altera ; Unknown (6AF7 FFFF)                          ; Licensed      ;
++--------+----------------------------------------------+---------------+
 
 
-+---------------------------------------------------------------------------------+
-; Assembler Generated Files                                                       ;
-+---------------------------------------------------------------------------------+
-; File Name                                                                       ;
-+---------------------------------------------------------------------------------+
-; /home/yevhen/Downloads/UCU_4_semestr/aks/PureFPGA/MCCP/output_files/ucu_gpu.sof ;
-+---------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                ;
++----------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                ;
++----------------------------------------------------------------------------------------------------------+
+; /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/output_files/ucu_gpu_time_limited.sof ;
++----------------------------------------------------------------------------------------------------------+
 
 
-+---------------------------------------+
-; Assembler Device Options: ucu_gpu.sof ;
-+----------------+----------------------+
-; Option         ; Setting              ;
-+----------------+----------------------+
-; JTAG usercode  ; 0x0A1FD970           ;
-; Checksum       ; 0x0A1FD970           ;
-+----------------+----------------------+
++----------------------------------------------------+
+; Assembler Device Options: ucu_gpu_time_limited.sof ;
++----------------+-----------------------------------+
+; Option         ; Setting                           ;
++----------------+-----------------------------------+
+; JTAG usercode  ; 0x0C638136                        ;
+; Checksum       ; 0x0C638136                        ;
++----------------+-----------------------------------+
 
 
 +--------------------+
@@ -89,17 +91,19 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sat Mar 27 02:05:32 2021
+    Info: Processing started: Sat May 15 12:41:46 2021
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off ucu_gpu -c ucu_gpu
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
-Warning (11713): The configuration of the Hard Processor Subsystem (HPS) within this design has changed.
-The Preloader software that initializes the HPS requires an update.
-Using hps_isw_handoff/soc_system_ARM_A9_HPS/, run the Preloader Support Package Generator to update your Preloader software
-Info: Quartus Prime Assembler was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 751 megabytes
-    Info: Processing ended: Sat Mar 27 02:06:06 2021
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:00:31
+Info (115017): Design contains a time-limited core -- only a single, time-limited programming file can be generated
+Warning (210042): Can't convert time-limited SOF into POF, HEX File, TTF, or RBF
+Warning (210039): File /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/output_files/ucu_gpu_time_limited.sof contains one or more time-limited megafunctions that support the Intel FPGA IP Evaluation Mode feature that will not work after the hardware evaluation time expires. Refer to the Messages window for evaluation time details.
+Info (210040): SRAM Object File /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/output_files/ucu_gpu_time_limited.sof contains time-limited megafunction that supports Intel FPGA IP Evaluation Mode feature -- Vendor: 0x6AF7, Product: 0x00EE
+Info (11878): Hard Processor Subsystem configuration has not changed and a Preloader software update is not required
+Info: Quartus Prime Assembler was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 786 megabytes
+    Info: Processing ended: Sat May 15 12:42:23 2021
+    Info: Elapsed time: 00:00:37
+    Info: Total CPU time (on all processors): 00:00:33
 
 

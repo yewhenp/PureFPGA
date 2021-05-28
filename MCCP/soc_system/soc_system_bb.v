@@ -1,6 +1,21 @@
 
 module soc_system (
+	alt_vip_cl_cvo_0_clocked_video_vid_clk,
+	alt_vip_cl_cvo_0_clocked_video_vid_data,
+	alt_vip_cl_cvo_0_clocked_video_underflow,
+	alt_vip_cl_cvo_0_clocked_video_vid_datavalid,
+	alt_vip_cl_cvo_0_clocked_video_vid_v_sync,
+	alt_vip_cl_cvo_0_clocked_video_vid_h_sync,
+	alt_vip_cl_cvo_0_clocked_video_vid_f,
+	alt_vip_cl_cvo_0_clocked_video_vid_h,
+	alt_vip_cl_cvo_0_clocked_video_vid_v,
+	alt_vip_cl_cvo_0_din_data,
+	alt_vip_cl_cvo_0_din_valid,
+	alt_vip_cl_cvo_0_din_startofpacket,
+	alt_vip_cl_cvo_0_din_endofpacket,
+	alt_vip_cl_cvo_0_din_ready,
 	clk_clk,
+	clk_hdmi_clk,
 	hps_0_hps_io_hps_io_emac1_inst_TX_CLK,
 	hps_0_hps_io_hps_io_emac1_inst_TXD0,
 	hps_0_hps_io_hps_io_emac1_inst_TXD1,
@@ -65,9 +80,29 @@ module soc_system (
 	memory_mem_odt,
 	memory_mem_dm,
 	memory_oct_rzqin,
-	reset_reset);	
+	reset_reset,
+	video_dma_0_avalon_streaming_source_data,
+	video_dma_0_avalon_streaming_source_endofpacket,
+	video_dma_0_avalon_streaming_source_ready,
+	video_dma_0_avalon_streaming_source_startofpacket,
+	video_dma_0_avalon_streaming_source_valid);	
 
+	input		alt_vip_cl_cvo_0_clocked_video_vid_clk;
+	output	[23:0]	alt_vip_cl_cvo_0_clocked_video_vid_data;
+	output		alt_vip_cl_cvo_0_clocked_video_underflow;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_datavalid;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_v_sync;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_h_sync;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_f;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_h;
+	output		alt_vip_cl_cvo_0_clocked_video_vid_v;
+	input	[23:0]	alt_vip_cl_cvo_0_din_data;
+	input		alt_vip_cl_cvo_0_din_valid;
+	input		alt_vip_cl_cvo_0_din_startofpacket;
+	input		alt_vip_cl_cvo_0_din_endofpacket;
+	output		alt_vip_cl_cvo_0_din_ready;
 	input		clk_clk;
+	output		clk_hdmi_clk;
 	output		hps_0_hps_io_hps_io_emac1_inst_TX_CLK;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD0;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD1;
@@ -133,4 +168,9 @@ module soc_system (
 	output	[3:0]	memory_mem_dm;
 	input		memory_oct_rzqin;
 	input		reset_reset;
+	output	[23:0]	video_dma_0_avalon_streaming_source_data;
+	output		video_dma_0_avalon_streaming_source_endofpacket;
+	input		video_dma_0_avalon_streaming_source_ready;
+	output		video_dma_0_avalon_streaming_source_startofpacket;
+	output		video_dma_0_avalon_streaming_source_valid;
 endmodule

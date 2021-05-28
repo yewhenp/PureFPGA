@@ -42,7 +42,7 @@ module soc_system_alt_vip_cl_cvo_0_video_in (
 		.NUMBER_OF_COLOR_PLANES       (3),
 		.COLOR_PLANES_ARE_IN_PARALLEL (1),
 		.PIXELS_IN_PARALLEL           (1),
-		.DEFAULT_LINE_LENGTH          (8000),
+		.DEFAULT_LINE_LENGTH          (4000),
 		.VIB_MODE                     ("LEGACY"),
 		.VIDEO_PROTOCOL_NO            (1),
 		.READY_LATENCY_1              (1),

@@ -1,4 +1,4 @@
-import serial
+from serial import Serial
 import sys
 import os
 
@@ -10,6 +10,6 @@ tty = sys.argv[1]
 f = sys.argv[2]
 
 os.system("base64 " + f + " > decoded")
-s = serial.Serial(tty, 115200)
+s = Serial(tty, 115200)
 s.write(open("decoded", "r").read().encode("ascii"))
 os.system("rm decoded")

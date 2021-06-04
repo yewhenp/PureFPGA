@@ -1,6 +1,7 @@
 #ifndef UCU_HPS_GPU_COPY_UTILITY_H
 #define UCU_HPS_GPU_COPY_UTILITY_H
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>

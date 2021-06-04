@@ -1,6 +1,6 @@
 Info: Starting: Create block symbol file (.bsf)
-Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system.qsys --block-symbol-file --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system --family="Cyclone V" --part=5CSEBA6U23I7
-Progress: Loading MCCP_combined/soc_system.qsys
+Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system.qsys --block-symbol-file --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading MCCP/soc_system.qsys
 Progress: Reading input file
 Progress: Adding ARM_A9_HPS [altera_hps 20.1]
 Progress: Parameterizing module ARM_A9_HPS
@@ -26,6 +26,7 @@ Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
+Warning: soc_system.ARM_A9_HPS: Setting the slave port width of interface f2h_sdram0 to 32 results in bandwidth under-utilization.  Altera recommends you set the interface data width to 64-bit or greater.
 Info: soc_system.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
 Info: soc_system.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
 Info: soc_system.pll_0: The legal reference clock frequency is 5.0 MHz..700.0 MHz
@@ -39,8 +40,8 @@ Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system.qsys --synthesis=VERILOG --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis --family="Cyclone V" --part=5CSEBA6U23I7
-Progress: Loading MCCP_combined/soc_system.qsys
+Info: qsys-generate /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system.qsys --synthesis=VERILOG --output-directory=/home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis --family="Cyclone V" --part=5CSEBA6U23I7
+Progress: Loading MCCP/soc_system.qsys
 Progress: Reading input file
 Progress: Adding ARM_A9_HPS [altera_hps 20.1]
 Progress: Parameterizing module ARM_A9_HPS
@@ -66,6 +67,7 @@ Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
+Warning: soc_system.ARM_A9_HPS: Setting the slave port width of interface f2h_sdram0 to 32 results in bandwidth under-utilization.  Altera recommends you set the interface data width to 64-bit or greater.
 Info: soc_system.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
 Info: soc_system.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
 Info: soc_system.pll_0: The legal reference clock frequency is 5.0 MHz..700.0 MHz
@@ -76,30 +78,23 @@ Warning: soc_system.: You have exported the interface alt_vip_cl_cvo_0.din but n
 Warning: soc_system.: You have exported the interface video_dma_0.avalon_streaming_source but not its associated clock interface.  Export video_dma_0.clock
 Warning: soc_system.: You have exported the interface video_dma_0.avalon_streaming_source but not its associated reset interface.  Export video_dma_0.reset
 Info: soc_system: Generating soc_system "soc_system" for QUARTUS_SYNTH
-Info: Interconnect is inserted between master video_dma_0.avalon_master and slave on_chip_to_dma_bridge.s0 because the master has address signal 32 bit wide, but the slave is 15 bit wide.
 Info: Interconnect is inserted between master ARM_A9_HPS.h2f_axi_master and slave axi_master_bridge.s0 because the master is of type axi and the slave is of type avalon.
 Info: Interconnect is inserted between master ARM_A9_HPS.h2f_lw_axi_master and slave axi_lw_master_bridge.s0 because the master is of type axi and the slave is of type avalon.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has waitrequest signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has readdata signal 32 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has readdatavalid signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has burstcount signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has address signal 6 bit wide, but the slave is 1 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has read signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has byteenable signal 4 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_lw_master_bridge.m0 and slave video_dma_0.ctrl because the master has debugaccess signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has waitrequest signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has readdatavalid signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has burstcount signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has address signal 15 bit wide, but the slave is 13 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has read signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master axi_master_bridge.m0 and slave video_buffer.s1 because the master has debugaccess signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has waitrequest signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has readdatavalid signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has burstcount signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has address signal 15 bit wide, but the slave is 13 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has read signal 1 bit wide, but the slave is 0 bit wide.
-Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave video_buffer.s2 because the master has debugaccess signal 1 bit wide, but the slave is 0 bit wide.
+Info: Inserting clock-crossing logic between cmd_demux.src1 and cmd_mux_001.sink0
+Info: Inserting clock-crossing logic between rsp_demux_001.src0 and rsp_mux.sink1
+Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave ARM_A9_HPS.f2h_sdram0_data because the master has burstcount signal 1 bit wide, but the slave is 8 bit wide.
+Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave ARM_A9_HPS.f2h_sdram0_data because the master has address signal 32 bit wide, but the slave is 30 bit wide.
+Info: Interconnect is inserted between master on_chip_to_dma_bridge.m0 and slave ARM_A9_HPS.f2h_sdram0_data because the master has debugaccess signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because the master has waitrequest signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because the master has readdatavalid signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because the master has burstcount signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because the master has address signal 20 bit wide, but the slave is 17 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because the master has debugaccess signal 1 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master axi_master_bridge.m0 and slave videocard_new_0.memory_main because they have different clock source.
+Info: Inserting clock-crossing logic between cmd_demux.src0 and cmd_mux.sink0
+Info: Inserting clock-crossing logic between rsp_demux.src0 and rsp_mux.sink0
 Info: ARM_A9_HPS: "Running  for module: ARM_A9_HPS"
+Warning: ARM_A9_HPS: Setting the slave port width of interface f2h_sdram0 to 32 results in bandwidth under-utilization.  Altera recommends you set the interface data width to 64-bit or greater.
 Info: ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 63
 Info: ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
 Info: ARM_A9_HPS: "soc_system" instantiated altera_hps "ARM_A9_HPS"
@@ -107,18 +102,19 @@ Info: alt_vip_cl_cvo_0: "soc_system" instantiated alt_vip_cl_cvo "alt_vip_cl_cvo
 Info: axi_lw_master_bridge: "soc_system" instantiated altera_avalon_mm_bridge "axi_lw_master_bridge"
 Info: pll_0: "soc_system" instantiated altera_pll "pll_0"
 Info: sys_pll: "soc_system" instantiated altera_up_avalon_sys_sdram_pll "sys_pll"
-Info: video_buffer: Starting RTL generation for module 'soc_system_video_buffer'
-Info: video_buffer:   Generation command is [exec /opt/intelFPGA/20.1/quartus/linux64/perl/bin/perl -I /opt/intelFPGA/20.1/quartus/linux64/perl/lib -I /opt/intelFPGA/20.1/quartus/sopc_builder/bin/europa -I /opt/intelFPGA/20.1/quartus/sopc_builder/bin -I /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /opt/intelFPGA/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=soc_system_video_buffer --dir=/tmp/alt8762_7453547935954335847.dir/0038_video_buffer_gen/ --quartus_dir=/opt/intelFPGA/20.1/quartus --verilog --config=/tmp/alt8762_7453547935954335847.dir/0038_video_buffer_gen//soc_system_video_buffer_component_configuration.pl  --do_build_sim=0  ]
-Info: video_buffer: Done RTL generation for module 'soc_system_video_buffer'
-Info: video_buffer: "soc_system" instantiated altera_avalon_onchip_memory2 "video_buffer"
 Info: video_dma_0: "soc_system" instantiated video_dma "video_dma_0"
+Info: videocard_new_0: "soc_system" instantiated videocard_new "videocard_new_0"
 Info: mm_interconnect_0: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_0"
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_1: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_1"
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_2: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_2"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_3: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_3"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_4: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_4"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_5: "soc_system" instantiated altera_mm_interconnect "mm_interconnect_5"
 Info: rst_controller: "soc_system" instantiated altera_reset_controller "rst_controller"
 Info: fpga_interfaces: "ARM_A9_HPS" instantiated altera_interface_generator "fpga_interfaces"
@@ -126,13 +122,13 @@ Info: hps_io: "ARM_A9_HPS" instantiated altera_hps_io "hps_io"
 Info: video_in: "alt_vip_cl_cvo_0" instantiated alt_vip_video_input_bridge "video_in"
 Info: scheduler: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_scheduler "scheduler"
 Info: sop_align: "alt_vip_cl_cvo_0" instantiated alt_vip_pip_sop_realign "sop_align"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: cvo_core: "alt_vip_cl_cvo_0" instantiated alt_vip_cvo_core "cvo_core"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
 Info: sys_pll: "sys_pll" instantiated altera_pll "sys_pll"
 Info: reset_from_locked: "sys_pll" instantiated altera_up_avalon_reset_from_locked_signal "reset_from_locked"
 Info: video_dma_0_avalon_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "video_dma_0_avalon_master_translator"
@@ -143,34 +139,67 @@ Info: axi_master_bridge_s0_agent_rsp_fifo: "mm_interconnect_1" instantiated alte
 Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
 Info: router_002: "mm_interconnect_1" instantiated altera_merlin_router "router_002"
 Info: axi_master_bridge_s0_burst_adapter: "mm_interconnect_1" instantiated altera_merlin_burst_adapter "axi_master_bridge_s0_burst_adapter"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
 Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
 Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: axi_master_bridge_s0_rsp_width_adapter: "mm_interconnect_1" instantiated altera_merlin_width_adapter "axi_master_bridge_s0_rsp_width_adapter"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_burst_uncompressor.sv
 Info: avalon_st_adapter: "mm_interconnect_1" instantiated altera_avalon_st_adapter "avalon_st_adapter"
 Info: router: "mm_interconnect_2" instantiated altera_merlin_router "router"
 Info: router_002: "mm_interconnect_2" instantiated altera_merlin_router "router_002"
 Info: cmd_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "cmd_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: axi_lw_master_bridge_m0_agent: "mm_interconnect_3" instantiated altera_merlin_master_agent "axi_lw_master_bridge_m0_agent"
+Info: router: "mm_interconnect_3" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_3" instantiated altera_merlin_router "router_001"
+Info: router_002: "mm_interconnect_3" instantiated altera_merlin_router "router_002"
+Info: axi_lw_master_bridge_m0_limiter: "mm_interconnect_3" instantiated altera_merlin_traffic_limiter "axi_lw_master_bridge_m0_limiter"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: cmd_demux: "mm_interconnect_3" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_3" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_3" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_demux_001: "mm_interconnect_3" instantiated altera_merlin_demultiplexer "rsp_demux_001"
+Info: rsp_mux: "mm_interconnect_3" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: crosser: "mm_interconnect_3" instantiated altera_avalon_st_handshake_clock_crosser "crosser"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: avalon_st_adapter_001: "mm_interconnect_3" instantiated altera_avalon_st_adapter "avalon_st_adapter_001"
+Info: router: "mm_interconnect_4" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_4" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_4" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_4" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux: "mm_interconnect_4" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: router: "mm_interconnect_5" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_5" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_5" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_5" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_5" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_5" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: border: "hps_io" instantiated altera_interface_generator "border"
 Info: vid_front: "video_in" instantiated alt_vip_video_input_bridge_resp "vid_front"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: vid_back: "video_in" instantiated alt_vip_video_input_bridge_cmd "vid_back"
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
-Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/help_me_now/MCCP_combined/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/common/alt_vip_common_pkg.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_decode/src_hdl/alt_vip_common_event_packet_decode.sv
+Info: Reusing file /home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/soc_system/synthesis/submodules/modules/alt_vip_common_event_packet_encode/src_hdl/alt_vip_common_event_packet_encode.sv
 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
-Info: soc_system: Done "soc_system" with 47 modules, 131 files
+Info: error_adapter_0: "avalon_st_adapter_001" instantiated error_adapter "error_adapter_0"
+Info: soc_system: Done "soc_system" with 71 modules, 159 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

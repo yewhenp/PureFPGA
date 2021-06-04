@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEBA6U23) Path("/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/output_files/") File("ucu_gpu_time_limited.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEBA6U23) Path("/home/yevhen/Downloads/UCU_4_semestr/aks/release/videocard/aaaa/PureFPGA/MCCP/output_files/") File("ucu_gpu_time_limited.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

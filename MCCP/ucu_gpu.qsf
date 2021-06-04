@@ -30,7 +30,7 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEBA6U23I7
-set_global_assignment -name TOP_LEVEL_ENTITY cube4_tb
+set_global_assignment -name TOP_LEVEL_ENTITY ucu_gpu_top
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "03:49:18  FEBRUARY 28, 2021"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files

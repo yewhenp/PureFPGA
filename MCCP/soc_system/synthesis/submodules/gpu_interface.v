@@ -67,7 +67,7 @@ parameter VIDEO_H	= 768;
 //parameter VIDEO_W	= 1280;
 //parameter VIDEO_H	= 1024;
 //parameter START_ADDRESS	= 16711680;
-reg [31:0] START_ADDRESS = 32'b0;
+reg [31:0] START_ADDRESS = 32'h11000000;
 reg main_status = 1'b0;
 reg [31:0] kostyl_offset = 1;
 //`define VIDEO_PIX_NUM	(VIDEO_W * VIDEO_H)
@@ -134,7 +134,7 @@ end
 // XY count, color simulation
 reg [11:0] RGB_X;
 reg [11:0] RGB_Y;
-reg [31:0] main_address = 0;
+reg [31:0] main_address = 32'h11000000;
 
 wire keep_frame;
 assign keep_frame = (main_address < 6144)?1:0;
@@ -167,7 +167,7 @@ begin
 						RGB_Y = RGB_Y + 1;
 //						change_status = ~change_status;
 //						if (change_status) begin
-							main_address = main_address + 1;
+							main_address = main_address - 2;
 //						end
 					end
 				end else begin
@@ -176,10 +176,10 @@ begin
 //					if (change_status) begin
 //						main_address = main_address - kostyl_offset;
 						main_address = main_address + 1;
-						kostyl_offset= kostyl_offset + 1;
-						if (kostyl_offset >= 7) begin
-							kostyl_offset= 1;
-						end
+//						kostyl_offset= kostyl_offset + 1;
+//						if (kostyl_offset >= 7) begin
+//							kostyl_offset= 1;
+//						end
 //					end
 				end
 			end

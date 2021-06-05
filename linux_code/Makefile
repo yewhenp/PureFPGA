@@ -2,7 +2,9 @@
 
 OBJ1 = write
 OBJ2 = print
-TARGET = $(OBJ1) $(OBJ2)
+OBJ3 = time_test
+OBJ4 = mem_write
+TARGET = $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4)
 
 #
 ALT_DEVICE_FAMILY ?= soc_cv_av
@@ -37,6 +39,12 @@ $(OBJ1): $(addsuffix .o,$(OBJ1)) $(DEPENDENCY)
 	$(CC) $(LDFLAGS)   $^ -o $@
 
 $(OBJ2): $(addsuffix .o,$(OBJ2)) $(DEPENDENCY)
+	$(CC) $(LDFLAGS)   $^ -o $@
+
+$(OBJ3): $(addsuffix .o,$(OBJ3)) $(DEPENDENCY)
+	$(CC) $(LDFLAGS)   $^ -o $@
+
+$(OBJ4): $(addsuffix .o,$(OBJ4)) $(DEPENDENCY)
 	$(CC) $(LDFLAGS)   $^ -o $@
 
 %.o : %.c

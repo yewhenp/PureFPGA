@@ -15,7 +15,8 @@ input						clk_rom,
 input [WIDTH/2-1: 0]	address_rom,
 input	[WIDTH-1: 0]	data_in_rom,
 input						wren_rom,
-input						clk_hps
+input						clk_hps,
+input [CORE_NUM-1:0] 	core_en
 );
 
 
@@ -54,7 +55,6 @@ wire [INT_NUM-1:0]   int_num0;
 wire [INT_NUM-1:0]   int_num1;
 wire [INT_NUM-1:0]   int_num2;
 wire [INT_NUM-1:0]   int_num3;
-
 
 
 four_way_rom rom
@@ -111,6 +111,7 @@ interrupt_controller inter_controller
 core core0
 (
 	.clk(clk) ,	// input  clk_sig
+	.core_en(core_en[0]),
 	.response(response[0]) ,	// input  response_sig
 	.instruction(instruction_core0) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[0]) ,	// output  wren_sig
@@ -128,6 +129,7 @@ core core0
 core core1
 (
 	.clk(clk) ,	// input  clk_sig
+	.core_en(core_en[1]),
 	.response(response[1]) ,	// input  response_sig
 	.instruction(instruction_core1) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[1]) ,	// output  wren_sig
@@ -145,6 +147,7 @@ core core1
 core core2
 (
 	.clk(clk) ,	// input  clk_sig
+	.core_en(core_en[2]),
 	.response(response[2]) ,	// input  response_sig
 	.instruction(instruction_core2) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[2]) ,	// output  wren_sig
@@ -162,6 +165,7 @@ core core2
 core core3
 (
 	.clk(clk) ,	// input  clk_sig
+	.core_en(core_en[3]),
 	.response(response[3]) ,	// input  response_sig
 	.instruction(instruction_core3) ,	// input [WIDTH-1:0] instruction_sig
 	.wren(wren_core[3]) ,	// output  wren_sig

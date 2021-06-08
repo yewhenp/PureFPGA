@@ -14,7 +14,6 @@ module core #(
  INT_NUM=3
 )(
 input 				 	clk,
-input 					core_en,
 input			       	response,		// reponse from memory arbitr
 input [WIDTH-1: 0] 		readdata,		// data bus with data to read from memory
 input [WIDTH-1: 0] 		instruction,	// 32 bit instruction opcode bus
@@ -165,7 +164,7 @@ always @(posedge clk) begin
 		perform <= 1'b1;
 	end else begin
 
-		if (perform && core_en) begin
+		if (perform) begin
 
 			if (wait_memory) begin
 				// got response, read data and unlock core

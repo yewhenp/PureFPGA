@@ -23,16 +23,15 @@ output reg [WIDTH-1: 0]     		result = 4'b0
 
 // result
 wire [WIDTH:0] tmp;
-reg [WIDTH-1: 0] op_tmp_res;
 assign tmp = {1'b0, op1} + {1'b0, op2};
 
 
 // flags
 //wire [FLAGS-1: 0] flags_wire;
 assign flags[CARRY] = tmp[16];
-assign flags[SIGN] = op_tmp_res[15];
+assign flags[SIGN] = result[15];
 xor(flags[OVERFLOW], flags[CARRY], flags[SIGN]);
-assign flags[ZERO] = (0 == op_tmp_res);
+assign flags[ZERO] = (0 == result);
 
 assign dest_out = dest_in;
 
@@ -55,94 +54,35 @@ always @ (*) begin
 	
 		case(opcode)
 			4'b0000: // Addition
-			begin
-				op_tmp_res <= op1 + op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 + op2;
 			4'b0001: // Addition with carry
-			begin
-				op_tmp_res <= op1 + op2 + cin;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 + op2 + cin;
 			4'b0010: // Subtraction
-			begin
-				op_tmp_res <= op1 - op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 - op2;
 			4'b0011: // Subtraction with carry
-			begin
-				op_tmp_res <= op1 - op2 - cin;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 - op2 - cin;
 			4'b0100: // Multiplication
-			begin
-				op_tmp_res <= op1 * op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 * op2;
 			4'b0101: // Multiplication with carry?????? - will be division
-			begin
-				op_tmp_res <= div_result;
-				result <= op_tmp_res;
-			end
-				
+				result <= div_result;
 			4'b0110:  //  Logical and
-			begin
-				op_tmp_res <= op1 & op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 & op2;
 			4'b0111: //  Logical or
-			begin
-				op_tmp_res <= op1 | op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 | op2;
 			4'b1000: //  Logical xor
-			begin
-				op_tmp_res <= op1 ^ op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 ^ op2;
 			4'b1001: //  Left shift
-			begin
-				op_tmp_res <= op1 << op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 << op2;
 			4'b1010: //  Right shift
-			begin
-				op_tmp_res <= op1 >> op2;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 >> op2;
 			4'b1011: //  Not A
-			begin
-				op_tmp_res <= ~op1;
-				result <= op_tmp_res;
-			end
-				
+				result <= ~op1;
 			4'b1100: // Compare
-			begin
-				op_tmp_res <= op1 - op2;
-				result <= op1;
-			end
+				result <= op1 - op2;
 			4'b1101: // Increment A
-			begin
-				op_tmp_res <= op1 + 1'b1;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 + 1'b1;
 			4'b1110: // Decrement A
-			begin
-				op_tmp_res <= op1 - 1'b1;
-				result <= op_tmp_res;
-			end
-				
+				result <= op1 - 1'b1;
 			default: result = op1;
 		endcase
 	

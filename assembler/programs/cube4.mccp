@@ -1,0 +1,8 @@
+stack_size 1000 1000 1000 1000
+
+coreidx reg1
+load reg0 reg1
+mul reg0 reg0
+mul reg0 reg0
+store reg0 reg1
+int 1

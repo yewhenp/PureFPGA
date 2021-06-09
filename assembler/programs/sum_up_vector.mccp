@@ -1,0 +1,42 @@
+stack_size 1000 1000 1000 1000
+
+// RAM[0] - number of working cores
+// RAM[1] - size of vector
+// RAM[2] - address of vector
+
+// reg0 = number of working cores
+movimm reg0 0
+
+// reg1 = elements to work on
+movimm reg5 1
+load reg1 reg5
+div reg1 reg0
+
+// reg2 = beginning address
+coreidx reg2
+mul reg2 reg1
+movimm reg5 2
+load reg5 reg5  // not sure
+add reg2 reg5
+
+call SUMUP
+int 1
+
+// reg1 = elements to work on, reg2 = address
+SUMUP:
+    // reg4 - finish address
+    mov reg4 reg2
+    add reg4 reg1
+    // reg3 - result
+    xor reg3 reg3
+
+    LOOP:
+        load reg5 reg2
+        add reg3 reg5
+        inc reg2
+        cmp reg2 reg4
+        jne LOOP
+
+    mov reg0 reg3
+    ret
+

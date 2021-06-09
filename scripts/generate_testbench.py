@@ -13,7 +13,7 @@ reg [WIDTH-1: 0] data_in = 16'b0;
 wire [WIDTH-1: 0] data_out;
 reg wren = 1'b0;
 
-reg address_control = 1'b0;
+reg [2:0] address_control = 3'b000;
 reg [WIDTH-1: 0] data_in_control = 32'b0;
 wire [WIDTH-1: 0] data_out_control;
 reg wren_control = 1'b0;
@@ -39,9 +39,10 @@ videocard_top videocard_top_inst
 );"""
 
 FOOTER = """
+// wait for the videocard to finish
     #15000
 	address <= 0;
-	
+// read RAM
 	#40
 	address <= 1;
 	
@@ -104,7 +105,7 @@ if __name__ == '__main__':
     HEADER = HEADER.replace("XXX_XXX", module_name)
 
     result = HEADER
-    result += "\ninitial begin\n" \
+    result += "\n//Fill the ROM\ninitial begin\n" \
               "    #200\n" \
               "    wren <= 1;\n"
 

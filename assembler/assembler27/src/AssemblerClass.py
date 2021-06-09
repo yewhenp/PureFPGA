@@ -180,7 +180,7 @@ class Assembler:
                 pprint(program)
 
             # insert everywhere where needed nops
-            program = self.__nop_inserter(program, jump_labels)
+            program, instr_counter = self.__nop_inserter(program, jump_labels)
             if verbose:
                 print("After nop_inserter:")
                 print("Jump labels: " + str(jump_labels))
@@ -204,7 +204,7 @@ class Assembler:
                 pprint(program)
 
             # program should be alligned on 32 bits
-            if len(program) % 2:
+            if instr_counter % 2:
                 program.append(self.NOP_)
 
             if verbose:
@@ -408,14 +408,14 @@ class Assembler:
                 instr_counter += delta
 
             # insert NOP before jump if jump's ip is even number.
-            if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
-                processed_program.append(self.NOP_)
-                self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
-                instr_counter += 1
+            # if line[0] in mem_jump_commmands and instr_counter % 2 == 0:
+            #     processed_program.append(self.NOP_)
+            #     self.__update_jump_labels(jump_labels, delta=1, instr_counter=instr_counter)
+            #     instr_counter += 1
 
             processed_program.append(line)
             instr_counter += 1
-        return processed_program
+        return processed_program, instr_counter
 
     @staticmethod
     def __insert_labels(program, labels):

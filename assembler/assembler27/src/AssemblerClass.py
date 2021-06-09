@@ -257,6 +257,10 @@ class Assembler:
 
             line = line.split()
 
+            if instr_counter == 0 and line[0] != "stack_size":
+                stripped_program.append(['stack_size', '1000', '1000', '1000', '1000'])
+                instr_counter += 1
+
             # insert label below funtion call to return from it
             if "call" in line[0]:
                 label_name = "__return_" + str(return_from_call_counter)
@@ -279,7 +283,6 @@ class Assembler:
                             label_name = line[k][line[k].index('$')+1:]
                             line[k] = line[k][:line[k].index('$')]
                             line[k] += str(val_labels[label_name])
-
         return val_labels, jump_labels, stripped_program
 
     def __extract_labels_macroses(self, program, jump_labels, value_labels):

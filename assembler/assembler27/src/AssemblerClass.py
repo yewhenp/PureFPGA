@@ -268,6 +268,7 @@ class Assembler:
                 jump_labels[label_name] = instr_counter + 1
                 if verbose:
                     print("Add new return label: " + label_name + "=" + str(jump_labels[label_name]))
+                return_from_call_counter += 1
 
             stripped_program.append(line)
             instr_counter += 1

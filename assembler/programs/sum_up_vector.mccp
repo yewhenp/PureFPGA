@@ -3,9 +3,11 @@ stack_size 1000 1000 1000 1000
 // RAM[0] - number of working cores
 // RAM[1] - size of vector
 // RAM[2] - address of vector
+// RAM[3,4,5,6] - set those 0. result will be in RAM[3]
 
 // reg0 = number of working cores
-movimm reg0 0
+movimm reg5 0
+load reg0 reg5
 
 // reg1 = elements to work on
 movimm reg5 1
@@ -19,7 +21,39 @@ movimm reg5 2
 load reg5 reg5  // not sure
 add reg2 reg5
 
+// sum up vector
 call SUMUP
+
+// save result
+movimm reg1 3
+
+// store result in RAM[3+coreidx]
+coreidx reg2
+add reg1 reg2
+store reg0 reg1
+
+// if coreidx != 0, go to end, core 0 will sum-up
+xor reg4 reg4
+cmp reg4 reg2
+jne END
+
+// sum up for core 0
+movimm reg2 4
+load reg1 reg2
+add reg0 reg1
+
+inc reg2
+load reg1 reg2
+add reg0 reg1
+
+inc reg2
+load reg1 reg2
+add reg0 reg1
+
+movimm reg2 3
+store reg0 reg2
+
+END:
 int 1
 
 // reg1 = elements to work on, reg2 = address

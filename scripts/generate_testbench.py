@@ -36,7 +36,60 @@ videocard_top videocard_top_inst
 	.read_control(~wren_control),
 	.write_control(wren_control),
 	.address_control(address_control)
-);"""
+);
+	initial begin
+    #200
+    wren <= 1;
+	address <= 0;
+    data_in <= 32'b101;
+  
+    #40
+    address <= 1;
+    data_in <= 32'b1001;
+
+    #40
+    address <= 2;
+    data_in <= 32'b1;
+
+    #40
+    address <= 3;
+    data_in <= 32'b1101;
+
+    #40
+    address <= 4;
+    data_in <= 32'b100;
+
+    #40
+    address <= 5;
+    data_in <= 32'b1;
+
+    #40
+    address <= 6;
+    data_in <= 32'b10;
+
+    #40
+    address <= 7;
+    data_in <= 32'b11;
+
+    #40
+    address <= 8;
+    data_in <= 32'b100;
+
+    #40
+    address <= 9;
+    data_in <= 32'b100;
+
+    #40
+    address <= 10;
+    data_in <= 32'b11;
+
+    #40
+    address <= 11;
+    data_in <= 32'b10;
+
+    #40
+    address <= 12;
+    data_in <= 32'b1;"""
 
 FOOTER = """
 // wait for the videocard to finish
@@ -84,6 +137,12 @@ FOOTER = """
 	
 	#40
 	address <= 14;
+
+	#40
+	address <= 15;
+	
+	#40
+	address <= 16;
 	
 	#200
    $stop;
@@ -105,10 +164,6 @@ if __name__ == '__main__':
     HEADER = HEADER.replace("XXX_XXX", module_name)
 
     result = HEADER
-    result += "\n//Fill the ROM\ninitial begin\n" \
-              "    #200\n" \
-              "    wren <= 1;\n"
-
     address = 65536
     for line in open(args.binary, 'r'):
         line = line.strip()

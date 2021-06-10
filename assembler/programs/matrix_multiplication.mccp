@@ -20,72 +20,82 @@ load reg1 reg0
 push reg1
 
 call MULTIPLY
-nop
+
 int 1
 
 
 MULTIPLY:
 
-//  param1 address of first matrix//                [reg4 - 2]
-//  param2 address of second matrix transposed      [reg4 - 3]
-//  param3 width//                                  [reg4 - 4]
-//  param4 address of start of destination matrix// [reg4 - 5]
-//  param5 height                                   [reg4 - 6]
+//  param1 address of first matrix//                [reg4 - 3]
+//  param2 address of second matrix transposed      [reg4 - 4]
+//  param3 width//                                  [reg4 - 5]
+//  param4 address of start of destination matrix// [reg4 - 6]
+//  param5 height                                   [reg4 - 7]
 
     push reg4
     mov reg4 reg6
 
+    add reg6 5
 
-    add reg6 6
-    // step                           [reg4 + 1]
-    // end of first matrix            [reg4 + 2]
-    // address of destination matrix  [reg4 + 3]
-    // height  (inner loop)           [reg4 + 4]
-    // height  (outer loop)           [reg4 + 5]
+    step=0
+    Iend=1
+    IIIstart=2
+    heightInner=3
+    heightOutter=4
+    IIstart=6
+    Istart=7
+    // step                           [reg4 + 0]
+    // end of first matrix            [reg4 + 1]
+    // address of destination matrix  [reg4 + 2]
+    // height  (inner loop)           [reg4 + 3]
+    // height  (outer loop)           [reg4 + 4]
 
     // reg0 = width, reg1 = height, reg2 = address of first matrix
-    load_macro reg0 -4
-    load_macro reg1 -6
-    load_macro reg2 -2
-    // push third argument of DOT_PRODUCT
+    load_macro reg0 -5
+    load_macro reg1 -7
+    load_macro reg2 -3
+    // push param3 of DOT_PRODUCT
     push reg0
+
+    // store height in [reg4 + 3]
+    store_macro reg1 $heightInner
+
+    // store height in [reg4 + 4]
+    store_macro reg1 $heightOutter
+
 
     // reg3 = step
     movimm reg3 $CORE_NUM
     mul reg3 reg0
-    store_macro reg3 1
+    store_macro reg3 $step
 
     // end of first matrix
-    mul reg0 reg1 // width * height
-    add reg0 reg2 // width * height + start address
-    store_macro reg0 2
+    mul reg1 reg0 // width * height
+    add reg1 reg2 // width * height + start address
+    store_macro reg1 $Iend
 
-    // store height in [reg4 + 4]
-    store_macro reg1 4
-    // store height in [reg4 + 5]
-    inc reg5 // little hack
-    store reg1 reg5
 
-    // push second argument of DOT_PRODUCT
-    load_macro reg0 -3
+    // push param2 of DOT_PRODUCT
+    load_macro reg0 -4
     push reg0
 
     // reg1 = start address of dest matrix
-    load_macro reg1 -5
+    load_macro reg1 -6
 
     coreidx reg5
-
-    // reg5 = coreId * step
-    mul reg5 reg3
+    
+    // reg5 = coreId * width
+    mul reg5 reg0
 
     // shift start of first and dest matrix
     add reg1 reg5
     add reg2 reg5
 
-    // push first argument of DOT_PRODUCT
+    // push param1 of DOT_PRODUCT
     push reg2
-    // [reg4 + 3] = shofted start address of dest matrix
-    store_macro reg1 3
+
+    // [reg4 + 2] = shifted start address of dest matrix
+    store_macro reg1 $IIIstart
 
 
 INNER_LOOP:
@@ -93,29 +103,27 @@ INNER_LOOP:
     call DOT_PRODUCT
 
     // store result of dot product into matrix
-    mov reg1 reg4
-    add reg1 3
-    load reg2 reg1
+    load_macro reg2 $IIIstart
     store reg0 reg2
 
     // increment pointer of destination matrix
     inc reg2
-    store reg2 reg1
+    store_macro reg2 $IIIstart
 
     // load width
-    load_macro reg1 -4
+    load_macro reg1 -5
 
     // load current pointer of second matrix
-    load_macro reg2 7
+    load_macro reg2 $IIstart
 
     // update it with width
     add reg2 reg1
-    store_macro reg2 7
+    store_macro reg2 $IIstart
 
-    load_macro reg0 4
+    load_macro reg0 $heightInner
     dec reg0
-    store_macro reg0 4
-    movimm reg5 0
+    store_macro reg0 $heightInner
+    xor reg5 reg5
     cmp reg0 reg5
     jne INNER_LOOP
 
@@ -124,44 +132,44 @@ OUTER_LOOP:
 
     // end pointer
 
-    load_macro reg0 5
+    load_macro reg0 $heightOutter
     xor reg1 reg1
     cmp reg0 reg1
     jle END
 
     sub reg0 $CORE_NUM
-    store_macro reg0 5
+    store_macro reg0 $heightOutter
 
     // load current first matrix pointer
-    load_macro reg1 8
+    load_macro reg1 $Istart
     // load step
-    load_macro reg2 1
+    load_macro reg2 $step
 
     add reg1 reg2
 
     // store updated pointer to first matrix
-    store_macro reg1 8
+    store_macro reg1 $Istart
 
     // load height copy in to height
-    load_macro reg2 -6
-    store_macro reg2 4
+    load_macro reg2 -7
+    store_macro reg2 $heightInner
 
     // load address of second matrix from arguments
-    load_macro reg3 -3
-    store_macro reg3 7
+    load_macro reg3 -4
+    store_macro reg3 $IIstart
 
     jmp INNER_LOOP
 
 END:
-    sub reg6 6
+    sub reg6 5
     pop reg4
     ret
 
 
 DOT_PRODUCT:
-//  param1 adress of first vector//    [reg4 - 2]
-//  param2 adress of second vector//   [reg4 - 3]
-//  param3 size of vectors//           [reg4 - 4]
+//  param1 adress of first vector//    [reg4 - 3]
+//  param2 adress of second vector//   [reg4 - 4]
+//  param3 size of vectors//           [reg4 - 5]
     //  create function call frame
     push reg4
     mov reg4 reg6
@@ -169,9 +177,9 @@ DOT_PRODUCT:
     //  reg1 address of second vector
     //  reg2 last index of vectors
     //  reg0 address of first vector
-    load_macro reg0 -2
-    load_macro reg1 -3
-    load_macro reg2 -4
+    load_macro reg0 -3
+    load_macro reg1 -4
+    load_macro reg2 -5
 
 
 

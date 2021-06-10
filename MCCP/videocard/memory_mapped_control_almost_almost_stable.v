@@ -35,19 +35,20 @@ assign interrupt_internal = (data_start == 1);
 
 always @(posedge clk_hps) begin
 	if (read) begin
-		case (address) 
-			3'b000: data_finish = data_start;
-			3'b001: begin
-				if (interrupt && address == 1'b1) begin
-					data_finish = 1;
-				end 
+		if (interrupt) begin
+			if (address == 1'b1) begin
+				data_finish = 1;
 			end
-			3'b010: data_finish = core_en[0];
-			3'b011: data_finish = core_en[1];
-			3'b100: data_finish = core_en[2];
-			3'b101: data_finish = core_en[3];
-			default: data_finish = data_finish;
-		endcase
+		end else begin
+			case (address) 
+				3'b000: data_finish = data_start;
+				3'b010: data_finish = core_en[0];
+				3'b011: data_finish = core_en[1];
+				3'b100: data_finish = core_en[2];
+				3'b101: data_finish = core_en[3];
+				default: data_finish = data_finish;
+			endcase
+		end
 	end
 	
 	if (write) begin

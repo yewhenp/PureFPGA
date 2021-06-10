@@ -58,6 +58,7 @@ always @(negedge clk) begin
         int_num <= 0;
 
         write_stack_params <= 0;
+        alu_opcode <= 0;
 
         // long 32bit instruction - movl / movh / msb / mse / excl
         if(long_instr[WIDTH-1] == 1) begin
@@ -148,9 +149,10 @@ always @(negedge clk) begin
                 op1 <= short_instr[5:3];
                 op2 <= short_instr[2:0];
                 // TODO: test this out
-                // if (alu_opcode == 4'b1100) begin
-                //     suffix <= 0;
-                // end
+                // compare - don't save result
+                if (short_instr[13:10] == 4'b1100) begin
+                    suffix <= 0;
+                end
             end else begin
                 // load / store
                 if (short_instr[13:11] == 3'b000) begin

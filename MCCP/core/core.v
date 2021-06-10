@@ -218,7 +218,7 @@ always @(posedge clk) begin
 				
 				// on execute stage
 				if (execute) begin
-					if (alu_en) begin
+						if (alu_en) begin
 						// flags[FLAGS-1: 0] <= flags_wire;
 						result <= result_wire;
 					end
@@ -256,6 +256,9 @@ always @(posedge clk) begin
 							3'b110 : sp <= result;
 							3'b111 : ip = result;
 						endcase
+					end
+
+					if ((alu_en && suffix) || alu_opcode == 4'b1100) begin
 						flags[FLAGS-1: 0] <= flags_wire;
 					end
 					

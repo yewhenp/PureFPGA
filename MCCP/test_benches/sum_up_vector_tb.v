@@ -41,7 +41,7 @@ videocard_top videocard_top_inst
     // fill RAM
     #40
 	address <= 0;
-    data_in <= 2;
+    data_in <= 1;
     
     #40
 	address <= 1;
@@ -49,44 +49,56 @@ videocard_top videocard_top_inst
 	
 	#40
 	address <= 2;
-    data_in <= 3;
+    data_in <= 7;
 	
 	#40
 	address <= 3;
-    data_in <= 1;
+    data_in <= 0;
 
 	#40
 	address <= 4;
-    data_in <= 2;
+    data_in <= 0;
 	#40
 	address <= 5;
-	data_in <= 3;
+	data_in <= 0;
 	#40
 	address <= 6;
-	data_in <= 4;
+	data_in <= 0;
 	#40
 	address <= 7;
-	data_in <= 5;
+	data_in <= 1;
 	#40
 	address <= 8;
-	data_in <= 6;
+	data_in <= 2;
 	#40
 	address <= 9;
-	data_in <= 7;
+	data_in <= 3;
 	#40
 	address <= 10;
-    data_in <= 8;
+    data_in <= 4;
 	#40
 	address <= 11;
-	data_in <= 9;
+	data_in <= 5;
 	#40
 	address <= 12;
-    data_in <= 10;
+    data_in <= 6;
     #40
 	address <= 13;
-    data_in <= 11;
+    data_in <= 7;
     #40
 	address <= 14;
+    data_in <= 8;
+    #40
+	address <= 15;
+    data_in <= 9;
+    #40
+	address <= 16;
+    data_in <= 10;
+    #40
+	address <= 17;
+    data_in <= 11;
+    #40
+	address <= 18;
     data_in <= 12;
     #40
     address <= 65536;
@@ -428,6 +440,25 @@ videocard_top videocard_top_inst
 	wren_control <= 0;
 	address_control <= 1;
 	data_in_control <= 0;
+	
+	// turning off/on cores
+	#40
+    address_control <= 2;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 3;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 4;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 5;
+    data_in_control <= 0;
+
+
 
 // wait for the videocard to finish
     #15000

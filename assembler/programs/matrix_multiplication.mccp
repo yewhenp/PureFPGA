@@ -1,87 +1,42 @@
-//reg0
-//reg1
-//reg2
-//reg3
-//reg4 = bp (base pointer)
-//reg5 = jp (jump pointer)
-//reg6 = sp (stack_pointer)
-//reg7 = ip (instruction_pointer)
-
 stack_size 1000 1000 1000 1000
-coreidx reg0
+movimm reg0 4
 load reg1 reg0
-jmp reg1
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+
+call MULTIPLY
+nop
+int 1
 
 
-
-DOT_PRODUCT:
-//  param1 adress of first vector//    [reg4 - 2]
-//  param2 adress of second vector//   [reg4 - 3]
-//  param3 size of vectors//           [reg4 - 4]
-    //  create function call frame
-    push reg4
-    mov reg4 reg6
-
-
-    mov reg3 reg4
-    movl reg0 2
-    add reg3 reg0
-    //  reg0 address of first vector
-    load reg0 reg3
-
-    //  reg1 address of second vector
-    inc reg3
-    load reg1 reg3
-
-    //  reg2 last index of vectors
-    inc reg3
-    load reg2 reg3
-
-
-    //  use reg4 as accumulative register
-    movl reg4 0
-
-LOOP:
-    //  load value from first vector at index current index
-    load reg3 reg0
-    //  load value from second vector at index current index
-    load reg5 reg1
-
-    mul reg3 reg5
-
-
-    //  sum up
-    add reg4 reg3
-
-    //  move pointer forward
-    inc reg0
-    inc reg1
-
-    //  count down
-    dec reg2
-
-    jne LOOP
-
-    //  store dot product into reg0
-    mov reg0 reg4
-
-    // restore prevoius base pointer
-    pop reg4
-
-    ret
 MULTIPLY:
 
-//  param1 address of first matrix//                 [reg4 - 2]
+//  param1 address of first matrix//                [reg4 - 2]
 //  param2 address of second matrix transposed      [reg4 - 3]
-//  param3 width//                                   [reg4 - 4]
-//  param4 address of start of destination matrix//  [reg4 - 5]
+//  param3 width//                                  [reg4 - 4]
+//  param4 address of start of destination matrix// [reg4 - 5]
 //  param5 height                                   [reg4 - 6]
 
     push reg4
     mov reg4 reg6
 
 
-    add reg6 reg5
+    add reg6 6
     // step                           [reg4 + 1]
     // end of first matrix            [reg4 + 2]
     // address of destination matrix  [reg4 + 3]
@@ -96,8 +51,7 @@ MULTIPLY:
     push reg0
 
     // reg3 = step
-    xor reg3 reg3
-    movl reg3 CORE_NUM
+    movimm reg3 $CORE_NUM
     mul reg3 reg0
     store_macro reg3 1
 
@@ -161,6 +115,8 @@ INNER_LOOP:
     load_macro reg0 4
     dec reg0
     store_macro reg0 4
+    movimm reg5 0
+    cmp reg0 reg5
     jne INNER_LOOP
 
 
@@ -197,388 +153,55 @@ OUTER_LOOP:
     jmp INNER_LOOP
 
 END:
+    sub reg6 6
+    pop reg4
     ret
 
-// MULTIPLY:
 
-// //  param1 adress of first matrix//                  [reg4 - 2]
-// //  param2 adress of second matrix transposed       [reg4 - 3]
-// //  param3 width//                                   [reg4 - 4]
-// //  param4 adress of start of destination matrix//   [reg4 - 5]
-// //  param5 height                                   [reg4 - 6]
-
-//     push reg4
-//     mov reg4 reg6
-
-//     movl reg5 5
-//     sub reg6 reg5
-//     // step                           [reg4 + 1]
-//     // end of first matrix            [reg4 + 2]
-//     // address of destination matrix  [reg4 + 3]
-//     // height                         [reg4 + 4]
-//     // copy of height                 [reg4 + 5]
-
-//     // reg5 = reg4 + 2 = param1
-//     mov reg5 reg4
-//     movl reg0 2
-//     add reg5 reg0
-
-//     // reg1 = param1
-//     load reg1 reg5
-
-//     add reg5 reg0
-
-//     // reg2 = param3
-//     load reg2 reg5
-
-//     // reg3 = param4
-//     inc reg5
-//     load reg3 reg5
-
-//     // calculate step
-//     movl reg0 CORE_NUM
-//     mul reg0 reg2
-
-//     // store step in [reg4 - 1]
-//     mov reg5 reg4
-//     dec reg5
-//     store reg0 reg5
-
-//     // store end of first matrix
-//     push reg2 // free reg2 for now
-//     push reg3 // free reg3 for now
-
-//     movl reg2 7
-//     add reg5 reg2
-//     load reg2 reg5
-
-//     // store height as local variables
-//     movl reg3 10
-//     sub reg5 reg3
-
-//     store reg2 reg5
-//     dec reg5
-//     store reg2 reg5
-
-
-//     // reg2 = last address within first matrix
-//     pop reg3
-//     mul reg2 reg3 // height * width
-//     push reg3
-//     add reg2 reg1
-
-
-
-//     // store
-//     movl reg3 3
-//     add reg5 reg3
-//     store reg2 reg5
-
-//     pop reg3
-//     pop reg2
-
-//     coreidx reg5
-
-//     // reg2 is shift
-//     mul reg5 reg0
-
-//     // shift start of first and destination matrices
-//     add reg1 reg5
-//     add reg3 reg5
-
-//     // store destination matrix pointer as third local variable
-//     mov reg5 reg4
-//     movl reg0 3
-//     sub reg5 reg0
-//     store reg3 reg5
-
-//     // push shifted start of first matrix
-//     push reg1
-
-//     // push pointer to second matrix
-//     mov reg5 reg4
-//     movl reg0 3
-//     add reg5 reg0
-//     load reg3 reg5
-//     push reg3
-//     // push width
-//     push reg2
-
-
-// INNER_LOOP:
-
-//     call DOT_PRODUCT
-
-//     // store result of dot product into matrix
-//     movl reg5 3
-//     mov reg1 reg4
-//     sub reg1 reg5
-//     load reg2 reg1
-//     store reg0 reg2
-
-//     // increment pointer of destination matrix
-//     inc reg2
-//     store reg2 reg1
-
-//     // load step
-//     movl reg0 2
-//     add reg5 reg0
-//     load reg1 reg5
-
-//     // load current pointer of second matrix
-//     movl reg0 6
-//     sub reg5 reg0
-//     load reg2 reg5
-
-//     // update it with step
-//     add reg2 reg1
-//     store reg2 reg5
-
-//     movl reg0 3
-//     add reg5 reg0
-//     load reg1 reg5
-//     dec reg1
-//     store reg1 reg5
-//     jne INNER_LOOP
-
-
-// OUTER_LOOP:
-
-//     // end pointer
-//     mov reg1 reg4
-//     movl reg5 2
-//     sub reg1 reg5
-//     load reg2 reg1
-//     // actual pointer
-//     movl reg5 4
-//     sub reg1 reg5
-//     load reg3 reg1
-//     // compare end pointer with actual pointer
-//     cmp reg2 reg3
-//     jle END
-
-//     // load step
-//     movl reg5 5
-//     add reg1 reg5
-//     load reg2 reg1
-
-//     add reg3 reg2
-
-//     // store updated pointer to first matrix
-//     movl reg5 5
-//     sub reg1 reg5
-//     store reg3 reg5
-
-//     // load height copy in to height
-//     inc reg5
-//     load reg0 reg5
-//     inc reg5
-//     store reg0 reg5
-
-//     // load address of second matrix from arguments
-//     movl reg1 7
-//     add reg5 reg1
-//     load reg0 reg5
-//     // store it in second argument passed to DOT_PRODUCT
-//     movl reg1 10
-//     sub reg5 reg1
-//     store reg0 reg5
-
-//     jmp INNER_LOOP
-
-// END:
-//     ret
-
-
-SWAP_COL_ROW:
-// swaps (first) row with column starting from some diagonal entry (of square matrix)
-// param1 adress of diagonal entry                 [sp + 2]
-// param2 column's height/ row's width             [sp + 3]
+DOT_PRODUCT:
+//  param1 adress of first vector//    [reg4 - 2]
+//  param2 adress of second vector//   [reg4 - 3]
+//  param3 size of vectors//           [reg4 - 4]
+    //  create function call frame
     push reg4
+    mov reg4 reg6
 
-    //
-// get address of first func argument
-    mov reg3 reg6
-    movl reg0 2
-    add reg3 reg0
-
-
-    //
- // reg0 - param1
-    load reg0 reg3
-    //
-// reg3 has the same adress of diagonal entry
-    mov reg1 reg0
-
-    //
-// reg1 - param2
-    inc reg3
-    load reg2 reg3
-
-    mov reg3 reg2
+    //  reg1 address of second vector
+    //  reg2 last index of vectors
+    //  reg0 address of first vector
+    load_macro reg0 -2
+    load_macro reg1 -3
+    load_macro reg2 -4
 
 
-    add reg0 reg3
-    inc reg1
 
-    //
-// count down
-    dec reg2
+    //  use reg4 as accumulative register
+    movimm reg4 0
 
 LOOP:
-    //
-
-    load reg4 reg0
+    //  load value from first vector at index current index
+    load reg3 reg0
+    //  load value from second vector at index current index
     load reg5 reg1
 
-    //
-// make a swap
-    store reg4 reg1
-    store reg5 reg0
+    mul reg3 reg5
 
-    //
-// move pointer forward
-    add reg0 reg3 //
-// reg0 moves torwards bottom of matrix
-    inc reg1 //
-// reg1 moves torwards right side of matrix
 
-    //
-// count down
+    //  sum up
+    add reg4 reg3
+
+    //  move pointer forward
+    inc reg0
+    inc reg1
+
+    //  count down
     dec reg2
-
     jne LOOP
 
+    //  store dot product into reg0
+    mov reg0 reg4
+
+    // restore prevoius base pointer
     pop reg4
 
     ret
-
-
-// COPY_WITH_STEP:
-// // param1 adress of original vector//               [sp + 1]
-// // param2 adress of start of destination vector//   [sp + 2]
-// // param3 size of vectors//                         [sp + 3]
-// // param4 step//                                    [sp + 4]
-
-//     mov reg3 reg6
-//     movl reg0 1
-//     add reg3 reg0
-//     // reg0 - param1
-//     load reg0 reg3
-
-//     // reg1 - param2
-//     inc reg3
-//     load reg1 reg3
-
-//     // reg2 - param3
-//     inc reg3
-//     load reg2 reg3
-
-//     // reg3 - param4
-//     inc reg3
-//     load reg3 reg3
-// LOOP:
-//     // load value from first vector at index current index
-//     load reg5 reg0
-//     // load value from second vector at index current index
-//     store reg5 reg1
-
-//     // move pointer forward
-//     add reg0 reg3
-//     inc reg1
-
-//     // count down
-//     dec reg2
-
-//     jne LOOP
-
-//     ret
-
-
-
-
-// TRANSPOSE:
-// // param1 adress of original matrix//               [reg4 + 2]
-// // param2 adress of start of destination matrix//   [reg4 + 3]
-// // param3 height//                                  [reg4 + 4]
-// // param4 width//                                   [reg4 + 5]
-    //
- push reg4
-    //
- mov reg4 reg6
-
-    //
- mov reg3 reg4
-    //
- movl reg0 2
-    //
- add reg3 reg0
-    //
- //
-// reg0 - param1
-    //
- load reg4 reg3
-    //
- push reg4
-
-    //
- //
-// reg1 - param2
-    //
- inc reg3
-    //
- load reg1 reg3
-    //
- push reg1
-
-    //
- //
-// reg2 - param3
-    //
- inc reg3
-    //
- load reg1 reg3
-    //
- push reg1
-
-    //
- //
-// reg3 - param4
-    //
- inc reg3
-    //
- load reg3 reg3
-    //
- push reg1
-
-    //
- coreidx reg2
-    //
- add reg4 reg2
-
-// LOOP:
-//     pop reg1
-//     push reg1
-
-//     // measure lenght
-//     movl reg5 6
-//     mov reg3 reg6
-//     add reg3 reg5
-//     load reg2 reg3
-//     sub reg2 reg4
-//     add reg2 reg1
-
-//     jle END
-//     // update start point
-//     movl reg5 3
-//     sub reg3 reg5
-//     store reg4 reg3
-
-//     call COPY_WITH_STEP
-
-//     // move start point forward
-//     movl reg5 CORE_NUM
-//     add reg4 reg5
-
-// END:
-//     ret

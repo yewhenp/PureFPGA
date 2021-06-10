@@ -147,6 +147,10 @@ always @(negedge clk) begin
                 alu_opcode <= short_instr[13:10];
                 op1 <= short_instr[5:3];
                 op2 <= short_instr[2:0];
+                // TODO: test this out
+                // if (alu_opcode == 4'b1100) begin
+                //     suffix <= 0;
+                // end
             end else begin
                 // load / store
                 if (short_instr[13:11] == 3'b000) begin

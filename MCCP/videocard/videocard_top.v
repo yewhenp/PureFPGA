@@ -30,6 +30,7 @@ wire [WIDTH-1: 0] data_finish_wire;
 wire 					interrupt_start;
 
 wire [3:0] core_en;
+wire clear_interrupt;
 
 
 videocard videocard_inst (
@@ -45,7 +46,8 @@ videocard videocard_inst (
 	.data_in_rom(data_in),
 	.wren_rom(write && address[WIDTH/2]),
 	.clk_hps(clk_hps),
-	.core_en(core_en)
+	.core_en(core_en),
+	.clear_interrupt(clear_interrupt)
 );
 
 RAM_dual ram_inst (
@@ -75,6 +77,7 @@ memory_mapped_control mm_control (
 	.data_write(data_in_control),
 	.data_read(data_out_control),
 	.interrupt_internal(interrupt_start),
+	.clear_interrupt(clear_interrupt),
 	.core_en(core_en)
 );
 

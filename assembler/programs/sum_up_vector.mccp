@@ -73,4 +73,3 @@ SUMUP:
 
     mov reg0 reg3
     ret
-

@@ -35,11 +35,71 @@ videocard_top videocard_top_inst
 	.write_control(wren_control),
 	.address_control(address_control)
 );
-//Fill the ROM
-initial begin
+	initial begin
     #200
     wren <= 1;
+    // fill RAM
+    #40
+	address <= 0;
+    data_in <= 1;
+    
+    #40
+	address <= 1;
+    data_in <= 12;
+	
+	#40
+	address <= 2;
+    data_in <= 7;
+	
+	#40
+	address <= 3;
+    data_in <= 0;
 
+	#40
+	address <= 4;
+    data_in <= 0;
+	#40
+	address <= 5;
+	data_in <= 0;
+	#40
+	address <= 6;
+	data_in <= 0;
+	#40
+	address <= 7;
+	data_in <= 1;
+	#40
+	address <= 8;
+	data_in <= 2;
+	#40
+	address <= 9;
+	data_in <= 3;
+	#40
+	address <= 10;
+    data_in <= 4;
+	#40
+	address <= 11;
+	data_in <= 5;
+	#40
+	address <= 12;
+    data_in <= 6;
+    #40
+	address <= 13;
+    data_in <= 7;
+    #40
+	address <= 14;
+    data_in <= 8;
+    #40
+	address <= 15;
+    data_in <= 9;
+    #40
+	address <= 16;
+    data_in <= 10;
+    #40
+	address <= 17;
+    data_in <= 11;
+    #40
+	address <= 18;
+    data_in <= 12;
     #40
     address <= 65536;
     data_in <= 32'b00100001010011000110001010100100;
@@ -234,7 +294,7 @@ initial begin
 
     #40
     address <= 65584;
-    data_in <= 32'b00000010100111010100001010010011;
+    data_in <= 32'b00000010101011010100001010010101;
 
     #40
     address <= 65585;
@@ -250,7 +310,7 @@ initial begin
 
     #40
     address <= 65588;
-    data_in <= 32'b10001111010101000000000000111000;
+    data_in <= 32'b10001111010101000000000001001001;
 
     #40
     address <= 65589;
@@ -262,27 +322,27 @@ initial begin
 
     #40
     address <= 65591;
-    data_in <= 32'b00100011010001000100001011000000;
+    data_in <= 32'b10001111010001000000000000000011;
 
     #40
     address <= 65592;
-    data_in <= 32'b00001010101000100100001010100001;
+    data_in <= 32'b10001101010001000000000000000000;
 
     #40
     address <= 65593;
-    data_in <= 32'b01100010100110110100001011000000;
+    data_in <= 32'b00100001010010000100001010001010;
 
     #40
     address <= 65594;
-    data_in <= 32'b00000010101010100100001010011101;
+    data_in <= 32'b00000110100000010110001010100100;
 
     #40
     address <= 65595;
-    data_in <= 32'b01110110100100000111001010010100;
+    data_in <= 32'b01110010101000100100001011000000;
 
     #40
     address <= 65596;
-    data_in <= 32'b10001111010101000000000000111010;
+    data_in <= 32'b10001111010101000000000001001000;
 
     #40
     address <= 65597;
@@ -290,66 +350,83 @@ initial begin
 
     #40
     address <= 65598;
-    data_in <= 32'b00010101010000000000101010000011;
+    data_in <= 32'b00010101010000000100001011000000;
 
     #40
     address <= 65599;
-    data_in <= 32'b01111010101100000000001010101110;
+    data_in <= 32'b10001111010010000000000000000100;
 
     #40
     address <= 65600;
+    data_in <= 32'b10001101010010000000000000000000;
+
+    #40
+    address <= 65601;
+    data_in <= 32'b00000010100010100100001010000001;
+
+    #40
+    address <= 65602;
+    data_in <= 32'b01110110100100000000001010001010;
+
+    #40
+    address <= 65603;
+    data_in <= 32'b01000010100000010111011010010000;
+
+    #40
+    address <= 65604;
+    data_in <= 32'b00000010100010100100001010000001;
+
+    #40
+    address <= 65605;
+    data_in <= 32'b10001111010010000000000000000011;
+
+    #40
+    address <= 65606;
+    data_in <= 32'b10001101010010000000000000000000;
+
+    #40
+    address <= 65607;
+    data_in <= 32'b00000110100000100100001011000000;
+
+    #40
+    address <= 65608;
+    data_in <= 32'b00100011010001000100001011000000;
+
+    #40
+    address <= 65609;
+    data_in <= 32'b00001010101000100100001010100001;
+
+    #40
+    address <= 65610;
+    data_in <= 32'b01100010100110110100001011000000;
+
+    #40
+    address <= 65611;
+    data_in <= 32'b00000010101010100100001010011101;
+
+    #40
+    address <= 65612;
+    data_in <= 32'b01110110100100000111001010010100;
+
+    #40
+    address <= 65613;
+    data_in <= 32'b10001111010101000000000001001011;
+
+    #40
+    address <= 65614;
+    data_in <= 32'b10001101010101000000000000000000;
+
+    #40
+    address <= 65615;
+    data_in <= 32'b00010101010000000000101010000011;
+
+    #40
+    address <= 65616;
+    data_in <= 32'b01111010101100000000001010101110;
+
+    #40
+    address <= 65617;
     data_in <= 32'b00011111010000000100001011000000;
-
-// fill RAM
-    #40
-	address <= 0;
-    data_in <= 4;
-    
-    #40
-	address <= 1;
-    data_in <= 12;
-	
-	#40
-	address <= 2;
-    data_in <= 3;
-	
-	#40
-	address <= 3;
-    data_in <= 1;
-
-	#40
-	address <= 4;
-    data_in <= 2;
-	#40
-	address <= 5;
-	data_in <= 3;
-	#40
-	address <= 6;
-	data_in <= 4;
-	#40
-	address <= 7;
-	data_in <= 5;
-	#40
-	address <= 8;
-	data_in <= 6;
-	#40
-	address <= 9;
-	data_in <= 7;
-	#40
-	address <= 10;
-    data_in <= 8;
-	#40
-	address <= 11;
-	data_in <= 9;
-	#40
-	address <= 12;
-    data_in <= 10;
-    #40
-	address <= 13;
-    data_in <= 11;
-    #40
-	address <= 14;
-    data_in <= 12;
 
     #40
     wren <= 0;
@@ -363,6 +440,25 @@ initial begin
 	wren_control <= 0;
 	address_control <= 1;
 	data_in_control <= 0;
+	
+	// turning off/on cores
+	#40
+    address_control <= 2;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 3;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 4;
+    data_in_control <= 0;
+
+    #40
+    address_control <= 5;
+    data_in_control <= 0;
+
+
 
 // wait for the videocard to finish
     #15000
@@ -409,6 +505,12 @@ initial begin
 	
 	#40
 	address <= 14;
+
+	#40
+	address <= 15;
+	
+	#40
+	address <= 16;
 	
 	#200
    $stop;

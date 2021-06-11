@@ -11,7 +11,7 @@ reg [WIDTH-1: 0] data_in = 16'b0;
 wire [WIDTH-1: 0] data_out;
 reg wren = 1'b0;
 
-reg address_control = 1'b0;
+reg [2:0] address_control = 3'b000;
 reg [WIDTH-1: 0] data_in_control = 32'b0;
 wire [WIDTH-1: 0] data_out_control;
 reg wren_control = 1'b0;
@@ -207,27 +207,54 @@ initial begin
     address <= 65577;
     data_in <= 32'b00100011010001000100001011000000;
 
+// Fill the RAM
+
     #40
     address <= 0;
-    data_in <= 4;
-
-    #40
-    address <= 1;
     data_in <= 2;
 
-    #40
-    address <= 2;
-    data_in <= 3;
+	
+        #40
+        address <= 1;
+        data_in <= 2;
 
-    #40
-    address <= 3;
-    data_in <= 5;
+
+        #40
+        address <= 2;
+        data_in <= 3;
+
+
+        #40
+        address <= 3;
+        data_in <= 4;
+
+
+        #40
+        address <= 4;
+        data_in <= 5;
+
+
+        #40
+        address <= 5;
+        data_in <= 2;
+
 
     #40
     wren <= 0;
+    wren_control <= 1;
+
+// turn off some cores and start videocard
+    #40
+	address_control <= 3;
+	data_in_control <= 0;
+    #40
+	address_control <= 4;
+	data_in_control <= 0;   
+    #40
+	address_control <= 5;
+	data_in_control <= 0; 
     
 	#40
-	wren_control <= 1;
 	address_control <= 0;
 	data_in_control <= 1;
 	
@@ -236,7 +263,10 @@ initial begin
 	address_control <= 1;
 	data_in_control <= 0;
 
+// wait for the videocard to finish
     #15000
+
+// read RAM
 	address <= 0;
 	
 	#40

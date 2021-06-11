@@ -11,7 +11,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # 1. assemmble program
-    assembling_script = "python2 assembler/assembler27/pure_assembler.py -s {} -ap -o tmp.out"
+    assembling_script = "python2 assembler/pure_assembler.py -s {} -ap -o tmp.out"
     if args.verbose:
         assembling_script += " -v"
         print("Assembling...")

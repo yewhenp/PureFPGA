@@ -4,7 +4,8 @@ module interrupt_controller #(
 )(
 	input							clk,
 	input [CORE_NUM-1: 0] 	core_interrupts,
-	input clear_interrupt,
+	// input clear_interrupt,
+	// input [CORE_NUM-1: 0] core_en,
 	output reg 					interrupt = 0
 );
 
@@ -12,7 +13,7 @@ reg [CORE_NUM-1: 0] internal_interrupt = 4'b0000;
 
 always @(negedge clk) begin
 
-	if (clear_interrupt) begin
+	if (interrupt) begin
 		interrupt <= 1'b0;
 		internal_interrupt = 4'b0000;
 	end else begin

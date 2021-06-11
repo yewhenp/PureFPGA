@@ -1,4 +1,4 @@
-// 1 - program, 2 - ram, 3 - number of cores
+// 1 - program, 2 - number of cores, 2 - ram, optional
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
@@ -25,8 +25,8 @@ int videocard_finished() {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 4) {
-        printf("Wrong number of arguments (should be 3)");
+    if (argc != 4 && argc != 3) {
+        printf("Wrong number of arguments (should be 3 or 2)");
         return 1;
     }
     char execute_buffer[200];
@@ -38,21 +38,16 @@ int main(int argc, char **argv) {
         return status;
     }
 
-    sprintf(execute_buffer, "./mem %s 0xC0000000", argv[2]);
-    status = system(execute_buffer);
-    if (status != 0) {
-        printf("Error occured while filling RAM...");
-        return status;
+    if (argc == 4) {
+        sprintf(execute_buffer, "./mem %s 0xC0000000", argv[3]);
+        status = system(execute_buffer);
+        if (status != 0) {
+            printf("Error occured while filling RAM...");
+            return status;
+        }
     }
 
-    sprintf(execute_buffer, "./mem %s.out 0xC0040000", argv[1]);
-    status = system(execute_buffer);
-    if (status != 0) {
-        printf("Error occured while filling ROM...");
-        return status;
-    }
-
-    sprintf(execute_buffer, "./scripts/activate_cores.sh %s", argv[3]);
+    sprintf(execute_buffer, "./scripts/activate_cores.sh %s", argv[2]);
     status = system(execute_buffer);
     if (status != 0) {
         printf("Error occured while setting up number of cores...");
@@ -63,7 +58,6 @@ int main(int argc, char **argv) {
 
     clock_t start = clock();
 
-    status = 0;
     while ((status = videocard_finished()) == -2) {}
     if (status < 0) {
         printf("Error occured while wating on videocard...");

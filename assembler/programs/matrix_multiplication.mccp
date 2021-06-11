@@ -63,6 +63,7 @@ MULTIPLY:
     // decrease overall height for each core
     coreidx reg5
     sub reg1 reg5
+    sub reg1 $CORE_NUM
 
     // store height in [reg4 + 4]
     store_macro reg1 $heightOutter
@@ -126,10 +127,12 @@ INNER_LOOP:
 
     load_macro reg0 $heightInner
     dec reg0
+    je OUTER_LOOP
     store_macro reg0 $heightInner
-    xor reg5 reg5
-    cmp reg0 reg5
-    jne INNER_LOOP
+    jmp INNER_LOOP
+    // xor reg5 reg5
+    // cmp reg0 reg5
+    // jne INNER_LOOP
 
 
 OUTER_LOOP:
@@ -165,7 +168,7 @@ OUTER_LOOP:
     jmp INNER_LOOP
 
 END:
-    sub reg6 5
+    sub reg6 8
     pop reg4
     ret
 

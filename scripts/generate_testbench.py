@@ -39,11 +39,15 @@ videocard_top videocard_top_inst
 );
 	initial begin
     #200
+    wren_control <= 0;
+    address_control <= 1;
+
+    #40
     wren <= 1;
     // fill RAM
     #40
 	address <= 0;
-    data_in <= 1;
+    data_in <= 3;
     
     #40
 	address <= 1;
@@ -156,6 +160,21 @@ FOOTER = """
 	#40
 	address <= 16;
 	
+	
+    // check finish interrupt
+    #40
+    wren_control <= 0;
+    address_control <= 1;
+
+    #40
+    wren_control <= 1;
+    address_control <= 1;
+    data_in_control <= 0;
+
+    #40
+    wren_control <= 0;
+    address_control <= 1;
+	
 	#200
    $stop;
 
@@ -189,11 +208,6 @@ if __name__ == '__main__':
     result += """
     #40
     wren <= 0;
-    
-	#40
-	wren_control <= 1;
-	address_control <= 0;
-	data_in_control <= 1;
 	
 	#20
 	wren_control <= 0;
@@ -202,20 +216,29 @@ if __name__ == '__main__':
 	
 	// turning off/on cores
 	#40
+    wren_control <= 1;
     address_control <= 2;
     data_in_control <= 1;
 
     #40
     address_control <= 3;
-    data_in_control <= 0;
+    data_in_control <= 1;
 
     #40
     address_control <= 4;
-    data_in_control <= 0;
+    data_in_control <= 1;
 
     #40
     address_control <= 5;
     data_in_control <= 0;
+
+    #40
+	address_control <= 0;
+	data_in_control <= 1;
+
+    #40
+    wren_control <= 0;
+    address_control <= 1;
 
 
 """

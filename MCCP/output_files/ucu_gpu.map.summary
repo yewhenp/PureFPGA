@@ -1,7 +1,7 @@
-Analysis & Elaboration Status : Successful - Fri Jun 11 15:43:10 2021
+Analysis & Elaboration Status : Successful - Fri Jun 18 23:39:18 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : ucu_gpu
-Top-level Entity Name : sum_up_vector_long_tb
+Top-level Entity Name : sum_up_vector_tb
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A until Partition Merge
 Total registers : N/A until Partition Merge

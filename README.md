@@ -7,6 +7,10 @@
 [here](https://docs.google.com/presentation/d/e/2PACX-1vTVfOXb5rheupiz6Ob63Culg5LiFyZjbOxZ8CyO_Lo17noED1dXoVwQrShWZQk1yA/pub?start=false&loop=false&delayms=3000)
 ### fourth presentation
 [here](https://docs.google.com/presentation/d/e/2PACX-1vTFs381pHR2PLveAYBrA2p2wrEo3RzpDv-Db8mIF7FAq5vMPitggd6w6WqDNGU7Ubs-PCCUC5ojlRXD/pub?start=false&loop=false&delayms=3000)
+### fifth presentation
+[here](https://docs.google.com/presentation/d/e/2PACX-1vScFtA8ETN2ckXA1z3Hr5MCTMuC7zirinbOINof9o1WYu8NLOnhoJUppKtolSpHSTkJ1Be_ooPAkakf/pub?start=false&loop=false&delayms=3000)
+### sixth presentation
+[here](https://docs.google.com/presentation/d/e/2PACX-1vR8RlZcyrVbfgPpodVf631narKgliSqYX3fZb7n2mSHfAdPPWpdodYL2_EAnR_fzxEcePoFvMxWDbsU/pub?start=false&loop=false&delayms=3000)
 
 ## Idea of project
 Tha main purpose of this project is to create general purpose video card using FPGA technology.
@@ -46,9 +50,26 @@ memtool address=value
 # read 
 memtool address number_of_words #(word has 32 bits)
 ```
-- To start videocard, send interrupt to 0xFF200000 - 
+- fill RAM/ROM with text file (.txt extension, numbers divided by whitespace, or .out extension, binary numbers divided by whitespace (for programs))
+```
+RAM=0xC0000000
+ROM=0xC0040000
+./linux_code/mem_write ram.txt $RAM
+./linux_code/mem_write my_prgram.out $ROM
+```
+- before starting - activate needed number of cores:
+```
+./scripts/activate_cores.sh 4
+```
+
+- To start videocard, 
+1) clear finish interrupt from the videocard
 ```bash
-memtool 0xFF200000=1
+memtool -8 0xFF200001=0x0
+```
+2) send start interrupt to the videocard interrupt 
+```bash
+memtool -8 0xFF200000=0x1
 ```
 
 ## Details on realization
@@ -65,3 +86,11 @@ memtool 0xFF200000=1
 
 - Each core can be interpreted as individual core.
 - After finishing work, core sends interrupt with number 1, that is passed to interrupt controller, that counts interrupts. After all cores sent finishing signal, interrupt controler writes to 0xFF200001 (read usage), which is signal to linux that work is done.
+
+## Plots
+How matrix multiplication scales
+
+![](./images/plot_matrix.png)
+
+How summing up vector scales with number of cores
+![](./images/plot_cores.png)

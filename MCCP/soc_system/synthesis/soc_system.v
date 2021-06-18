@@ -152,7 +152,7 @@ module soc_system (
 	wire   [31:0] mm_interconnect_1_axi_master_bridge_s0_readdata;            // axi_master_bridge:s0_readdata -> mm_interconnect_1:axi_master_bridge_s0_readdata
 	wire          mm_interconnect_1_axi_master_bridge_s0_waitrequest;         // axi_master_bridge:s0_waitrequest -> mm_interconnect_1:axi_master_bridge_s0_waitrequest
 	wire          mm_interconnect_1_axi_master_bridge_s0_debugaccess;         // mm_interconnect_1:axi_master_bridge_s0_debugaccess -> axi_master_bridge:s0_debugaccess
-	wire   [19:0] mm_interconnect_1_axi_master_bridge_s0_address;             // mm_interconnect_1:axi_master_bridge_s0_address -> axi_master_bridge:s0_address
+	wire   [18:0] mm_interconnect_1_axi_master_bridge_s0_address;             // mm_interconnect_1:axi_master_bridge_s0_address -> axi_master_bridge:s0_address
 	wire          mm_interconnect_1_axi_master_bridge_s0_read;                // mm_interconnect_1:axi_master_bridge_s0_read -> axi_master_bridge:s0_read
 	wire    [3:0] mm_interconnect_1_axi_master_bridge_s0_byteenable;          // mm_interconnect_1:axi_master_bridge_s0_byteenable -> axi_master_bridge:s0_byteenable
 	wire          mm_interconnect_1_axi_master_bridge_s0_readdatavalid;       // axi_master_bridge:s0_readdatavalid -> mm_interconnect_1:axi_master_bridge_s0_readdatavalid
@@ -220,7 +220,7 @@ module soc_system (
 	wire          mm_interconnect_3_video_dma_0_ctrl_write;                   // mm_interconnect_3:video_dma_0_ctrl_write -> video_dma_0:ctrl_write
 	wire   [31:0] mm_interconnect_3_video_dma_0_ctrl_writedata;               // mm_interconnect_3:video_dma_0_ctrl_writedata -> video_dma_0:ctrl_data
 	wire    [7:0] mm_interconnect_3_videocard_new_0_memory_control_readdata;  // videocard_new_0:data_out_control -> mm_interconnect_3:videocard_new_0_memory_control_readdata
-	wire    [0:0] mm_interconnect_3_videocard_new_0_memory_control_address;   // mm_interconnect_3:videocard_new_0_memory_control_address -> videocard_new_0:address_control
+	wire    [2:0] mm_interconnect_3_videocard_new_0_memory_control_address;   // mm_interconnect_3:videocard_new_0_memory_control_address -> videocard_new_0:address_control
 	wire          mm_interconnect_3_videocard_new_0_memory_control_read;      // mm_interconnect_3:videocard_new_0_memory_control_read -> videocard_new_0:read_control
 	wire          mm_interconnect_3_videocard_new_0_memory_control_write;     // mm_interconnect_3:videocard_new_0_memory_control_write -> videocard_new_0:write_control
 	wire    [7:0] mm_interconnect_3_videocard_new_0_memory_control_writedata; // mm_interconnect_3:videocard_new_0_memory_control_writedata -> videocard_new_0:data_in_control
@@ -246,7 +246,7 @@ module soc_system (
 	wire          axi_master_bridge_m0_waitrequest;                           // mm_interconnect_5:axi_master_bridge_m0_waitrequest -> axi_master_bridge:m0_waitrequest
 	wire   [31:0] axi_master_bridge_m0_readdata;                              // mm_interconnect_5:axi_master_bridge_m0_readdata -> axi_master_bridge:m0_readdata
 	wire          axi_master_bridge_m0_debugaccess;                           // axi_master_bridge:m0_debugaccess -> mm_interconnect_5:axi_master_bridge_m0_debugaccess
-	wire   [19:0] axi_master_bridge_m0_address;                               // axi_master_bridge:m0_address -> mm_interconnect_5:axi_master_bridge_m0_address
+	wire   [18:0] axi_master_bridge_m0_address;                               // axi_master_bridge:m0_address -> mm_interconnect_5:axi_master_bridge_m0_address
 	wire          axi_master_bridge_m0_read;                                  // axi_master_bridge:m0_read -> mm_interconnect_5:axi_master_bridge_m0_read
 	wire    [3:0] axi_master_bridge_m0_byteenable;                            // axi_master_bridge:m0_byteenable -> mm_interconnect_5:axi_master_bridge_m0_byteenable
 	wire          axi_master_bridge_m0_readdatavalid;                         // mm_interconnect_5:axi_master_bridge_m0_readdatavalid -> axi_master_bridge:m0_readdatavalid
@@ -519,7 +519,7 @@ module soc_system (
 	altera_avalon_mm_bridge #(
 		.DATA_WIDTH        (32),
 		.SYMBOL_WIDTH      (8),
-		.HDL_ADDR_WIDTH    (20),
+		.HDL_ADDR_WIDTH    (19),
 		.BURSTCOUNT_WIDTH  (1),
 		.PIPELINE_COMMAND  (1),
 		.PIPELINE_RESPONSE (1)

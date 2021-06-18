@@ -30,7 +30,7 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEBA6U23I7
-set_global_assignment -name TOP_LEVEL_ENTITY ucu_gpu_top
+set_global_assignment -name TOP_LEVEL_ENTITY sum_up_vector_long_tb
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "03:49:18  FEBRUARY 28, 2021"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
@@ -1324,6 +1324,8 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE test_benches/sum_up_vector_long_tb.v
+set_global_assignment -name VERILOG_FILE test_benches/sum_up_vector_tb.v
 set_global_assignment -name VERILOG_FILE test_benches/cube4_tb.v
 set_global_assignment -name VERILOG_FILE test_benches/cube_tb.v
 set_global_assignment -name VERILOG_FILE video/rgb_fifo.v
@@ -1356,6 +1358,8 @@ set_global_assignment -name VERILOG_FILE mac_ip/mac_tb.v
 set_global_assignment -name SIGNALTAP_FILE signal_tap.stp
 set_global_assignment -name VERILOG_FILE ucu_gpu_top.v
 set_global_assignment -name QIP_FILE memory/ROM_RAM.qip
+set_global_assignment -name SOURCE_FILE db/ucu_gpu.cmp.rdb
+set_global_assignment -name CDF_FILE output_files/Chain3.cdf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

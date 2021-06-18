@@ -105,6 +105,7 @@ interrupt_controller inter_controller
 (
 	.clk(clk),
 	.core_interrupts(core_interrupts),
+	.core_en(core_en),
 	.interrupt(interrupt_finish)
 	// .clear_interrupt(clear_interrupt)
 );

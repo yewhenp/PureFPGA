@@ -38,10 +38,10 @@ $(OBJ1): $(addsuffix .o,$(OBJ1)) $(DEPENDENCY)
 	$(CC) $(LDFLAGS)   $^ -o $@
 
 $(OBJ2): $(addsuffix .o,$(OBJ2)) $(DEPENDENCY)
-	$(CC) $(LDFLAGS)   $^ -o $@arrowd
+	$(CC) $(LDFLAGS)   $^ -o $@
 
 $(OBJ3): $(addsuffix .o,$(OBJ3))
-	$(CC) $(LDFLAGS)   $^ -o $@arrowd
+	$(CC) $(LDFLAGS)   $^ -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

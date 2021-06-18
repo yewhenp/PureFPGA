@@ -45,6 +45,8 @@ int main(int argc, char **argv) {
             printf("Error occured while filling RAM...");
             return status;
         }
+    } else {
+        printf("Warning: skipping RAM filling...");
     }
 
     sprintf(execute_buffer, "./scripts/activate_cores.sh %s", argv[2]);
@@ -53,6 +55,10 @@ int main(int argc, char **argv) {
         printf("Error occured while setting up number of cores...");
         return status;
     }
+    sprintf(execute_buffer, "memtool -8 0xFF200001=0x0");
+    system(execute_buffer);
+    sprintf(execute_buffer, "memtool -8 0xFF200000 8");
+    system(execute_buffer);
 
     sprintf(execute_buffer, "memtool -8 0xFF200000=0x1");
 

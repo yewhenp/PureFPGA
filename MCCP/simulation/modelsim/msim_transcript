@@ -1057,3 +1057,5 @@ do ../../sims/sum_up_vector_sim.do
 # ** Note: $stop    : /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v(538)
 #    Time: 20540 ns  Iteration: 0  Instance: /sum_up_vector_tb
 # Break in Module sum_up_vector_tb at /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v line 538
+# End time: 09:48:46 on Jun 19,2021, Elapsed time: 10:08:33
+# Errors: 1, Warnings: 11

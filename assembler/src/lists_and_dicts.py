@@ -61,7 +61,11 @@ commands = {
         'msb'   : '10010',     # my-stack-begin
         'mse'   : '10011',     # my-stack-end
         'sb'    : '10100',     # stack-begin
-        'excl'  : '10101'      # exception-address-load
+        'excl'  : '10101',      # exception-address-load
+        'loadl':  '10110',
+        'storec': '10111',
+        'jst':    '11000',
+        'jnst':   '11001',
 
         # 'chmod': '11110',
         # 'chbuf': '11111',

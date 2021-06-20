@@ -37,15 +37,15 @@ MULTIPLY:
 
     add reg6 5
 
-    step=0
-    Iend=1
+    Istep=0
+    IIIstep=1
     IIIstart=2
     heightInner=3
     heightOutter=4
     IIstart=6
     Istart=7
-    // step                           [reg4 + 0]
-    // end of first matrix            [reg4 + 1] deprecated
+    // Istep                          [reg4 + 0]
+    // IIIstep                        [reg4 + 1]
     // address of destination matrix  [reg4 + 2]
     // height  (inner loop)           [reg4 + 3]
     // height  (outer loop)           [reg4 + 4]
@@ -69,10 +69,18 @@ MULTIPLY:
     store_macro reg1 $heightOutter
 
 
-    // reg3 = step
+    // reg3 = Istep
     movimm reg3 $CORE_NUM
     mul reg3 reg0
-    store_macro reg3 $step
+    store_macro reg3 $Istep
+
+    // calculate and store step for dest matrix
+    load_macro reg1 -7
+    movimm reg3 $CORE_NUM
+    // decrease step by one row since INNER_LOOP also updates dest pointer
+    dec reg3
+    mul reg3 reg1
+    store_macro reg3 $IIIstep 
 
     // reg1 = start address of dest matrix
     load_macro reg1 -6
@@ -149,13 +157,22 @@ OUTER_LOOP:
 
     // load current first matrix pointer
     load_macro reg1 $Istart
-    // load step
-    load_macro reg2 $step
+    // load Istep
+    load_macro reg2 $Istep
 
     add reg1 reg2
 
     // store updated pointer to first matrix
     store_macro reg1 $Istart
+
+    // load current dest matrix pointer
+    load_macro reg1 $IIIstart
+    load_macro reg2 $IIIstep
+    // add IIIstep
+    add reg1 reg2
+
+    // store updated pointer to dest matrix
+    store_macro reg1 $IIIstart
 
     // load height copy in to height
     load_macro reg2 -7

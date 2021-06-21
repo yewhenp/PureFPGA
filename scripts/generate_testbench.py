@@ -41,151 +41,54 @@ videocard_top videocard_top_inst
     #200
     wren <= 1;
 	address <= 0;
-    data_in <= 5;
-  
-    #40
-    address <= 1;
-    data_in <= 21;
-
-    #40
-    address <= 2;
-    data_in <= 2;
-
-    #40
-    address <= 3;
-    data_in <= 37;
-
-    #40
-    address <= 4;
-    data_in <= 8;
-
-    #40
-	address <= 5;
-	data_in <= 1;
-
-	#40
-	address <= 6;
-	data_in <= 2;
-
-	#40
-	address <= 7;
-	data_in <= 3;
-
-	#40
-	address <= 8;
-	data_in <= 4;
-
-	#40
-	address <= 9;
-	data_in <= 5;
-
-	#40
-	address <= 10;
-	data_in <= 6;
-
-	#40
-	address <= 11;
-	data_in <= 7;
-
-	#40
-	address <= 12;
-	data_in <= 8;
-
-	#40
-	address <= 13;
-	data_in <= 9;
-
-	#40
-	address <= 14;
-	data_in <= 10;
-
-	#40
-	address <= 15;
-	data_in <= 11;
-
-	#40
-	address <= 16;
-	data_in <= 12;
-
-	#40
-	address <= 17;
-	data_in <= 13;
-
-	#40
-	address <= 18;
-	data_in <= 14;
-
-	#40
-	address <= 19;
-	data_in <= 15;
-
-	#40
-	address <= 20;
-	data_in <= 16;
-
-	#40
-	address <= 21;
-	data_in <= 1;
-
-	#40
-	address <= 22;
-	data_in <= 9;
-
-	#40
-	address <= 23;
-	data_in <= 2;
-
-	#40
-	address <= 24;
-	data_in <= 10;
-
-	#40
-	address <= 25;
-	data_in <= 3;
-
-	#40
-	address <= 26;
-	data_in <= 11;
-
-	#40
-	address <= 27;
-	data_in <= 4;
-
-	#40
-	address <= 28;
-	data_in <= 12;
-
-	#40
-	address <= 29;
-	data_in <= 5;
-
-	#40
-	address <= 30;
-	data_in <= 13;
-
-	#40
-	address <= 31;
-	data_in <= 6;
-
-	#40
-	address <= 32;
-	data_in <= 14;
-
-	#40
-	address <= 33;
-	data_in <= 7;
-
-	#40
-	address <= 34;
-	data_in <= 15;
-
-	#40
-	address <= 35;
-	data_in <= 8;
-
-	#40
-	address <= 36;
-	data_in <= 16;
+address <= 0;
+data_in <= 6;
+#40
+address <= 1;
+data_in <= 10;
+#40
+address <= 2;
+data_in <= 2;
+#40
+address <= 3;
+data_in <= 16;
+#40
+address <= 4;
+data_in <= 3;
+#40
+address <= 5;
+data_in <= 2;
+#40
+address <= 6;
+data_in <= 1;
+#40
+address <= 7;
+data_in <= 2;
+#40
+address <= 8;
+data_in <= 3;
+#40
+address <= 9;
+data_in <= 4;
+#40
+address <= 10;
+data_in <= 1;
+#40
+address <= 11;
+data_in <= 4;
+#40
+address <= 12;
+data_in <= 2;
+#40
+address <= 13;
+data_in <= 5;
+#40
+address <= 14;
+data_in <= 3;
+#40
+address <= 15;
+data_in <= 6;
+#40
 """
 
 FOOTER = """

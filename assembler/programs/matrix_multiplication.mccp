@@ -1,5 +1,10 @@
 stack_size 1000 1000 1000 1000
-movimm reg0 4
+// push arguments to MULTIPLY
+movimm reg0 5
+load reg1 reg0
+push reg1
+dec reg0
+
 load reg1 reg0
 push reg1
 dec reg0
@@ -20,6 +25,8 @@ load reg1 reg0
 push reg1
 
 call MULTIPLY
+// free stack of MULTIPLY arguments
+sub reg6 6
 
 int 1
 
@@ -30,10 +37,25 @@ MULTIPLY:
 //  param2 address of second matrix transposed      [reg4 - 4]
 //  param3 width//                                  [reg4 - 5]
 //  param4 address of start of destination matrix// [reg4 - 6]
-//  param5 height                                   [reg4 - 7]
+//  param5 heightInner                              [reg4 - 7]
+//  param6 heightOutter                             [reg4 - 8]
+
+
 
     push reg4
     mov reg4 reg6
+
+    // check if core needs to work
+    //load_macro reg0 -8
+    //coreidx reg1
+    //sub reg0 reg1
+    //jle EMERGENCY_END
+
+    // check if core needs to work
+    load_macro reg0 -8
+    coreidx reg1
+    sub reg1 reg0
+    jge EMERGENCY_END
 
     add reg6 5
 
@@ -50,6 +72,7 @@ MULTIPLY:
     // height  (inner loop)           [reg4 + 3]
     // height  (outer loop)           [reg4 + 4]
 
+
     // reg0 = width, reg1 = height, reg2 = address of first matrix
     load_macro reg0 -5
     load_macro reg1 -7
@@ -61,6 +84,7 @@ MULTIPLY:
     store_macro reg1 $heightInner
     
     // decrease overall height for each core
+    load_macro reg1 -8
     coreidx reg5
     sub reg1 reg5
     sub reg1 $CORE_NUM
@@ -82,9 +106,6 @@ MULTIPLY:
     mul reg3 reg1
     store_macro reg3 $IIIstep 
 
-    // reg1 = start address of dest matrix
-    load_macro reg1 -6
-
     coreidx reg5
     
     // reg0 = width * coreId
@@ -93,7 +114,10 @@ MULTIPLY:
     // shift start of first matrix
     add reg2 reg0
 
-    load_macro reg3 $heightInner
+    // reg1 = start address of dest matrix
+    load_macro reg1 -6
+
+    load_macro reg3 -7
     coreidx reg5
 
     mul reg5 reg3
@@ -186,6 +210,7 @@ OUTER_LOOP:
 
 END:
     sub reg6 8
+EMERGENCY_END:
     pop reg4
     ret
 
@@ -237,11 +262,3 @@ LOOP:
     pop reg4
 
     ret
-
-
-
-// 75
-// end of first matrix
-// mul reg1 reg0 // width * height
-// add reg1 reg2 // width * height + start address
-// store_macro reg1 $Iend

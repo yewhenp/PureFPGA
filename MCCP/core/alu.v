@@ -28,8 +28,8 @@ assign tmp = {1'b0, op1} + {1'b0, op2};
 
 // flags
 //wire [FLAGS-1: 0] flags_wire;
-assign flags[CARRY] = tmp[16];
-assign flags[SIGN] = result[15];
+assign flags[CARRY] = tmp[32];
+assign flags[SIGN] = result[31];
 xor(flags[OVERFLOW], flags[CARRY], flags[SIGN]);
 assign flags[ZERO] = (0 == result);
 

@@ -9,179 +9,153 @@
 # Copying /opt/intelFPGA/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v}
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:58 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
-# -- Compiling module cube4_tb
+# Start time: 23:40:12 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v 
+# -- Compiling module sum_up_vector_tb
 # 
 # Top level modules:
-# 	cube4_tb
-# End time: 14:51:58 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v}
+# 	sum_up_vector_tb
+# End time: 23:40:12 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard_top.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:58 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:12 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard_top.v 
 # -- Compiling module videocard_top
 # 
 # Top level modules:
 # 	videocard_top
-# End time: 14:51:58 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard.v}
+# End time: 23:40:12 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:58 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:12 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard.v 
 # -- Compiling module videocard
 # 
 # Top level modules:
 # 	videocard
-# End time: 14:51:58 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/memory_mapped_control.v}
+# End time: 23:40:12 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/memory_mapped_control.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:58 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/memory_mapped_control.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:12 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/memory_mapped_control.v 
 # -- Compiling module memory_mapped_control
 # 
 # Top level modules:
 # 	memory_mapped_control
-# End time: 14:51:58 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/interrupt_controller.v}
+# End time: 23:40:12 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/interrupt_controller.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:58 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/interrupt_controller.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:12 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/interrupt_controller.v 
 # -- Compiling module interrupt_controller
 # 
 # Top level modules:
 # 	interrupt_controller
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/RAM_dual.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/RAM_dual.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/RAM_dual.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/RAM_dual.v 
 # -- Compiling module RAM_dual
 # 
 # Top level modules:
 # 	RAM_dual
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v 
 # -- Compiling module four_way_rom
 # 
 # Top level modules:
 # 	four_way_rom
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/arbiter.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/arbiter.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/arbiter.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/arbiter.v 
 # -- Compiling module arbiter
 # 
 # Top level modules:
 # 	arbiter
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/instr_decoder.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/instr_decoder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/instr_decoder.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/instr_decoder.v 
 # -- Compiling module instr_decoder
 # 
 # Top level modules:
 # 	instr_decoder
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/divider.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/divider.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/divider.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/divider.v 
 # -- Compiling module divider
 # 
 # Top level modules:
 # 	divider
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v 
 # -- Compiling module core
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(179): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(180): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(181): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(182): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(183): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(184): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(185): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(186): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(187): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(348): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(349): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(350): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(351): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(352): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(353): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(354): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/core.v(355): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(180): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(181): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(182): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(183): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(184): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(185): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(186): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(187): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(188): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(352): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(353): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(354): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(355): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(356): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(357): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(358): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/core.v(359): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
 # 
 # Top level modules:
 # 	core
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 18
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/alu.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 17
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/alu.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/core/alu.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/core/alu.v 
 # -- Compiling module alu
 # 
 # Top level modules:
 # 	alu
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v}
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v 
 # -- Compiling module ROM_RAM
 # 
 # Top level modules:
 # 	ROM_RAM
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # vlib soc_system
 # ** Warning: (vlib-34) Library already exists at "soc_system".
 # vmap soc_system soc_system
@@ -189,25 +163,23 @@
 # vmap soc_system soc_system 
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/mac_ip {/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/mac_ip/mac_tb.v}
+# vlog -vlog01compat -work work +incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/mac_ip {/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/mac_ip/mac_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 14:51:59 on May 18,2021
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/mac_ip" /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/mac_ip/mac_tb.v 
-# ** Warning: (vlog-3) System call 'opendir .' failed.
-# Value too large for defined data type. (errno = 75)
+# Start time: 23:40:13 on Jun 18,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/mac_ip" /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/mac_ip/mac_tb.v 
 # -- Compiling module tb
 # 
 # Top level modules:
 # 	tb
-# End time: 14:51:59 on May 18,2021, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
+# End time: 23:40:13 on Jun 18,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -L soc_system -voptargs="+acc"  tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -L soc_system -voptargs=""+acc"" tb 
-# Start time: 14:51:59 on May 18,2021
+# Start time: 23:40:13 on Jun 18,2021
 # Loading work.tb
 # ** Error: (vsim-3033) Instantiation of 'mac' failed. The design unit was not found.
-#    Time: 0 ps  Iteration: 0  Instance: /tb File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/mac_ip/mac_tb.v Line: 48
+#    Time: 0 ps  Iteration: 0  Instance: /tb File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/mac_ip/mac_tb.v Line: 48
 #         Searched libraries:
 #             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/altera
 #             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/220model
@@ -217,35 +189,20 @@
 #             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/cyclonev
 #             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/cyclonev_hssi
 #             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/cyclonev_pcie_hip
-#             /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/simulation/modelsim/rtl_work
-#             /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/simulation/modelsim/rtl_work
-#             /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/simulation/modelsim/soc_system
+#             /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/simulation/modelsim/rtl_work
+#             /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/simulation/modelsim/rtl_work
+#             /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/simulation/modelsim/soc_system
 # Error loading design
 # Error: Error loading design
 #        Pausing macro execution
 # MACRO ./ucu_gpu_run_msim_rtl_verilog.do PAUSED at line 26
-do ../../sims/cube4_sim.do
+do ../../sims/sum_up_vector_sim.do
 # vlib work
 # view structure
-# vsim work.cube_tb -L altera_mf_ver -L lpm_ver
-# vsim work.cube_tb -L altera_mf_ver -L lpm_ver 
-# Start time: 14:51:59 on May 18,2021
-# ** Error: (vsim-3170) Could not find 'cube_tb'.
-#         Searched libraries:
-#             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/altera_mf
-#             /opt/intelFPGA/20.1/modelsim_ase/altera/verilog/220model
-#             /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/simulation/modelsim/rtl_work
-# Error loading design
-# Error: Error loading design
-#        Pausing macro execution
-# MACRO ./../../sims/cube4_sim.do PAUSED at line 3
-do ../../sims/cube4_sim.do
-# vlib work
-# view structure
-# vsim work.cube4_tb -L altera_mf_ver -L lpm_ver
-# vsim work.cube4_tb -L altera_mf_ver -L lpm_ver 
-# Start time: 14:51:59 on May 18,2021
-# Loading work.cube4_tb
+# vsim work.sum_up_vector_tb -L altera_mf_ver -L lpm_ver
+# vsim work.sum_up_vector_tb -L altera_mf_ver -L lpm_ver 
+# Start time: 23:40:13 on Jun 18,2021
+# Loading work.sum_up_vector_tb
 # Loading work.videocard_top
 # Loading work.videocard
 # Loading work.four_way_rom
@@ -264,207 +221,173 @@ do ../../sims/cube4_sim.do
 # Loading altera_mf_ver.altsyncram_body
 # Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
 # Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_out_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v(17).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v Line: 20
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_in_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v(18).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v Line: 20
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 22
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 22
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 35
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 35
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 48
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 48
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 61
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 61
-# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (17) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/RAM_dual.v(43).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/ram_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v Line: 48
-# do ../../sims/cube4wave.do
-# ** Error: Cannot open macro file: ../../sims/cube4wave.do
-# Error in macro ./../../sims/cube4_sim.do line 4
-# Cannot open macro file: ../../sims/cube4wave.do
-#     while executing
-# "do ../../sims/cube4wave.do"
-do ../../sims/cube4_sim.do
-# vlib work
-# view structure
-# .main_pane.structure.interior.cs.body.struct
-# vsim work.cube4_tb -L altera_mf_ver -L lpm_ver
-# End time: 14:53:36 on May 18,2021, Elapsed time: 0:01:37
-# Errors: 3, Warnings: 11
-# vsim work.cube4_tb -L altera_mf_ver -L lpm_ver 
-# Start time: 14:53:36 on May 18,2021
-# Loading work.cube4_tb
-# Loading work.videocard_top
-# Loading work.videocard
-# Loading work.four_way_rom
-# Loading work.ROM_RAM
-# Loading altera_mf_ver.altsyncram
-# Loading work.arbiter
-# Loading work.interrupt_controller
-# Loading work.core
-# Loading work.instr_decoder
-# Loading work.alu
-# Loading work.divider
-# Loading lpm_ver.lpm_divide
-# Loading lpm_ver.LPM_HINT_EVALUATION
-# Loading work.RAM_dual
-# Loading work.memory_mapped_control
-# Loading altera_mf_ver.altsyncram_body
-# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
-# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_out_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v(17).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v Line: 20
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_in_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v(18).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v Line: 20
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 22
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 22
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 35
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 35
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 48
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 48
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 61
-# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/ROM_RAM.v(42).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/four_way_rom.v Line: 61
-# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (17) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/memory/RAM_dual.v(43).
-#    Time: 0 ps  Iteration: 0  Instance: /cube4_tb/videocard_top_inst/ram_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/videocard/videocard_top.v Line: 48
-# do ../../sims/cube4_wave.do
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_out_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard_top.v(17).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v Line: 20
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'data_in_control'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard_top.v(18).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v Line: 20
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 22
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 22
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 35
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom1 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 35
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom2 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 48
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (16) for port 'address_a'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 61
+# ** Warning: (vsim-3015) [PCDPC] - Port size (13) does not match connection size (32) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/ROM_RAM.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom3 File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/four_way_rom.v Line: 61
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (17) for port 'address_b'. The port definition is at: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/memory/RAM_dual.v(43).
+#    Time: 0 ps  Iteration: 0  Instance: /sum_up_vector_tb/videocard_top_inst/ram_inst File: /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/videocard/videocard_top.v Line: 53
+# do ../../sims/sum_up_vector_wave.do
 # onerror {resume}
 # quietly WaveActivateNextPane {} 0
 # add wave -noupdate -divider videocard_top
-# add wave -noupdate /cube4_tb/clk
-# add wave -noupdate /cube4_tb/clk_rom
-# add wave -noupdate -radix unsigned /cube4_tb/address
-# add wave -noupdate -radix binary /cube4_tb/data_in
-# add wave -noupdate -radix unsigned /cube4_tb/data_out
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/data_out_control
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/data_in_control
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/read_control
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/write_control
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/address_control
+# add wave -noupdate /sum_up_vector_tb/clk
+# add wave -noupdate /sum_up_vector_tb/clk_rom
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/address
+# add wave -noupdate -radix binary /sum_up_vector_tb/data_in
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/data_out
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/data_out_control
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/data_in_control
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/read_control
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/write_control
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/address_control
 # add wave -noupdate -divider videocard
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/clk
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/data_in
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/data_out
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/address
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/wren
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/interrupt_start
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/interrupt_finish
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/write
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/read
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/clk
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_in
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_out
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/address
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/wren
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/interrupt_start
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/interrupt_finish
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/write
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/read
 # add wave -noupdate -divider core_0
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/data_in_core0
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/data_out_core0
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/address_core0
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/instruction_core0
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/address_instr_core0
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg0
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg1
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg2
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg3
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg4
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/reg5
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/sp
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/ip
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/stack_begin
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/my_stack_begin
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/my_stack_end
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core0/stack_exc_addr
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/flags
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/state
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/perform
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_in_core0
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_out_core0
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/address_core0
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/instruction_core0
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/address_instr_core0
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg0
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg1
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg2
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg3
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg4
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/reg5
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/sp
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/ip
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/sum_up_vector_begin
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/sum_up_vector_begin'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 38
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/my_sum_up_vector_begin
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/my_sum_up_vector_begin'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 39
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/my_sum_up_vector_end
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/my_sum_up_vector_end'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 40
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/sum_up_vector_exc_addr
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/sum_up_vector_exc_addr'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 41
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/flags
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/state
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/perform
 # add wave -noupdate -divider core_1
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/data_in_core1
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/data_out_core1
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/address_core1
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/instruction_core1
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/address_instr_core1
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg0
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg1
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg2
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg3
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg4
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/reg5
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/sp
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/ip
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/stack_begin
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/my_stack_begin
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/my_stack_end
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/stack_exc_addr
-# add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/core1/flags
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/state
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/perform
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/response
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/wren
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/request
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/wait_memory
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_in_core1
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/data_out_core1
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/address_core1
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/instruction_core1
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/address_instr_core1
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg0
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg1
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg2
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg3
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg4
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/reg5
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/sp
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/ip
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/sum_up_vector_begin
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/sum_up_vector_begin'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 59
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/my_sum_up_vector_begin
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/my_sum_up_vector_begin'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 60
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/my_sum_up_vector_end
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/my_sum_up_vector_end'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 61
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/sum_up_vector_exc_addr
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/sum_up_vector_exc_addr'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 62
+# add wave -noupdate -radix decimal /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/flags
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/state
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/perform
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/response
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/wren
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/request
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core1/wait_memory
 # add wave -noupdate -divider decoder
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/clk
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/en
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/long_instr
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/instr_choose
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/flags
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/core_index
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/alu_en
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/alu_opcode
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/mem_en
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/wren
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/move_en
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/immediate
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/mov_type
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/op1
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/op2
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/suffix
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/interrupt
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/write_stack_params
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/stack_param_coding
-# add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/stack_param_reg
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/clk
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/en
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/long_instr
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/instr_choose
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/flags
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/core_index
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/alu_en
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/alu_opcode
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/mem_en
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/wren
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/move_en
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/immediate
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/mov_type
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/op1
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/op2
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/suffix
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/interrupt
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/write_sum_up_vector_params
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/write_sum_up_vector_params'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 88
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/sum_up_vector_param_coding
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/sum_up_vector_param_coding'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 89
+# add wave -noupdate /sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/sum_up_vector_param_reg
+# ** UI-Msg: (vish-4014) No objects found matching '/sum_up_vector_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/sum_up_vector_param_reg'.
+# Executing ONERROR command at macro ./../../sims/sum_up_vector_wave.do line 90
 # add wave -noupdate -divider mm_control
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/mm_control/clk
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/mm_control/interrupt
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/mm_control/address
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/mm_control/clk
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/mm_control/interrupt
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/mm_control/address
 # add wave -noupdate -divider arbiter
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/request
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/response
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/data_write
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/data_read
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/address
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/wren_core
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/wren
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/clk
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/current_state
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/wait_memory
-# add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/arbiter_inst/time_spent
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/request
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/response
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/data_write
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/data_read
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/address
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/wren_core
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/wren
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/clk
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/current_state
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/wait_memory
+# add wave -noupdate -radix unsigned /sum_up_vector_tb/videocard_top_inst/videocard_inst/arbiter_inst/time_spent
 # add wave -noupdate -divider interrupt_ctrl
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/inter_controller/clk
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/inter_controller/core_interrupts
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/inter_controller/interrupt
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/inter_controller/internal_interrupt
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/inter_controller/clk
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/inter_controller/core_interrupts
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/inter_controller/interrupt
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/inter_controller/internal_interrupt
 # add wave -noupdate -divider rom
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/address_a
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/address_b
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_a
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_b
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/data_a
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/data_b
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_a
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_b
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/q_a
-# add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/q_b
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/address_a
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/address_b
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_a
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/clock_b
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/data_a
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/data_b
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_a
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/wren_b
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/q_a
+# add wave -noupdate -radix binary /sum_up_vector_tb/videocard_top_inst/videocard_inst/rom/rom0/q_b
 # TreeUpdate [SetDefaultTree]
 # WaveRestoreCursors {{Cursor 1} {4092306 ps} 0}
 # quietly wave cursor active 1
@@ -487,409 +410,652 @@ do ../../sims/cube4_sim.do
 # Flags in core 0 :  0 instruction:          0 ip: 4294967295
 # Flags in core 1 :  0 instruction:          0 ip: 4294967295
 # Flags in core 2 :  0 instruction:          0 ip: 4294967295
-# Flags in core 3 :  0 instruction:          0 ip: 4294967295
-# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558654116 flags:  0
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558654116 flags:  0
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558654116 flags:  0
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558654116 flags:  0
 # Flags in core 0 :  0 instruction:  558654116 ip:          0
 # Flags in core 1 :  0 instruction:  558654116 ip:          0
 # Flags in core 2 :  0 instruction:  558654116 ip:          0
-# Flags in core 3 :  0 instruction:  558654116 ip:          0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  558654116 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  558654116 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  558654116 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  558654116 flags:  0
 # Flags in core 0 :  0 instruction:  558654116 ip:          0
 # Flags in core 1 :  0 instruction:  558654116 ip:          0
 # Flags in core 2 :  0 instruction:  558654116 ip:          0
-# Flags in core 3 :  0 instruction:  558654116 ip:          0
 # Flags in core 0 :  8 instruction: 2404384768 ip:          1
 # Flags in core 1 :  8 instruction: 2404384768 ip:          1
 # Flags in core 2 :  8 instruction: 2404384768 ip:          1
-# Flags in core 3 :  8 instruction: 2404384768 ip:          1
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # Flags in core 0 :  8 instruction: 1922843328 ip:          2
 # Flags in core 1 :  8 instruction: 1922843328 ip:          2
 # Flags in core 2 :  8 instruction: 1922843328 ip:          2
-# Flags in core 3 :  8 instruction: 1922843328 ip:          2
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
 # Flags in core 0 :  8 instruction: 1922843328 ip:          2
 # Flags in core 1 :  0 instruction: 1922843328 ip:          2
 # Flags in core 2 :  0 instruction: 1922843328 ip:          2
-# Flags in core 3 :  0 instruction: 1922843328 ip:          2
 # Flags in core 0 :  8 instruction: 2383736927 ip:          3
 # Flags in core 1 :  0 instruction: 2383736927 ip:          3
 # Flags in core 2 :  0 instruction: 2383736927 ip:          3
-# Flags in core 3 :  0 instruction: 2383736927 ip:          3
 # Flags in core 0 :  8 instruction: 2350120960 ip:          4
 # Flags in core 1 :  0 instruction: 2350120960 ip:          4
 # Flags in core 2 :  0 instruction: 2350120960 ip:          4
-# Flags in core 3 :  0 instruction: 2350120960 ip:          4
 # suffix1: 1 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  8
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
-# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
 # Flags in core 0 :  8 instruction:  605292597 ip:          5
 # Flags in core 1 :  0 instruction:  605292597 ip:          5
 # Flags in core 2 :  0 instruction:  605292597 ip:          5
-# Flags in core 3 :  0 instruction:  605292597 ip:          5
 # suffix1: 1 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  8
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
-# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
 # Flags in core 0 :  8 instruction:  605292597 ip:          5
 # Flags in core 1 :  0 instruction:  605292597 ip:          5
 # Flags in core 2 :  0 instruction:  605292597 ip:          5
-# Flags in core 3 :  0 instruction:  605292597 ip:          5
 # Flags in core 0 :  8 instruction: 2383737927 ip:          6
 # Flags in core 1 :  0 instruction: 2383737927 ip:          6
 # Flags in core 2 :  0 instruction: 2383737927 ip:          6
-# Flags in core 3 :  0 instruction: 2383737927 ip:          6
 # Flags in core 0 :  8 instruction: 2350120960 ip:          7
 # Flags in core 1 :  0 instruction: 2350120960 ip:          7
 # Flags in core 2 :  0 instruction: 2350120960 ip:          7
-# Flags in core 3 :  0 instruction: 2350120960 ip:          7
 # suffix1: 1 suffix2: 1 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  8
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
-# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
 # Flags in core 0 :  8 instruction:  638853452 ip:          8
 # Flags in core 1 :  0 instruction:  638853452 ip:          8
 # Flags in core 2 :  0 instruction:  638853452 ip:          8
-# Flags in core 3 :  0 instruction:  638853452 ip:          8
 # suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  8
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
-# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
 # Flags in core 0 :  8 instruction:  638853452 ip:          8
 # Flags in core 1 :  0 instruction:  638853452 ip:          8
 # Flags in core 2 :  0 instruction:  638853452 ip:          8
-# Flags in core 3 :  0 instruction:  638853452 ip:          8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  8
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
 # Flags in core 0 :  8 instruction: 1654932160 ip:          9
 # Flags in core 1 :  0 instruction: 1654932160 ip:          9
 # Flags in core 2 :  0 instruction: 1654932160 ip:          9
-# Flags in core 3 :  0 instruction: 1654932160 ip:          9
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # Flags in core 0 :  8 instruction: 1654932160 ip:          9
 # Flags in core 1 :  8 instruction: 1654932160 ip:          9
 # Flags in core 2 :  8 instruction: 1654932160 ip:          9
-# Flags in core 3 :  8 instruction: 1654932160 ip:          9
 # Flags in core 0 :  8 instruction: 2404384769 ip:         10
 # Flags in core 1 :  8 instruction: 2404384769 ip:         10
 # Flags in core 2 :  8 instruction: 2404384769 ip:         10
-# Flags in core 3 :  8 instruction: 2404384769 ip:         10
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # Flags in core 0 :  8 instruction: 1922843328 ip:         11
 # Flags in core 1 :  8 instruction: 1922843328 ip:         11
 # Flags in core 2 :  8 instruction: 1922843328 ip:         11
-# Flags in core 3 :  8 instruction: 1922843328 ip:         11
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
 # Flags in core 0 :  6 instruction: 1922843328 ip:         11
 # Flags in core 1 :  8 instruction: 1922843328 ip:         11
 # Flags in core 2 :  0 instruction: 1922843328 ip:         11
-# Flags in core 3 :  0 instruction: 1922843328 ip:         11
 # Flags in core 0 :  6 instruction: 2383737927 ip:         12
 # Flags in core 1 :  8 instruction: 2383737927 ip:         12
 # Flags in core 2 :  0 instruction: 2383737927 ip:         12
-# Flags in core 3 :  0 instruction: 2383737927 ip:         12
 # Flags in core 0 :  6 instruction: 2350120960 ip:         13
 # Flags in core 1 :  8 instruction: 2350120960 ip:         13
 # Flags in core 2 :  0 instruction: 2350120960 ip:         13
-# Flags in core 3 :  0 instruction: 2350120960 ip:         13
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  8
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
-# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
 # Flags in core 0 :  6 instruction:  605292597 ip:         14
 # Flags in core 1 :  8 instruction:  605292597 ip:         14
 # Flags in core 2 :  0 instruction:  605292597 ip:         14
-# Flags in core 3 :  0 instruction:  605292597 ip:         14
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
 # suffix1: 1 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  8
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
-# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
 # Flags in core 0 :  6 instruction:  605292597 ip:         14
 # Flags in core 1 :  8 instruction:  605292597 ip:         14
 # Flags in core 2 :  0 instruction:  605292597 ip:         14
-# Flags in core 3 :  0 instruction:  605292597 ip:         14
 # Flags in core 0 :  6 instruction: 2383738927 ip:         15
 # Flags in core 1 :  8 instruction: 2383738927 ip:         15
 # Flags in core 2 :  0 instruction: 2383738927 ip:         15
-# Flags in core 3 :  0 instruction: 2383738927 ip:         15
 # Flags in core 0 :  6 instruction: 2350120960 ip:         16
 # Flags in core 1 :  8 instruction: 2350120960 ip:         16
 # Flags in core 2 :  0 instruction: 2350120960 ip:         16
-# Flags in core 3 :  0 instruction: 2350120960 ip:         16
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  8
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
-# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
 # Flags in core 0 :  6 instruction:  638853452 ip:         17
 # Flags in core 1 :  8 instruction:  638853452 ip:         17
 # Flags in core 2 :  0 instruction:  638853452 ip:         17
-# Flags in core 3 :  0 instruction:  638853452 ip:         17
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  8
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
-# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
 # Flags in core 0 :  6 instruction:  638853452 ip:         17
 # Flags in core 1 :  8 instruction:  638853452 ip:         17
 # Flags in core 2 :  0 instruction:  638853452 ip:         17
-# Flags in core 3 :  0 instruction:  638853452 ip:         17
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  8
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
 # Flags in core 0 :  6 instruction: 1654932160 ip:         18
 # Flags in core 1 :  8 instruction: 1654932160 ip:         18
 # Flags in core 2 :  0 instruction: 1654932160 ip:         18
-# Flags in core 3 :  0 instruction: 1654932160 ip:         18
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # Flags in core 0 :  8 instruction: 1654932160 ip:         18
 # Flags in core 1 :  8 instruction: 1654932160 ip:         18
 # Flags in core 2 :  8 instruction: 1654932160 ip:         18
-# Flags in core 3 :  8 instruction: 1654932160 ip:         18
 # Flags in core 0 :  8 instruction: 2404384770 ip:         19
 # Flags in core 1 :  8 instruction: 2404384770 ip:         19
 # Flags in core 2 :  8 instruction: 2404384770 ip:         19
-# Flags in core 3 :  8 instruction: 2404384770 ip:         19
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # Flags in core 0 :  8 instruction: 1922843328 ip:         20
 # Flags in core 1 :  8 instruction: 1922843328 ip:         20
 # Flags in core 2 :  8 instruction: 1922843328 ip:         20
-# Flags in core 3 :  8 instruction: 1922843328 ip:         20
-# suffix1: 1 suffix2: 1 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  3
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  0
-# Flags in core 0 :  3 instruction: 1922843328 ip:         20
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
+# Flags in core 0 :  6 instruction: 1922843328 ip:         20
 # Flags in core 1 :  6 instruction: 1922843328 ip:         20
 # Flags in core 2 :  8 instruction: 1922843328 ip:         20
-# Flags in core 3 :  0 instruction: 1922843328 ip:         20
-# Flags in core 0 :  3 instruction: 2383738927 ip:         21
+# Flags in core 0 :  6 instruction: 2383738927 ip:         21
 # Flags in core 1 :  6 instruction: 2383738927 ip:         21
 # Flags in core 2 :  8 instruction: 2383738927 ip:         21
-# Flags in core 3 :  0 instruction: 2383738927 ip:         21
-# Flags in core 0 :  3 instruction: 2350120960 ip:         22
+# Flags in core 0 :  6 instruction: 2350120960 ip:         22
 # Flags in core 1 :  6 instruction: 2350120960 ip:         22
 # Flags in core 2 :  8 instruction: 2350120960 ip:         22
-# Flags in core 3 :  0 instruction: 2350120960 ip:         22
-# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  3
+# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  8
-# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  0
-# Flags in core 0 :  3 instruction:  605292597 ip:         23
+# Flags in core 0 :  6 instruction:  605292597 ip:         23
 # Flags in core 1 :  6 instruction:  605292597 ip:         23
 # Flags in core 2 :  8 instruction:  605292597 ip:         23
-# Flags in core 3 :  0 instruction:  605292597 ip:         23
-# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  3
+# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
 # suffix1: 1 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  8
-# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  0
-# Flags in core 0 :  3 instruction:  605292597 ip:         23
+# Flags in core 0 :  6 instruction:  605292597 ip:         23
 # Flags in core 1 :  6 instruction:  605292597 ip:         23
 # Flags in core 2 :  8 instruction:  605292597 ip:         23
-# Flags in core 3 :  0 instruction:  605292597 ip:         23
-# Flags in core 0 :  3 instruction: 2383739927 ip:         24
+# Flags in core 0 :  6 instruction: 2383739927 ip:         24
 # Flags in core 1 :  6 instruction: 2383739927 ip:         24
 # Flags in core 2 :  8 instruction: 2383739927 ip:         24
-# Flags in core 3 :  0 instruction: 2383739927 ip:         24
-# Flags in core 0 :  3 instruction: 2350120960 ip:         25
+# Flags in core 0 :  6 instruction: 2350120960 ip:         25
 # Flags in core 1 :  6 instruction: 2350120960 ip:         25
 # Flags in core 2 :  8 instruction: 2350120960 ip:         25
-# Flags in core 3 :  0 instruction: 2350120960 ip:         25
-# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  3
+# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  6
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  8
-# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638853452 flags:  0
-# Flags in core 0 :  3 instruction:  638853452 ip:         26
+# Flags in core 0 :  6 instruction:  638853452 ip:         26
 # Flags in core 1 :  6 instruction:  638853452 ip:         26
 # Flags in core 2 :  8 instruction:  638853452 ip:         26
-# Flags in core 3 :  0 instruction:  638853452 ip:         26
-# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  3
+# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  6
 # suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  8
-# suffix1: 0 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  638853452 flags:  0
-# Flags in core 0 :  3 instruction:  638853452 ip:         26
+# Flags in core 0 :  6 instruction:  638853452 ip:         26
 # Flags in core 1 :  6 instruction:  638853452 ip:         26
 # Flags in core 2 :  8 instruction:  638853452 ip:         26
-# Flags in core 3 :  0 instruction:  638853452 ip:         26
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  3
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  6
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  8
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1654932160 flags:  0
-# Flags in core 0 :  3 instruction: 1654932160 ip:         27
+# Flags in core 0 :  6 instruction: 1654932160 ip:         27
 # Flags in core 1 :  6 instruction: 1654932160 ip:         27
 # Flags in core 2 :  8 instruction: 1654932160 ip:         27
-# Flags in core 3 :  0 instruction: 1654932160 ip:         27
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654932160 flags:  8
 # Flags in core 0 :  8 instruction: 1654932160 ip:         27
 # Flags in core 1 :  8 instruction: 1654932160 ip:         27
 # Flags in core 2 :  8 instruction: 1654932160 ip:         27
-# Flags in core 3 :  8 instruction: 1654932160 ip:         27
 # Flags in core 0 :  8 instruction: 2404384771 ip:         28
 # Flags in core 1 :  8 instruction: 2404384771 ip:         28
 # Flags in core 2 :  8 instruction: 2404384771 ip:         28
-# Flags in core 3 :  8 instruction: 2404384771 ip:         28
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1922843328 flags:  8
 # Flags in core 0 :  8 instruction: 1922843328 ip:         29
 # Flags in core 1 :  8 instruction: 1922843328 ip:         29
 # Flags in core 2 :  8 instruction: 1922843328 ip:         29
-# Flags in core 3 :  8 instruction: 1922843328 ip:         29
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  3
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1922843328 flags:  6
 # Flags in core 0 :  6 instruction: 1922843328 ip:         29
-# Flags in core 1 :  3 instruction: 1922843328 ip:         29
+# Flags in core 1 :  6 instruction: 1922843328 ip:         29
 # Flags in core 2 :  6 instruction: 1922843328 ip:         29
-# Flags in core 3 :  8 instruction: 1922843328 ip:         29
 # Flags in core 0 :  6 instruction: 2383739927 ip:         30
-# Flags in core 1 :  3 instruction: 2383739927 ip:         30
+# Flags in core 1 :  6 instruction: 2383739927 ip:         30
 # Flags in core 2 :  6 instruction: 2383739927 ip:         30
-# Flags in core 3 :  8 instruction: 2383739927 ip:         30
 # Flags in core 0 :  6 instruction: 2350120960 ip:         31
-# Flags in core 1 :  3 instruction: 2350120960 ip:         31
+# Flags in core 1 :  6 instruction: 2350120960 ip:         31
 # Flags in core 2 :  6 instruction: 2350120960 ip:         31
-# Flags in core 3 :  8 instruction: 2350120960 ip:         31
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
-# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  3
 # suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  0 instruction:  605292597 flags:  6
 # Flags in core 0 :  6 instruction:  605292597 ip:         32
-# Flags in core 1 :  3 instruction:  605292597 ip:         32
+# Flags in core 1 :  6 instruction:  605292597 ip:         32
 # Flags in core 2 :  6 instruction:  605292597 ip:         32
-# Flags in core 3 :  8 instruction:  605292597 ip:         32
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
-# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  3
 # suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  8
+# suffix1: 0 suffix2: 1 suffix1 opcode:  0 suffix2 opcode:  1 instruction:  605292597 flags:  6
 # Flags in core 0 :  6 instruction:  605292597 ip:         32
-# Flags in core 1 :  3 instruction:  605292597 ip:         32
+# Flags in core 1 :  6 instruction:  605292597 ip:         32
 # Flags in core 2 :  6 instruction:  605292597 ip:         32
-# Flags in core 3 :  8 instruction:  605292597 ip:         32
 # Flags in core 0 :  6 instruction: 2383740927 ip:         33
-# Flags in core 1 :  3 instruction: 2383740927 ip:         33
+# Flags in core 1 :  6 instruction: 2383740927 ip:         33
 # Flags in core 2 :  6 instruction: 2383740927 ip:         33
-# Flags in core 3 :  8 instruction: 2383740927 ip:         33
 # Flags in core 0 :  6 instruction: 2350120960 ip:         34
-# Flags in core 1 :  3 instruction: 2350120960 ip:         34
+# Flags in core 1 :  6 instruction: 2350120960 ip:         34
 # Flags in core 2 :  6 instruction: 2350120960 ip:         34
-# Flags in core 3 :  8 instruction: 2350120960 ip:         34
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638862016 flags:  6
-# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638862016 flags:  3
 # suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638862016 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638862016 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode:  8 suffix2 opcode:  0 instruction:  638862016 flags:  6
 # Flags in core 0 :  6 instruction:  638862016 ip:         35
-# Flags in core 1 :  3 instruction:  638862016 ip:         35
+# Flags in core 1 :  6 instruction:  638862016 ip:         35
 # Flags in core 2 :  6 instruction:  638862016 ip:         35
-# Flags in core 3 :  8 instruction:  638862016 ip:         35
 # suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  638862016 flags:  6
-# suffix1: 0 suffix2: 1 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  638862016 flags:  3
 # suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  638862016 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  638862016 flags:  8
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  638862016 flags:  6
 # Flags in core 0 :  6 instruction:  638862016 ip:         35
-# Flags in core 1 :  3 instruction:  638862016 ip:         35
+# Flags in core 1 :  6 instruction:  638862016 ip:         35
 # Flags in core 2 :  6 instruction:  638862016 ip:         35
-# Flags in core 3 :  8 instruction:  638862016 ip:         35
 # Flags in core 0 :  6 instruction: 2404708447 ip:         36
-# Flags in core 1 :  3 instruction: 2404708447 ip:         36
+# Flags in core 1 :  6 instruction: 2404708447 ip:         36
 # Flags in core 2 :  6 instruction: 2404708447 ip:         36
-# Flags in core 3 :  8 instruction: 2404708447 ip:         36
 # Flags in core 0 :  6 instruction: 2371092480 ip:         37
-# Flags in core 1 :  3 instruction: 2371092480 ip:         37
+# Flags in core 1 :  6 instruction: 2371092480 ip:         37
 # Flags in core 2 :  6 instruction: 2371092480 ip:         37
-# Flags in core 3 :  8 instruction: 2371092480 ip:         37
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  3
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  8
-# Flags in core 0 :  6 instruction:  693379396 ip:         38
-# Flags in core 1 :  3 instruction:  693379396 ip:         38
-# Flags in core 2 :  6 instruction:  693379396 ip:         38
-# Flags in core 3 :  8 instruction:  693379396 ip:         38
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  3
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693379396 flags:  8
-# Flags in core 0 :  6 instruction:  693379396 ip:         38
-# Flags in core 1 :  3 instruction:  693379396 ip:         38
-# Flags in core 2 :  6 instruction:  693379396 ip:         38
-# Flags in core 3 :  8 instruction:  693379396 ip:         38
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  6
-# suffix1: 1 suffix2: 0 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  3
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  8
-# Flags in core 0 :  6 instruction:   42029696 ip:         39
-# Flags in core 1 :  3 instruction:   42029696 ip:         39
-# Flags in core 2 :  6 instruction:   42029696 ip:         39
-# Flags in core 3 :  8 instruction:   42029696 ip:         39
-# suffix1: 1 suffix2: 0 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  3
-# Flags in core 1 :  3 instruction:   42029696 ip:         39
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  6
-# Flags in core 1 :  0 instruction: 1384121985 ip:         40
-# Flags in core 2 :  6 instruction:   42029696 ip:         39
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  8
-# Flags in core 1 :  0 instruction: 1384121985 ip:         40
-# Flags in core 2 :  0 instruction: 1384121985 ip:         40
-# Flags in core 3 :  8 instruction:   42029696 ip:         39
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42029696 flags:  6
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# Flags in core 0 :  6 instruction:   42029696 ip:         39
-# Flags in core 2 :  0 instruction: 1384121985 ip:         40
-# Flags in core 3 :  0 instruction: 1384121985 ip:         40
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# Flags in core 0 :  0 instruction: 1384121985 ip:         40
-# Flags in core 3 :  0 instruction: 1384121985 ip:         40
-# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1384121985 flags:  0
-# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  0
-# Flags in core 0 :  0 instruction: 1384121985 ip:         40
-# Flags in core 1 :  0 instruction:  591676096 ip:         41
-# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  0
-# Flags in core 2 :  0 instruction:  591676096 ip:         41
-# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  0
-# Flags in core 3 :  0 instruction:  591676096 ip:         41
-# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  0
-# Flags in core 0 :  0 instruction:  591676096 ip:         41
-# ** Note: $stop    : /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v(285)
-#    Time: 17900 ns  Iteration: 0  Instance: /cube4_tb
-# Break in Module cube4_tb at /home/pasha/Documents/poc_acs/project/PureFPGA/combined2/MCCP_combined/test_benches/cube4_tb.v line 285
-# End time: 19:47:12 on May 18,2021, Elapsed time: 4:53:36
-# Errors: 0, Warnings: 11
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693387968 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693387968 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  693387968 flags:  6
+# Flags in core 0 :  6 instruction:  693387968 ip:         38
+# Flags in core 1 :  6 instruction:  693387968 ip:         38
+# Flags in core 2 :  6 instruction:  693387968 ip:         38
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  693387968 flags:  6
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  693387968 flags:  6
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  693387968 flags:  6
+# Flags in core 0 :  6 instruction:  693387968 ip:         38
+# Flags in core 1 :  6 instruction:  693387968 ip:         38
+# Flags in core 2 :  6 instruction:  693387968 ip:         38
+# Flags in core 0 :  6 instruction: 2404646912 ip:         39
+# Flags in core 1 :  6 instruction: 2404646912 ip:         39
+# Flags in core 2 :  6 instruction: 2404646912 ip:         39
+# Flags in core 0 :  6 instruction: 2371092480 ip:         40
+# Flags in core 1 :  6 instruction: 2371092480 ip:         40
+# Flags in core 2 :  6 instruction: 2371092480 ip:         40
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42287808 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42287808 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42287808 flags:  6
+# Flags in core 0 :  6 instruction:   42287808 ip:         41
+# Flags in core 1 :  6 instruction:   42287808 ip:         41
+# Flags in core 2 :  6 instruction:   42287808 ip:         41
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:   42287808 flags:  6
+# Flags in core 0 :  6 instruction:   42287808 ip:         41
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:   42287808 flags:  6
+# Flags in core 0 :  6 instruction: 2404646913 ip:         42
+# Flags in core 1 :  6 instruction:   42287808 ip:         41
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:   42287808 flags:  6
+# Flags in core 0 :  6 instruction: 2371092480 ip:         43
+# Flags in core 1 :  6 instruction: 2404646913 ip:         42
+# Flags in core 2 :  6 instruction:   42287808 ip:         41
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# Flags in core 0 :  6 instruction:   42817160 ip:         44
+# Flags in core 1 :  6 instruction: 2371092480 ip:         43
+# Flags in core 2 :  6 instruction: 2404646913 ip:         42
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# Flags in core 1 :  6 instruction:   42817160 ip:         44
+# Flags in core 2 :  6 instruction: 2371092480 ip:         43
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# Flags in core 2 :  6 instruction:   42817160 ip:         44
+# Flags in core 0 :  6 instruction:   42817160 ip:         44
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558387857 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# Flags in core 0 :  0 instruction:  558387857 ip:         45
+# Flags in core 1 :  6 instruction:   42817160 ip:         44
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558387857 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558387857 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42817160 flags:  6
+# Flags in core 0 :  0 instruction:  558387857 ip:         45
+# Flags in core 1 :  0 instruction:  558387857 ip:         45
+# Flags in core 2 :  6 instruction:   42817160 ip:         44
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558387857 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558387857 flags:  0
+# Flags in core 0 :  8 instruction: 2404646914 ip:         46
+# Flags in core 1 :  0 instruction:  558387857 ip:         45
+# Flags in core 2 :  0 instruction:  558387857 ip:         45
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558387857 flags:  0
+# Flags in core 0 :  8 instruction: 2371092480 ip:         47
+# Flags in core 1 :  0 instruction: 2404646914 ip:         46
+# Flags in core 2 :  0 instruction:  558387857 ip:         45
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44909205 flags:  8
+# Flags in core 0 :  8 instruction:   44909205 ip:         48
+# Flags in core 1 :  0 instruction: 2371092480 ip:         47
+# Flags in core 2 :  0 instruction: 2404646914 ip:         46
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44909205 flags:  0
+# Flags in core 1 :  0 instruction:   44909205 ip:         48
+# Flags in core 2 :  0 instruction: 2371092480 ip:         47
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44909205 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44909205 flags:  8
+# Flags in core 2 :  0 instruction:   44909205 ip:         48
+# Flags in core 0 :  8 instruction:   44909205 ip:         48
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44909205 flags:  0
+# Flags in core 0 :  0 instruction: 2404646967 ip:         49
+# Flags in core 1 :  0 instruction:   44909205 ip:         48
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44909205 flags:  0
+# Flags in core 0 :  0 instruction: 2371092480 ip:         50
+# Flags in core 1 :  0 instruction: 2404646967 ip:         49
+# Flags in core 2 :  0 instruction:   44909205 ip:         48
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# Flags in core 0 :  0 instruction:  112096944 ip:         51
+# Flags in core 1 :  0 instruction: 2371092480 ip:         50
+# Flags in core 2 :  0 instruction: 2404646967 ip:         49
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# Flags in core 1 :  0 instruction:  112096944 ip:         51
+# Flags in core 2 :  0 instruction: 2371092480 ip:         50
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# Flags in core 2 :  0 instruction:  112096944 ip:         51
+# Flags in core 0 :  0 instruction:  112096944 ip:         51
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# Flags in core 0 :  6 instruction: 2404646985 ip:         52
+# Flags in core 1 :  0 instruction:  112096944 ip:         51
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  112096944 flags:  0
+# Flags in core 0 :  6 instruction: 2371092480 ip:         53
+# Flags in core 1 :  6 instruction: 2404646985 ip:         52
+# Flags in core 2 :  0 instruction:  112096944 ip:         51
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 0 :  6 instruction:  524305088 ip:         54
+# Flags in core 1 :  6 instruction: 2371092480 ip:         53
+# Flags in core 2 :  6 instruction: 2404646985 ip:         52
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 0 :  6 instruction:  178406049 ip:         73
+# Flags in core 1 :  6 instruction:  524305088 ip:         54
+# Flags in core 2 :  6 instruction: 2371092480 ip:         53
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 0 :  6 instruction:  178406049 ip:         73
+# Flags in core 1 :  6 instruction:  178406049 ip:         73
+# Flags in core 2 :  6 instruction:  524305088 ip:         54
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1654342336 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# Flags in core 0 :  0 instruction: 1654342336 ip:         74
+# Flags in core 1 :  6 instruction:  178406049 ip:         73
+# Flags in core 2 :  6 instruction:  178406049 ip:         73
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654342336 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1654342336 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  178406049 flags:  6
+# Flags in core 0 :  8 instruction: 1654342336 ip:         74
+# Flags in core 1 :  0 instruction: 1654342336 ip:         74
+# Flags in core 2 :  6 instruction:  178406049 ip:         73
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  8
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654342336 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1654342336 flags:  0
+# Flags in core 0 :  8 instruction:   44712605 ip:         75
+# Flags in core 1 :  8 instruction: 1654342336 ip:         74
+# Flags in core 2 :  0 instruction: 1654342336 ip:         74
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  8
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1654342336 flags:  8
+# Flags in core 1 :  8 instruction:   44712605 ip:         75
+# Flags in core 2 :  8 instruction: 1654342336 ip:         74
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  8
+# Flags in core 2 :  8 instruction:   44712605 ip:         75
+# Flags in core 0 :  8 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  8
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  8 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  8
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  8 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2404646987 ip:         77
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2371092480 ip:         78
+# Flags in core 1 :  6 instruction: 2404646987 ip:         77
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:  356518531 ip:         79
+# Flags in core 1 :  6 instruction: 2371092480 ip:         78
+# Flags in core 2 :  6 instruction: 2404646987 ip:         77
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# Flags in core 1 :  6 instruction:  356518531 ip:         79
+# Flags in core 2 :  6 instruction: 2371092480 ip:         78
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# Flags in core 2 :  6 instruction:  356518531 ip:         79
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2404646987 ip:         77
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2371092480 ip:         78
+# Flags in core 1 :  6 instruction: 2404646987 ip:         77
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:  356518531 ip:         79
+# Flags in core 1 :  6 instruction: 2371092480 ip:         78
+# Flags in core 2 :  6 instruction: 2404646987 ip:         77
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# Flags in core 1 :  6 instruction:  356518531 ip:         79
+# Flags in core 2 :  6 instruction: 2371092480 ip:         78
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# Flags in core 2 :  6 instruction:  356518531 ip:         79
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2404646987 ip:         77
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  6 instruction: 2371092480 ip:         78
+# Flags in core 1 :  6 instruction: 2404646987 ip:         77
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:  356518531 ip:         79
+# Flags in core 1 :  6 instruction: 2371092480 ip:         78
+# Flags in core 2 :  6 instruction: 2404646987 ip:         77
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# Flags in core 1 :  6 instruction:  356518531 ip:         79
+# Flags in core 2 :  6 instruction: 2371092480 ip:         78
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  6
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# Flags in core 2 :  6 instruction:  356518531 ip:         79
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:   44712605 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# Flags in core 0 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   44712605 flags:  6
+# Flags in core 0 :  0 instruction: 1989178004 ip:         76
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  6 instruction:   44712605 ip:         75
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  8 instruction: 2404646987 ip:         77
+# Flags in core 1 :  0 instruction: 1989178004 ip:         76
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989178004 flags:  0
+# Flags in core 0 :  8 instruction: 2371092480 ip:         78
+# Flags in core 1 :  8 instruction: 2404646987 ip:         77
+# Flags in core 2 :  0 instruction: 1989178004 ip:         76
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  8
+# Flags in core 0 :  8 instruction:  356518531 ip:         79
+# Flags in core 1 :  8 instruction: 2371092480 ip:         78
+# Flags in core 2 :  8 instruction: 2404646987 ip:         77
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  356518531 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  8
+# Flags in core 0 :  8 instruction:  356518531 ip:         79
+# Flags in core 1 :  8 instruction:  356518531 ip:         79
+# Flags in core 2 :  8 instruction: 2371092480 ip:         78
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  8
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  356518531 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356518531 flags:  8
+# Flags in core 0 :  8 instruction: 2058355374 ip:         80
+# Flags in core 1 :  8 instruction:  356518531 ip:         79
+# Flags in core 2 :  8 instruction:  356518531 ip:         79
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  8
+# suffix1: 0 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  356518531 flags:  8
+# Flags in core 0 :  6 instruction: 2058355374 ip:         80
+# Flags in core 1 :  8 instruction: 2058355374 ip:         80
+# Flags in core 2 :  8 instruction:  356518531 ip:         79
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  8
+# Flags in core 1 :  6 instruction: 2058355374 ip:         80
+# Flags in core 2 :  8 instruction: 2058355374 ip:         80
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 2058355374 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 2 :  6 instruction: 2058355374 ip:         80
+# Flags in core 0 :  6 instruction:  524305088 ip:         81
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 0 :  6 instruction: 2403598339 ip:         55
+# Flags in core 1 :  6 instruction:  524305088 ip:         81
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  524305088 flags:  6
+# Flags in core 0 :  6 instruction: 2370043904 ip:         56
+# Flags in core 1 :  6 instruction: 2403598339 ip:         55
+# Flags in core 2 :  6 instruction:  524305088 ip:         81
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558383754 flags:  6
+# Flags in core 0 :  6 instruction:  558383754 ip:         57
+# Flags in core 1 :  6 instruction: 2370043904 ip:         56
+# Flags in core 2 :  6 instruction: 2403598339 ip:         55
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558383754 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558383754 flags:  6
+# Flags in core 0 :  6 instruction:  558383754 ip:         57
+# Flags in core 1 :  6 instruction:  558383754 ip:         57
+# Flags in core 2 :  6 instruction: 2370043904 ip:         56
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  109142692 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558383754 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  558383754 flags:  6
+# Flags in core 0 :  0 instruction:  109142692 ip:         58
+# Flags in core 1 :  6 instruction:  558383754 ip:         57
+# Flags in core 2 :  6 instruction:  558383754 ip:         57
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  109142692 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  558383754 flags:  6
+# Flags in core 1 :  0 instruction:  109142692 ip:         58
+# Flags in core 2 :  6 instruction:  558383754 ip:         57
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  109142692 flags:  0
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  109142692 flags:  0
+# Flags in core 2 :  0 instruction:  109142692 ip:         58
+# Flags in core 0 :  0 instruction:  109142692 ip:         58
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1923236544 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  109142692 flags:  0
+# Flags in core 0 :  8 instruction: 1923236544 ip:         59
+# Flags in core 1 :  0 instruction:  109142692 ip:         58
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1923236544 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1923236544 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction:  109142692 flags:  0
+# Flags in core 0 :  8 instruction: 1923236544 ip:         59
+# Flags in core 1 :  8 instruction: 1923236544 ip:         59
+# Flags in core 2 :  0 instruction:  109142692 ip:         58
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1923236544 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  5 instruction: 1923236544 flags:  8
+# Flags in core 0 :  8 instruction: 2404646984 ip:         60
+# Flags in core 1 :  6 instruction: 1923236544 ip:         59
+# Flags in core 2 :  8 instruction: 1923236544 ip:         59
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction: 1923236544 flags:  6
+# Flags in core 0 :  8 instruction: 2371092480 ip:         61
+# Flags in core 1 :  6 instruction: 2404646984 ip:         60
+# Flags in core 2 :  6 instruction: 1923236544 ip:         59
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356532928 flags:  8
+# Flags in core 0 :  8 instruction:  356532928 ip:         62
+# Flags in core 1 :  6 instruction: 2371092480 ip:         61
+# Flags in core 2 :  6 instruction: 2404646984 ip:         60
+# suffix1: 0 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  356532928 flags:  8
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356532928 flags:  6
+# Flags in core 0 :  8 instruction:  356532928 ip:         62
+# Flags in core 1 :  6 instruction:  356532928 ip:         62
+# Flags in core 2 :  6 instruction: 2371092480 ip:         61
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  6
+# suffix1: 1 suffix2: 1 suffix1 opcode:  5 suffix2 opcode: 10 instruction:  356532928 flags:  6
+# Flags in core 0 :  8 instruction: 2403860484 ip:         63
+# Flags in core 1 :  6 instruction:  591676096 ip:         72
+# Flags in core 2 :  6 instruction:  356532928 ip:         62
+# suffix1: 1 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  6
+# Flags in core 0 :  8 instruction: 2370306048 ip:         64
+# Flags in core 2 :  6 instruction:  591676096 ip:         72
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42615425 flags:  8
+# Flags in core 0 :  8 instruction:   42615425 ip:         65
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42615425 flags:  8
+# Flags in core 0 :  8 instruction:   42615425 ip:         65
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989149322 flags:  0
+# Flags in core 0 :  0 instruction: 1989149322 ip:         66
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1989149322 flags:  0
+# Flags in core 0 :  0 instruction: 1989149322 ip:         66
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1115780752 flags:  0
+# Flags in core 0 :  0 instruction: 1115780752 ip:         67
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction: 1115780752 flags:  0
+# Flags in core 0 :  0 instruction: 1115780752 ip:         67
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42615425 flags:  0
+# Flags in core 0 :  0 instruction:   42615425 ip:         68
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:   42615425 flags:  0
+# Flags in core 0 :  0 instruction:   42615425 ip:         68
+# Flags in core 0 :  0 instruction: 2403860483 ip:         69
+# Flags in core 0 :  0 instruction: 2370306048 ip:         70
+# suffix1: 1 suffix2: 1 suffix1 opcode: 10 suffix2 opcode:  4 instruction:  109200064 flags:  0
+# Flags in core 0 :  0 instruction:  109200064 ip:         71
+# suffix1: 1 suffix2: 0 suffix1 opcode: 11 suffix2 opcode:  6 instruction:  109200064 flags:  0
+# Flags in core 0 :  0 instruction:  109200064 ip:         71
+# suffix1: 0 suffix2: 1 suffix1 opcode: 13 suffix2 opcode: 10 instruction:  591676096 flags:  0
+# Flags in core 0 :  0 instruction:  591676096 ip:         72
+# ** Note: $stop    : /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v(538)
+#    Time: 20540 ns  Iteration: 0  Instance: /sum_up_vector_tb
+# Break in Module sum_up_vector_tb at /home/pasha/Documents/poc_acs/project/PureFPGA/MCCP/test_benches/sum_up_vector_tb.v line 538
+# End time: 09:48:46 on Jun 19,2021, Elapsed time: 10:08:33
+# Errors: 1, Warnings: 11

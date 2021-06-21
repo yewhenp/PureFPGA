@@ -9,4 +9,7 @@ MCCP/db/
 MCCP/incremental_db/
 *.bak
 MCCP/simulation
-MCCP/output_files
+MCCP/output_files/*
+MCCP/soc_system/*
+MCCP/.qsys_edit/*
+./MCCP/.qsys_edit/preferences.xml

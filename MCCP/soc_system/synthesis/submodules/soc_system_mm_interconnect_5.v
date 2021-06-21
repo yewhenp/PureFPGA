@@ -11,7 +11,7 @@ module soc_system_mm_interconnect_5 (
 		input  wire        pll_0_outclk3_clk,                                      //                                    pll_0_outclk3.clk
 		input  wire        axi_master_bridge_reset_reset_bridge_in_reset_reset,    //    axi_master_bridge_reset_reset_bridge_in_reset.reset
 		input  wire        videocard_new_0_reset_sink_reset_bridge_in_reset_reset, // videocard_new_0_reset_sink_reset_bridge_in_reset.reset
-		input  wire [19:0] axi_master_bridge_m0_address,                           //                             axi_master_bridge_m0.address
+		input  wire [18:0] axi_master_bridge_m0_address,                           //                             axi_master_bridge_m0.address
 		output wire        axi_master_bridge_m0_waitrequest,                       //                                                 .waitrequest
 		input  wire [0:0]  axi_master_bridge_m0_burstcount,                        //                                                 .burstcount
 		input  wire [3:0]  axi_master_bridge_m0_byteenable,                        //                                                 .byteenable
@@ -32,7 +32,7 @@ module soc_system_mm_interconnect_5 (
 	wire         axi_master_bridge_m0_translator_avalon_universal_master_0_waitrequest;   // axi_master_bridge_m0_agent:av_waitrequest -> axi_master_bridge_m0_translator:uav_waitrequest
 	wire  [31:0] axi_master_bridge_m0_translator_avalon_universal_master_0_readdata;      // axi_master_bridge_m0_agent:av_readdata -> axi_master_bridge_m0_translator:uav_readdata
 	wire         axi_master_bridge_m0_translator_avalon_universal_master_0_debugaccess;   // axi_master_bridge_m0_translator:uav_debugaccess -> axi_master_bridge_m0_agent:av_debugaccess
-	wire  [19:0] axi_master_bridge_m0_translator_avalon_universal_master_0_address;       // axi_master_bridge_m0_translator:uav_address -> axi_master_bridge_m0_agent:av_address
+	wire  [18:0] axi_master_bridge_m0_translator_avalon_universal_master_0_address;       // axi_master_bridge_m0_translator:uav_address -> axi_master_bridge_m0_agent:av_address
 	wire         axi_master_bridge_m0_translator_avalon_universal_master_0_read;          // axi_master_bridge_m0_translator:uav_read -> axi_master_bridge_m0_agent:av_read
 	wire   [3:0] axi_master_bridge_m0_translator_avalon_universal_master_0_byteenable;    // axi_master_bridge_m0_translator:uav_byteenable -> axi_master_bridge_m0_agent:av_byteenable
 	wire         axi_master_bridge_m0_translator_avalon_universal_master_0_readdatavalid; // axi_master_bridge_m0_agent:av_readdatavalid -> axi_master_bridge_m0_translator:uav_readdatavalid
@@ -41,7 +41,7 @@ module soc_system_mm_interconnect_5 (
 	wire  [31:0] axi_master_bridge_m0_translator_avalon_universal_master_0_writedata;     // axi_master_bridge_m0_translator:uav_writedata -> axi_master_bridge_m0_agent:av_writedata
 	wire   [2:0] axi_master_bridge_m0_translator_avalon_universal_master_0_burstcount;    // axi_master_bridge_m0_translator:uav_burstcount -> axi_master_bridge_m0_agent:av_burstcount
 	wire         rsp_mux_src_valid;                                                       // rsp_mux:src_valid -> axi_master_bridge_m0_agent:rp_valid
-	wire  [89:0] rsp_mux_src_data;                                                        // rsp_mux:src_data -> axi_master_bridge_m0_agent:rp_data
+	wire  [88:0] rsp_mux_src_data;                                                        // rsp_mux:src_data -> axi_master_bridge_m0_agent:rp_data
 	wire         rsp_mux_src_ready;                                                       // axi_master_bridge_m0_agent:rp_ready -> rsp_mux:src_ready
 	wire   [0:0] rsp_mux_src_channel;                                                     // rsp_mux:src_channel -> axi_master_bridge_m0_agent:rp_channel
 	wire         rsp_mux_src_startofpacket;                                               // rsp_mux:src_startofpacket -> axi_master_bridge_m0_agent:rp_startofpacket
@@ -49,7 +49,7 @@ module soc_system_mm_interconnect_5 (
 	wire  [31:0] videocard_new_0_memory_main_agent_m0_readdata;                           // videocard_new_0_memory_main_translator:uav_readdata -> videocard_new_0_memory_main_agent:m0_readdata
 	wire         videocard_new_0_memory_main_agent_m0_waitrequest;                        // videocard_new_0_memory_main_translator:uav_waitrequest -> videocard_new_0_memory_main_agent:m0_waitrequest
 	wire         videocard_new_0_memory_main_agent_m0_debugaccess;                        // videocard_new_0_memory_main_agent:m0_debugaccess -> videocard_new_0_memory_main_translator:uav_debugaccess
-	wire  [19:0] videocard_new_0_memory_main_agent_m0_address;                            // videocard_new_0_memory_main_agent:m0_address -> videocard_new_0_memory_main_translator:uav_address
+	wire  [18:0] videocard_new_0_memory_main_agent_m0_address;                            // videocard_new_0_memory_main_agent:m0_address -> videocard_new_0_memory_main_translator:uav_address
 	wire   [3:0] videocard_new_0_memory_main_agent_m0_byteenable;                         // videocard_new_0_memory_main_agent:m0_byteenable -> videocard_new_0_memory_main_translator:uav_byteenable
 	wire         videocard_new_0_memory_main_agent_m0_read;                               // videocard_new_0_memory_main_agent:m0_read -> videocard_new_0_memory_main_translator:uav_read
 	wire         videocard_new_0_memory_main_agent_m0_readdatavalid;                      // videocard_new_0_memory_main_translator:uav_readdatavalid -> videocard_new_0_memory_main_agent:m0_readdatavalid
@@ -58,12 +58,12 @@ module soc_system_mm_interconnect_5 (
 	wire         videocard_new_0_memory_main_agent_m0_write;                              // videocard_new_0_memory_main_agent:m0_write -> videocard_new_0_memory_main_translator:uav_write
 	wire   [2:0] videocard_new_0_memory_main_agent_m0_burstcount;                         // videocard_new_0_memory_main_agent:m0_burstcount -> videocard_new_0_memory_main_translator:uav_burstcount
 	wire         videocard_new_0_memory_main_agent_rf_source_valid;                       // videocard_new_0_memory_main_agent:rf_source_valid -> videocard_new_0_memory_main_agent_rsp_fifo:in_valid
-	wire  [90:0] videocard_new_0_memory_main_agent_rf_source_data;                        // videocard_new_0_memory_main_agent:rf_source_data -> videocard_new_0_memory_main_agent_rsp_fifo:in_data
+	wire  [89:0] videocard_new_0_memory_main_agent_rf_source_data;                        // videocard_new_0_memory_main_agent:rf_source_data -> videocard_new_0_memory_main_agent_rsp_fifo:in_data
 	wire         videocard_new_0_memory_main_agent_rf_source_ready;                       // videocard_new_0_memory_main_agent_rsp_fifo:in_ready -> videocard_new_0_memory_main_agent:rf_source_ready
 	wire         videocard_new_0_memory_main_agent_rf_source_startofpacket;               // videocard_new_0_memory_main_agent:rf_source_startofpacket -> videocard_new_0_memory_main_agent_rsp_fifo:in_startofpacket
 	wire         videocard_new_0_memory_main_agent_rf_source_endofpacket;                 // videocard_new_0_memory_main_agent:rf_source_endofpacket -> videocard_new_0_memory_main_agent_rsp_fifo:in_endofpacket
 	wire         videocard_new_0_memory_main_agent_rsp_fifo_out_valid;                    // videocard_new_0_memory_main_agent_rsp_fifo:out_valid -> videocard_new_0_memory_main_agent:rf_sink_valid
-	wire  [90:0] videocard_new_0_memory_main_agent_rsp_fifo_out_data;                     // videocard_new_0_memory_main_agent_rsp_fifo:out_data -> videocard_new_0_memory_main_agent:rf_sink_data
+	wire  [89:0] videocard_new_0_memory_main_agent_rsp_fifo_out_data;                     // videocard_new_0_memory_main_agent_rsp_fifo:out_data -> videocard_new_0_memory_main_agent:rf_sink_data
 	wire         videocard_new_0_memory_main_agent_rsp_fifo_out_ready;                    // videocard_new_0_memory_main_agent:rf_sink_ready -> videocard_new_0_memory_main_agent_rsp_fifo:out_ready
 	wire         videocard_new_0_memory_main_agent_rsp_fifo_out_startofpacket;            // videocard_new_0_memory_main_agent_rsp_fifo:out_startofpacket -> videocard_new_0_memory_main_agent:rf_sink_startofpacket
 	wire         videocard_new_0_memory_main_agent_rsp_fifo_out_endofpacket;              // videocard_new_0_memory_main_agent_rsp_fifo:out_endofpacket -> videocard_new_0_memory_main_agent:rf_sink_endofpacket
@@ -71,53 +71,53 @@ module soc_system_mm_interconnect_5 (
 	wire  [33:0] videocard_new_0_memory_main_agent_rdata_fifo_src_data;                   // videocard_new_0_memory_main_agent:rdata_fifo_src_data -> videocard_new_0_memory_main_agent_rdata_fifo:in_data
 	wire         videocard_new_0_memory_main_agent_rdata_fifo_src_ready;                  // videocard_new_0_memory_main_agent_rdata_fifo:in_ready -> videocard_new_0_memory_main_agent:rdata_fifo_src_ready
 	wire         cmd_mux_src_valid;                                                       // cmd_mux:src_valid -> videocard_new_0_memory_main_agent:cp_valid
-	wire  [89:0] cmd_mux_src_data;                                                        // cmd_mux:src_data -> videocard_new_0_memory_main_agent:cp_data
+	wire  [88:0] cmd_mux_src_data;                                                        // cmd_mux:src_data -> videocard_new_0_memory_main_agent:cp_data
 	wire         cmd_mux_src_ready;                                                       // videocard_new_0_memory_main_agent:cp_ready -> cmd_mux:src_ready
 	wire   [0:0] cmd_mux_src_channel;                                                     // cmd_mux:src_channel -> videocard_new_0_memory_main_agent:cp_channel
 	wire         cmd_mux_src_startofpacket;                                               // cmd_mux:src_startofpacket -> videocard_new_0_memory_main_agent:cp_startofpacket
 	wire         cmd_mux_src_endofpacket;                                                 // cmd_mux:src_endofpacket -> videocard_new_0_memory_main_agent:cp_endofpacket
 	wire         axi_master_bridge_m0_agent_cp_valid;                                     // axi_master_bridge_m0_agent:cp_valid -> router:sink_valid
-	wire  [89:0] axi_master_bridge_m0_agent_cp_data;                                      // axi_master_bridge_m0_agent:cp_data -> router:sink_data
+	wire  [88:0] axi_master_bridge_m0_agent_cp_data;                                      // axi_master_bridge_m0_agent:cp_data -> router:sink_data
 	wire         axi_master_bridge_m0_agent_cp_ready;                                     // router:sink_ready -> axi_master_bridge_m0_agent:cp_ready
 	wire         axi_master_bridge_m0_agent_cp_startofpacket;                             // axi_master_bridge_m0_agent:cp_startofpacket -> router:sink_startofpacket
 	wire         axi_master_bridge_m0_agent_cp_endofpacket;                               // axi_master_bridge_m0_agent:cp_endofpacket -> router:sink_endofpacket
 	wire         router_src_valid;                                                        // router:src_valid -> cmd_demux:sink_valid
-	wire  [89:0] router_src_data;                                                         // router:src_data -> cmd_demux:sink_data
+	wire  [88:0] router_src_data;                                                         // router:src_data -> cmd_demux:sink_data
 	wire         router_src_ready;                                                        // cmd_demux:sink_ready -> router:src_ready
 	wire   [0:0] router_src_channel;                                                      // router:src_channel -> cmd_demux:sink_channel
 	wire         router_src_startofpacket;                                                // router:src_startofpacket -> cmd_demux:sink_startofpacket
 	wire         router_src_endofpacket;                                                  // router:src_endofpacket -> cmd_demux:sink_endofpacket
 	wire         videocard_new_0_memory_main_agent_rp_valid;                              // videocard_new_0_memory_main_agent:rp_valid -> router_001:sink_valid
-	wire  [89:0] videocard_new_0_memory_main_agent_rp_data;                               // videocard_new_0_memory_main_agent:rp_data -> router_001:sink_data
+	wire  [88:0] videocard_new_0_memory_main_agent_rp_data;                               // videocard_new_0_memory_main_agent:rp_data -> router_001:sink_data
 	wire         videocard_new_0_memory_main_agent_rp_ready;                              // router_001:sink_ready -> videocard_new_0_memory_main_agent:rp_ready
 	wire         videocard_new_0_memory_main_agent_rp_startofpacket;                      // videocard_new_0_memory_main_agent:rp_startofpacket -> router_001:sink_startofpacket
 	wire         videocard_new_0_memory_main_agent_rp_endofpacket;                        // videocard_new_0_memory_main_agent:rp_endofpacket -> router_001:sink_endofpacket
 	wire         router_001_src_valid;                                                    // router_001:src_valid -> rsp_demux:sink_valid
-	wire  [89:0] router_001_src_data;                                                     // router_001:src_data -> rsp_demux:sink_data
+	wire  [88:0] router_001_src_data;                                                     // router_001:src_data -> rsp_demux:sink_data
 	wire         router_001_src_ready;                                                    // rsp_demux:sink_ready -> router_001:src_ready
 	wire   [0:0] router_001_src_channel;                                                  // router_001:src_channel -> rsp_demux:sink_channel
 	wire         router_001_src_startofpacket;                                            // router_001:src_startofpacket -> rsp_demux:sink_startofpacket
 	wire         router_001_src_endofpacket;                                              // router_001:src_endofpacket -> rsp_demux:sink_endofpacket
 	wire         cmd_demux_src0_valid;                                                    // cmd_demux:src0_valid -> crosser:in_valid
-	wire  [89:0] cmd_demux_src0_data;                                                     // cmd_demux:src0_data -> crosser:in_data
+	wire  [88:0] cmd_demux_src0_data;                                                     // cmd_demux:src0_data -> crosser:in_data
 	wire         cmd_demux_src0_ready;                                                    // crosser:in_ready -> cmd_demux:src0_ready
 	wire   [0:0] cmd_demux_src0_channel;                                                  // cmd_demux:src0_channel -> crosser:in_channel
 	wire         cmd_demux_src0_startofpacket;                                            // cmd_demux:src0_startofpacket -> crosser:in_startofpacket
 	wire         cmd_demux_src0_endofpacket;                                              // cmd_demux:src0_endofpacket -> crosser:in_endofpacket
 	wire         crosser_out_valid;                                                       // crosser:out_valid -> cmd_mux:sink0_valid
-	wire  [89:0] crosser_out_data;                                                        // crosser:out_data -> cmd_mux:sink0_data
+	wire  [88:0] crosser_out_data;                                                        // crosser:out_data -> cmd_mux:sink0_data
 	wire         crosser_out_ready;                                                       // cmd_mux:sink0_ready -> crosser:out_ready
 	wire   [0:0] crosser_out_channel;                                                     // crosser:out_channel -> cmd_mux:sink0_channel
 	wire         crosser_out_startofpacket;                                               // crosser:out_startofpacket -> cmd_mux:sink0_startofpacket
 	wire         crosser_out_endofpacket;                                                 // crosser:out_endofpacket -> cmd_mux:sink0_endofpacket
 	wire         rsp_demux_src0_valid;                                                    // rsp_demux:src0_valid -> crosser_001:in_valid
-	wire  [89:0] rsp_demux_src0_data;                                                     // rsp_demux:src0_data -> crosser_001:in_data
+	wire  [88:0] rsp_demux_src0_data;                                                     // rsp_demux:src0_data -> crosser_001:in_data
 	wire         rsp_demux_src0_ready;                                                    // crosser_001:in_ready -> rsp_demux:src0_ready
 	wire   [0:0] rsp_demux_src0_channel;                                                  // rsp_demux:src0_channel -> crosser_001:in_channel
 	wire         rsp_demux_src0_startofpacket;                                            // rsp_demux:src0_startofpacket -> crosser_001:in_startofpacket
 	wire         rsp_demux_src0_endofpacket;                                              // rsp_demux:src0_endofpacket -> crosser_001:in_endofpacket
 	wire         crosser_001_out_valid;                                                   // crosser_001:out_valid -> rsp_mux:sink0_valid
-	wire  [89:0] crosser_001_out_data;                                                    // crosser_001:out_data -> rsp_mux:sink0_data
+	wire  [88:0] crosser_001_out_data;                                                    // crosser_001:out_data -> rsp_mux:sink0_data
 	wire         crosser_001_out_ready;                                                   // rsp_mux:sink0_ready -> crosser_001:out_ready
 	wire   [0:0] crosser_001_out_channel;                                                 // crosser_001:out_channel -> rsp_mux:sink0_channel
 	wire         crosser_001_out_startofpacket;                                           // crosser_001:out_startofpacket -> rsp_mux:sink0_startofpacket
@@ -131,11 +131,11 @@ module soc_system_mm_interconnect_5 (
 	wire   [0:0] avalon_st_adapter_out_0_error;                                           // avalon_st_adapter:out_0_error -> videocard_new_0_memory_main_agent:rdata_fifo_sink_error
 
 	altera_merlin_master_translator #(
-		.AV_ADDRESS_W                (20),
+		.AV_ADDRESS_W                (19),
 		.AV_DATA_W                   (32),
 		.AV_BURSTCOUNT_W             (1),
 		.AV_BYTEENABLE_W             (4),
-		.UAV_ADDRESS_W               (20),
+		.UAV_ADDRESS_W               (19),
 		.UAV_BURSTCOUNT_W            (3),
 		.USE_READ                    (1),
 		.USE_WRITE                   (1),
@@ -197,7 +197,7 @@ module soc_system_mm_interconnect_5 (
 		.AV_BURSTCOUNT_W                (1),
 		.AV_BYTEENABLE_W                (4),
 		.UAV_BYTEENABLE_W               (4),
-		.UAV_ADDRESS_W                  (20),
+		.UAV_ADDRESS_W                  (19),
 		.UAV_BURSTCOUNT_W               (3),
 		.AV_READLATENCY                 (0),
 		.USE_READDATAVALID              (0),
@@ -255,48 +255,48 @@ module soc_system_mm_interconnect_5 (
 	);
 
 	altera_merlin_master_agent #(
-		.PKT_ORI_BURST_SIZE_H      (89),
-		.PKT_ORI_BURST_SIZE_L      (87),
-		.PKT_RESPONSE_STATUS_H     (86),
-		.PKT_RESPONSE_STATUS_L     (85),
-		.PKT_QOS_H                 (74),
-		.PKT_QOS_L                 (74),
-		.PKT_DATA_SIDEBAND_H       (72),
-		.PKT_DATA_SIDEBAND_L       (72),
-		.PKT_ADDR_SIDEBAND_H       (71),
-		.PKT_ADDR_SIDEBAND_L       (71),
-		.PKT_BURST_TYPE_H          (70),
-		.PKT_BURST_TYPE_L          (69),
-		.PKT_CACHE_H               (84),
-		.PKT_CACHE_L               (81),
-		.PKT_THREAD_ID_H           (77),
-		.PKT_THREAD_ID_L           (77),
-		.PKT_BURST_SIZE_H          (68),
-		.PKT_BURST_SIZE_L          (66),
-		.PKT_TRANS_EXCLUSIVE       (61),
-		.PKT_TRANS_LOCK            (60),
-		.PKT_BEGIN_BURST           (73),
-		.PKT_PROTECTION_H          (80),
-		.PKT_PROTECTION_L          (78),
-		.PKT_BURSTWRAP_H           (65),
-		.PKT_BURSTWRAP_L           (65),
-		.PKT_BYTE_CNT_H            (64),
-		.PKT_BYTE_CNT_L            (62),
-		.PKT_ADDR_H                (55),
+		.PKT_ORI_BURST_SIZE_H      (88),
+		.PKT_ORI_BURST_SIZE_L      (86),
+		.PKT_RESPONSE_STATUS_H     (85),
+		.PKT_RESPONSE_STATUS_L     (84),
+		.PKT_QOS_H                 (73),
+		.PKT_QOS_L                 (73),
+		.PKT_DATA_SIDEBAND_H       (71),
+		.PKT_DATA_SIDEBAND_L       (71),
+		.PKT_ADDR_SIDEBAND_H       (70),
+		.PKT_ADDR_SIDEBAND_L       (70),
+		.PKT_BURST_TYPE_H          (69),
+		.PKT_BURST_TYPE_L          (68),
+		.PKT_CACHE_H               (83),
+		.PKT_CACHE_L               (80),
+		.PKT_THREAD_ID_H           (76),
+		.PKT_THREAD_ID_L           (76),
+		.PKT_BURST_SIZE_H          (67),
+		.PKT_BURST_SIZE_L          (65),
+		.PKT_TRANS_EXCLUSIVE       (60),
+		.PKT_TRANS_LOCK            (59),
+		.PKT_BEGIN_BURST           (72),
+		.PKT_PROTECTION_H          (79),
+		.PKT_PROTECTION_L          (77),
+		.PKT_BURSTWRAP_H           (64),
+		.PKT_BURSTWRAP_L           (64),
+		.PKT_BYTE_CNT_H            (63),
+		.PKT_BYTE_CNT_L            (61),
+		.PKT_ADDR_H                (54),
 		.PKT_ADDR_L                (36),
-		.PKT_TRANS_COMPRESSED_READ (56),
-		.PKT_TRANS_POSTED          (57),
-		.PKT_TRANS_WRITE           (58),
-		.PKT_TRANS_READ            (59),
+		.PKT_TRANS_COMPRESSED_READ (55),
+		.PKT_TRANS_POSTED          (56),
+		.PKT_TRANS_WRITE           (57),
+		.PKT_TRANS_READ            (58),
 		.PKT_DATA_H                (31),
 		.PKT_DATA_L                (0),
 		.PKT_BYTEEN_H              (35),
 		.PKT_BYTEEN_L              (32),
-		.PKT_SRC_ID_H              (75),
-		.PKT_SRC_ID_L              (75),
-		.PKT_DEST_ID_H             (76),
-		.PKT_DEST_ID_L             (76),
-		.ST_DATA_W                 (90),
+		.PKT_SRC_ID_H              (74),
+		.PKT_SRC_ID_L              (74),
+		.PKT_DEST_ID_H             (75),
+		.PKT_DEST_ID_L             (75),
+		.ST_DATA_W                 (89),
 		.ST_CHANNEL_W              (1),
 		.AV_BURSTCOUNT_W           (3),
 		.SUPPRESS_0_BYTEEN_RSP     (0),
@@ -336,37 +336,37 @@ module soc_system_mm_interconnect_5 (
 	);
 
 	altera_merlin_slave_agent #(
-		.PKT_ORI_BURST_SIZE_H      (89),
-		.PKT_ORI_BURST_SIZE_L      (87),
-		.PKT_RESPONSE_STATUS_H     (86),
-		.PKT_RESPONSE_STATUS_L     (85),
-		.PKT_BURST_SIZE_H          (68),
-		.PKT_BURST_SIZE_L          (66),
-		.PKT_TRANS_LOCK            (60),
-		.PKT_BEGIN_BURST           (73),
-		.PKT_PROTECTION_H          (80),
-		.PKT_PROTECTION_L          (78),
-		.PKT_BURSTWRAP_H           (65),
-		.PKT_BURSTWRAP_L           (65),
-		.PKT_BYTE_CNT_H            (64),
-		.PKT_BYTE_CNT_L            (62),
-		.PKT_ADDR_H                (55),
+		.PKT_ORI_BURST_SIZE_H      (88),
+		.PKT_ORI_BURST_SIZE_L      (86),
+		.PKT_RESPONSE_STATUS_H     (85),
+		.PKT_RESPONSE_STATUS_L     (84),
+		.PKT_BURST_SIZE_H          (67),
+		.PKT_BURST_SIZE_L          (65),
+		.PKT_TRANS_LOCK            (59),
+		.PKT_BEGIN_BURST           (72),
+		.PKT_PROTECTION_H          (79),
+		.PKT_PROTECTION_L          (77),
+		.PKT_BURSTWRAP_H           (64),
+		.PKT_BURSTWRAP_L           (64),
+		.PKT_BYTE_CNT_H            (63),
+		.PKT_BYTE_CNT_L            (61),
+		.PKT_ADDR_H                (54),
 		.PKT_ADDR_L                (36),
-		.PKT_TRANS_COMPRESSED_READ (56),
-		.PKT_TRANS_POSTED          (57),
-		.PKT_TRANS_WRITE           (58),
-		.PKT_TRANS_READ            (59),
+		.PKT_TRANS_COMPRESSED_READ (55),
+		.PKT_TRANS_POSTED          (56),
+		.PKT_TRANS_WRITE           (57),
+		.PKT_TRANS_READ            (58),
 		.PKT_DATA_H                (31),
 		.PKT_DATA_L                (0),
 		.PKT_BYTEEN_H              (35),
 		.PKT_BYTEEN_L              (32),
-		.PKT_SRC_ID_H              (75),
-		.PKT_SRC_ID_L              (75),
-		.PKT_DEST_ID_H             (76),
-		.PKT_DEST_ID_L             (76),
+		.PKT_SRC_ID_H              (74),
+		.PKT_SRC_ID_L              (74),
+		.PKT_DEST_ID_H             (75),
+		.PKT_DEST_ID_L             (75),
 		.PKT_SYMBOL_W              (8),
 		.ST_CHANNEL_W              (1),
-		.ST_DATA_W                 (90),
+		.ST_DATA_W                 (89),
 		.AVS_BURSTCOUNT_W          (3),
 		.SUPPRESS_0_BYTEEN_CMD     (0),
 		.PREVENT_FIFO_OVERFLOW     (1),
@@ -421,7 +421,7 @@ module soc_system_mm_interconnect_5 (
 
 	altera_avalon_sc_fifo #(
 		.SYMBOLS_PER_BEAT    (1),
-		.BITS_PER_SYMBOL     (91),
+		.BITS_PER_SYMBOL     (90),
 		.FIFO_DEPTH          (2),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (0),
@@ -602,8 +602,8 @@ module soc_system_mm_interconnect_5 (
 	);
 
 	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (90),
-		.BITS_PER_SYMBOL     (90),
+		.DATA_WIDTH          (89),
+		.BITS_PER_SYMBOL     (89),
 		.USE_PACKETS         (1),
 		.USE_CHANNEL         (1),
 		.CHANNEL_WIDTH       (1),
@@ -636,8 +636,8 @@ module soc_system_mm_interconnect_5 (
 	);
 
 	altera_avalon_st_handshake_clock_crosser #(
-		.DATA_WIDTH          (90),
-		.BITS_PER_SYMBOL     (90),
+		.DATA_WIDTH          (89),
+		.BITS_PER_SYMBOL     (89),
 		.USE_PACKETS         (1),
 		.USE_CHANNEL         (1),
 		.CHANNEL_WIDTH       (1),

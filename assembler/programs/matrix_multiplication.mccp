@@ -173,8 +173,8 @@ OUTER_LOOP:
 
     load_macro reg0 $heightOutter
     xor reg1 reg1
-    cmp reg0 reg1
-    jle END
+    sub reg1 reg0
+    jge END
 
     sub reg0 $CORE_NUM
     store_macro reg0 $heightOutter

@@ -1,0 +1,212 @@
+stack_size 1000 1000 1000 1000
+// push arguments to TOP_LEFT_SQUARE
+coreidx reg2
+cmp reg2 0
+jne PROGRAM_END
+
+movimm reg0 2
+load reg1 reg0
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+dec reg0
+
+load reg1 reg0
+push reg1
+call TOP_LEFT_SQUARE
+movimm reg1 3
+store reg0 reg1
+PROGRAM_END:
+int 1
+
+BOX_BLUR:
+//  param1 image start address              [reg4 - 3]
+//  param2 destination start address        [reg4 - 4]
+//  param3 image width                      [reg4 - 5]
+//  param4 image height                     [reg4 - 6]
+//  param4 box size                         [reg4 - 7]
+    push reg4
+    mov reg4 reg6
+    add reg6 7
+
+    step=0
+    imgBlur=1
+    i=2
+    j=3
+    param1=6
+    param2=5
+    param3=4
+    // Local variables
+    // step                                [reg4 + 0]
+    // imgBlur                             [reg4 + 1]
+    // i                                   [reg4 + 2]
+    // j                                   [reg4 + 3]
+
+    // TOP_LEFT_SQUARE arguments
+    //  param1 current pixel address       [reg4 + 6]
+    //  param2 box size                    [reg4 + 5]
+    //  param3 image width                 [reg4 + 4]
+
+    load_macro reg0 -5
+    store_macro reg0 $param3
+
+    load_macro reg2 -3
+
+    // calculate shift for imgOrg
+    // and set as TOP_LEFT_SQUARE argument
+    coreidx reg5
+    mul reg5 reg0
+    add reg2 reg5
+    store_macro reg2 $param1
+
+    // load and save width as argument of TOP_LEFT_SQUARE
+    load_macro reg2 -7
+    mov reg3 reg2
+    store_macro reg2 $param2
+
+    // calculate width of imgBlur
+    sub reg0 reg2
+    inc reg0
+    store_macro reg0 $j
+    store_macro reg0 $step
+
+    // calculate shift for imgBlur
+    coreidx reg5
+    mul reg0 reg5
+
+    // load imgBlur address and apply shift
+    load_macro reg2 -4
+    add reg2 reg0
+    store_macro reg2 $imgBlur
+
+    // calculate height counter for each core
+    load_macro reg1 -6
+    load_macro reg2 -7
+    sub reg1 $CORE_NUM
+    coreidx reg5
+    sub reg1 reg5
+    sub reg1 reg2
+    inc reg1
+    store_macro reg1 $i
+
+BLUR_INNER_LOOP:
+
+    call TOP_LEFT_SQUARE
+
+    // save calculated result
+    // update imgBlur ptr
+    load_macro reg1 $imgBlur
+    store reg0 reg1
+    inc reg1
+    store_macro reg1 $imgBlur
+
+    // update imgOrg ptr
+    load_macro reg2 $param1
+    inc reg2
+    store_macro reg2 $param1
+
+    // update counter and check
+    load_macro reg3 $j
+    dec reg3
+    jne BLUR_INNER_LOOP
+
+BLUR_OUTER_LOOP:
+    // check and update height counter
+    load_macro reg0 $i
+    cmp reg0 0
+    jle END
+    sub reg0 $CORE_NUM
+    store_macro reg0
+
+    // reset width counter
+    load_macro reg0 $step
+    store_macro reg0 $j
+
+    // update imgBlur ptr
+    load_macro reg1 $imgBlur
+    movimm reg2 $CORE_NUM
+    mul reg2 reg0
+    add reg1 reg2
+    store_macro reg1 $imgBlur
+
+    // update imgOrg ptr
+    load_macro reg3 $param1
+    load_macro reg1 $param3
+    sub reg3 reg0
+    movimm reg2 $CORE_NUM
+    mul reg2 reg1
+    add reg3 reg2
+    store_macro reg3 $param1
+    jmp BLUR_INNER_LOOP
+END:
+
+    sub reg6 7
+    pop reg4
+    ret
+
+
+
+
+
+TOP_LEFT_SQUARE:
+//  param1 start address          [reg4 - 3]
+//  param2 box size               [reg4 - 4]
+//  param3 image width            [reg4 - 5]
+    push reg4
+    mov reg4 reg6
+    add reg6 1
+
+    i=0
+    // i                          [reg4 + 0]
+
+    // load start address
+    load_macro reg0 -3
+
+    // zero sum register
+    xor reg1 reg1
+
+    // set up loop counters
+    load_macro reg2 -4
+    load_macro reg3 -4
+    dec reg2
+    store_macro reg2 $i
+
+INNER_LOOP:
+    // load value by ptr
+    load reg2 reg0
+    add reg1 reg2
+    inc reg0
+    dec reg3
+    cmp reg3 0
+    jne INNER_LOOP
+
+OUTER_LOOP:
+    load_macro reg2 $i
+    cmp reg2 0
+    je END
+    // update outer_loop counter
+    dec reg2
+    store_macro reg2 $i
+
+    // update inner_loop counter
+    load_macro reg3 -4
+
+    // update pointer
+    sub reg0 reg3
+    load_macro reg2 -5
+    add reg0 reg2
+    jmp INNER_LOOP
+
+
+END:
+    // find average of the convolution matrix
+    load_macro reg3 -4
+    div reg1 reg3
+    div reg1 reg3
+    mov reg0 reg1
+    sub reg6 1
+    pop reg4
+    ret
+

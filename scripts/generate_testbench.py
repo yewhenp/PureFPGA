@@ -42,57 +42,10 @@ videocard_top videocard_top_inst
     wren_control <= 0;
     address_control <= 1;
 
-    #40
-    wren <= 1;
-	address <= 0;
-address <= 0;
-data_in <= 6;
-#40
-address <= 1;
-data_in <= 10;
-#40
-address <= 2;
-data_in <= 2;
-#40
-address <= 3;
-data_in <= 16;
-#40
-address <= 4;
-data_in <= 3;
-#40
-address <= 5;
-data_in <= 2;
-#40
-address <= 6;
-data_in <= 1;
-#40
-address <= 7;
-data_in <= 2;
-#40
-address <= 8;
-data_in <= 3;
-#40
-address <= 9;
-data_in <= 4;
-#40
-address <= 10;
-data_in <= 1;
-#40
-address <= 11;
-data_in <= 4;
-#40
-address <= 12;
-data_in <= 2;
-#40
-address <= 13;
-data_in <= 5;
-#40
-address <= 14;
-data_in <= 3;
-#40
-address <= 15;
-data_in <= 6;
-#40
+	wren <= 1;
+// INSERT HERE FILLING UP of RAM
+
+// FILING ROM
 """
 
 FOOTER = """
@@ -309,6 +262,7 @@ FOOTER = """
     wren_control <= 0;
     address_control <= 1;
 
+	// clean finish interrupt
     #40
     wren_control <= 1;
     address_control <= 1;
@@ -358,23 +312,28 @@ if __name__ == '__main__':
 	data_in_control <= 0;
 	
 	// turning off/on cores
+	// 0
 	#40
     wren_control <= 1;
     address_control <= 2;
     data_in_control <= 1;
 
+	// 1
     #40
     address_control <= 3;
     data_in_control <= 1;
 
+	// 2
     #40
     address_control <= 4;
     data_in_control <= 1;
 
+	// 3
     #40
     address_control <= 5;
     data_in_control <= 0;
 
+	// start interrupt
     #40
 	address_control <= 0;
 	data_in_control <= 1;
@@ -389,5 +348,3 @@ if __name__ == '__main__':
 
     with open(args.out, 'w') as out_file:
         out_file.write(result)
-
-    # print(result)

@@ -40,9 +40,8 @@ videocard_top videocard_top_inst
     wren_control <= 0;
     address_control <= 1;
 
-    #40
-    wren <= 1;
-	address <= 0;
+	wren <= 1;
+// INSERT HERE FILLING UP of RAM
 address <= 0;
 data_in <= 6;
 #40
@@ -91,6 +90,8 @@ data_in <= 3;
 address <= 15;
 data_in <= 6;
 #40
+
+// FILING ROM
 
     #40
     address <= 65536;
@@ -1145,23 +1146,28 @@ data_in <= 6;
 	data_in_control <= 0;
 	
 	// turning off/on cores
+	// 0
 	#40
     wren_control <= 1;
     address_control <= 2;
     data_in_control <= 1;
 
+	// 1
     #40
     address_control <= 3;
     data_in_control <= 1;
 
+	// 2
     #40
     address_control <= 4;
     data_in_control <= 1;
 
+	// 3
     #40
     address_control <= 5;
     data_in_control <= 0;
 
+	// start interrupt
     #40
 	address_control <= 0;
 	data_in_control <= 1;
@@ -1385,6 +1391,7 @@ data_in <= 6;
     wren_control <= 0;
     address_control <= 1;
 
+	// clean finish interrupt
     #40
     wren_control <= 1;
     address_control <= 1;

@@ -239,16 +239,18 @@ class Assembler:
 
             # jump label
             if re.match(r"\s*\w+\s*(:)\s*", line):
-                label_name = re.findall(r"[a-zA-Z_]+", line)[0]
+                label_name = re.findall(r"\w+", line)[0]
                 jump_labels[label_name] = instr_counter
                 if verbose:
                     print "Found new jump label: " + str(label_name) + "=" + str(instr_counter)
                 continue
 
             # value label
-            if re.match(r"\s*\w+\s*(=)\s*\d+\s*", line):
-                label_name = re.findall(r"[a-zA-Z_]+", line)[0]
-                value = re.findall(r"(=\d+)", line)[0]
+            if re.match(r"\s*\w+\s*(=)\s*-?\d+\s*", line):
+                label_name = re.findall(r"\w+", line)[0]
+                # if '-' in line:
+                value = re.findall(r"(=-?\d+)", line)[0]
+                print(value)
                 value = int(value.replace("=", ""))
                 val_labels[label_name] = value
                 if verbose:

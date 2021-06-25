@@ -46,7 +46,7 @@ module soc_system_mm_interconnect_1 (
 		input  wire         pll_0_outclk3_clk,                                                     //                                                   pll_0_outclk3.clk
 		input  wire         ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, // ARM_A9_HPS_h2f_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		input  wire         axi_master_bridge_reset_reset_bridge_in_reset_reset,                   //                   axi_master_bridge_reset_reset_bridge_in_reset.reset
-		output wire [19:0]  axi_master_bridge_s0_address,                                          //                                            axi_master_bridge_s0.address
+		output wire [18:0]  axi_master_bridge_s0_address,                                          //                                            axi_master_bridge_s0.address
 		output wire         axi_master_bridge_s0_write,                                            //                                                                .write
 		output wire         axi_master_bridge_s0_read,                                             //                                                                .read
 		input  wire [31:0]  axi_master_bridge_s0_readdata,                                         //                                                                .readdata
@@ -184,7 +184,7 @@ module soc_system_mm_interconnect_1 (
 	wire    [0:0] avalon_st_adapter_out_0_error;                            // avalon_st_adapter:out_0_error -> axi_master_bridge_s0_agent:rdata_fifo_sink_error
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (20),
+		.AV_ADDRESS_W                   (19),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

@@ -1,6 +1,12 @@
 ##################################################################
 # DICTS AND LISTS FOR ASSEMBLING
 ##################################################################
+
+LABEL_REGISTER = "reg5"
+CORE_NUM = "4"
+
+##################################################################
+# OPCODES
 command_types = {
     "core_alu": "11",
     "core_memory": "10",
@@ -49,7 +55,17 @@ commands = {
         'jmp': '01111',
 
         'coreidx': '10000',
-        'int'    : '10001'
+        'int'    : '10001',
+
+
+        'msb'   : '10010',     # my-stack-begin
+        'mse'   : '10011',     # my-stack-end
+        'sb'    : '10100',     # stack-begin
+        'excl'  : '10101',      # exception-address-load
+        'loadl':  '10110',
+        'storec': '10111',
+        'jst':    '11000',
+        'jnst':   '11001',
 
         # 'chmod': '11110',
         # 'chbuf': '11111',
@@ -84,9 +100,13 @@ registers = {
     'reg5': '101',
     'reg6': '110',
     'reg7': '111',
+    'bp': "100",
     "sp": "110",
     "ip": "111"
 }
+
+##################################################################
+# different useful lists for instructions identification for assembler
 
 alu_one_dest_commands = [
     "not", "inc", "dec",
@@ -96,15 +116,6 @@ mem_suffix_commands = [
     "mov0", "mov1", "load0", "load1", "store0", "store1",
 ]
 
-# mem_number_commands = [
-#     'movh0', 'movh1', 'movh2', 'movh3', 'movh4', 'movh5',
-#     'movl0', 'movl1', 'movl2', 'movl3', 'movl4', 'movl5'
-# ]
-
-# mem_movf_commands = [
-#     "movf0", "movf1", "movf2", "movf3", "movf4", "movf5"
-# ]
-
 mem_jump_commmands = [
     'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp'
 ]
@@ -113,16 +124,14 @@ not_suffix_commands = [
     'je', 'jne', 'jgt', 'jge', 'jlt', 'jle', 'jmp', 'movf' # , "chbuf", "chmod"
 ]
 
+suffix_reg_commands = [
+    "coreidx", "msb", "mse", "sb", "excl"
+]
+
 coreidx = [
     "coreidx"
 ]
 
-LABEL_REGISTER = "reg5"
-CORE_NUM = "4"
-
-##################################################################
-# DICTS AND LISTS FOR PREPROCESSING
-##################################################################
 mem_suffix_commands_unprocessed = [
     "mov", "load", "store"
 ]
@@ -138,4 +147,18 @@ mem_only_num_command_unprocessed = [
 suffixes_0 = {
     'eq', 'ne', 'gt', 'lt',
     'ge', 'le', 'cs', 'cc'
+}
+
+load_store = [
+    "load", "store"
+]
+
+suffix_jump_correspondance = {
+    'eq': 'je',
+    'ne': 'jne',
+    'gt': 'jgt',
+    'ge': 'jge',
+    'lt': 'jlt',
+    'le': 'jle',
+    'al': 'jmp'
 }

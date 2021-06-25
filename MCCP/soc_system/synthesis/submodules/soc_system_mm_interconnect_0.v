@@ -14,7 +14,7 @@ module soc_system_mm_interconnect_0 (
 		input  wire        video_dma_0_avalon_master_read,                //                                        .read
 		output wire [31:0] video_dma_0_avalon_master_readdata,            //                                        .readdata
 		output wire        video_dma_0_avalon_master_readdatavalid,       //                                        .readdatavalid
-		output wire [14:0] on_chip_to_dma_bridge_s0_address,              //                on_chip_to_dma_bridge_s0.address
+		output wire [31:0] on_chip_to_dma_bridge_s0_address,              //                on_chip_to_dma_bridge_s0.address
 		output wire        on_chip_to_dma_bridge_s0_write,                //                                        .write
 		output wire        on_chip_to_dma_bridge_s0_read,                 //                                        .read
 		input  wire [31:0] on_chip_to_dma_bridge_s0_readdata,             //                                        .readdata
@@ -99,7 +99,7 @@ module soc_system_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (15),
+		.AV_ADDRESS_W                   (32),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

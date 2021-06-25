@@ -11,6 +11,7 @@ add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/data_in_control
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/read_control
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/write_control
 add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/address_control
+add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/write
 add wave -noupdate -divider videocard
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/clk
 add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/videocard_inst/data_in
@@ -42,6 +43,7 @@ add wave -noupdate -radix decimal /cube4_tb/videocard_top_inst/videocard_inst/co
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/flags
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/state
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/perform
+add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/core_en
 add wave -noupdate -divider core_1
 add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/data_in_core1
 add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/data_out_core1
@@ -67,6 +69,7 @@ add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/response
 add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/wren
 add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/request
 add wave -noupdate /cube4_tb/videocard_top_inst/videocard_inst/core1/wait_memory
+add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core1/core_en
 add wave -noupdate -divider decoder
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/clk
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/core0/instr_decoder_main/en
@@ -92,6 +95,7 @@ add wave -noupdate -divider mm_control
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/mm_control/clk
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/mm_control/interrupt
 add wave -noupdate -radix unsigned /cube4_tb/videocard_top_inst/mm_control/address
+add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/mm_control/interrupt_internal
 add wave -noupdate -divider arbiter
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/request
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/response
@@ -121,7 +125,7 @@ add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/q_a
 add wave -noupdate -radix binary /cube4_tb/videocard_top_inst/videocard_inst/rom/rom0/q_b
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {4092306 ps} 0}
+WaveRestoreCursors {{Cursor 1} {2001203 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 514
 configure wave -valuecolwidth 124
@@ -137,4 +141,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {6167836 ps} {6244146 ps}
+WaveRestoreZoom {1972976 ps} {2049286 ps}

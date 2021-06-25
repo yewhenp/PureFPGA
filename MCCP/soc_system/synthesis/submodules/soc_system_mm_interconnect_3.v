@@ -25,7 +25,7 @@ module soc_system_mm_interconnect_3 (
 		output wire        video_dma_0_ctrl_write,                                 //                                                 .write
 		output wire [31:0] video_dma_0_ctrl_writedata,                             //                                                 .writedata
 		output wire        video_dma_0_ctrl_chipselect,                            //                                                 .chipselect
-		output wire [0:0]  videocard_new_0_memory_control_address,                 //                   videocard_new_0_memory_control.address
+		output wire [2:0]  videocard_new_0_memory_control_address,                 //                   videocard_new_0_memory_control.address
 		output wire        videocard_new_0_memory_control_write,                   //                                                 .write
 		output wire        videocard_new_0_memory_control_read,                    //                                                 .read
 		input  wire [7:0]  videocard_new_0_memory_control_readdata,                //                                                 .readdata
@@ -345,7 +345,7 @@ module soc_system_mm_interconnect_3 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (1),
+		.AV_ADDRESS_W                   (3),
 		.AV_DATA_W                      (8),
 		.UAV_DATA_W                     (8),
 		.AV_BURSTCOUNT_W                (1),

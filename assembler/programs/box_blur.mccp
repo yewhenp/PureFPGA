@@ -1,8 +1,4 @@
 stack_size 1000 1000 1000 1000
-// push arguments to TOP_LEFT_SQUARE
-//coreidx reg2
-//cmp reg2 0
-//jne PROGRAM_END
 
 movimm reg0 4
 load reg1 reg0
@@ -34,6 +30,12 @@ int 1
 
 
 BOX_BLUR:
+    ptrOrgImg=-3
+    ptrBlurImg=-4
+    orgImgWidth=-5
+    orgImgHeight=-6
+    orgBoxSize=-7
+
 //  param1 image start address              [reg4 - 3]
 //  param2 destination start address        [reg4 - 4]
 //  param3 image width                      [reg4 - 5]
@@ -62,10 +64,10 @@ BOX_BLUR:
     //  boxSize box size                   [reg4 + 5]
     //  widthOrg image width               [reg4 + 4]
 
-    load_macro reg0 -5
+    load_macro reg0 $orgImgWidth
     store_macro reg0 $widthOrg
 
-    load_macro reg2 -3
+    load_macro reg2 $ptrOrgImg
 
     // calculate shift for imgOrg
     // and set as TOP_LEFT_SQUARE argument
@@ -75,7 +77,7 @@ BOX_BLUR:
     store_macro reg2 $imgOrg
 
     // load and save width as argument of TOP_LEFT_SQUARE
-    load_macro reg2 -7
+    load_macro reg2 $orgBoxSize
     mov reg3 reg2
     store_macro reg2 $boxSize
 
@@ -90,13 +92,13 @@ BOX_BLUR:
     mul reg0 reg5
 
     // load imgBlur address and apply shift
-    load_macro reg2 -4
+    load_macro reg2 $ptrBlurImg
     add reg2 reg0
     store_macro reg2 $imgBlur
 
     // calculate height counter for each core
-    load_macro reg1 -6
-    load_macro reg2 -7
+    load_macro reg1 $orgImgHeight
+    load_macro reg2 $orgBoxSize
     sub reg1 $CORE_NUM
     coreidx reg5
     sub reg1 reg5

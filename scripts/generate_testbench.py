@@ -459,7 +459,7 @@ if __name__ == '__main__':
 
     #40
     address_control <= 5;
-    data_in_control <= 0;
+    data_in_control <= 1;
 
     #40
 	address_control <= 0;

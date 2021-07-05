@@ -249,17 +249,18 @@ soc_system u0(
 //				  .mm_bridge_0_m0_read                          (mm_bridge_read),     //                         .read
 //				  .mm_bridge_0_m0_byteenable                    (),                   //                         .byteenable
 //				  .mm_bridge_0_m0_debugaccess                   ()                    //
-					.alt_vip_cl_cvo_0_din_data(st_data),                         //                alt_vip_cl_cvo_0_din.data
-					.alt_vip_cl_cvo_0_din_valid(st_valid),                        //                                    .valid
-					.alt_vip_cl_cvo_0_din_startofpacket(st_sop),                //                                    .startofpacket
-					.alt_vip_cl_cvo_0_din_endofpacket(st_eop),                  //                                    .endofpacket
-					.alt_vip_cl_cvo_0_din_ready(st_ready),                        // 
-					.video_dma_0_avalon_streaming_source_data(st_data),          // video_dma_0_avalon_streaming_source.data
-					.video_dma_0_avalon_streaming_source_endofpacket(st_eop),   //                                    .endofpacket
-					.video_dma_0_avalon_streaming_source_ready(st_ready),         //                                    .ready
-					.video_dma_0_avalon_streaming_source_startofpacket(st_sop), //                                    .startofpacket
-					.video_dma_0_avalon_streaming_source_valid(st_valid)          //   
-					);
+//					.alt_vip_cl_cvo_0_din_data(st_data),                         //                alt_vip_cl_cvo_0_din.data
+//					.alt_vip_cl_cvo_0_din_valid(st_valid),                        //                                    .valid
+//					.alt_vip_cl_cvo_0_din_startofpacket(st_sop),                //                                    .startofpacket
+//					.alt_vip_cl_cvo_0_din_endofpacket(st_eop),                  //                                    .endofpacket
+//					.alt_vip_cl_cvo_0_din_ready(st_ready),                        // 
+//					.video_dma_0_avalon_streaming_source_data(st_data),          // video_dma_0_avalon_streaming_source.data
+//					.video_dma_0_avalon_streaming_source_endofpacket(st_eop),   //                                    .endofpacket
+//					.video_dma_0_avalon_streaming_source_ready(st_ready),         //                                    .ready
+//					.video_dma_0_avalon_streaming_source_startofpacket(st_sop), //                                    .startofpacket
+//					.video_dma_0_avalon_streaming_source_valid(st_valid)          //   					
+);
+
 
 
 localparam DATA_WIDTH	=8;

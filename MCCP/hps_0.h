@@ -21,6 +21,17 @@
  */
 
 /*
+ * Macros for device 'videocard_new_0_memory_main', class 'videocard_new'
+ * The macros are prefixed with 'VIDEOCARD_NEW_0_MEMORY_MAIN_'.
+ * The prefix is the slave descriptor.
+ */
+#define VIDEOCARD_NEW_0_MEMORY_MAIN_COMPONENT_TYPE videocard_new
+#define VIDEOCARD_NEW_0_MEMORY_MAIN_COMPONENT_NAME videocard_new_0
+#define VIDEOCARD_NEW_0_MEMORY_MAIN_BASE 0x0
+#define VIDEOCARD_NEW_0_MEMORY_MAIN_SPAN 524288
+#define VIDEOCARD_NEW_0_MEMORY_MAIN_END 0x7ffff
+
+/*
  * Macros for device 'videocard_new_0_memory_control', class 'videocard_new'
  * The macros are prefixed with 'VIDEOCARD_NEW_0_MEMORY_CONTROL_'.
  * The prefix is the slave descriptor.
@@ -28,41 +39,8 @@
 #define VIDEOCARD_NEW_0_MEMORY_CONTROL_COMPONENT_TYPE videocard_new
 #define VIDEOCARD_NEW_0_MEMORY_CONTROL_COMPONENT_NAME videocard_new_0
 #define VIDEOCARD_NEW_0_MEMORY_CONTROL_BASE 0x0
-#define VIDEOCARD_NEW_0_MEMORY_CONTROL_SPAN 2
-#define VIDEOCARD_NEW_0_MEMORY_CONTROL_END 0x1
-
-/*
- * Macros for device 'video_buffer', class 'altera_avalon_onchip_memory2'
- * The macros are prefixed with 'VIDEO_BUFFER_'.
- * The prefix is the slave descriptor.
- */
-#define VIDEO_BUFFER_COMPONENT_TYPE altera_avalon_onchip_memory2
-#define VIDEO_BUFFER_COMPONENT_NAME video_buffer
-#define VIDEO_BUFFER_BASE 0x0
-#define VIDEO_BUFFER_SPAN 24576
-#define VIDEO_BUFFER_END 0x5fff
-#define VIDEO_BUFFER_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
-#define VIDEO_BUFFER_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
-#define VIDEO_BUFFER_CONTENTS_INFO ""
-#define VIDEO_BUFFER_DUAL_PORT 1
-#define VIDEO_BUFFER_GUI_RAM_BLOCK_TYPE AUTO
-#define VIDEO_BUFFER_INIT_CONTENTS_FILE soc_system_video_buffer
-#define VIDEO_BUFFER_INIT_MEM_CONTENT 1
-#define VIDEO_BUFFER_INSTANCE_ID NONE
-#define VIDEO_BUFFER_NON_DEFAULT_INIT_FILE_ENABLED 0
-#define VIDEO_BUFFER_RAM_BLOCK_TYPE AUTO
-#define VIDEO_BUFFER_READ_DURING_WRITE_MODE DONT_CARE
-#define VIDEO_BUFFER_SINGLE_CLOCK_OP 0
-#define VIDEO_BUFFER_SIZE_MULTIPLE 1
-#define VIDEO_BUFFER_SIZE_VALUE 24576
-#define VIDEO_BUFFER_WRITABLE 1
-#define VIDEO_BUFFER_MEMORY_INFO_DAT_SYM_INSTALL_DIR SIM_DIR
-#define VIDEO_BUFFER_MEMORY_INFO_GENERATE_DAT_SYM 1
-#define VIDEO_BUFFER_MEMORY_INFO_GENERATE_HEX 1
-#define VIDEO_BUFFER_MEMORY_INFO_HAS_BYTE_LANE 0
-#define VIDEO_BUFFER_MEMORY_INFO_HEX_INSTALL_DIR QPF_DIR
-#define VIDEO_BUFFER_MEMORY_INFO_MEM_INIT_DATA_WIDTH 32
-#define VIDEO_BUFFER_MEMORY_INFO_MEM_INIT_FILENAME soc_system_video_buffer
+#define VIDEOCARD_NEW_0_MEMORY_CONTROL_SPAN 8
+#define VIDEOCARD_NEW_0_MEMORY_CONTROL_END 0x7
 
 /*
  * Macros for device 'video_dma_0', class 'video_dma'
@@ -74,17 +52,6 @@
 #define VIDEO_DMA_0_BASE 0x38
 #define VIDEO_DMA_0_SPAN 8
 #define VIDEO_DMA_0_END 0x3f
-
-/*
- * Macros for device 'videocard_new_0_memory_main', class 'videocard_new'
- * The macros are prefixed with 'VIDEOCARD_NEW_0_MEMORY_MAIN_'.
- * The prefix is the slave descriptor.
- */
-#define VIDEOCARD_NEW_0_MEMORY_MAIN_COMPONENT_TYPE videocard_new
-#define VIDEOCARD_NEW_0_MEMORY_MAIN_COMPONENT_NAME videocard_new_0
-#define VIDEOCARD_NEW_0_MEMORY_MAIN_BASE 0x80000
-#define VIDEOCARD_NEW_0_MEMORY_MAIN_SPAN 524288
-#define VIDEOCARD_NEW_0_MEMORY_MAIN_END 0xfffff
 
 
 #endif /* _ALTERA_HPS_0_H_ */

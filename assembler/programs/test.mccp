@@ -1,0 +1,49 @@
+// multiply each element of vector by a number
+// RAM[0] = address; RAM[1] = size; RAM[2] = multiplier
+stack_size 1000 1000 1000 1000 // set size of stacks
+
+movimm reg5 0
+load reg0 reg5  // load vector address
+inc reg5
+load reg1 reg5  // load number of elements
+div reg1 CORE_NUM      // for each core
+inc reg5
+load reg2 reg5  // load multiplier
+// 12 31 43 -- 12 87 34 -- 99 91 61 -- 54 12 87
+coreidx reg3
+mul reg3 reg1
+add reg0 reg3   // address += core index * number of elements
+call MULTIPLY_VECTOR_BY_SCALAR
+int 0
+
+// reg0 - address, reg1 - number of elements, reg2 - multiplier
+i=0
+MULTIPLY_VECTOR_BY_SCALAR:
+    push reg4     // save old base pointer
+    mov reg4 reg6 // update base pointer
+    add reg6 1    // declare local variable i
+
+    load_macro reg3 $i // initialize variable i = 0
+    movimm reg3 = 0
+    store_macro reg3 $i
+
+    CYCLE:
+        load reg3 reg0  // reg3 = RAM[address]
+        mul reg3 reg2   // reg3 *= multiplier
+        store reg3 reg0 // RAM[address] = reg3
+        inc reg0        // address += 1
+        load_macro reg3 $i
+        inc reg3
+        store_macro reg3 $i
+        cmp reg3 reg1
+        jlt CYCLE    // if i < number of elements - jump to cycle
+    sub reg6 1
+    pop reg4        // clean stack
+    ret
+
+loadl reg1 reg2
+// do stuff to reg1…
+storec reg1 reg2
+
+jst reg5 // Jump if Stored
+jnst reg5 // Jump if Not Stored
